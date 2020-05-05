@@ -15,6 +15,7 @@ app.use(bodyParser.json());                 // using bodyParser to parse JSON bo
 app.use(cors());                            // enabling CORS for all requests
 app.use(morgan('combined'));        // adding morgan to log HTTP requests
 
+app.use(express.static('public'))
 
 // ROUTING
 app.get('/', function (req, res) {
