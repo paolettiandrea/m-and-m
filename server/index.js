@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 
-const activityRouter = require('./routes/activities');
+const activityRouter = require('./routes/missions');
 
 
 const app = express();
@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
   res.send("Hello, I'm the server");
 })
 
-app.use("/activities", activityRouter)
+app.use("/missions", activityRouter)
 
 
 // STARTING THE SERVER
