@@ -1,8 +1,8 @@
 <template>
     <div class="mission-form">
         <transition name="content-slide" mode="out-in">
-            <b-form v-if="missionHead" :key="missionHead.title">
-                <b-form-group label="Title" label-for="title-input" label-cols="1">
+            <b-form v-if="missionHead" :key="missionHead.uid">
+                <b-form-group class="labeled-form-group" label="Title" label-for="title-input" label-cols="3">
                     <b-form-input id="title-input"
                                   v-model="missionHead.title"
                                   :state="stringLenghtValidation('title')"
@@ -12,7 +12,7 @@
                         The title needs to be between {{schema.title.minLength}} and {{schema.title.maxLength}} characters.
                     </b-form-invalid-feedback>
                 </b-form-group>
-                <b-form-group label="Summary" label-for="title-input" label-cols="1">
+                <b-form-group label="Summary" label-for="title-input" label-cols="3">
                     <b-form-input id="title-input"
                                   v-model="missionHead.summary"
                                   :state="stringLenghtValidation('summary')"
@@ -77,6 +77,10 @@
     .content-slide-leave-to {
         opacity: 0;
         transform: translateX(100%);
+    }
+
+    .labeled-form-group {
+        label-cols: 3
     }
 
 </style>
