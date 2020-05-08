@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  version: '0.0.1'
+  title: 'M&M'
+  description: 'A gamification suite'
+
+servers: 
+  - url: localhost:3000
+
+tags: 
+  - name: players
+    description: Operations used by the players
+  - name: supervisors
+    description: Operations of supervision of the players
+  - name: authors
+    description: Operations related to the authoring of content
+  
+
+paths:
+  /api/missions/byAge/{age}:
+    get:
+      summary: Retrieves a list of missions appropriate to the given age
+      description: This is meant to be used by the players to query for the missions that are available for the user's age.
+      parameters: 
+        - in: path
+          name: age
+          description: Target age
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Returns an array of missions, so that the player can choose which one to play
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/missionHead'
+                  
+  /api/missions/contentById/{uid}:
+    get:
+      summary: Retrieves the content of a mission
+      parameters:
+        - in: path
+          name: uid
+          description: Tha unique id of the mission
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Returns the mission content for the given id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/missionContent'
+  
+components:
+  schemas:
+    
+    missionHead:
+      description: General information about a mission
+      type: object
+      properties:
+        uid:
+          description: Unique id used to identify a mission univocally in the mission database
+          type: integer
+        title:
+          description: A short title for the mission
+          type: string
+          minLength: 3
+          maxLength: 20
+        summary:
+          description: A short summary for the mission
+          minLength: 10
+          maxLength: 150
+        minAge:
+          description: The minimum age for the activity
+          type: integer
+          minimum: 8
+          maximum: 18
+        maxAge:
+          description: The maximum age for the activity
+          type: integer
+          minimum: 8
+          maximum: 18
+        accessibility:
+          description: Is this mission accessible
+          type: boolean
+          default: false
+        
+    
+    missionContent:
+      description: All the content necessary for a mission to be played
+      type: object
+      properties:
+        activities:
+          description: The list of activities that are part of this mission
+          type: array
+          items:
+            $ref: '#/components/schemas/activity'
+          
+    
+    activity:
+      type: object
+      description: A step in the resolution of a mission where a player is presented with a situation and has to act in some way (through some for of input).
+      properties:
+        title:
+          type: string
+          maxLength: 50
+          description: A short title that identifies the mission for authors and supervisors
