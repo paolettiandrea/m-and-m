@@ -1,10 +1,9 @@
 <template>
     <div>
-        <h1>Active missions</h1>
-        <div v-for="missionHead in availableMissions">
-            <mission-head-card :mission-head="missionHead"></mission-head-card>
-        </div>
-
+        <h3>Active missions</h3>
+            <div v-for="missionHead in availableMissions" :key="missionHead.uid">
+                <mission-head-card :mission-head="missionHead"  @mission:selected="missionSelected"></mission-head-card>
+            </div>
     </div>
 </template>
 
@@ -16,9 +15,12 @@
             }
         },
         methods: {
+            missionSelected(missionHead) {
+                this.$emit('mission:selection:changed', missionHead);
+            }
         },
         components: {
-            'mission-head-card': httpVueLoader('/author/components/mission-head-card.vue')
+            'mission-head-card': httpVueLoader('/common/components/MissionHeadCard.vue')
         },
         mounted() {
             axios.
