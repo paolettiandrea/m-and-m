@@ -17,11 +17,12 @@
     <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+
     <title>Title</title>
 </head>
 <body>
     <div id="app">
-        <mission-menu></mission-menu>
+        <author-main></author-main>
     </div>
 
     <script>
@@ -31,7 +32,7 @@
                 message: 'Hello Vue!',
             },
             components: {
-                'mission-menu': httpVueLoader('/author/components/mission-menu.vue')
+                'author-main': httpVueLoader('/author/components/AuthorMain.vue')
             }
         })
     </script>

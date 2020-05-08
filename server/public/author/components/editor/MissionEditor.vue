@@ -1,8 +1,6 @@
 <template>
-    <div>
-        <b-card :title="missionHead.title">
-
-        </b-card>
+    <div class="mission-form">
+        <mission-form :mission-head="missionHead"></mission-form>
     </div>
 </template>
 
@@ -13,14 +11,15 @@
         },
         data() {
             return {
-
             }
         },
         methods: {
         },
+        components: {
+            'mission-form': httpVueLoader('/author/components/editor/MissionHeadForm.vue')
+        }
     }
 </script>
 
 <style scoped>
-
 </style>
