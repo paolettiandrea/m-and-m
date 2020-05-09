@@ -2,12 +2,14 @@
   "availableMissions":
   [
     {
+      "uid": 1,
       "title": "Test mission 1",
-      "description": "A short description of the mission"
+      "summary": "A short description of the mission"
     },
     {
+      "uid": 2,
       "title": "Test mission 2",
-      "description": "Another short description of the mission"
+      "summary": "Another short description of the mission"
     }
   ]
 }
