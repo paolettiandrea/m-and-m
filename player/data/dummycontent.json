@@ -1,0 +1,16 @@
+{
+  "content": [
+    {
+      "type": "text-displayer",
+      "data": {
+        "text": "Some text ksjdlsakdsadsadsa \n dsfkjsfkjds"
+      }
+    },
+    {
+      "type": "img-displayer",
+      "data": {
+        "url": "./img/..."
+      }
+    }
+  ]
+}

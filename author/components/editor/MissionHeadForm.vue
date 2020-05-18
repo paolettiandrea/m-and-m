@@ -31,7 +31,8 @@
 <script>
     module.exports = {
         props: {
-            missionHead: Object
+            missionHead: Object,
+            pippo: String
         },
         data() {
             return {

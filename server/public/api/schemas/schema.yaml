@@ -70,7 +70,7 @@ components:
           description: A short title for the mission
           type: string
           minLength: 3
-          maxLength: 20
+          maxLength: 10
         summary:
           description: A short summary for the mission
           minLength: 10

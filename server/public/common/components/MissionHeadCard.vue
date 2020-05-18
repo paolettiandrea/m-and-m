@@ -16,7 +16,7 @@
             handleSelection() {
                 this.$emit('mission:selected', this.missionHead);
             }
-        },
+        }
     }
 </script>
 
