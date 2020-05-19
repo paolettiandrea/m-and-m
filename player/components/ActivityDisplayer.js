@@ -28,7 +28,15 @@ Vue.component("text-displayer", {
 })
 
 Vue.component("img-displayer", {
-    template: `<div><p>I'm an image displayer and my image is at {{data.url}}</p></div>`,
+    template: 
+    `<div class="card" style="width: 18rem;">
+    <img src="M&M.jpeg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">{{data.url}}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>`,
     props: {
         data: null
     }
