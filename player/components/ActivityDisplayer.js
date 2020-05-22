@@ -20,6 +20,16 @@ Vue.component("activity-displayer", {
     }
 })
 
+Vue.component("qr-reader", {
+    template: `<div><input type=text size=16 placeholder="Tracking Code" class=qrcode-text>
+        <label class=qrcode-text-btn>
+        <input type=file accept="image/*" capture=environment onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex=-1></label> 
+        <input type=button value="Go" disabled></div>`,
+    props: {
+        data: null
+    }
+})
+
 Vue.component("text-displayer", {
     template: `<div><p>{{data.text}}</p></div>`,
     props: {
