@@ -23,22 +23,32 @@ Vue.component("activity-displayer", {
 Vue.component("qr-reader", {
     template: `<div><input type=text size=16 placeholder="Tracking Code" class=qrcode-text>
         <label class=qrcode-text-btn>
-        <input type=file accept="image/*" capture=environment onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex=-1></label> 
+        <input type=file accept="image/*" capture=environment onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex=-1></label>
         <input type=button value="Go" disabled></div>`,
     props: {
         data: null
     }
 })
 
+
 Vue.component("text-displayer", {
-    template: `<div><p>{{data.text}}</p></div>`,
+    template: `<div><div v-html="this.parsed"></div></div>`,
     props: {
         data: null
+    },
+
+    computed:{
+      parsed (){
+        var converter = new showdown.Converter();
+        parsedHtml = converter.makeHtml(this.data.text);
+        console.log(parsedHtml);
+        return parsedHtml;
+      }
     }
 })
 
 Vue.component("img-displayer", {
-    template: 
+    template:
     `<div class="card" style="width: 18rem;">
     <img src="M&M.jpeg" class="card-img-top" alt="...">
     <div class="card-body">

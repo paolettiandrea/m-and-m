@@ -6,14 +6,14 @@
         "text": ""
       }
     },
-    
+
     {
       "type": "text-displayer",
       "data": {
-        "text": "Some text ciao \n dsfkjsfkjds"
+        "text": "Some text *ciao* \n dsfkjsfkjds"
       }
     },
-    
+
     {
       "type": "img-displayer",
       "data": {
