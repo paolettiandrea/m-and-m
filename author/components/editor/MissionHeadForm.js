@@ -1,4 +1,4 @@
-var MissionHeadForm = {
+export default {
     template: `
     <div class="mission-form">
         <transition name="content-slide" mode="out-in">

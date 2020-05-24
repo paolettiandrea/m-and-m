@@ -1,4 +1,4 @@
-var AuthorMain = {
+export default {
     template: `<div>
         <b-container fluid>
             <b-row>
@@ -27,8 +27,8 @@ var AuthorMain = {
         }
     },
     components: {
-        'mission-menu': MissionMenu,
-        'mission-editor': MissionEditor
+        'mission-menu': () => import("./menu/MissionMenu.js"),
+        'mission-editor': () => import("./editor/MissionEditor.js")
     },
     mounted() {
         axios.

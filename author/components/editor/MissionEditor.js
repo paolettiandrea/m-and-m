@@ -1,4 +1,4 @@
-var MissionEditor = {
+export default {
     template: `
     <div class="mission-form">
         <b-row>
@@ -6,7 +6,9 @@ var MissionEditor = {
                 <mission-form :mission-head="missionHead"></mission-form>
             </b-col>
             <b-col>
-                <mission-content-editor></mission-content-editor>
+                <div v-if="missionHead">
+                    <mission-content-editor></mission-content-editor>
+                </div>
             </b-col>
         </b-row>
     </div>`,
@@ -21,7 +23,7 @@ var MissionEditor = {
     methods: {
     },
     components: {
-        'mission-form': MissionHeadForm,
-        'mission-content-editor': MissionContentEditor
+        'mission-form': () => import('./MissionHeadForm.js'),
+        'mission-content-editor': () => import('./content-editor/MissionContentEditor.js')
     }
 }

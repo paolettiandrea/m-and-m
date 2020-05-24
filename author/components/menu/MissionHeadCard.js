@@ -1,4 +1,4 @@
-var MissionHeadCard = {
+export default {
     template: `
     <div>
         <b-card class="m-head-card" :title="missionHead.title" :sub-title="missionHead.summary"

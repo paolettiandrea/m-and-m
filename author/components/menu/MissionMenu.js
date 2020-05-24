@@ -1,4 +1,4 @@
-var MissionMenu = {
+export default {
     template: `
         <div>
         <h3>Active missions</h3>
@@ -22,7 +22,7 @@ var MissionMenu = {
         }
     },
     components: {
-        'mission-head-card': MissionHeadCard
+        'mission-head-card': () => import("./MissionHeadCard.js")
     },
     mounted() {
         axios.
