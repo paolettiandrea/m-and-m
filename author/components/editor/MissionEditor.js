@@ -3,10 +3,12 @@ export default {
     <div class="mission-form">
         <b-row>
             <b-col>
-                <mission-form :mission-head="missionHead"></mission-form>
+                
             </b-col>
-            <b-col>
-                <div v-if="missionHead">
+        </b-row>
+        <b-row>
+            <b-col v-if="missionHead">
+                <div >
                     <mission-content-editor></mission-content-editor>
                 </div>
             </b-col>
@@ -18,12 +20,13 @@ export default {
     },
     data() {
         return {
+
         }
     },
     methods: {
     },
     components: {
-        'mission-form': () => import('./MissionHeadForm.js'),
+        'mission-head-form': () => import('./MissionHeadForm.js'),
         'mission-content-editor': () => import('./content-editor/MissionContentEditor.js')
     }
 }
