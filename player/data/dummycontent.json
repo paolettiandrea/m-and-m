@@ -1,24 +1,68 @@
 {
-  "content": [
+  "activityList": [
     {
-      "type": "qr-reader",
-      "data": {
-        "text": ""
-      }
+      "content": [
+        {
+          "type": "qr-reader",
+          "data": {
+            "text": ""
+          }
+        },
+
+        {
+          "type": "text-displayer",
+          "data": {
+            "text": "Some text *ciao* \n dsfkjsfkjds"
+          }
+        },
+
+        {
+          "type": "img-displayer",
+          "data": {
+            "url": "Paragrafo immagine text box......"
+          }
+        }
+      ]
     },
 
     {
-      "type": "text-displayer",
-      "data": {
-        "text": "Some text *ciao* \n dsfkjsfkjds"
-      }
-    },
+      "content": [
+        {
+          "type": "qr-reader",
+          "data": {
+            "text": ""
+          }
+        },
 
-    {
-      "type": "img-displayer",
-      "data": {
-        "url": "Paragrafo immagine text box......"
-      }
+        {
+          "type": "text-displayer",
+          "data": {
+            "text": "Sono un altro text **displayer**",
+            "parseMarkdown": true
+          }
+        },
+
+        {
+          "type": "img-displayer",
+          "data": {
+            "url": "player/M&M.jpeg"
+          }
+        },
+
+        {
+          "type": "text-displayer",
+          "data": {
+            "text": "**Altro testo** per verificare che il contenuto cambi",
+
+            "parseMarkdown": true
+          }
+        }
+      ]
     }
+
+
   ]
 }
+
+
+

@@ -1,13 +1,27 @@
-Vue.component("activity-displayer", {
-    template: `<div v-if="this.dummyData">
-                    <div  v-for="contentChunk of this.dummyData.content">
-                        <component :is="contentChunk.type" :data="contentChunk.data"></component>
-                    </div>
-                </div>`,
+Vue.component("mission-displayer", {
+    template: `
+        <div>
+            <div v-if="this.pointedActivity">
+                <activity-displayer :activityContent="this.pointedActivity"></activity-displayer>
+            </div>
+            <button v-on:click="nextActivity">Next mission</button>
+        </div>
+    `,
 
-    data:function() {
+    data() {
         return {
-            dummyData: null
+            missionData: null,
+
+            pointedActivity: null,
+            pointedIndex: 0
+        }
+    },
+    methods: {
+        nextActivity() {
+            // Funzione temporanea che cambia la pointedActivity a quella successiva nella lista contenuta in missionData
+            this.pointedIndex++;
+            if (this.pointedIndex >= this.missionData.activityList.length) { this.pointedIndex = 0; }
+            this.pointedActivity = this.missionData.activityList[this.pointedIndex];
         }
     },
 
@@ -15,9 +29,25 @@ Vue.component("activity-displayer", {
         axios.
         get("/player/data/dummycontent.json").
         then(res => {
-            this.dummyData = res.data;
+            this.missionData = res.data;
+
+            this.pointedActivity = this.missionData.activityList[this.pointedIndex];
         })
     }
+})
+
+Vue.component("activity-displayer", {
+    template: `<div v-if="this.activityContent">
+                    <div  v-for="contentChunk of this.activityContent.content">
+                        <component :is="contentChunk.type" :data="contentChunk.data"></component>
+                    </div>
+                </div>`,
+
+    props: {
+        activityContent: null
+    },
+
+
 })
 
 Vue.component("qr-reader", {
@@ -39,10 +69,14 @@ Vue.component("text-displayer", {
 
     computed:{
       parsed (){
-        var converter = new showdown.Converter();
-        parsedHtml = converter.makeHtml(this.data.text);
-        console.log(parsedHtml);
-        return parsedHtml;
+          if (this.data.parseMarkdown) {
+              var converter = new showdown.Converter();
+              parsedHtml = converter.makeHtml(this.data.text);
+              return parsedHtml;
+          } else {
+              return this.data.text;
+          }
+
       }
     }
 })
