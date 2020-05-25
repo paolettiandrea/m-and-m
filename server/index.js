@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
+const path = require('path');
 
 // TEMP stuff
 const a = require('./routes/missions');
@@ -20,6 +21,7 @@ app.use(morgan('combined'));          // adding morgan to log HTTP requests
 app.use(express.static('public'));
 app.use('/player', express.static('../player'));
 app.use('/author', express.static('../author'));
+app.use(express.static(path.join(__dirname, 'node_modules')));
 
 // ROUTING
 app.get('/', function (req, res) {

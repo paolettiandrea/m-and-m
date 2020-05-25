@@ -6,8 +6,8 @@ export default {
                     <mission-menu @mission:selection:changed="handleMissionSelectionChanged"></mission-menu>
                 </b-col>
                 <b-col>
-                    <div>
-                        <mission-editor :mission-head="selectedMission"></mission-editor>
+                    <div v-if="selectedMissionData">
+                        <mission-editor :mission-head="selectedMissionData.missionHead"></mission-editor>
                     </div>
                 </b-col>
             </b-row>
@@ -17,13 +17,14 @@ export default {
     data() {
         return {
             availableMissions: null,
-            selectedMission: null
+            selectedMissionData: null
         }
     },
     methods: {
-        handleMissionSelectionChanged(missionHead) {
-            this.selectedMission = missionHead;
-            console.log('Mission selection changed');
+        handleMissionSelectionChanged(newSelectionData) {
+            if (this.selectedMissionData) {this.selectedMissionData.deselectionCallback()}
+            this.selectedMissionData = newSelectionData;
+            this.selectedMissionData.selectionCallback();
         }
     },
     components: {
