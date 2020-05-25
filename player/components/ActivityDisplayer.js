@@ -1,11 +1,16 @@
 Vue.component("mission-displayer", {
     template: `
-        <div>
-            <div v-if="this.pointedActivity">
-                <activity-displayer :activityContent="this.pointedActivity"></activity-displayer>
-            </div>
-            <button v-on:click="nextActivity">Next mission</button>
+    
+        <div> 
+        <transition name="content-slide" mode="out-in">  
+                <div v-if="this.pointedActivity">
+                    <activity-displayer :activityContent="this.pointedActivity"></activity-displayer>
+                </div>
+        </transition>
+        <button v-on:click="nextActivity">Next mission</button>
         </div>
+    
+        
     `,
 
     data() {
@@ -13,7 +18,13 @@ Vue.component("mission-displayer", {
             missionData: null,
 
             pointedActivity: null,
-            pointedIndex: 0
+            pointedIndex: 0,
+            stile: 'test'
+                /*stile: {
+                    'background-color': 'black',
+                    'opacity': '0.8',
+                    'text-align': 'center'
+                }*/
         }
     },
     methods: {
@@ -33,14 +44,20 @@ Vue.component("mission-displayer", {
 
             this.pointedActivity = this.missionData.activityList[this.pointedIndex];
         })
-    }
+    },
+
 })
 
 Vue.component("activity-displayer", {
-    template: `<div v-if="this.activityContent">
-                    <div  v-for="contentChunk of this.activityContent.content">
-                        <component :is="contentChunk.type" :data="contentChunk.data"></component>
+    template: `
+                <div>
+                <!-- <transition name="content-slide" mode="out-in"> -->
+                    <div v-if="this.activityContent">
+                        <div  v-for="contentChunk of this.activityContent.content">
+                            <component :is="contentChunk.type" :data="contentChunk.data"></component>
+                        </div>    
                     </div>
+                <!-- </transiton> -->
                 </div>`,
 
     props: {
@@ -67,31 +84,121 @@ Vue.component("text-displayer", {
         data: null
     },
 
-    computed:{
-      parsed (){
-          if (this.data.parseMarkdown) {
-              var converter = new showdown.Converter();
-              parsedHtml = converter.makeHtml(this.data.text);
-              return parsedHtml;
-          } else {
-              return this.data.text;
-          }
+    computed: {
+        parsed() {
+            if (this.data.parseMarkdown) {
+                var converter = new showdown.Converter();
+                parsedHtml = converter.makeHtml(this.data.text);
+                return parsedHtml;
+            } else {
+                return this.data.text;
+            }
 
-      }
+        }
     }
 })
 
-Vue.component("img-displayer", {
-    template:
-    `<div class="card" style="width: 18rem;">
-    <img src="M&M.jpeg" class="card-img-top" alt="...">
+Vue.component("card-displayer", {
+    template: `<div class="card" style="width: 18rem;">
+    <img :src="data.url" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
-      <p class="card-text">{{data.url}}</p>
+      <p class="card-text">{{test}}</p>
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>`,
     props: {
         data: null
+    },
+    data() {
+        return {
+            test: "M&M.jpeg"
+        }
     }
 })
+
+Vue.component("img-displayer", {
+    template: `<div><img :src="data.url" :width="data.w" :height="data.h"></div>`,
+    props: {
+        data: null
+    }
+})
+
+Vue.component("chat", {
+    template: `
+    <button class="open-button" onclick="openForm()">Chat</button>
+
+    <div class="chat-popup" id="myForm">
+      <form action="/action_page.php" class="form-container">
+        <h1>Chat</h1>
+    
+        <label for="msg"><b>Message</b></label>
+        <textarea placeholder="Type message.." name="msg" required></textarea>
+    
+        <button type="submit" class="btn">Send</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      </form>
+    </div>
+    
+    <script>
+    function openForm() {
+    document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+    }
+    </script>`,
+
+    /* methods: {
+         openForm() {
+             document.getElementById("myForm").style.display = "block";
+         },
+         closeForm() {
+             document.getElementById("myForm").style.display = "none";
+         }
+     }*/
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+<style scoped>
+
+    .mission-form {
+        overflow-x: hidden;
+    }
+
+    .content-slide-enter-active, .content-slide-leave-active {
+        transition: all 0.5s;
+    }
+    .content-slide-enter, .content-slide-leave-to /* .list-leave-active below version 2.1.8 */
+/*
+{
+    opacity: 0;
+    transform: translateX(-100 % );
+}
+.content - slide - leave - to {
+    opacity: 0;
+    transform: translateX(100 % );
+}
+
+.labeled - form - group {
+    label - cols: 3
+}
+
+<
+/style>*/

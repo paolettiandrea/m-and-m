@@ -1,68 +1,74 @@
 {
-  "activityList": [
-    {
-      "content": [
-        {
-          "type": "qr-reader",
-          "data": {
-            "text": ""
-          }
+    "activityList": [{
+            "content": [{
+                    "type": "qr-reader",
+                    "data": {
+                        "text": ""
+                    }
+                },
+
+                {
+                    "type": "text-displayer",
+                    "data": {
+                        "text": "Some text *ciao* \n dsfkjsfkjds"
+                    }
+                },
+
+                {
+                    "type": "img-displayer",
+                    "data": {
+                        "url": "M&M.jpeg",
+                        "w": "300",
+                        "h": "300"
+                    }
+                }
+            ]
         },
 
         {
-          "type": "text-displayer",
-          "data": {
-            "text": "Some text *ciao* \n dsfkjsfkjds"
-          }
-        },
+            "content": [{
+                    "type": "qr-reader",
+                    "data": {
+                        "text": ""
+                    }
+                },
 
-        {
-          "type": "img-displayer",
-          "data": {
-            "url": "Paragrafo immagine text box......"
-          }
+                {
+                    "type": "text-displayer",
+                    "data": {
+                        "text": "Sono un altro text **displayer**",
+                        "parseMarkdown": true
+                    }
+                },
+
+                {
+                    "type": "img-displayer",
+                    "data": {
+                        "url": "M&M.jpeg",
+                        "w": "400",
+                        "h": "400"
+                    }
+                },
+
+                {
+                    "type": "text-displayer",
+                    "data": {
+                        "text": "**Altro testo** per verificare che il contenuto cambi",
+
+                        "parseMarkdown": true
+                    }
+                },
+                {
+                    "type": "chat",
+                    "data": {
+                        "text": "**Altro testo** per verificare che il contenuto cambi",
+
+                        "parseMarkdown": true
+                    }
+                }
+            ]
         }
-      ]
-    },
-
-    {
-      "content": [
-        {
-          "type": "qr-reader",
-          "data": {
-            "text": ""
-          }
-        },
-
-        {
-          "type": "text-displayer",
-          "data": {
-            "text": "Sono un altro text **displayer**",
-            "parseMarkdown": true
-          }
-        },
-
-        {
-          "type": "img-displayer",
-          "data": {
-            "url": "player/M&M.jpeg"
-          }
-        },
-
-        {
-          "type": "text-displayer",
-          "data": {
-            "text": "**Altro testo** per verificare che il contenuto cambi",
-
-            "parseMarkdown": true
-          }
-        }
-      ]
-    }
 
 
-  ]
+    ]
 }
-
-
-
