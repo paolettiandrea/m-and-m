@@ -36,32 +36,7 @@
         }
     </style>
     <style>
-        .mission-form {
-            overflow-x: hidden;
-        }
-        
-        .content-slide-enter-active,
-        .content-slide-leave-active {
-            transition: all 0.5s;
-        }
-        
-        .content-slide-enter,
-        .content-slide-leave-to
-        /* .list-leave-active below version 2.1.8 */
-        
-        {
-            opacity: 0;
-            transform: translateX(-100%);
-        }
-        
-        .content-slide-leave-to {
-            opacity: 0;
-            transform: translateX(100%);
-        }
-        
-        .labeled-form-group {
-            label-cols: 3
-        }
+
     </style>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -101,20 +76,6 @@
         </div>
 
     </div>
-    <button class="open-button" onclick="openForm()">Chat</button>
-
-    <div class="chat-popup" id="myForm">
-        <form action="/action_page.php" class="form-container">
-            <h1>Chat</h1>
-
-            <label for="msg"><b>Message</b></label>
-            <textarea placeholder="Type message.." name="msg" required></textarea>
-
-            <!--<button type="submit" class="btn">Send</button> da collegare al metodo che mandera il messaggio al server-->
-            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-        </form>
-    </div>
-
 
     <script>
         const App = new Vue({

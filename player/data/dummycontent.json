@@ -1,12 +1,12 @@
 {
     "activityList": [{
+            "uid": "1",
             "content": [{
                     "type": "qr-reader",
                     "data": {
                         "text": ""
                     }
                 },
-
                 {
                     "type": "text-displayer",
                     "data": {
@@ -26,6 +26,7 @@
         },
 
         {
+            "uid": "2",
             "content": [{
                     "type": "qr-reader",
                     "data": {
@@ -52,14 +53,6 @@
 
                 {
                     "type": "text-displayer",
-                    "data": {
-                        "text": "**Altro testo** per verificare che il contenuto cambi",
-
-                        "parseMarkdown": true
-                    }
-                },
-                {
-                    "type": "chat",
                     "data": {
                         "text": "**Altro testo** per verificare che il contenuto cambi",
 

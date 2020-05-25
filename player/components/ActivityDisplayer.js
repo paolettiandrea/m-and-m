@@ -3,11 +3,12 @@ Vue.component("mission-displayer", {
     
         <div> 
         <transition name="content-slide" mode="out-in">  
-                <div v-if="this.pointedActivity">
+                <div v-if="this.pointedActivity" :key="this.pointedActivity.uid">
                     <activity-displayer :activityContent="this.pointedActivity"></activity-displayer>
                 </div>
         </transition>
         <button v-on:click="nextActivity">Next mission</button>
+        <chat></chat>
         </div>
     
         
@@ -126,7 +127,7 @@ Vue.component("img-displayer", {
 
 Vue.component("chat", {
     template: `<div>
-        <button class="open-button" onclick="openForm()">Chat</button>
+        <button class="open-button" v-on:click="openForm">Chat</button>
 
     <div class="chat-popup" id="myForm">
       <form action="/action_page.php" class="form-container">
@@ -136,7 +137,7 @@ Vue.component("chat", {
         <textarea placeholder="Type message.." name="msg" required></textarea>
     
         <button type="submit" class="btn">Send</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        <button type="button" class="btn cancel" v-on:click="closeForm">Close</button>
       </form>
     </div>
     
