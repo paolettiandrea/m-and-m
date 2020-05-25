@@ -125,8 +125,8 @@ Vue.component("img-displayer", {
 })
 
 Vue.component("chat", {
-    template: `
-    <button class="open-button" onclick="openForm()">Chat</button>
+    template: `<div>
+        <button class="open-button" onclick="openForm()">Chat</button>
 
     <div class="chat-popup" id="myForm">
       <form action="/action_page.php" class="form-container">
@@ -140,24 +140,17 @@ Vue.component("chat", {
       </form>
     </div>
     
-    <script>
-    function openForm() {
-    document.getElementById("myForm").style.display = "block";
-    }
+</div>`
+    ,
 
-    function closeForm() {
-    document.getElementById("myForm").style.display = "none";
-    }
-    </script>`,
-
-    /* methods: {
+     methods: {
          openForm() {
              document.getElementById("myForm").style.display = "block";
          },
          closeForm() {
              document.getElementById("myForm").style.display = "none";
          }
-     }*/
+     }
 
 
 
