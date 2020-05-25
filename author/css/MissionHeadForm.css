@@ -1,0 +1,23 @@
+.mission-form {
+    overflow-x: hidden;
+}
+
+.popover {
+    max-width: 100%;
+}
+
+/*.content-slide-enter-active, .content-slide-leave-active {*/
+/*    transition: all 0.5s;*/
+/*}*/
+/*.content-slide-enter, .content-slide-leave-to !* .list-leave-active below version 2.1.8 *! {*/
+/*    opacity: 0;*/
+/*    transform: translateX(-100%);*/
+/*}*/
+/*.content-slide-leave-to {*/
+/*    opacity: 0;*/
+/*    transform: translateX(100%);*/
+/*}*/
+
+/*.labeled-form-group {*/
+/*    label-cols: 3*/
+/*}*/

@@ -9,12 +9,18 @@
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
     <!-- Load polyfills to support older browsers -->
     <script src="//polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver" crossorigin="anonymous"></script>
-
+    <!-- Load Vue related stuff-->
     <script src="//cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="//unpkg.com/http-vue-loader"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+
+
+    <link type="text/css" rel="stylesheet" href="css/MissionHeadForm.css"/>
+
+    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.5.0/dist/g6.min.js" ></script>
 
     <title>Title</title>
 </head>
@@ -27,7 +33,7 @@
         const App = new Vue({
             el: '#app',
             components: {
-                'author-main': httpVueLoader('/author/components/AuthorMain.vue')
+                'author-main': () => import("./components/AuthorMain.js")
             }
         })
     </script>
