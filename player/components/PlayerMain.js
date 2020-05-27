@@ -1,9 +1,6 @@
 Vue.component('player-main', {
-    template: `<activity-displayer></activity-displayer>`
+    template: `<mission-displayer></mission-displayer>`
 })
 
-// var PlayerMain = {
-//     template: '<p>sadasdsadsad<p/>'
-// }
 
 

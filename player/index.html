@@ -1,8 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <style>
+        body,
+        input {
+            font-size: 14pt
+        }
+        
+        input,
+        label {
+            vertical-align: middle
+        }
+        
+        .qrcode-text {
+            padding-right: 1.7em;
+            margin-right: 0
+        }
+        
+        .qrcode-text-btn {
+            display: inline-block;
+            background: url(//dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/07/1499401426qr_icon.svg) 50% 50% no-repeat;
+            height: 1em;
+            width: 1.7em;
+            margin-left: -1.7em;
+            cursor: pointer
+        }
+        
+        .qrcode-text-btn>input[type=file] {
+            position: absolute;
+            overflow: hidden;
+            width: 1px;
+            height: 1px;
+            opacity: 0
+        }
+    </style>
+    <style>
+
+    </style>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <link rel="stylesheet" href="style.css">
 
     <!-- Load required Bootstrap and BootstrapVue CSS -->
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
@@ -15,31 +54,35 @@
     <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.js"></script>
+
+
+    <script src="//rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+
+
+    <script type="text/javascript" src="qrcode.js"></script>
+
 
     <script src="components/PlayerMain.js"></script>
     <script src="components/ActivityDisplayer.js"></script>
 </head>
+
 <body>
 
-<div id="app">
-    <player-main></player-main>
-</div>
+    <div id="test">
+        <div id="app">
+            <player-main></player-main>
 
-<script>
+        </div>
 
+    </div>
 
-    const App = new Vue({
-        el: '#app',
-        data() {
-            return {
-                ciao: "Ciao"
-            }
-        },
-        // components: {
-        //     'player-main': PlayerMain
-        // }
-    })
-</script>
+    <script>
+        const App = new Vue({
+            el: '#app'
+        })
+    </script>
 
 </body>
+
 </html>

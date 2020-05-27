@@ -1,11 +1,6 @@
 export default {
     template: `
-    <div class="mission-form">
-        <b-row>
-            <b-col>
-                
-            </b-col>
-        </b-row>
+    <div>
         <b-row>
             <b-col v-if="missionHead">
                 <div >
