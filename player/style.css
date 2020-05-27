@@ -97,8 +97,8 @@ body {
     opacity: 1;
 }
 
-
-.mission-form {
+/*Avoid horizontal bar on translation*/
+.activity-displayer-div {
     overflow-x: hidden;
 }
 
