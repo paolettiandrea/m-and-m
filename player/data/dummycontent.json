@@ -20,6 +20,12 @@
                         "w": "300",
                         "h": "300"
                     }
+                },
+                {
+                    "type": "multiple-checkboxes",
+                    "data": {
+                        
+                    }
                 }
             ]
         },
@@ -58,6 +64,7 @@
                         "parseMarkdown": true
                     }
                 }
+                
             ]
         }
 
