@@ -1,8 +1,71 @@
-MongoClient = require('mongodb').MongoClient
-var dbUrl = "mongodb://localhost:27017";
+const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectID;
+const fs = require('fs');
 
-MongoClient.connect(dbUrl, function(err, db) {
-    if (err) throw err;
-    console.log("Database created!");
-    db.close();
-});
+const dbUrl = "mongodb://localhost:27017";
+const missionsDB = 'missions'
+const missionHeadsCol = 'mission-heads'
+const missionContentCol = 'mission-contents'
+
+
+async function getMissionHeadsList() {
+    return new Promise((resolve) => {
+        MongoClient.connect(dbUrl, function(err, client) {
+            if (err) throw err;
+            const db = client.db(missionsDB);
+            db.collection(missionHeadsCol).find().toArray().then( res => {
+                client.close();
+                resolve(res);
+            })
+        })
+    });
+}
+
+// Creates a new mission in the database and returns its missionHead
+async function newMission() {
+    return new Promise((resolve)=> {
+        MongoClient.connect(dbUrl, function(err, client) {
+            if (err) throw err;
+            const db = client.db(missionsDB);
+            // Get default new mission from file (for easy editing)
+            fs.readFile("data/newMission.json", 'utf-8', ((err, data) => {
+                var newMissionObj = JSON.parse(data);
+
+                // Insert mission content in database
+                db.collection(missionContentCol).insertOne(newMissionObj.missionContent).then( res => {
+                    // Retrieve the inserted mission content _id and add it to the missionHead object, then add it to the database
+                    newMissionObj.missionHead.contentId = res.insertedId;
+                    db.collection(missionHeadsCol).insertOne(newMissionObj.missionHead).then( res => {
+                        client.close();
+                        resolve(res.ops[0]);
+                    })
+                })
+            }));
+        });
+    })
+}
+
+async function deleteMission(uid) {
+    return new Promise((resolve)=> {
+        MongoClient.connect(dbUrl, function(err, client) {
+            if (err) throw err;
+            const db = client.db(missionsDB);
+            // Remove missionHead from head database
+            console.log(uid)
+            db.collection(missionHeadsCol).findOneAndDelete({"_id": new ObjectId(uid)}).then( res => {
+                let contentId = res.value.contentId;
+                // Remove missionContent from content database
+                db.collection(missionContentCol).findOneAndDelete({"_id": new ObjectId(contentId)}).then( res => {
+                    client.close();
+                    resolve(res.value._id);
+                })
+            })
+        });
+    })
+}
+
+module.exports = {
+    newMission,
+    deleteMission,
+    getMissionHeadsList
+}

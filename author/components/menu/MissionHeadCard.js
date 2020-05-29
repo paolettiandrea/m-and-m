@@ -1,11 +1,11 @@
 export default {
     template: `
     <div v-if="missionHead" >
-        <b-card :id="'myContainer'+headFormButId" class="m-head-card" :title="missionHead.title" :sub-title="missionHead.summary"
+        <b-card class="m-head-card" :title="missionHead.title" :sub-title="missionHead.summary"
                 v-on:click="emitSelection" v-on:keyup.enter="emitSelection"
                 tabindex="0" role="button">
                 
-                <b-collapse v-model="selected">
+            <b-collapse v-model="selected">
                 <b-row align-h="between">
                     <b-col cols="8">
                         <b-button-group>
@@ -15,7 +15,7 @@ export default {
                             <b-button  variant="outline-primary" size="sm">
                                 <b-icon icon="subtract" aria-hidden="true"></b-icon>
                             </b-button>
-                            <b-button  variant="outline-primary" size="sm">
+                            <b-button  variant="outline-primary" v-on:click="deleteMission()" size="sm">
                                 <b-icon icon="trash" aria-hidden="true"></b-icon>
                             </b-button>
                         </b-button-group>
@@ -30,14 +30,13 @@ export default {
                     </b-col>
                 </b-row>
                     
-                <b-popover placement="right" :container="'myContainer'+headFormButId" triggers="click blur" :target="headFormButId">
+                <b-popover placement="right" triggers="click blur" :target="headFormButId">
                     <template v-slot:title>
                         Mission Info
                     </template>
                     <mission-head-form :mission-head="missionHead"></mission-head-form>
                 </b-popover>
-                </b-collapse>
-                
+            </b-collapse>
         </b-card>
     </div>`,
     data() {
@@ -53,7 +52,7 @@ export default {
     },
     computed: {
         headFormButId() {
-            return "head-form-but" + this.missionHead.title;
+            return "head-form-but" + this.missionHead._id;
         }
     },
     methods: {
@@ -71,6 +70,16 @@ export default {
         },
         deselect() {
             this.selected = false;
+        },
+        deleteMission() {
+            axios.delete("/missions/delete/"+ this.missionHead._id).then((res) => {
+                // Check that the returned deletedContentId matches
+                if (res.data.deletedContentId !== this.missionHead.contentId) {
+                    throw Error("Something went very bad, the returned deletedContentId doesn't match");
+                } else {
+                    this.$emit('mission:deleted', this.missionHead)
+                }
+            });
         }
     }
 }

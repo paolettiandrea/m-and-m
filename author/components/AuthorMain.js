@@ -32,10 +32,5 @@ export default {
         'mission-editor': () => import("./editor/MissionEditor.js")
     },
     mounted() {
-        axios.
-        get("/missions")
-            .then(res => {
-                this.availableMissions = res.data;
-            })
     }
 }
