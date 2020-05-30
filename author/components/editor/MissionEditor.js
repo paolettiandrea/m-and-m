@@ -4,7 +4,7 @@ export default {
         <b-row>
             <b-col v-if="missionContent">
                 <div >
-                    <mission-content-editor></mission-content-editor>
+                    <mission-content-editor :mission-content="missionContent"></mission-content-editor>
                 </div>
             </b-col>
         </b-row>
