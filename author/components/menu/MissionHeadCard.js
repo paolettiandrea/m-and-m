@@ -9,7 +9,7 @@ export default {
                 <b-row align-h="between">
                     <b-col cols="8">
                         <b-button-group>
-                            <b-button  variant="outline-primary" size="sm">
+                            <b-button :disabled="!changed" v-on:click="uploadMission()"  variant="outline-primary" size="sm">
                                 <b-icon icon="cloud-upload" aria-hidden="true"></b-icon>
                             </b-button>
                             <b-button  variant="outline-primary" size="sm">
@@ -41,11 +41,20 @@ export default {
     </div>`,
     data() {
         return {
-            selected: false
+            selected: false,
+            changed: false,
         }
     },
     props: {
-        missionHead: Object
+        missionHead: Object,
+    },
+    watch:{
+        'missionHead': {
+            handler: function (after, before) {
+                this.changed = true;
+            },
+            deep: true
+        }
     },
     components: {
         "mission-head-form": () => import("../editor/MissionHeadForm.js")
@@ -77,9 +86,15 @@ export default {
                 if (res.data.deletedContentId !== this.missionHead.contentId) {
                     throw Error("Something went very bad, the returned deletedContentId doesn't match");
                 } else {
-                    this.$emit('mission:deleted', this.missionHead)
+                    this.$bubble('mission:deleted', this.missionHead)
                 }
             });
+        },
+        uploadMission() {
+            axios.post("/missions/update", {missionHead: this.missionHead}).then(() => {
+                console.log("adsasd");
+            })
+            this.changed = false;
         }
     }
 }

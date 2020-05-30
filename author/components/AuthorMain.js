@@ -3,34 +3,30 @@ export default {
         <b-container fluid>
             <b-row>
                 <b-col cols="3" region="Mission Menu">
-                    <mission-menu @mission:selection:changed="handleMissionSelectionChanged"></mission-menu>
+                    <mission-menu @mission:selection:changed="handleChangeSelection"></mission-menu>
                 </b-col>
                 <b-col>
-                    <div v-if="selectedMissionData">
-                        <mission-editor :mission-head="selectedMissionData.missionHead"></mission-editor>
+                    <div v-if="this.selectedData">
+                        <mission-editor :mission-head="selectedData.missionHead"></mission-editor>
                     </div>
                 </b-col>
             </b-row>
         </b-container>
     </div>`,
 
-    data() {
+    data(){
         return {
-            availableMissions: null,
-            selectedMissionData: null
+            selectedData: null
         }
     },
+
     methods: {
-        handleMissionSelectionChanged(newSelectionData) {
-            if (this.selectedMissionData) {this.selectedMissionData.deselectionCallback()}
-            this.selectedMissionData = newSelectionData;
-            this.selectedMissionData.selectionCallback();
+        handleChangeSelection(selectedData) {
+            this.selectedData = selectedData;
         }
     },
     components: {
         'mission-menu': () => import("./menu/MissionMenu.js"),
         'mission-editor': () => import("./editor/MissionEditor.js")
-    },
-    mounted() {
     }
 }

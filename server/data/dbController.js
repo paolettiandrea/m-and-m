@@ -14,6 +14,9 @@ async function getMissionHeadsList() {
             if (err) throw err;
             const db = client.db(missionsDB);
             db.collection(missionHeadsCol).find().toArray().then( res => {
+                for (const head in res) {
+                    head._id = new ObjectId(head._id);
+                }
                 client.close();
                 resolve(res);
             })
@@ -51,7 +54,6 @@ async function deleteMission(uid) {
             if (err) throw err;
             const db = client.db(missionsDB);
             // Remove missionHead from head database
-            console.log(uid)
             db.collection(missionHeadsCol).findOneAndDelete({"_id": new ObjectId(uid)}).then( res => {
                 let contentId = res.value.contentId;
                 // Remove missionContent from content database
@@ -64,8 +66,27 @@ async function deleteMission(uid) {
     })
 }
 
+async function updateMission(missionData) {
+    return new Promise((resolve)=> {
+        MongoClient.connect(dbUrl, function(err, client) {
+            if (err) throw err;
+            const db = client.db(missionsDB);
+            // Convert id strings to ObjectIds
+            missionData.missionHead._id = new ObjectId(missionData.missionHead._id);
+            missionData.missionHead.contentId = new ObjectId(missionData.missionHead.contentId);
+            db.collection(missionHeadsCol).replaceOne(
+                        {"_id": new ObjectId(missionData.missionHead._id)},
+                        missionData.missionHead).then( res => {
+                            //console.log(res)
+                resolve();
+            })
+        });
+    })
+}
+
 module.exports = {
     newMission,
     deleteMission,
-    getMissionHeadsList
+    getMissionHeadsList,
+    updateMission
 }

@@ -22,10 +22,15 @@ router.get('/heads', function (req, res, next) {
 })
 
 router.delete('/delete/:uid', function (req, res, next) {
-    console.log(req.params.uid);
     database.deleteMission(req.params.uid).then( (contentId) => {
         res.json({ deletedContentId: contentId })
         console.log("Mission deleted");
+    })
+})
+
+router.post('/update', function (req, res, next) {
+    database.updateMission(req.body).then( () => {
+        res.send("OK");
     })
 })
 

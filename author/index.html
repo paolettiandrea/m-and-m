@@ -34,6 +34,18 @@
             el: '#app',
             components: {
                 'author-main': () => import("./components/AuthorMain.js")
+            },
+            mounted() {
+                Vue.use((Vue) => {
+                    Vue.prototype.$bubble = function $bubble(eventName, ...args) {
+                        // Emit the event on all parent components
+                        let component = this;
+                        do {
+                            component.$emit(eventName, ...args);
+                            component = component.$parent;
+                        } while (component);
+                    };
+                });
             }
         })
     </script>
