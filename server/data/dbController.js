@@ -24,6 +24,20 @@ async function getMissionHeadsList() {
     });
 }
 
+async function getMissionContent(uid) {
+    return new Promise((resolve) => {
+        MongoClient.connect(dbUrl, function(err, client) {
+            if (err) throw err;
+            const db = client.db(missionsDB);
+            db.collection(missionContentCol).findOne({ "_id" : new ObjectId(uid)}).then( res => {
+                console.log(res);
+                client.close();
+                resolve(res);
+            })
+        })
+    });
+}
+
 // Creates a new mission in the database and returns its missionHead
 async function newMission() {
     return new Promise((resolve)=> {
@@ -71,14 +85,18 @@ async function updateMission(missionData) {
         MongoClient.connect(dbUrl, function(err, client) {
             if (err) throw err;
             const db = client.db(missionsDB);
-            // Convert id strings to ObjectIds
+            // Convert id strings to ObjectIds      FIXME
             missionData.missionHead._id = new ObjectId(missionData.missionHead._id);
             missionData.missionHead.contentId = new ObjectId(missionData.missionHead.contentId);
+            missionData.missionContent._id = new ObjectId(missionData.missionContent._id);
             db.collection(missionHeadsCol).replaceOne(
                         {"_id": new ObjectId(missionData.missionHead._id)},
                         missionData.missionHead).then( res => {
-                            //console.log(res)
-                resolve();
+                db.collection(missionContentCol).replaceOne(
+                            {"_id": new ObjectId(missionData.missionHead.contentId)},
+                            missionData.missionContent).then( res => {
+                    resolve();
+                })
             })
         });
     })
@@ -88,5 +106,6 @@ module.exports = {
     newMission,
     deleteMission,
     getMissionHeadsList,
-    updateMission
+    updateMission,
+    getMissionContent
 }

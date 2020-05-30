@@ -7,7 +7,7 @@ export default {
                 </b-col>
                 <b-col>
                     <div v-if="this.selectedData">
-                        <mission-editor :mission-head="selectedData.missionHead"></mission-editor>
+                        <mission-editor :mission-content="selectedData.missionContent"></mission-editor>
                     </div>
                 </b-col>
             </b-row>

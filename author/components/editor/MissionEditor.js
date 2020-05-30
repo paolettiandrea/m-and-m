@@ -2,7 +2,7 @@ export default {
     template: `
     <div>
         <b-row>
-            <b-col v-if="missionHead">
+            <b-col v-if="missionContent">
                 <div >
                     <mission-content-editor></mission-content-editor>
                 </div>
@@ -11,7 +11,7 @@ export default {
     </div>`,
 
     props: {
-        missionHead: Object
+        missionContent: Object
     },
     data() {
         return {

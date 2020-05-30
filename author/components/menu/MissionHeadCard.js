@@ -2,7 +2,7 @@ export default {
     template: `
     <div v-if="missionHead" >
         <b-card class="m-head-card" :title="missionHead.title" :sub-title="missionHead.summary"
-                v-on:click="emitSelection" v-on:keyup.enter="emitSelection"
+                v-on:click="clicked" v-on:keyup.enter="clicked"
                 tabindex="0" role="button">
                 
             <b-collapse v-model="selected">
@@ -43,6 +43,7 @@ export default {
         return {
             selected: false,
             changed: false,
+            missionContent: null
         }
     },
     props: {
@@ -69,9 +70,20 @@ export default {
         emitSelection() {
             this.$emit('mission:selected', {
                 missionHead: this.missionHead,
+                missionContent: this.missionContent,
                 selectionCallback: this.select,
                 deselectionCallback: this.deselect
             });
+        },
+        clicked() {
+            if (this.missionContent==null) {
+                axios.get("/missions/content/" + this.missionHead.contentId).then( (res) => {
+                    this.missionContent = res.data;
+                    this.emitSelection();
+                })
+            } else {
+                this.emitSelection();
+            }
         },
         // Callback called when this mission is selected
         select() {
@@ -91,7 +103,9 @@ export default {
             });
         },
         uploadMission() {
-            axios.post("/missions/update", {missionHead: this.missionHead}).then(() => {
+            axios.post("/missions/update",
+                {missionHead: this.missionHead,
+                missionContent: this.missionContent}).then(() => {
                 console.log("adsasd");
             })
             this.changed = false;

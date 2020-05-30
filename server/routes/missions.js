@@ -21,6 +21,12 @@ router.get('/heads', function (req, res, next) {
     })
 })
 
+router.get('/content/:uid', function (req, res, next) {
+    database.getMissionContent(req.params.uid).then( function (missionContent) {
+        res.json(missionContent);
+    })
+})
+
 router.delete('/delete/:uid', function (req, res, next) {
     database.deleteMission(req.params.uid).then( (contentId) => {
         res.json({ deletedContentId: contentId })
