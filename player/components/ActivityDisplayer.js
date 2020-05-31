@@ -138,17 +138,16 @@ Vue.component("chat", {
       </form>
     </div>
     
-</div>`
-    ,
+</div>`,
 
-     methods: {
-         openForm() {
-             document.getElementById("myForm").style.display = "block";
-         },
-         closeForm() {
-             document.getElementById("myForm").style.display = "none";
-         }
-     }
+    methods: {
+        openForm() {
+            document.getElementById("myForm").style.display = "block";
+        },
+        closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    }
 
 
 
@@ -179,52 +178,40 @@ Vue.component("multiple-checkboxes", {
 
     </div>`,
 
-  data() {
-    return {
-      selected: [], 
-      options: [
-        { text: 'Orange', value: 'orange' },
-        { text: 'Apple', value: 'apple' },
-        { text: 'Pineapple', value: 'pineapple' },
-        { text: 'Grape', value: 'grape' }
-      ]
+    data() {
+        return {
+            selected: [],
+            options: [
+                { text: 'Orange', value: 'orange' },
+                { text: 'Apple', value: 'apple' },
+                { text: 'Pineapple', value: 'pineapple' },
+                { text: 'Grape', value: 'grape' }
+            ]
+        }
     }
-  }
 })
 
+Vue.component("canvas-displayer", {
+    template: `
 
-
-
-
-
-
-
-
-
-/*
-<style scoped>
-
-    .mission-form {
-        overflow-x: hidden;
+    <div>
+        <div id="canvas" v-on:mousemove="coordinate" v-on:click="viewCoordianate">{{x}},{{y}}</div>
+        
+    </div>
+    `,
+    data() {
+        return {
+            x: 0,
+            y: 0
+        }
+    },
+    methods: {
+        coordinate(event) {
+            this.x = event.offsetX;
+            this.y = event.offsetY;
+        },
+        viewCoordianate(event) {
+            alert("X: " + event.offsetX + " " + "Y: " + event.offsetY);
+        }
     }
-
-    .content-slide-enter-active, .content-slide-leave-active {
-        transition: all 0.5s;
-    }
-    .content-slide-enter, .content-slide-leave-to /* .list-leave-active below version 2.1.8 */
-/*
-{
-    opacity: 0;
-    transform: translateX(-100 % );
-}
-.content - slide - leave - to {
-    opacity: 0;
-    transform: translateX(100 % );
-}
-
-.labeled - form - group {
-    label - cols: 3
-}
-
-<
-/style>*/
+})

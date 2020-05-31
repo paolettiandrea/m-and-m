@@ -24,7 +24,7 @@
                 {
                     "type": "multiple-checkboxes",
                     "data": {
-                        
+
                     }
                 }
             ]
@@ -57,14 +57,14 @@
                 },
 
                 {
-                    "type": "text-displayer",
+                    "type": "canvas-displayer",
                     "data": {
-                        "text": "**Altro testo** per verificare che il contenuto cambi",
-
-                        "parseMarkdown": true
+                        "url": "M&M.jpeg",
+                        "w": "100",
+                        "h": "100"
                     }
                 }
-                
+
             ]
         }
 
