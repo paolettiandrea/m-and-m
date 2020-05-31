@@ -20,6 +20,18 @@
                         "w": "300",
                         "h": "300"
                     }
+                },
+                {
+                    "type": "multiple-checkboxes",
+                    "data": {
+
+                    }
+                },
+                {
+                    "type": "text-insert",
+                    "data": {
+                      "text":"Risposta inserita"
+                    }
                 }
             ]
         },
@@ -58,6 +70,7 @@
                         "parseMarkdown": true
                     }
                 }
+
             ]
         }
 
