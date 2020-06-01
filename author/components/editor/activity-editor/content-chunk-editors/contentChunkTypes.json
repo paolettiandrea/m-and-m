@@ -1,0 +1,20 @@
+{
+  "contentChunkTypes": [
+    {
+      "type": "text-displayer",
+      "title": "Campo testuale",
+      "description": "Mostra un paragrafo testuale formattabile tramite markdown.",
+      "data":{
+        "text": "Placeholder text"
+      }
+    },
+    {
+      "type": "img-displayer",
+      "title": "Immagine",
+      "description": "Mostra un'immagine.",
+      "data": {
+        "url": "asdadsasd"
+      }
+    }
+  ]
+}

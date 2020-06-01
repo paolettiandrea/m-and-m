@@ -5,18 +5,6 @@
   },
 
   "missionContent": {
-    "activities": [
-      {
-        "title": "Sample activity",
-        "contentChunks": [
-          {
-            "type": "text-displayer",
-            "data": {
-              "text": "Sample content"
-            }
-          }
-        ]
-      }
-    ]
+    "activities": []
   }
 }

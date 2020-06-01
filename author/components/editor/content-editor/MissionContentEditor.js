@@ -1,4 +1,5 @@
 import { CanvasManager } from './CanvasManager.js';
+import { v1 as uuidv1} from '/uuid/dist/esm-browser/index.js';
 
 export default {
     template: `
@@ -11,7 +12,8 @@ export default {
     },
     data() {
         return {
-            canvas: null
+            canvas: null,
+            selectedActivity: null
         }
     },
     watch: {
@@ -19,18 +21,31 @@ export default {
             handler: function(after, before) {
                 this.canvas.newData(after);
             }
-
+        },
+        "selectedActivity.title": {
+            handler: function(after, before) {
+                console.log("Changed title to" + after);
+            }
         }
     },
     methods: {
         activitySelectionCallback(selectedActivity) {
-            console.log("New selected activity");
-            console.log(selectedActivity);
+            this.selectedActivity = selectedActivity;
+            this.$emit('activity:selected', {
+                activity: selectedActivity,
+                callbacks: {
+                    updateSelectedActivityTitle: (newTitle) => {
+                        selectedActivity.title = newTitle;
+                        this.canvas.updateActivityNode(selectedActivity);
+                    }
+                }
+            });
         },
         newActivity() {
             var newActivity = {
-                title: "asddas",
-                contentChunks: []
+                uuid: uuidv1(),
+                title: "Nuova attività",
+                content: []
             };
             this.missionContent.activities.push(newActivity);
             this.canvas.newActivity(newActivity);

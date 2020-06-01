@@ -1,5 +1,5 @@
 Vue.component("mission-displayer", {
-    template: `
+    template: `2
         <div> 
         <transition name="content-slide" mode="out-in">  
                 <div class="activity-displayer-div" v-if="this.pointedActivity" :key="this.pointedActivity.uid">
@@ -51,8 +51,10 @@ Vue.component("activity-displayer", {
                 <div>
                 <!-- <transition name="content-slide" mode="out-in"> -->
                     <div v-if="this.activityContent">
-                        <div  v-for="contentChunk of this.activityContent.content">
-                            <component :is="contentChunk.type" :data="contentChunk.data"></component>
+                        <slot name="inter" index="0"></slot>
+                        <div  v-for="(contentChunk, index) of this.activityContent.content">
+                            <component :id="'content-chunk-'+index" :is="contentChunk.type" :data="contentChunk.data"></component>
+                            <slot name="inter" :index="index+1"></slot>
                         </div>    
                     </div>
                 <!-- </transiton> -->

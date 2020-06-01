@@ -2,7 +2,7 @@ export default {
     template: `
     <div class="mission-form">
         <transition name="content-slide" mode="out-in">
-            <b-form v-if="missionHead" :key="missionHead.uid">
+            <b-form v-if="missionHead">
                 <b-form-group class="labeled-form-group" label="Title" label-for="title-input" label-cols="3">
                     <b-form-input id="title-input"
                                   v-model="missionHead.title"

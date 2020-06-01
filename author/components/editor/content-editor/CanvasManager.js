@@ -5,15 +5,15 @@ function buildGraphData(missionContent) {
     };
 
     for (const activity of missionContent.activities) {
-        data.nodes.push(buildActivityNode(activity))
+        data.nodes.push(buildActivityNodeData(activity))
     }
     return data;
 }
 
-function buildActivityNode(activity) {
+function buildActivityNodeData(activity) {
     return {
         type: 'modelRect',
-        id: activity.title,
+        id: activity.uuid,
         label: activity.title
     }
 }
@@ -42,9 +42,8 @@ export class CanvasManager {
 
         this.activityMap = new Map();
         for (const activity of missionContent.activities) {
-            this.activityMap.set(activity.title, activity);
+            this.activityMap.set(activity.uuid, activity);
         }
-        console.log(this.activityMap);
 
         this.graph.render(); // Render the graph
     }
@@ -55,7 +54,14 @@ export class CanvasManager {
     }
 
     newActivity(newActivity) {
-        this.graph.addItem('node', buildActivityNode(newActivity));
+        this.graph.addItem('node', buildActivityNodeData(newActivity));
+        this.activityMap.set(newActivity.uuid, newActivity);
+    }
+
+    updateActivityNode(activity) {
+        let targetNode = this.graph.findById(activity.uuid);
+        let nodeData = buildActivityNodeData(activity);
+        this.graph.updateItem(targetNode, nodeData);
     }
 }
 

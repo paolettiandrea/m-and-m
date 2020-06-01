@@ -19,7 +19,8 @@
     "js-yaml": "^3.13.1",
     "mongodb": "^3.5.7",
     "morgan": "^1.10.0",
-    "swagger-client": "^3.10.1"
+    "swagger-client": "^3.10.1",
+    "uuid": "^8.1.0"
   },
   "devDependencies": {
     "@apidevtools/swagger-parser": "^9.0.1",

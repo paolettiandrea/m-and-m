@@ -1,0 +1,52 @@
+export default {
+    template: `
+        <div v-if="activityData" @mouseover="hovering=true" @mouseleave="hovering=false">
+            <b-form v-on:submit.prevent="titleValidation">
+                <b-form-group class="labeled-form-group" label="Title" label-for="title-input" label-cols="3">
+                    <b-form-input id="title-input"
+                                  v-model="title"
+                                  type="text"
+                    ></b-form-input>
+                </b-form-group>
+            </b-form>
+            
+            <activity-displayer :activity-content="activityData.activity" >
+                <template v-slot:inter="props">
+                   <content-type-selector :showPop="hovering" @new:content="newContent" :chunkIndex="props.index"></content-type-selector>
+                </template>
+            </activity-displayer>
+        </div>
+    `,
+
+    props: {
+        activityData: null
+    },
+
+    watch: {
+        'activityData': {
+            handler: function (after, before) {
+                this.title = after.activity.title;
+            }
+        }
+    },
+
+    data() {
+        return {
+            title: "",
+            hovering: false
+        }
+    },
+
+    methods: {
+        titleValidation() {
+            this.activityData.callbacks.updateSelectedActivityTitle(this.title);
+        },
+
+        newContent(contentData) {
+            this.activityData.activity.content.push(contentData);
+        },
+    },
+    components: {
+        "content-type-selector": () => import("./ContentTypeSelector.js")
+    }
+}

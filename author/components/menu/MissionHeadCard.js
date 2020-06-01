@@ -58,8 +58,6 @@ export default {
         },
         'missionContent': {
             handler: function (after, before) {
-                console.log(after);
-                console.log(before);
                 if (before!=null && before===after) {
                     this.changed = true;
 
