@@ -55,12 +55,20 @@ Vue.component("activity-displayer", {
                             <component :is="contentChunk.type" :data="contentChunk.data"></component>
                         </div>
                     </div>
+<!--                    <component :is="contentChunk.type" :data="contentChunk.data" @input-received="inputHandler"></component>-->
+
                 <!-- </transiton> -->
                 </div>`,
 
     props: {
         activityContent: null
     },
+
+    methods: {
+        inputHandler(inputData) {
+
+        }
+    }
 
 
 })
