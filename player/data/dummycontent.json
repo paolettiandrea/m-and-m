@@ -25,12 +25,15 @@
                     "type": "multiple-checkboxes",
                     "data": {
 
+<<<<<<< HEAD
                     }
                 },
                 {
                     "type": "text-insert",
                     "data": {
                       "text":"Risposta inserita"
+=======
+>>>>>>> 13a910453e944ae7bb2f492483aec370a604a124
                     }
                 }
             ]
@@ -63,18 +66,22 @@
                 },
 
                 {
-                    "type": "text-displayer",
+                    "type": "canvas-displayer",
                     "data": {
-                        "text": "**Altro testo** per verificare che il contenuto cambi",
-
-                        "parseMarkdown": true
+                        "url": "M&M.jpeg",
+                        "w": "100",
+                        "h": "100"
                     }
                 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
 
 >>>>>>> ba81ee1abfba7f67c3e22a7bc7033c9a76d7d715
+=======
+
+>>>>>>> 13a910453e944ae7bb2f492483aec370a604a124
             ]
         }
 

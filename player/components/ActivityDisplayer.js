@@ -136,18 +136,23 @@ Vue.component("chat", {
         <button type="button" class="btn cancel" v-on:click="closeForm">Close</button>
       </form>
     </div>
+<<<<<<< HEAD
 
 </div>`
     ,
+=======
+    
+</div>`,
+>>>>>>> 13a910453e944ae7bb2f492483aec370a604a124
 
-     methods: {
-         openForm() {
-             document.getElementById("myForm").style.display = "block";
-         },
-         closeForm() {
-             document.getElementById("myForm").style.display = "none";
-         }
-     }
+    methods: {
+        openForm() {
+            document.getElementById("myForm").style.display = "block";
+        },
+        closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    }
 
 
 
@@ -174,6 +179,7 @@ Vue.component("multiple-checkboxes", {
 </template>
     </div>`,
 
+<<<<<<< HEAD
   data() {
     return {
       selected: [],
@@ -183,10 +189,22 @@ Vue.component("multiple-checkboxes", {
         { text: 'Pineapple', value: 'pineapple' },
         { text: 'Grape', value: 'grape' }
       ]
+=======
+    data() {
+        return {
+            selected: [],
+            options: [
+                { text: 'Orange', value: 'orange' },
+                { text: 'Apple', value: 'apple' },
+                { text: 'Pineapple', value: 'pineapple' },
+                { text: 'Grape', value: 'grape' }
+            ]
+        }
+>>>>>>> 13a910453e944ae7bb2f492483aec370a604a124
     }
-  }
 })
 
+<<<<<<< HEAD
 Vue.component("text-insert",{
   template: `<div>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -277,3 +295,29 @@ Vue.component("text-insert",{
 }
 <
 /style>*/
+=======
+Vue.component("canvas-displayer", {
+    template: `
+
+    <div>
+        <div id="canvas" v-on:mousemove="coordinate" v-on:click="viewCoordianate">{{x}},{{y}}</div>
+        
+    </div>
+    `,
+    data() {
+        return {
+            x: 0,
+            y: 0
+        }
+    },
+    methods: {
+        coordinate(event) {
+            this.x = event.offsetX;
+            this.y = event.offsetY;
+        },
+        viewCoordianate(event) {
+            alert("X: " + event.offsetX + " " + "Y: " + event.offsetY);
+        }
+    }
+})
+>>>>>>> 13a910453e944ae7bb2f492483aec370a604a124
