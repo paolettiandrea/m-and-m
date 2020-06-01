@@ -25,14 +25,15 @@
                     "type": "multiple-checkboxes",
                     "data": {
                     }
-                },
-                {
-                    "type": "text-insert",
-                    "data": {
-                      "text":"Risposta inserita"
-                    }
                 }
-            ]
+            ],
+            "inputComponent": {
+                "inputType": "text-insert",
+                "inputData": {
+                    "correctAnswer": "asdadsasd",
+                    "text":"Risposta inserita"
+                }
+            }
         },
 
         {
@@ -59,17 +60,16 @@
                         "w": "400",
                         "h": "400"
                     }
-                },
-
-                {
-                    "type": "canvas-displayer",
-                    "data": {
-                        "url": "M&M.jpeg",
-                        "w": "100",
-                        "h": "100"
-                    }
                 }
-            ]
+            ],
+            "inputComponent": {
+                "inputType": "canvas-displayer",
+                "inputData": {
+                    "url": "M&M.jpeg",
+                    "w": "100",
+                    "h": "100"
+                }
+            }
         }
 
 

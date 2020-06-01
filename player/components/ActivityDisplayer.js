@@ -55,7 +55,9 @@ Vue.component("activity-displayer", {
                             <component :is="contentChunk.type" :data="contentChunk.data"></component>
                         </div>
                     </div>
-<!--                    <component :is="contentChunk.type" :data="contentChunk.data" @input-received="inputHandler"></component>-->
+                    
+                    <!--Input component-->
+                    <component :is="activityContent.inputComponent.inputType" :data="activityContent.inputComponent.inputData" @input-received="inputHandler"></component>
 
                 <!-- </transiton> -->
                 </div>`,
@@ -227,10 +229,15 @@ Vue.component("text-insert",{
        show: true
      }
    },
+
+   props: {
+      data: null
+   },
+
    methods: {
      openForm(text) {
          document.getElementById("input-1").style.display = "block";
-         if(this.form.text=="Risposta")
+         if(this.form.text===this.data.correctAnswer)
           {
             this.data.text="Risposta esatta";
             return this.data.text;
@@ -241,6 +248,7 @@ Vue.component("text-insert",{
        evt.preventDefault()
        alert(JSON.stringify(this.form))
      },
+
      onReset(evt) {
        evt.preventDefault()
        // Reset our form values
