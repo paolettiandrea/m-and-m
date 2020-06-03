@@ -5,7 +5,8 @@
       "title": "Campo testuale",
       "description": "Mostra un paragrafo testuale formattabile tramite markdown.",
       "data":{
-        "text": "Placeholder text"
+        "text": "Placeholder text",
+        "parseMarkdown": true
       }
     },
     {

@@ -15,6 +15,13 @@ export default {
                    <content-type-selector :showPop="hovering" @new:content="newContent" :chunkIndex="props.index"></content-type-selector>
                 </template>
             </activity-displayer>
+            
+            <!--Editor popover for each contentChunk-->
+            <div v-for="(contentChunk, index) in activityData.activity.content">
+                <b-popover :target="'content-chunk-'+index" triggers="click blur">
+                    <component :is="contentChunk.type+'-editor'" :contentChunkData="contentChunk.data"></component>
+                </b-popover>
+            </div>
         </div>
     `,
 
@@ -42,11 +49,13 @@ export default {
             this.activityData.callbacks.updateSelectedActivityTitle(this.title);
         },
 
-        newContent(contentData) {
-            this.activityData.activity.content.push(contentData);
+        newContent(newContentData) {
+            this.activityData.activity.content.splice(newContentData.index, 0, newContentData.contentChunk)
         },
     },
     components: {
-        "content-type-selector": () => import("./ContentTypeSelector.js")
+        "content-type-selector": () => import("./ContentTypeSelector.js"),
+
+        "text-displayer-editor": () => import("./content-chunk-editors/TextDisplayerEditor.js")
     }
 }

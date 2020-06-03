@@ -10,7 +10,7 @@ export default {
             
             <b-popover :target="'content-selector-'+chunkIndex" triggers="click blur" placement="left">
                 <div v-for="contentType in contentChunkTypes" :key="contentType.type">
-                    <b-button v-on:click="emitNewContentEvent(contentType)">{{contentType.type}}</b-button>
+                    <b-button v-on:click="emitNewContentEvent(contentType)">{{contentType.title}}</b-button>
                 </div>
             </b-popover>
         </div>
@@ -30,8 +30,10 @@ export default {
     methods: {
         emitNewContentEvent(contentType) {
             this.$emit("new:content", {
-                type: contentType.type,
-                data: contentType.data,
+                contentChunk: {
+                    type: contentType.type,
+                    data: JSON.parse(JSON.stringify(contentType.data)),
+                },
                 index: this.chunkIndex
             })
         }
