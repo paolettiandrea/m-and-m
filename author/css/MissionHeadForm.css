@@ -1,23 +1,38 @@
-.mission-form {
-    overflow-x: hidden;
+html, body {
+    height: 100%;
+    overflow-y: hidden;
 }
 
-.popover {
-    max-width: 100%;
+#app {
+    height: 100%;
 }
 
-.content-slide-enter-active, .content-slide-leave-active {
-    transition: all 0.5s;
-}
-.content-slide-enter, .content-slide-leave-to /* .list-leave-active below version 2.1.8 */ {
-    opacity: 0;
-    transform: translateX(-100%);
-}
-.content-slide-leave-to {
-    opacity: 0;
-    transform: translateX(100%);
+
+.full-height {
+    height: 100%;
+
 }
 
-.labeled-form-group {
-    label-cols: 3
+.vertical-scroll {
+    overflow-y: auto;
 }
+
+
+.column-flex-container {
+    display: flex;
+    flex-flow: column;
+}
+
+
+.no-flex-grow {
+    flex: 0 1 auto;
+}
+
+.full-flex {
+    flex: 1 1 auto;
+}
+
+#g6Mount {
+    overflow: hidden;
+}
+

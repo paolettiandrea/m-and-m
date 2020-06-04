@@ -1,20 +1,18 @@
 export default {
     template: `
-        <div>
-            <b-navbar type="dark" variant="info">
+        <div class="column-flex-container full-height">
+            <b-navbar class="no-flex-grow" type="dark" variant="info">
                 <b-navbar-brand>Missioni</b-navbar-brand> 
                 
                 <b-navbar-nav class="ml-auto">
                         <b-button v-on:click="newMission()">
                             <b-icon icon="plus"></b-icon>
                         </b-button>  
-                
                 </b-navbar-nav>
-                   
             </b-navbar>
             
             
-            <div v-if="!error">
+            <div class="full-flex vertical-scroll" v-if="!error">
                 <div v-for="missionHead in availableMissions" :key="missionHead._id">
                     <mission-head-card 
                             :mission-head="missionHead"  

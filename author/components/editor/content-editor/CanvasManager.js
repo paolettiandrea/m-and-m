@@ -25,7 +25,10 @@ export class CanvasManager {
         this.graph = new G6.Graph({
             container: settings.mountId, // String | HTMLElement, required, the id of DOM element or an HTML node
             width: 800, // Number, required, the width of the graph
-            height: 500, // Number, required, the height of the graph
+            height: 400, // Number, required, the height of the graph,
+            fitView: true,
+            fitCenter: true,
+            autoPaint: true,
             modes: {
                 default: ['drag-canvas', 'drag-node'],
             }

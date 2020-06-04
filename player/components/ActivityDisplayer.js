@@ -50,10 +50,11 @@ Vue.component("activity-displayer", {
     template: `
                 <div>
                 <!-- <transition name="content-slide" mode="out-in"> -->
-                    <div v-if="this.activityContent">
+                    <div class="activity-displayer-chunk-container" v-if="this.activityContent">
                         <slot name="inter" index="0"></slot>
-                        <div  v-for="(contentChunk, index) of this.activityContent.content">
-                            <component :id="'content-chunk-'+index" :is="contentChunk.type" :data="contentChunk.data"></component>
+                        <div  v-for="(contentChunk, index) of this.activityContent.content" v-on:click="contentChunkClicked(contentChunk)">
+                            <slot name="head" :contentChunk="contentChunk" :index="index"></slot>
+                            <component :id="'content-chunk-'+index" :is="contentChunk.type" :data="contentChunk.data" ></component>
                             <slot name="inter" :index="index+1"></slot>
                         </div>    
                     </div>
@@ -63,6 +64,12 @@ Vue.component("activity-displayer", {
     props: {
         activityContent: null
     },
+
+    methods: {
+        contentChunkClicked(contentData) {
+            this.$emit("content:chunk:clicked", contentData);
+        }
+    }
 
 
 })

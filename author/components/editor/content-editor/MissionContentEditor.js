@@ -3,9 +3,11 @@ import { v1 as uuidv1} from '/uuid/dist/esm-browser/index.js';
 
 export default {
     template: `
-    <div>
+    <div onresize="console.log('dasd')">
         <b-button v-on:click="newActivity()">+</b-button>
-        <div id="g6Mount"></div>
+
+        
+            <div id="g6Mount" class="no-flex-grow full-height"></div>
     </div>`,
     props: {
         missionContent: null
@@ -59,6 +61,12 @@ export default {
             }
         }
         this.canvas = new CanvasManager(this.missionContent, canvasSettings);
+        window.onresize = () => {
+            let yo = document.getElementById("g6Mount");
+
+            console.log(yo);
+            this.canvas.graph.changeSize(yo.clientWidth, yo.clientHeight);      // FIXME brutally resizing canvas
+        }
     }
 
 }

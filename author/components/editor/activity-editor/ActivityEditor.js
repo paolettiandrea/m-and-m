@@ -1,7 +1,9 @@
 export default {
     template: `
-        <div v-if="activityData" @mouseover="hovering=true" @mouseleave="hovering=false">
-            <b-form v-on:submit.prevent="titleValidation">
+        <div class="column-flex-container" v-if="activityData">
+        
+            <div class="no-flex-grow">
+                <b-form v-on:submit.prevent="titleValidation">
                 <b-form-group class="labeled-form-group" label="Title" label-for="title-input" label-cols="3">
                     <b-form-input id="title-input"
                                   v-model="title"
@@ -9,19 +11,22 @@ export default {
                     ></b-form-input>
                 </b-form-group>
             </b-form>
-            
-            <activity-displayer :activity-content="activityData.activity" >
-                <template v-slot:inter="props">
-                   <content-type-selector :showPop="hovering" @new:content="newContent" :chunkIndex="props.index"></content-type-selector>
-                </template>
-            </activity-displayer>
-            
-            <!--Editor popover for each contentChunk-->
-            <div v-for="(contentChunk, index) in activityData.activity.content">
-                <b-popover :target="'content-chunk-'+index" triggers="click blur">
-                    <component :is="contentChunk.type+'-editor'" :contentChunkData="contentChunk.data"></component>
-                </b-popover>
             </div>
+            
+            
+            <activity-displayer class="full-flex vertical-scroll" :activity-content="activityData.activity" @content:chunk:clicked="contentChunkClicked">
+                <template v-slot:inter="props">
+                   <content-type-selector @new:content="newContent" :chunkIndex="props.index"></content-type-selector>
+                </template>
+                
+              
+            </activity-displayer>
+             
+            <div v-if="selectedContentChunk" class="no-flex-grow">
+            
+            <content-editor-popover  :contentChunk="selectedContentChunk"></content-editor-popover>
+</div>
+            
         </div>
     `,
 
@@ -40,7 +45,7 @@ export default {
     data() {
         return {
             title: "",
-            hovering: false
+            selectedContentChunk: null
         }
     },
 
@@ -50,12 +55,16 @@ export default {
         },
 
         newContent(newContentData) {
-            this.activityData.activity.content.splice(newContentData.index, 0, newContentData.contentChunk)
+            this.activityData.activity.content.splice(newContentData.index, 0, newContentData.contentChunk);
         },
+
+        contentChunkClicked(contentData) {
+            this.selectedContentChunk = contentData;
+            console.log(contentData);
+        }
     },
     components: {
         "content-type-selector": () => import("./ContentTypeSelector.js"),
-
-        "text-displayer-editor": () => import("./content-chunk-editors/TextDisplayerEditor.js")
+        "content-editor-popover": () => import("./content-chunk-editors/EditorPopover.js")
     }
 }

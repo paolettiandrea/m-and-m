@@ -1,17 +1,18 @@
 export default {
     template: `
-    <div>
-        <b-row>
-            <b-col v-if="missionContent">
-                <div >
-                    <mission-content-editor 
+    <div class="full-height">
+        <b-row class="full-height">
+            <b-col class="full-height" v-if="missionContent">
+                <div class="full-height">
+                    <mission-content-editor
+                        class="full-height column-flex-container no-flex-grow"
                         :mission-content="missionContent" 
                         @activity:selected="activitySelectedCallback">
                     </mission-content-editor>
                 </div>
             </b-col>
-            <b-col>
-                <activity-editor :activity-data="selectedActivityData"></activity-editor>
+            <b-col class="full-height">
+                <activity-editor class="full-height" :activity-data="selectedActivityData"></activity-editor>
             </b-col>
         </b-row>
     </div>`,
