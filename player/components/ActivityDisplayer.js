@@ -52,9 +52,12 @@ Vue.component("activity-displayer", {
                 <!-- <transition name="content-slide" mode="out-in"> -->
                     <div class="activity-displayer-chunk-container" v-if="this.activityContent">
                         <slot name="inter" index="0"></slot>
-                        <div  v-for="(contentChunk, index) of this.activityContent.content" v-on:click="contentChunkClicked(contentChunk)">
+                        <div  v-for="(contentChunk, index) of this.activityContent.content" >
                             <slot name="head" :contentChunk="contentChunk" :index="index"></slot>
-                            <component :id="'content-chunk-'+index" :is="contentChunk.type" :data="contentChunk.data" ></component>
+                            <div v-on:click="contentChunkClicked({content: contentChunk, index: index})">
+                            
+                            <component :id="'content-chunk-'+index" class="content-chunk" :is="contentChunk.type" :data="contentChunk.data" ></component>
+</div>
                             <slot name="inter" :index="index+1"></slot>
                         </div>    
                     </div>
@@ -125,7 +128,7 @@ Vue.component("card-displayer", {
 })
 
 Vue.component("img-displayer", {
-    template: `<div><img :src="data.url" :width="data.w" :height="data.h"></div>`,
+    template: `<div><img :src="data.imgResData.url" :width="data.w" :height="data.h"></div>`,
     props: {
         data: null
     }

@@ -26,6 +26,8 @@
     <script src="../player/components/ActivityDisplayer.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.js"></script>
+    <script src="//unpkg.com/vuex@3.4.0/dist/vuex.js"></script>
+
 
 
     <title>Title</title>
@@ -36,8 +38,25 @@
     </div>
 
     <script>
+        Vue.use(Vuex);
+
+
+        const store = new Vuex.Store({
+            state: {
+                selectedId: 0
+            },
+            mutations: {
+                select (state, id) {
+                    state.selectedId = id;
+                }
+            }
+            })
+
+
+
         const App = new Vue({
             el: '#app',
+            store,
             components: {
                 'author-main': () => import("./components/AuthorMain.js")
             },

@@ -2,17 +2,17 @@ export default {
     template: `
         <div  v-if="contentChunkTypes">
             
-                <div :id="'content-selector-'+chunkIndex">
-                <p>+</p>
-                </div>
-
- 
-            
-            <b-popover :target="'content-selector-'+chunkIndex" triggers="click blur" placement="left">
-                <div v-for="contentType in contentChunkTypes" :key="contentType.type">
-                    <b-button v-on:click="emitNewContentEvent(contentType)">{{contentType.title}}</b-button>
-                </div>
-            </b-popover>
+            <b-button-group style="width: 100%">
+                    <b-button 
+                        variant="outline-primary" 
+                        size="sm" 
+                        v-for="contentType in contentChunkTypes" 
+                        :key="contentType.type" 
+                        v-on:click="emitNewContentEvent(contentType)"
+                        v-b-tooltip.hover :title="contentType.title">
+                        <b-icon :icon="contentType.icon"></b-icon>
+                    </b-button>
+            </b-button-group>
         </div>
     `,
 

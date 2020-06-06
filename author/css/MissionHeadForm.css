@@ -36,3 +36,8 @@ html, body {
     overflow: hidden;
 }
 
+.content-chunk:hover {
+    background-color: beige;
+    border-color: #555555;
+}
+

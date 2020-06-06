@@ -3,6 +3,7 @@
     {
       "type": "text-displayer",
       "title": "Campo testuale",
+      "icon": "card-text",
       "description": "Mostra un paragrafo testuale formattabile tramite markdown.",
       "data":{
         "text": "Placeholder text",
@@ -12,9 +13,14 @@
     {
       "type": "img-displayer",
       "title": "Immagine",
+      "icon": "card-image",
       "description": "Mostra un'immagine.",
       "data": {
-        "url": "asdadsasd"
+        "imgResData": {
+          "url": "",
+          "originalTitle": ""
+        },
+        "alignment": "center"
       }
     }
   ]

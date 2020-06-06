@@ -1,6 +1,7 @@
 // importing the dependencies
 const express = require('express');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const morgan = require('morgan');
 const path = require('path');
@@ -17,8 +18,10 @@ const app = express();
 app.use(bodyParser.json());                  // using bodyParser to parse JSON bodies into JS objects
 app.use(cors());                             // enabling CORS for all requests
 app.use(morgan('combined'));          // adding morgan to log HTTP requests
+app.use(fileUpload({debug: true}));
 
 app.use(express.static('public'));
+app.use(express.static('data/resources'))
 app.use('/player', express.static('../player'));
 app.use('/author', express.static('../author'));
 app.use(express.static(path.join(__dirname, 'node_modules')));

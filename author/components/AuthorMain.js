@@ -24,6 +24,7 @@ export default {
     methods: {
         handleChangeSelection(selectedData) {
             this.selectedData = selectedData;
+            this.$store.commit('select', selectedData.missionHead._id);
         }
     },
     components: {
