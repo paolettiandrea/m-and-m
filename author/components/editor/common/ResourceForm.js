@@ -29,7 +29,7 @@ export default {
                     <b-form-file
                         v-model="file"
                         @input="fileChange"
-                        :placeholder="this.resData.originalTitle"
+                        :placeholder="this.resData.originalTitle || 'Carica un file'"
                     ></b-form-file>
                 </b-input-group>
             </div>
@@ -67,7 +67,8 @@ export default {
     props: {
         resData: null,
         resCategory: "",
-        defaultResource: ""
+        defaultResource: "",
+        size: "sm"
     },
 
     methods: {
