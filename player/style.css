@@ -168,3 +168,10 @@ label {
     height: 1px;
     opacity: 0
 }
+
+#input-live{
+  position: center;
+  background: url(//www.google.com/url?sa=i&url=https%3A%2F%2Fwww.southcarolinapublicradio.org%2Fpost%2Fchristmastime-m-ms-reigns-south-carolinas-favorite-candy&psig=AOvVaw2yjZqYtx1lvJ3DJ-suAiu7&ust=1591629898667000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMCk5siB8OkCFQAAAAAdAAAAABAM) ;
+  width:1000px;
+  color: white
+}

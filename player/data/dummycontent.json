@@ -31,7 +31,8 @@
                 "inputType": "text-insert",
                 "inputData": {
                     "correctAnswer": "asdadsasd",
-                    "text":"Risposta inserita"
+                    "text":"Risposta inserita",
+                    "color":"red"
                 }
             }
         },

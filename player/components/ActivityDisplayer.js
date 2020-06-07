@@ -55,7 +55,7 @@ Vue.component("activity-displayer", {
                             <component :is="contentChunk.type" :data="contentChunk.data"></component>
                         </div>
                     </div>
-                    
+
                     <!--Input component-->
                     <component :is="activityContent.inputComponent.inputType" :data="activityContent.inputComponent.inputData" @input-received="inputHandler"></component>
 
@@ -198,68 +198,49 @@ Vue.component("multiple-checkboxes", {
 
 Vue.component("text-insert",{
   template: `<div>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group
-        id="input-group-1"
-        label="Inserisci la tua risposta:"
-        label-for="input-1"
-      >
-        <b-form-input
-          id="input-1"
-          v-model="form.text"
-          type="text"
-          required
-          placeholder="Inserisci la tua risposta"
-        ></b-form-input>
-      </b-form-group>
+  <div role="group" >
+  <label for="input-live">Inserisci la tua risposta:</label>
+  <b-form-input
+    id="input-live"
+    v-model="Answer"
+    :state="textState"
+    aria-describedby="input-live-help input-live-feedback"
+    placeholder="Enter your answer"
+    trim
+  ></b-form-input>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
-    </b-form>
-    <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ form }}</pre>
-    </b-card>
+  <!-- This will only be shown if the preceding input has an invalid state -->
+  <div v-if="!this.data.correctAnswer">
+    <b-form-invalid-feedback id="input-live-feedback">
+      Risposta non esatta, riprova!
+    </b-form-invalid-feedback>
+  </div>
+
+  <!-- This is a form text block (formerly known as help block) -->
+  <b-form-text id="input-live-help">Your full text.</b-form-text>
+</div>
   </div> `,
-
-  data() {
-     return {
-       form: {
-         text: ''
-       },
-       show: true
-     }
-   },
 
    props: {
       data: null
    },
+   computed: {
+      textState() {
+        return this.Answer==this.data.correctAnswer ? true : false
+      },
+      dynamicStyle(){
+        return {
+          color: ``
+        }
+      }
+    },
+    data() {
+      return {
+        Answer: ''
+      }
+    }
 
-   methods: {
-     openForm(text) {
-         document.getElementById("input-1").style.display = "block";
-         if(this.form.text===this.data.correctAnswer)
-          {
-            this.data.text="Risposta esatta";
-            return this.data.text;
-          }
 
-     },
-     onSubmit(evt) {
-       evt.preventDefault()
-       alert(JSON.stringify(this.form))
-     },
-
-     onReset(evt) {
-       evt.preventDefault()
-       // Reset our form values
-       this.form.text = ''
-       // Trick to reset/clear native browser form validation state
-       this.show = false
-       this.$nextTick(() => {
-         this.show = true
-       })
-     }
-   }
 })
 
 
@@ -297,7 +278,7 @@ Vue.component("canvas-displayer", {
 
     <div>
         <div id="canvas" v-on:mousemove="coordinate" v-on:click="viewCoordianate">{{x}},{{y}}</div>
-        
+
     </div>
     `,
     data() {
