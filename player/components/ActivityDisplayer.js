@@ -3,20 +3,20 @@ Vue.component("mission-displayer", {
         <div>
         <transition name="content-slide" mode="out-in">
                 <div class="activity-displayer-div" v-if="this.pointedActivity" :key="this.pointedActivity.uid">
-                    <activity-displayer :activityContent="this.pointedActivity"></activity-displayer>
+                    <activity-displayer :activityContent="this.pointedActivity"
+                        @next:activity="handleNextActivity"></activity-displayer>
                 </div>
         </transition>
-        <button v-on:click="nextActivity">Next mission</button>
         <chat></chat>
         </div>
     `,
 
     data() {
         return {
+            // All the relevant data for the mission
             missionData: null,
-
+            // A reference to the activity being displayed right now
             pointedActivity: null,
-            pointedIndex: 0,
             stile: 'test'
                 /*stile: {
                     'background-color': 'black',
@@ -26,11 +26,9 @@ Vue.component("mission-displayer", {
         }
     },
     methods: {
-        nextActivity() {
+        handleNextActivity(nextActivityId) {
             // Funzione temporanea che cambia la pointedActivity a quella successiva nella lista contenuta in missionData
-            this.pointedIndex++;
-            if (this.pointedIndex >= this.missionData.activityList.length) { this.pointedIndex = 0; }
-            this.pointedActivity = this.missionData.activityList[this.pointedIndex];
+            this.pointedActivity = this.missionData.activities[nextActivityId];
         }
     },
 
@@ -40,35 +38,70 @@ Vue.component("mission-displayer", {
         then(res => {
             this.missionData = res.data;
 
-            this.pointedActivity = this.missionData.activityList[this.pointedIndex];
+            this.pointedActivity = this.missionData.activities['initial'];
         })
     },
 
 })
 
-Vue.component("activity-displayer", {
+Vue.component('activity-content-displayer', {
     template: `
                 <div>
-                <!-- <transition name="content-slide" mode="out-in"> -->
-                    <div v-if="this.activityContent">
-                        <div  v-for="contentChunk of this.activityContent.content">
-                            <component :is="contentChunk.type" :data="contentChunk.data"></component>
-                        </div>
+                    <!--For every object in the content array render a component of type defined contentChunk.type-->
+                    <div  v-for="contentChunk of this.contentList">
+                        <component :is="contentChunk.type" :data="contentChunk.data"></component>
                     </div>
-
-                    <!--Input component-->
-                    <component :is="activityContent.inputComponent.inputType" :data="activityContent.inputComponent.inputData" @input-received="inputHandler"></component>
-
-                <!-- </transiton> -->
                 </div>`,
 
     props: {
-        activityContent: null
+        contentList: null
+    }
+})
+
+Vue.component("activity-displayer", {
+    template: `
+                <div>
+                    <activity-content-displayer :contentList="activityContent.content"></activity-content-displayer>
+                    
+                    
+                    <b-collapse v-model="popupVisible">
+                        <activity-content-displayer :contentList="popupContent"></activity-content-displayer>
+                    </b-collapse>
+                    <!--Input component: the component type is defined by the string inputType and it receives the 
+                                         data object inputData as the prop "data" (every input component needs to have 
+                                         a data prop that it can use to retrieve all the data needed to define its behaviour)-->
+                    <component :is="activityContent.inputComponent.inputType" :data="activityContent.inputComponent.inputData" @input-received="handleInputReceived"></component>
+
+                </div>`,
+
+    props: {
+        activityContent: null,
+
+
+    },
+
+    data() {
+        return {
+            popupContent: null,
+            popupVisible: false
+        }
     },
 
     methods: {
-        inputHandler(inputData) {
+        // Called when the InputComponent triggers an input-received event.
+        // inputResponse defines what should happen next
+        handleInputReceived(inputResponse) {
+            switch (inputResponse.responseType) {
+                case "popup":       //
+                    this.popupContent = inputResponse.popupContent;
+                    this.popupVisible = true;
+                    break;
 
+                case "next":        // Send a next activity event to the mission displayer
+                    this.$emit('next:activity', inputResponse.nextActivityId);
+                    this.popupContent = null;
+                    this.popupVisible = false;
+            }
         }
     }
 
@@ -82,6 +115,30 @@ Vue.component("qr-reader", {
         <input type=button value="Go" disabled></div>`,
     props: {
         data: null
+    }
+})
+
+Vue.component('test-input', {
+    template: `<div>
+        <b-button v-on:click="nextActivity"> Next activity </b-button>
+        <b-button v-on:click="popup"> Popup </b-button>
+    </div>`,
+    props: {
+        data: null
+    },
+    methods: {
+        nextActivity() {
+            this.$emit('input-received', {
+                responseType: "next",
+                nextActivityId: this.data.nextActivityId
+            })
+        },
+        popup() {
+            this.$emit('input-received', {
+                responseType: "popup",
+                popupContent: this.data.popupContent
+            })
+        }
     }
 })
 

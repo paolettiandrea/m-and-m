@@ -1,12 +1,42 @@
 {
-    "activityList": [{
-            "uid": "1",
+    "activities": {
+        "initial": {
             "content": [{
-                    "type": "qr-reader",
-                    "data": {
-                        "text": ""
-                    }
-                },
+                "type": "text-displayer",
+                "data": {
+                    "text": "Some text *ciao* \n dsfkjsfkjds"
+                }
+            }],
+            "inputComponent": {
+                "inputType": "test-input",
+                "inputData": {
+                    "nextActivityId": "1",
+                    "popupContent": [
+                        {
+                            "type": "text-displayer",
+                            "data": {
+                                "text": "Some text *ciao* \n dsfkjsfkjds"
+                            }
+                        },
+                        {
+                            "type": "img-displayer",
+                            "data": {
+                                "url": "M&M.jpeg",
+                                "w": "300",
+                                "h": "300"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "1": {
+            "content": [{
+                "type": "qr-reader",
+                "data": {
+                    "text": ""
+                }
+            },
                 {
                     "type": "text-displayer",
                     "data": {
@@ -36,15 +66,13 @@
                 }
             }
         },
-
-        {
-            "uid": "2",
+        "2": {
             "content": [{
-                    "type": "qr-reader",
-                    "data": {
-                        "text": ""
-                    }
-                },
+                "type": "qr-reader",
+                "data": {
+                    "text": ""
+                }
+            },
 
                 {
                     "type": "text-displayer",
@@ -72,7 +100,5 @@
                 }
             }
         }
-
-
-    ]
+    }
 }
