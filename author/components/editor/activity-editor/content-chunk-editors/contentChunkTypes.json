@@ -1,0 +1,27 @@
+{
+  "contentChunkTypes": [
+    {
+      "type": "text-displayer",
+      "title": "Campo testuale",
+      "icon": "card-text",
+      "description": "Mostra un paragrafo testuale formattabile tramite markdown.",
+      "data":{
+        "text": "Placeholder text",
+        "parseMarkdown": true
+      }
+    },
+    {
+      "type": "img-displayer",
+      "title": "Immagine",
+      "icon": "card-image",
+      "description": "Mostra un'immagine.",
+      "data": {
+        "imgResData": {
+          "url": "",
+          "originalTitle": ""
+        },
+        "alignment": "center"
+      }
+    }
+  ]
+}

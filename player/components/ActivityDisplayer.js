@@ -17,6 +17,7 @@ Vue.component("mission-displayer", {
             missionData: null,
             // A reference to the activity being displayed right now
             pointedActivity: null,
+            pointedIndex: 0,
             stile: 'test'
                 /*stile: {
                     'background-color': 'black',
@@ -48,13 +49,25 @@ Vue.component('activity-content-displayer', {
     template: `
                 <div>
                     <!--For every object in the content array render a component of type defined contentChunk.type-->
-                    <div  v-for="contentChunk of this.contentList">
-                        <component :is="contentChunk.type" :data="contentChunk.data"></component>
+                    <div class="activity-displayer-chunk-container" v-if="this.activityContent">
+                        <slot name="inter" index="0"></slot>
+                        <div  v-for="(contentChunk, index) of this.activityContent.content" >
+                            <slot name="head" :contentChunk="contentChunk" :index="index"></slot>
+                            <div v-on:click="contentChunkClicked({content: contentChunk, index: index})">
+                                <component :id="'content-chunk-'+index" class="content-chunk" :is="contentChunk.type" :data="contentChunk.data" ></component>
+                            </div>
+                            <slot name="inter" :index="index+1"></slot>
+                        </div>    
                     </div>
                 </div>`,
 
     props: {
         contentList: null
+    },
+    methods: {
+        contentChunkClicked(contentData) {
+            this.$emit("content:chunk:clicked", contentData);
+        }
     }
 })
 
@@ -183,7 +196,7 @@ Vue.component("card-displayer", {
 })
 
 Vue.component("img-displayer", {
-    template: `<div><img :src="data.url" :width="data.w" :height="data.h"></div>`,
+    template: `<div><img :src="data.imgResData.url" :width="data.w" :height="data.h"></div>`,
     props: {
         data: null
     }
@@ -192,6 +205,7 @@ Vue.component("img-displayer", {
 Vue.component("chat", {
     template: `<div>
         <button class="open-button" v-on:click="openForm">Chat</button>
+
     <div class="chat-popup" id="myForm">
       <form action="/action_page.php" class="form-container">
         <h1>Chat</h1>
@@ -203,6 +217,7 @@ Vue.component("chat", {
         <button type="button" class="btn cancel" v-on:click="closeForm">Close</button>
       </form>
     </div>
+    
 </div>`
     ,
 
@@ -309,9 +324,11 @@ Vue.component("text-insert",{
 
 /*
 <style scoped>
+
     .mission-form {
         overflow-x: hidden;
     }
+
     .content-slide-enter-active, .content-slide-leave-active {
         transition: all 0.5s;
     }
@@ -325,9 +342,11 @@ Vue.component("text-insert",{
     opacity: 0;
     transform: translateX(100 % );
 }
+
 .labeled - form - group {
     label - cols: 3
 }
+
 <
 /style>*/
 Vue.component("canvas-displayer", {

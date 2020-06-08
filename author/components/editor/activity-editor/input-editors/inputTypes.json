@@ -1,0 +1,12 @@
+{ 
+  "inputTypes": [
+    {
+      "type": "button",
+      "title": "Bottone",
+      "icon": "app",
+      "data":{
+
+      }
+    }
+  ]
+}

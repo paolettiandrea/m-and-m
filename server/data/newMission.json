@@ -1,0 +1,10 @@
+{
+  "missionHead": {
+    "title": "New Mission",
+    "summary": "A short description of the mission"
+  },
+
+  "missionContent": {
+    "activities": []
+  }
+}

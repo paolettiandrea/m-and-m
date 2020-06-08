@@ -20,7 +20,15 @@
 
     <link type="text/css" rel="stylesheet" href="css/MissionHeadForm.css"/>
 
-    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.5.0/dist/g6.min.js" ></script>
+    <script src="//cdn.jsdelivr.net/npm/@antv/g6@3.5.0/dist/g6.min.js" ></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.js"></script>
+
+    <script src="../player/components/ActivityDisplayer.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.js"></script>
+    <script src="//unpkg.com/vuex@3.4.0/dist/vuex.js"></script>
+
+
 
     <title>Title</title>
 </head>
@@ -30,10 +38,41 @@
     </div>
 
     <script>
+        Vue.use(Vuex);
+
+
+        const store = new Vuex.Store({
+            state: {
+                selectedId: 0
+            },
+            mutations: {
+                select (state, id) {
+                    state.selectedId = id;
+                }
+            }
+            })
+
+
+
         const App = new Vue({
             el: '#app',
+            store,
             components: {
                 'author-main': () => import("./components/AuthorMain.js")
+            },
+            mounted() {
+                Vue.use((Vue) => {
+                    Vue.prototype.$bubble = function $bubble(eventName, ...args) {
+                        // Emit the event on all parent components
+                        let component = this;
+                        do {
+                            component.$emit(eventName, ...args);
+                            component = component.$parent;
+                        } while (component);
+                    };
+                });
+
+
             }
         })
     </script>

@@ -4,5 +4,8 @@
 # Node
 node_modules/
 
+# Local data
+/server/data/mongo
+
 # External resources
 materials/
