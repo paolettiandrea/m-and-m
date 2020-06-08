@@ -11,22 +11,13 @@
                 "inputType": "test-input",
                 "inputData": {
                     "nextActivityId": "1",
-                    "popupContent": [
-                        {
-                            "type": "text-displayer",
-                            "data": {
-                                "text": "Some text *ciao* \n dsfkjsfkjds"
-                            }
-                        },
-                        {
-                            "type": "img-displayer",
-                            "data": {
-                                "url": "M&M.jpeg",
-                                "w": "300",
-                                "h": "300"
-                            }
+                    "popupContent": {
+                        "type": "text-displayer",
+                        "data": {
+                            "text": "Some text *ciao* \n dsfkjsfkjds"
                         }
-                    ]
+                    }
+
                 }
             }
         },
@@ -46,7 +37,9 @@
                 {
                     "type": "img-displayer",
                     "data": {
-                        "url": "M&M.jpeg",
+                        "imgResData": {
+                            "url": "M&M.jpeg"
+                        },
                         "w": "300",
                         "h": "300"
                     }

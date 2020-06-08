@@ -45,47 +45,40 @@ Vue.component("mission-displayer", {
 
 })
 
-Vue.component('activity-content-displayer', {
-    template: `
-                <div>
-                    <!--For every object in the content array render a component of type defined contentChunk.type-->
-                    <div class="activity-displayer-chunk-container" v-if="this.activityContent">
-                        <slot name="inter" index="0"></slot>
-                        <div  v-for="(contentChunk, index) of this.activityContent.content" >
-                            <slot name="head" :contentChunk="contentChunk" :index="index"></slot>
-                            <div v-on:click="contentChunkClicked({content: contentChunk, index: index})">
-                                <component :id="'content-chunk-'+index" class="content-chunk" :is="contentChunk.type" :data="contentChunk.data" ></component>
-                            </div>
-                            <slot name="inter" :index="index+1"></slot>
-                        </div>    
-                    </div>
-                </div>`,
-
-    props: {
-        contentList: null
-    },
-    methods: {
-        contentChunkClicked(contentData) {
-            this.$emit("content:chunk:clicked", contentData);
-        }
-    }
-})
-
 Vue.component("activity-displayer", {
     template: `
-                <div>
-                    <activity-content-displayer :contentList="activityContent.content"></activity-content-displayer>
-                    
-                    
-                    <b-collapse v-model="popupVisible">
-                        <activity-content-displayer :contentList="popupContent"></activity-content-displayer>
-                    </b-collapse>
-                    <!--Input component: the component type is defined by the string inputType and it receives the 
-                                         data object inputData as the prop "data" (every input component needs to have 
-                                         a data prop that it can use to retrieve all the data needed to define its behaviour)-->
-                    <component :is="activityContent.inputComponent.inputType" :data="activityContent.inputComponent.inputData" @input-received="handleInputReceived"></component>
-
-                </div>`,
+        <div>
+            <!-- Content chunks  -->
+            <div class="activity-displayer-chunk-container">
+                <slot name="inter" index="0"></slot>
+                <div  v-for="(contentChunk, index) of this.activityContent.content" >
+                    <div v-on:click="contentChunkClicked({content: contentChunk, index: index})">
+                        <component :is="contentChunk.type" 
+                                   :id="'content-chunk-'+index" 
+                                   class="content-chunk" 
+                                   :data="contentChunk.data" ></component>
+                    </div>
+                    <slot name="inter" :index="index+1"></slot>
+                </div>    
+            </div>
+            
+            <!-- Popup for input response. It contains an activity-displayer used for displaying the popupContent -->
+            <b-collapse v-model="popupVisible">
+                <component v-if="popupContent" :is="popupContent.type" 
+                                       class="content-chunk" 
+                                       id="popup-content-chunk" 
+                                       :data="popupContent.data" ></component>
+            </b-collapse>
+            
+            <!--Input component: the component type is defined by the string inputType and it receives the 
+                                 data object inputData as the prop "data" (every input component needs to have 
+                                 a data prop that it can use to retrieve all the data needed to define its behaviour)-->
+            <div v-if="activityContent.inputComponent">
+                <component  :is="activityContent.inputComponent.inputType" 
+                            :data="activityContent.inputComponent.inputData" 
+                            @input-received="handleInputReceived"></component>
+            </div>
+        </div>`,
 
     props: {
         activityContent: null,
@@ -115,6 +108,9 @@ Vue.component("activity-displayer", {
                     this.popupContent = null;
                     this.popupVisible = false;
             }
+        },
+        contentChunkClicked(contentData) {
+            this.$bubble("content:chunk:clicked", contentData);
         }
     }
 
