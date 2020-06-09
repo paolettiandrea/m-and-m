@@ -73,10 +73,10 @@ Vue.component("activity-displayer", {
             <!--Input component: the component type is defined by the string inputType and it receives the 
                                  data object inputData as the prop "data" (every input component needs to have 
                                  a data prop that it can use to retrieve all the data needed to define its behaviour)-->
-            <div v-if="activityContent.inputComponent">
+            <div v-if="activityContent.inputComponent" v-on:click="inputClicked">
                 <component  :is="activityContent.inputComponent.inputType" 
                             :data="activityContent.inputComponent.inputData" 
-                            @input-received="handleInputReceived"></component>
+                            @input-received="handleInputReceived" ></component>
             </div>
             <div v-else>
                 <slot name="input-placeholder"></slot>
@@ -99,21 +99,24 @@ Vue.component("activity-displayer", {
     methods: {
         // Called when the InputComponent triggers an input-received event.
         // inputResponse defines what should happen next
-        handleInputReceived(inputResponse) {
-            switch (inputResponse.responseType) {
+        handleInputReceived(inputOutcome) {
+            switch (inputOutcome.outcomeType) {
                 case "popup":       //
-                    this.popupContent = inputResponse.popupContent;
+                    this.popupContent = inputOutcome.popupContent;
                     this.popupVisible = true;
                     break;
 
                 case "next":        // Send a next activity event to the mission displayer
-                    this.$emit('next:activity', inputResponse.nextActivityId);
+                    this.$emit('next:activity', inputOutcome.nextActivityId);
                     this.popupContent = null;
                     this.popupVisible = false;
             }
         },
         contentChunkClicked(contentData) {
             this.$bubble("content:chunk:clicked", contentData);
+        },
+        inputClicked() {
+            this.$bubble('input:clicked', this.activityContent.inputComponent);
         }
     }
 

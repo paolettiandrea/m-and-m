@@ -19,7 +19,7 @@ export default {
                     <content-type-selector @new:content="newContent" :chunkIndex="0" :contentChunkTypes="contentChunkTypes"></content-type-selector>
                 </div>
                 
-                <activity-displayer  :activity-content="activityData.activity" @content:chunk:clicked="contentChunkClicked">
+                <activity-displayer  :activity-content="activityData.activity" @content:chunk:clicked="contentChunkClicked" @input:clicked="inputClicked">
                 <template v-slot:inter="props">
                     <b-collapse :id="'add-content-collapse-'+props.index">
                         <content-type-selector @new:content="newContent" :chunkIndex="props.index" :contentChunkTypes="contentChunkTypes"></content-type-selector>
@@ -36,7 +36,9 @@ export default {
             <div class="no-flex-grow">
             
             <b-collapse v-model="isChunkSelected">
-                        <content-editor 
+                        <input-editor v-if="selectedInput!=null"
+                                      :inputData="selectedInput"></input-editor>
+                        <content-editor v-else
                             :contentChunk="selectedContentChunk" :chunkIndex="selectedIndex"
                             @deselected="select(NaN)" @delete="deleteContent" @move="moveContentChunk">    
                         </content-editor>
@@ -61,6 +63,7 @@ export default {
         return {
             title: "",
             selectedContentChunk: null,
+            selectedInput: null,
             isChunkSelected: false,
             selectedIndex: NaN,
 
@@ -82,7 +85,6 @@ export default {
         deleteContent(chunkIndex) {
             this.activityData.activity.content.splice(chunkIndex, 1);
             this.select(NaN);
-            console.log(chunkIndex);
         },
 
         moveContentChunk(moveData) {
@@ -102,12 +104,19 @@ export default {
             }
         },
 
+        inputClicked(inputData) {
+            this.selectedInput = inputData;
+            this.selectedContentChunk=null;
+            this.isChunkSelected = true;
+        },
+
         handleInputSelected(inputComponentData) {
             this.activityData.activity.inputComponent = inputComponentData;
         },
 
 
         select(chunkIndex, contentData) {
+            this.selectedInput = null;
             // If already selected first deselect
             if (!isNaN(this.selectedIndex)) {
                 this.toggleAddButton(this.selectedIndex);
@@ -141,6 +150,7 @@ export default {
     components: {
         "content-type-selector": () => import("./ContentTypeSelector.js"),
         "input-type-selector": () => import("./InputContentSelector.js"),
-        "content-editor": () => import("./content-chunk-editors/ContentEditor.js")
+        "content-editor": () => import("./content-chunk-editors/ContentEditor.js"),
+        "input-editor": () => import("./input-editors/InputEditor.js")
     }
 }
