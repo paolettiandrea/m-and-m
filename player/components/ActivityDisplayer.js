@@ -78,6 +78,9 @@ Vue.component("activity-displayer", {
                             :data="activityContent.inputComponent.inputData" 
                             @input-received="handleInputReceived"></component>
             </div>
+            <div v-else>
+                <slot name="input-placeholder"></slot>
+            </div>
         </div>`,
 
     props: {

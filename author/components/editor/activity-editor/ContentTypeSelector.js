@@ -18,13 +18,14 @@ export default {
 
     data() {
         return {
-            contentChunkTypes: null
+
         }
     },
 
     props: {
         chunkIndex: NaN,
-        showPop: false
+        showPop: false,
+        contentChunkTypes: null
     },
 
     methods: {
@@ -37,11 +38,5 @@ export default {
                 index: this.chunkIndex
             })
         }
-    },
-
-    mounted() {
-        axios.get("./components/editor/activity-editor/content-chunk-editors/contentChunkTypes.json").then( res => {
-            this.contentChunkTypes = res.data.contentChunkTypes;
-        })
     }
 }

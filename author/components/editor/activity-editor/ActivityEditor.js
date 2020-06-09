@@ -14,32 +14,32 @@ export default {
             </div>
             
             <div class="full-flex vertical-scroll">
+            
+                <div v-if="this.activityData.activity.content.length == 0">
+                    <content-type-selector @new:content="newContent" :chunkIndex="0" :contentChunkTypes="contentChunkTypes"></content-type-selector>
+                </div>
+                
                 <activity-displayer  :activity-content="activityData.activity" @content:chunk:clicked="contentChunkClicked">
                 <template v-slot:inter="props">
                     <b-collapse :id="'add-content-collapse-'+props.index">
-                        <content-type-selector @new:content="newContent" :chunkIndex="props.index"></content-type-selector>
+                        <content-type-selector @new:content="newContent" :chunkIndex="props.index" :contentChunkTypes="contentChunkTypes"></content-type-selector>
                     </b-collapse>
+                </template>
+                
+                <template v-slot:input-placeholder>
+                    <input-type-selector :inputTypes="inputTypes" @input:selected="handleInputSelected"></input-type-selector>
                 </template>
             </activity-displayer>
             
-                <div v-if="this.activityData.activity.content.length == 0">
-                    <content-type-selector @new:content="newContent" :chunkIndex="0"></content-type-selector>
-                </div>
+                
             </div>
-            
-            
-            
-             
             <div class="no-flex-grow">
             
             <b-collapse v-model="isChunkSelected">
-                        <content-editor-popover  
-                            :contentChunk="selectedContentChunk"
-                            :chunkIndex="selectedIndex"
-                            @deselected="select(NaN)"
-                            @delete="deleteContent"
-                            @move="moveContentChunk">    
-                        </content-editor-popover>
+                        <content-editor 
+                            :contentChunk="selectedContentChunk" :chunkIndex="selectedIndex"
+                            @deselected="select(NaN)" @delete="deleteContent" @move="moveContentChunk">    
+                        </content-editor>
             </b-collapse>
         </div>    
     </div>
@@ -62,7 +62,10 @@ export default {
             title: "",
             selectedContentChunk: null,
             isChunkSelected: false,
-            selectedIndex: NaN
+            selectedIndex: NaN,
+
+            inputTypes: null,
+            contentChunkTypes: null
         }
     },
 
@@ -99,12 +102,15 @@ export default {
             }
         },
 
+        handleInputSelected(inputComponentData) {
+            this.activityData.activity.inputComponent = inputComponentData;
+        },
+
 
         select(chunkIndex, contentData) {
             // If already selected first deselect
             if (!isNaN(this.selectedIndex)) {
                 this.toggleAddButton(this.selectedIndex);
-                //this.selectedContentChunk = null;
                 this.isChunkSelected = false;
             }
 
@@ -121,8 +127,20 @@ export default {
             this.$root.$emit('bv::toggle::collapse', 'add-content-collapse-'+(contentChunkIndex+1));
         }
     },
+
+    mounted() {
+        axios.get("./components/editor/activity-editor/content-chunk-editors/contentChunkTypes.json").then( res => {
+            this.contentChunkTypes = res.data.contentChunkTypes;
+        })
+
+        axios.get("./components/editor/activity-editor/input-editors/inputTypes.json").then( res => {
+            this.inputTypes = res.data.inputTypes;
+        })
+    },
+
     components: {
         "content-type-selector": () => import("./ContentTypeSelector.js"),
-        "content-editor-popover": () => import("./content-chunk-editors/EditorPopover.js")
+        "input-type-selector": () => import("./InputContentSelector.js"),
+        "content-editor": () => import("./content-chunk-editors/ContentEditor.js")
     }
 }

@@ -47,7 +47,8 @@ export default {
             var newActivity = {
                 uuid: uuidv1(),
                 title: "Nuova attività",
-                content: []
+                content: [],
+                inputComponent: null
             };
             this.missionContent.activities.push(newActivity);
             this.canvas.newActivity(newActivity);

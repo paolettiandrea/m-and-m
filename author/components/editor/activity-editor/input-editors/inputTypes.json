@@ -7,6 +7,22 @@
       "data":{
 
       }
+    },
+    {
+      "type": "text-insert",
+      "title": "Campo testuale",
+      "icon": "cursor-text",
+      "data":{
+
+      }
+    },
+    {
+      "type": "multiple-checkboxes",
+      "title": "Opzioni",
+      "icon": "grid",
+      "data":{
+
+      }
     }
   ]
 }
