@@ -356,7 +356,6 @@ Vue.component("canvas-displayer", {
 
     <div>
         <div id="canvas" v-on:mousemove="coordinate" v-on:click="viewCoordianate">{{x}},{{y}}</div>
-
     </div>
     `,
     data() {
