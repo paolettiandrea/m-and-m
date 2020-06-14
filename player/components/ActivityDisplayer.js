@@ -197,41 +197,26 @@ Vue.component("multiple-checkboxes", {
 })
 
 Vue.component("text-insert", {
-    template: `<div>
-  <div role="group" >
-  <label for="input-live">Inserisci la tua risposta:</label>
-  <b-form-input
-    id="input-live"
-    v-model="Answer"
-    :state="textState"
-    aria-describedby="input-live-help input-live-feedback"
-    placeholder="Enter your answer"
-    trim
-  ></b-form-input>
+    template:` <div>
+    <b-form inline>
+      <label class="sr-only" for="inline-form-input-answer">Answer</label>
+      <b-input
+        id="inline-form-input-answer"
+        class="mb-2 mr-sm-2 mb-sm-0"
+        placeholder="Your answer"
+      ></b-input>
 
-  <!-- This will only be shown if the preceding input has an invalid state -->
-  <div v-if="!this.data.correctAnswer">
-    <b-form-invalid-feedback id="input-live-feedback">
-      Risposta non esatta, riprova!
-    </b-form-invalid-feedback>
-  </div>
-
-  <!-- This is a form text block (formerly known as help block) -->
-  <b-form-text id="input-live-help">Your full text.</b-form-text>
-</div>
-  </div> `,
+      <b-button variant="primary">Save</b-button>
+    </b-form>
+  </div>`,
 
     props: {
         data: null
     },
     computed: {
         textState() {
-            return this.Answer == this.data.correctAnswer ? true : false
+            return this.Answer == this.data.correctAnswer ? "Risposta esatta!" : "Ritenta."
         },
-        dynamicStyle() {
-            return {
-                color: ``
-            }
         }
     },
     data() {
@@ -320,6 +305,27 @@ Vue.component("video-displayer", {
 
 })
 
+Vue.component("text-insert", {
+  template: ` <div>
+  <b-form inline>
+    <label class="sr-only" for="inline-form-input-answer">Answer</label>
+    <b-input
+      id="inline-form-input-answer"
+      class="mb-2 mr-sm-2 mb-sm-0"
+      placeholder="Your answer"
+    ></b-input>
+
+    <b-button variant="primary">Save</b-button>
+  </b-form>
+</div>`,
+props: {
+    data: null
+},
+data(){
+
+}
+
+})
 
 Vue.component("canvas-draw", {
     template: `
