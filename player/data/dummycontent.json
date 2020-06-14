@@ -1,12 +1,23 @@
 {
     "activities": {
         "initial": {
+
             "content": [{
                 "type": "text-displayer",
                 "data": {
                     "text": "Some initial content"
                 }
+            }, {
+                "type": "img-displayer",
+                "data": {
+                    "imgResData": {
+                        "url": "M&M.jpeg"
+                    },
+                    "w": "300",
+                    "h": "300"
+                }
             }],
+
             "inputComponent": {
                 "inputType": "test-input",
                 "inputData": {

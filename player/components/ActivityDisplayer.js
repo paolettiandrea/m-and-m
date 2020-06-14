@@ -2,10 +2,10 @@ Vue.component("mission-displayer", {
     template: `
         <div>
         <transition name="content-slide" mode="out-in">
-                <div class="activity-displayer-div" v-if="this.pointedActivity" :key="this.pointedActivity.uid">
-                    <activity-displayer :activityContent="this.pointedActivity"
-                        @next:activity="handleNextActivity"></activity-displayer>
-                </div>
+            <div class="activity-displayer-div" v-if="this.pointedActivity" :key="this.pointedActivity.uid">
+                <activity-displayer :activityContent="this.pointedActivity"
+                    @next:activity="handleNextActivity"></activity-displayer>
+            </div>
         </transition>
         <chat></chat>
         </div>
@@ -101,7 +101,7 @@ Vue.component("activity-displayer", {
         // inputResponse defines what should happen next
         handleInputReceived(inputOutcome) {
             switch (inputOutcome.outcomeType) {
-                case "popup":       //
+                case "popup":
                     this.popupContent = inputOutcome.popupContent;
                     this.popupVisible = true;
                     break;
@@ -144,13 +144,13 @@ Vue.component('test-input', {
     methods: {
         nextActivity() {
             this.$emit('input-received', {
-                responseType: "next",
+                outcomeType: "next",
                 nextActivityId: this.data.nextActivityId
             })
         },
         popup() {
             this.$emit('input-received', {
-                responseType: "popup",
+                outcomeType: "popup",
                 popupContent: this.data.popupContent
             })
         }

@@ -24,6 +24,7 @@ app.use(express.static('public'));
 app.use(express.static('data/resources'))
 app.use('/player', express.static('../player'));
 app.use('/author', express.static('../author'));
+app.use('/common', express.static('../common'));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
 // ROUTING
