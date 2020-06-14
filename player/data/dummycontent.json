@@ -23,16 +23,15 @@
                 },
                 {
                     "type": "multiple-checkboxes",
-                    "data": {
-                    }
+                    "data": {}
                 }
             ],
             "inputComponent": {
                 "inputType": "text-insert",
                 "inputData": {
                     "correctAnswer": "asdadsasd",
-                    "text":"Risposta inserita",
-                    "color":"red"
+                    "text": "Risposta inserita",
+                    "color": "red"
                 }
             }
         },
@@ -65,6 +64,46 @@
             ],
             "inputComponent": {
                 "inputType": "canvas-displayer",
+                "inputData": {
+                    "url": "M&M.jpeg",
+                    "w": "100",
+                    "h": "100"
+                }
+            }
+        },
+        {
+            "uid": "3",
+            "content": [{
+                    "type": "canvas-draw",
+                    "data": {
+                        "w": "300",
+                        "h": "300"
+                    }
+                },
+                {
+                    "type": "click-img",
+                    "data": {
+                        "url": "workplace.jpg",
+                        "w": "400",
+                        "h": "379",
+                        "pos": "right",
+                        "computer": "34,44,270,350",
+                        "telefono": "290,172,333,250",
+                        "caffe": "337,300,44"
+                    }
+                },
+                {
+                    "type": "video-displayer",
+                    "data": {
+                        "url": "vue.mp4",
+                        "w": "400",
+                        "pos": "left"
+                    }
+                }
+
+            ],
+            "inputComponent": {
+                "inputType": "canv-displayer",
                 "inputData": {
                     "url": "M&M.jpeg",
                     "w": "100",

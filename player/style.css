@@ -1,17 +1,21 @@
 #test {
     background-color: black;
     opacity: 0.8;
-    text-align: center;
     color: aliceblue;
     height: 100%;
     background-size: 100%;
 }
 
-#canvas {
+#canva {
     width: 450px;
-    padding: 200px 30px;
+    padding: 200px 300px;
     text-align: center;
     border: 1px solid #f1f1f1;
+}
+
+canvas {
+    border: 1px solid red;
+    cursor: crosshair;
 }
 
 html,
@@ -169,9 +173,9 @@ label {
     opacity: 0
 }
 
-#input-live{
-  position: center;
-  background: url(//www.google.com/url?sa=i&url=https%3A%2F%2Fwww.southcarolinapublicradio.org%2Fpost%2Fchristmastime-m-ms-reigns-south-carolinas-favorite-candy&psig=AOvVaw2yjZqYtx1lvJ3DJ-suAiu7&ust=1591629898667000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMCk5siB8OkCFQAAAAAdAAAAABAM) ;
-  width:1000px;
-  color: white
+#input-live {
+    position: center;
+    background: url(//www.google.com/url?sa=i&url=https%3A%2F%2Fwww.southcarolinapublicradio.org%2Fpost%2Fchristmastime-m-ms-reigns-south-carolinas-favorite-candy&psig=AOvVaw2yjZqYtx1lvJ3DJ-suAiu7&ust=1591629898667000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMCk5siB8OkCFQAAAAAdAAAAABAM);
+    width: 1000px;
+    color: white
 }
