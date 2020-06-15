@@ -20,18 +20,18 @@ Vue.component("text-insert", {
     </div>`,
 
     props: {
-        data: null
+        inputData: null
     },
     methods: {
         textState() {
             window.alert( this.answer );
 
-            var correct = this.answer == this.data.correctAnswer ? true : false
+            var correct = this.answer == this.inputData.correctAnswer ? true : false
 
             if(correct){
-                this.$emit('input-received', this.data.rightOutcome);
+                this.$emit('input-received', this.inputData.rightOutcome);
             } else{
-                this.$emit('input-received', this.data.wrongOutcome);
+                this.$emit('input-received', this.inputData.wrongOutcome);
             }
         }
     },

@@ -3,7 +3,7 @@ Vue.component("canvas-draw", {
 
     <div  align="center" id="drawing">
     <h1>Canvas Demo</h1>
-    <canvas ref="canvas" id='drawing-pad' :width="data.w" :height="data.h">
+    <canvas ref="canvas" id='drawing-pad' :width="inputData.w" :height="inputData.h">
       This is an interactive drawing pad.
     </canvas>
     <div>
@@ -17,7 +17,7 @@ Vue.component("canvas-draw", {
   </div>
     `,
     props: {
-        data: null
+        inputData: null
     },
     data() {
         return {

@@ -1,0 +1,21 @@
+{
+  "activityList": [
+    {
+    "uid": "1",
+    "content": [
+      {
+        "contentType": "text-displayer",
+        "contentData": {
+          "text": "Semplice missione con una singola attività e un paio di componenti"
+        }
+      }
+    ],
+    "inputComponent": {
+      "inputType": "text-insert",
+      "inputData": {
+        "someData": "some value useful to this component"
+      }
+    }
+  }
+  ]
+}

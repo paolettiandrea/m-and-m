@@ -18,6 +18,10 @@ Vue.component("multiple-checkboxes", {
 </template>
     </div>`,
 
+    props: {
+        inputData: null
+    },
+
     data() {
         return {
             selected: [],

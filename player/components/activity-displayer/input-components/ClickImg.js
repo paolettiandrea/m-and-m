@@ -1,17 +1,17 @@
 Vue.component("click-img", {
     template: `
-    <div :align="data.pos" >
-        <img :src="data.url" alt="Workplace" usemap="#workmap" :width="data.w" :height="data.h" v-on:click="test">
+    <div :align="inputData.pos" >
+        <img :src="inputData.url" alt="Workplace" usemap="#workmap" :width="inputData.w" :height="inputData.h" v-on:click="test">
 
         <map name="workmap">
-        <area shape="rect" :coords="data.computer" alt="Computer" v-on:click="imgClick('Computer')">
-        <area shape="rect" :coords="data.telefono" alt="Phone" v-on:click="imgClick('iPhone')">
-        <area shape="circle" :coords="data.caffe" alt="Cup of coffee" v-on:click="imgClick('Caffè')">
+        <area shape="rect" :coords="inputData.computer" alt="Computer" v-on:click="imgClick('Computer')">
+        <area shape="rect" :coords="inputData.telefono" alt="Phone" v-on:click="imgClick('iPhone')">
+        <area shape="circle" :coords="inputData.caffe" alt="Cup of coffee" v-on:click="imgClick('Caffè')">
         </map>
     </div>
     `,
     props: {
-        data: null
+        inputData: null
     },
     methods: {
         imgClick(x) {

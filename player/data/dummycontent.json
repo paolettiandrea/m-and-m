@@ -2,28 +2,28 @@
     "activityList": [{
             "uid": "1",
             "content": [{
-                    "type": "qr-reader",
-                    "data": {
+                    "contentType": "qr-reader",
+                    "contentData": {
                         "text": ""
                     }
                 },
                 {
-                    "type": "text-displayer",
-                    "data": {
+                    "contentType": "text-displayer",
+                    "contentData": {
                         "text": "Some text *ciao* \n dsfkjsfkjds"
                     }
                 },
                 {
-                    "type": "img-displayer",
-                    "data": {
+                    "contentType": "img-displayer",
+                    "contentData": {
                         "url": "M&M.jpeg",
                         "w": "300",
                         "h": "300"
                     }
                 },
                 {
-                    "type": "multiple-checkboxes",
-                    "data": {}
+                    "contentType": "multiple-checkboxes",
+                    "contentData": {}
                 }
             ],
             "inputComponent": {
@@ -46,23 +46,23 @@
         {
             "uid": "2",
             "content": [{
-                    "type": "qr-reader",
-                    "data": {
+                    "contentType": "qr-reader",
+                    "contentData": {
                         "text": ""
                     }
                 },
 
                 {
-                    "type": "text-displayer",
-                    "data": {
+                    "contentType": "text-displayer",
+                    "contentData": {
                         "text": "Sono un altro text **displayer**",
                         "parseMarkdown": true
                     }
                 },
 
                 {
-                    "type": "img-displayer",
-                    "data": {
+                    "contentType": "img-displayer",
+                    "contentData": {
                         "url": "M&M.jpeg",
                         "w": "400",
                         "h": "400"
@@ -70,38 +70,24 @@
                 }
             ],
             "inputComponent": {
-                "inputType": "canvas-displayer",
+                "inputType": "click-img",
                 "inputData": {
-                    "url": "M&M.jpeg",
-                    "w": "100",
-                    "h": "100"
+                    "url": "workplace.jpg",
+                    "w": "400",
+                    "h": "379",
+                    "pos": "right",
+                    "computer": "34,44,270,350",
+                    "telefono": "290,172,333,250",
+                    "caffe": "337,300,44"
                 }
             }
         },
         {
             "uid": "3",
-            "content": [{
-                    "type": "canvas-draw",
-                    "data": {
-                        "w": "300",
-                        "h": "300"
-                    }
-                },
+            "content": [
                 {
-                    "type": "click-img",
-                    "data": {
-                        "url": "workplace.jpg",
-                        "w": "400",
-                        "h": "379",
-                        "pos": "right",
-                        "computer": "34,44,270,350",
-                        "telefono": "290,172,333,250",
-                        "caffe": "337,300,44"
-                    }
-                },
-                {
-                    "type": "video-displayer",
-                    "data": {
+                    "contentType": "video-displayer",
+                    "contentData": {
                         "url": "vue.mp4",
                         "w": "400",
                         "pos": "left"
@@ -110,15 +96,12 @@
 
             ],
             "inputComponent": {
-                "inputType": "canv-displayer",
+                "inputType": "canvas-draw",
                 "inputData": {
-                    "url": "M&M.jpeg",
-                    "w": "100",
-                    "h": "100"
+                    "w": "300",
+                    "h": "300"
                 }
             }
         }
-
-
     ]
 }

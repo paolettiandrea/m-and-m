@@ -2,16 +2,16 @@ Vue.component('text-displayer', {
     template: `<div><div v-html="this.parsed"></div></div>`,
 
     props: {
-        data: null
+        contentData: null
     },
 
     computed: {
         parsed() {
-            if (this.data.parseMarkdown) {
+            if (this.contentData.parseMarkdown) {
                 var converter = new showdown.Converter();
-                return converter.makeHtml(this.data.text);
+                return converter.makeHtml(this.contentData.text);
             } else {
-                return this.data.text;
+                return this.contentData.text;
             }
 
         }

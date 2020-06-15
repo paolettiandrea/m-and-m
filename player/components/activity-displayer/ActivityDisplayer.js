@@ -3,12 +3,12 @@ Vue.component('activity-displayer', {
                 <div>
                     <div v-if="this.activityContent">
                         <div  v-for="contentChunk of this.activityContent.content">
-                            <component :is="contentChunk.type" :data="contentChunk.data"></component>
+                            <component :is="contentChunk.contentType" :contentData="contentChunk.contentData"></component>
                         </div>
                     </div>
 
                     <!--Input component-->
-                    <component :is="activityContent.inputComponent.inputType" :data="activityContent.inputComponent.inputData" @input-received="inputHandler"></component>
+                    <component :is="activityContent.inputComponent.inputType" :inputData="activityContent.inputComponent.inputData" @input-received="inputHandler"></component>
 
                 </div>`,
 
