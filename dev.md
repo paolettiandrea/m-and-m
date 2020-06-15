@@ -3,9 +3,6 @@
 - [Styling dinamico con Vue](https://www.digitalocean.com/community/tutorials/vuejs-dynamic-styles)
 
 
-
-
-
 # Components
 
 ## Data
@@ -39,6 +36,29 @@ Probabilmente sarà utile avere una rappresentazione uniforme di tutte le risors
 }
 ```
 
+###### Dimensions
+
+```JSON
+{
+    "width": 132,
+    "height": 123,
+}
+```
+
+###### BorderStyle
+
+```json
+{
+    ...
+}
+```
+
+###### InputOutcome
+
+```json
+
+```
+
 
 
 ## Content components
@@ -55,8 +75,20 @@ Mostra un paragrafo testuale
   - Family
   - Size
   - Colore
-- Allineamento ?
-- Markdown
+- Allineamento 
+- Markdown 
+
+
+
+```json
+{
+    "text": "text content",
+    
+    "fontData": { },   // FONT 
+    "alignment": "right|center|left",
+    "markdownText": true|false
+}
+```
 
 
 
@@ -66,6 +98,18 @@ Mostra un paragrafo testuale
 
 - Allineamento ?
 - Dimensioni || riempi larghezza
+
+```json
+{
+	
+	"imgResource": {}, // RESOURCE
+	
+	"alignment": "right|center|left",
+	"imgDimensions": {}, // DIMENSIONS
+	"imgFillWidth": true|false,
+    "imgBorders": {} // BORDERSTYLE
+}
+```
 
 
 
@@ -85,7 +129,15 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 
 ### `text-insert`
 
-
+```json
+{
+    correctAnswers: [
+        "risposta giusta 1",
+        "risposta giusta 2"   // ...
+    ],
+    
+}
+```
 
 
 

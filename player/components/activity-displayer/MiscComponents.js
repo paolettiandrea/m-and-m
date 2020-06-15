@@ -39,7 +39,7 @@ Vue.component("chat", {
 
 })
 
-
+// Old stuff
 Vue.component("canvas-displayer", {
     template: `
 

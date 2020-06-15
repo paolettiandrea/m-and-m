@@ -19,6 +19,7 @@ Vue.component("canvas-draw", {
     props: {
         inputData: null
     },
+
     data() {
         return {
             canvas: null,

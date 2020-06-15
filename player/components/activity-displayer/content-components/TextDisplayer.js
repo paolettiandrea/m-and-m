@@ -1,5 +1,6 @@
 Vue.component('text-displayer', {
-    template: `<div><div v-html="this.parsed"></div></div>`,
+    template: `<div><div v-html="this.parsed"></div>
+</div>`,
 
     props: {
         contentData: null
