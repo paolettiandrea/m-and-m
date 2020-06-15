@@ -198,42 +198,48 @@ Vue.component("multiple-checkboxes", {
 
 Vue.component("text-insert", {
     template:` <div>
-    <b-form inline>
-      <label class="sr-only" for="inline-form-input-answer">Answer</label>
-      <b-input
-        id="inline-form-input-answer"
-        class="mb-2 mr-sm-2 mb-sm-0"
-        placeholder="Your answer"
-      ></b-input>
+      <b-form-group
+        id="input"
+        label="Enter your answer:"
+        label-for="input-1"
+      >
+        <b-form-input
+          id="input-1"
+          v-model="answer"
+          required
+          placeholder="Enter your answer"
+        ></b-form-input>
+      </b-form-group>
 
-      <b-button variant="primary">Save</b-button>
+
+      <b-button type="submit" variant="primary" v-on:click="textState">Submit</b-button>
     </b-form>
-  </div>`,
+    <br>
+    </div>`,
 
     props: {
         data: null
     },
-    computed: {
+    methods: {
         textState() {
-            return this.Answer == this.data.correctAnswer ? "Risposta esatta!" : "Ritenta."
-        },
+          window.alert( this.answer );
+
+            var correct = this.answer == this.data.correctAnswer ? true : false
+
+            if(correct){
+              this.$emit('input-received', this.data.rightOutcome);
+            } else{
+              this.$emit('input-received', this.data.wrongOutcome);
+            }
         }
     },
     data() {
         return {
-            Answer: ''
+            answer: '',
         }
     }
 
-
 })
-
-
-
-
-
-
-
 
 
 Vue.component("canvas-displayer", {
@@ -305,27 +311,6 @@ Vue.component("video-displayer", {
 
 })
 
-Vue.component("text-insert", {
-  template: ` <div>
-  <b-form inline>
-    <label class="sr-only" for="inline-form-input-answer">Answer</label>
-    <b-input
-      id="inline-form-input-answer"
-      class="mb-2 mr-sm-2 mb-sm-0"
-      placeholder="Your answer"
-    ></b-input>
-
-    <b-button variant="primary">Save</b-button>
-  </b-form>
-</div>`,
-props: {
-    data: null
-},
-data(){
-
-}
-
-})
 
 Vue.component("canvas-draw", {
     template: `
