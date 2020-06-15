@@ -1,5 +1,11 @@
 Vue.component('player-main', {
-    template: `<mission-displayer></mission-displayer>`
+    template: `
+        <div>
+            <mission-displayer></mission-displayer>
+        </div>`,
+
+    components: {
+    }
 })
 
 
