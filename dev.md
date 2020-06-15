@@ -16,7 +16,7 @@ Ogni component deve avere un prop attraverso cui riceve tutti i dati necessari p
 
 ###### Resource
 
-Probabilmente sarà utile avere una rappresentazione uniforme di tutte le risorse "da url", che possono venire da un url di un altro dominio o possono essere state caricate sul server dall'autore. Questo ai content/input componenti non interessa, visto che generalmente hanno solo bisogno di recuperare l'url a quella risorsa.
+Probabilmente sarà utile avere una rappresentazione uniforme di tutte le risorse "da url", che possono venire da un url di un altro dominio o possono essere state caricate sul server dall'autore, per esempio immagini, font, video... Alcune di queste informazioni sono utili all'ambiente autore, invece ai content/input component il più delle volte dovrebbe bastare l'url.
 
 ```json
 {
@@ -35,7 +35,7 @@ Probabilmente sarà utile avere una rappresentazione uniforme di tutte le risors
         (struttura da risorsa?)
     }
     "size": "12",
-    "color": "?",
+    "color": "come rappresentarlo?",
 }
 ```
 
