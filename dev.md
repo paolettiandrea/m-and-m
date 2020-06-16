@@ -49,7 +49,7 @@ Componenti utilizzati nelle schermate attività per mostrare contenuti.
 
 Mostra un paragrafo testuale
 
-*Personalizzazione*: 
+*Personalizzazione*:
 
 - Font
   - Family
@@ -84,7 +84,30 @@ Questi componenti contengono internamente tutte le informazioni riguardanti l'es
 A questi componenti non interessa cosa è contenuto negli `inputOutcome` che hanno a disposizione, ciò viene determinato dall'autore e gestito dall'`ActivityDisplayer`.  Allo stesso modo tali componenti possono aspettarsi di avere a disposizione gli `inputOutcome` e gli ulteriori dati di cui hanno bisogno in una data modalità, anche questo è a carico dell'autore dove tale modalità viene scelta e definita. Il loro compito è in base a questi dati determinare quale di questi outcome "lanciare".
 
 ### `text-insert`
+"inputType": "text-insert",
+"inputData": {
+  "correctAnswer": [
+      "answer-1":"ciao",
+      "answer-2":"ciaone",
+      "answer-3":"ciaissimo"
+    ],
+  "fontData":{
+    "family":"verdana",
+    "size":"1em",
+    "color":"black",
+    "background-color":"white"
+  },
+  "alignment":"center",
+  "markdonText":true,
 
+  "wrongOutcome":{
+
+  },
+
+  "rightOutcome":{
+
+  }
+}
 
 
 
