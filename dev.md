@@ -28,9 +28,7 @@ Probabilmente sarà utile avere una rappresentazione uniforme di tutte le risors
 
 ```json
 {
-    "fontFamily": {
-        (struttura da risorsa?)
-    }
+    "fontFamily": "font-family-name"
     "size": "12",
     "color": "come rappresentarlo?",
 }
@@ -155,22 +153,11 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 
 
 
-### `multi-choice`
+### `multiple-checkboxes`
 
 
 
 
 
-```javascript
-pippoList = [ "ciao", "hola" ]
 
-for (int i=0; i < pippoList.length; i++) {
-    var pippo = pippoList[i];
-    
-}
-
-foreach (pippo in pippoList) {
-    console.log(pippo);
-}
-```
 
