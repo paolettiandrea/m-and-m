@@ -7,10 +7,7 @@ export default {
                     <b-button size="sm" v-on:click="emitDelete"><b-icon icon="trash"></b-icon></b-button>
                         
                 </template>
-                <component :is="inputData.inputType+'-editor'" :contentChunkData="inputData.inputData" ></component>
-                
-                <!-- TEMP -->
-                <input-outcome-editor></input-outcome-editor>
+                <component :is="inputData.inputType+'-editor'" :inputData="inputData.inputData" ></component>
             </b-card>
         </div>`,
 
@@ -28,6 +25,7 @@ export default {
     },
 
     components: {
-        "input-outcome-editor": () => import("./InputOutcomeEditor.js")
+        "input-outcome-editor": () => import("./InputOutcomeEditor.js"),
+        "text-insert-editor": () => import("./TextInsertEditor.js")
     }
 }

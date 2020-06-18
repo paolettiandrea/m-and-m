@@ -1,30 +1,70 @@
 export default {
     template: `
         <div>
+            
             <b-list-group>
-                <b-list-group-item button v-for="(inputOutcome, index) in inputOutcomeData.outcomes" :key="index"> {{inputOutcome.outcomeType}}</b-list-group-item>
-                <b-list-group-item button v-on:click="addOutcome"><b-icon icon="plus"></b-icon></b-list-group-item>
+                <div v-for="(inputOutcome, index) in inputOutcomeData.outList">
+                    <b-list-group-item size="sm" button  :key="index">
+                     {{inputOutcome.outcomeType}}
+                     
+                     <b-button size="sm" class="mini-button"> <b-icon icon="trash"></b-icon></b-button>
+                     </b-list-group-item>
+                </div>
+                <b-list-group-item v-if="!isOutListTerminated">
+                    <b-button size="sm" v-on:click="addPopupOutcome">Popup</b-button>
+                    <b-button size="sm" v-on:click="addNextOutcome">Next</b-button>
+                </b-list-group-item>
 </b-list-group>
         </div>`,
 
     props: {
-        //inputOutcomeData: null
+        inputOutcomeData: null
     },
 
     data() {
         return {
-            inputOutcomeData: { outcomes: []}
+
+        }
+    },
+
+    computed: {
+        // The outcome list is considered terminated when the last element has an outcomeType == 'next', which will trigger a new activity
+        isOutListTerminated: function() {
+            var listLength = this.inputOutcomeData.outList.length;
+            return listLength > 0 && this.inputOutcomeData.outList[listLength - 1].outcomeType === 'next';
         }
     },
 
     methods: {
-        addOutcome() {
-            this.inputOutcomeData.outcomes.push({
+        addPopupOutcome() {
+            this.inputOutcomeData.outList.push({
                 outcomeType: "popup",
                 popupContent: {
-                    //
+
                 }
             })
+        },
+
+        addNextOutcome() {
+            this.inputOutcomeData.outList.push({
+                outcomeType: "next",
+
+            })
+        },
+
+        outcomeClicked(clickedOutcomeData) {
+            this.$bubble('outcome-clicked', clickedOutcomeData);
         }
+    },
+
+    created() {
+        if (!this.inputOutcomeData.outList) {
+            this.inputOutcomeData.outList = [];
+        }
+    },
+
+    components: {
+        "draggable": () => import('/vuedraggable/dist/vuedraggable.umd.js')
     }
+
 }

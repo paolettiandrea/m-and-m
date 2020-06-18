@@ -3,6 +3,61 @@
 - [Styling dinamico con Vue](https://www.digitalocean.com/community/tutorials/vuejs-dynamic-styles)
 
 
+# Components
+
+## Data
+
+Ogni component deve avere un prop attraverso cui riceve tutti i dati necessari per il suo funzionamento (`contentData` per i content components e `inputData` per gli input components).
+
+#### Strutture dati comuni
+
+###### Resource
+
+Probabilmente sarà utile avere una rappresentazione uniforme di tutte le risorse "da url", che possono venire da un url di un altro dominio o possono essere state caricate sul server dall'autore, per esempio immagini, font, video... Alcune di queste informazioni sono utili all'ambiente autore, invece ai content/input component il più delle volte dovrebbe bastare l'url.
+
+```json
+{
+    "url": "some url to the resource",
+    "originalName": "if this resource was uploaded on the server here the original file name is stored (used by the author)"
+}
+```
+
+
+
+###### Font
+
+```json
+{
+    "fontFamily": {
+        (struttura da risorsa?)
+    }
+    "size": "12",
+    "color": "come rappresentarlo?",
+}
+```
+
+###### Dimensions
+
+```JSON
+{
+    "width": 132,
+    "height": 123,
+}
+```
+
+###### BorderStyle
+
+```json
+{
+    ...
+}
+```
+
+###### InputOutcome
+
+```json
+
+```
 
 
 
@@ -20,8 +75,20 @@ Mostra un paragrafo testuale
   - Family
   - Size
   - Colore
-- Allineamento ?
-- Markdown
+- Allineamento 
+- Markdown 
+
+
+
+```json
+{
+    "text": "text content",
+    
+    "fontData": { },   // FONT 
+    "alignment": "right|center|left",
+    "markdownText": true|false
+}
+```
 
 
 
@@ -31,6 +98,18 @@ Mostra un paragrafo testuale
 
 - Allineamento ?
 - Dimensioni || riempi larghezza
+
+```json
+{
+	
+	"imgResource": {}, // RESOURCE
+	
+	"alignment": "right|center|left",
+	"imgDimensions": {}, // DIMENSIONS
+	"imgFillWidth": true|false,
+    "imgBorders": {} // BORDERSTYLE
+}
+```
 
 
 
@@ -50,11 +129,16 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 
 ### `text-insert`
 
-
+```json
+{
+    correctAnswers: [
+        "risposta giusta 1",
+        "risposta giusta 2"   // ...
+    ],
+    
+}
+```
 
 
 
 ### `multi-choice`
-
-
-
