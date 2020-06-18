@@ -1,36 +1,31 @@
 Vue.component("multiple-checkboxes", {
     template: `<div>
-        <template>
-  <div>
+      
+      <label>Select your answer:</label>
+      <li v-for="item in inputData">
+      <b-button pill variant="primary" 
+      v-bind:key="inputData.button" 
+      v-bind:text="inputData.button" 
+      v-on:click="checkAnswer(item.button)">{{item.button}}</b-button>
+      </li>
 
-    <b-form-group label="Multiple checkboxes form">
-      <b-form-checkbox-group
-        v-model="selected"
-        :options="options"
-        buttons
-        button-variant="primary"
-        size="lg"
-        name="buttons-2"
-      ></b-form-checkbox-group>
-    </b-form-group>
-    <div>Selected: <strong>{{ selected }}</strong></div>
-  </div>
-</template>
     </div>`,
 
-    props: {
-        inputData: null
-    },
+props: {
+  inputData: null
+},
 
-    data() {
-        return {
-            selected: [],
-            options: [
-                { text: 'Orange', value: 'orange' },
-                { text: 'Apple', value: 'apple' },
-                { text: 'Pineapple', value: 'pineapple' },
-                { text: 'Grape', value: 'grape' }
-            ]
-        }
-    }
+methods: {
+  checkAnswer(x) {
+    window.alert(x);
+
+  }
+},
+
+data() {
+  return {
+  }
+}
+
+    
 })
