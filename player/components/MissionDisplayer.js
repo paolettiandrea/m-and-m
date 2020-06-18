@@ -38,6 +38,7 @@ Vue.component('mission-displayer', {
         axios.
         get("/player/data/dummycontent.json").
         then(res => {
+            console.log(res);
             this.missionData = res.data;
 
             this.pointedActivity = this.missionData.activityList[this.pointedIndex];

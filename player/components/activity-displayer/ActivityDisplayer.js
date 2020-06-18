@@ -22,6 +22,4 @@ Vue.component('activity-displayer', {
     },
 
     components: {},
-
-
 })
