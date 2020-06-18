@@ -25,18 +25,29 @@
             "inputComponent": {
                 "inputType": "text-insert",
                 "inputData": {
-                    "correctAnswer": "asdadsasd",
-                    
-                    "wrongOutcome":{
+                  "correctAnswer": [
+                      "answer-1":"ciao",
+                      "answer-2":"ciaone",
+                      "answer-3":"ciaissimo"
+                    ],
+                  "fontData":{
+                    "family":"verdana",
+                    "size":"1em",
+                    "color":"black",
+                    "background-color":"white"
+                  },
+                  "alignment":"center",
+                  "markdonText":true,
 
-                    },
+                  "wrongOutcome":{
 
-                    "rightOutcome":{
+                  },
 
-                    }
+                  "rightOutcome":{
 
+                  }
                 }
-            }
+              }
         },
 
         {
