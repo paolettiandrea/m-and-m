@@ -25,27 +25,34 @@
             "inputComponent": {
                 "inputType": "text-insert",
                 "inputData": {
-                  "correctAnswer": {
-                      "answer-1": "ciao",
-                      "answer-2": "ciaone",
-                      "answer-3": "ciaissimo"
-                  },
+                  "possibilityList": [
+                      {
+                          "possibleAnswers": ["hello", "ljsadlsakjd"],
+                          "outcome": {
+
+                          }
+                      },
+                      {
+                          "possibleAnswers": ["adadsadasf"],
+                          "outcome": {
+
+                          }
+                      }
+                  ],
+                    "fallbackOutcome": {
+
+                    },
+
                   "fontData":{
                     "family":"verdana",
                     "size":"1em",
                     "color":"black",
                     "background-color":"white"
                   },
+
                   "alignment":"center",
                   "markdonText":true,
-
-                  "wrongOutcome":{
-
-                  },
-
-                  "rightOutcome":{
-
-                  }
+                    "textType": "date"
                 }
               }
         },
@@ -138,17 +145,28 @@
             ],
             "inputComponent": {
                 "inputType": "multiple-checkboxes",
-                "inputData": [{
-                    "button": "Value 1"
-                },
-                {
-                    "button": "Value 2"
-                },
-                {
-                    "button": "Value 3"
+                "inputData": {
+                    "buttonList": [
+                        {
+                            "button": "Value 1",
+                            "color": "#4CAF50",
+                            "outcome": {
+                                "outcomeType": "popup",
+                                "outcomeContent": {
+
+                                }
+                            }
+                        },
+                        {
+                            "button": "Value 2",
+                            "outcome": {
+
+                            }
+                        }
+                    ]
                 }
-            ]
             }
         }
     ]
 }
+

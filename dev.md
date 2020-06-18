@@ -155,5 +155,22 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 
 
 
-
 ### `multi-choice`
+
+
+
+
+
+```javascript
+pippoList = [ "ciao", "hola" ]
+
+for (int i=0; i < pippoList.length; i++) {
+    var pippo = pippoList[i];
+    
+}
+
+foreach (pippo in pippoList) {
+    console.log(pippo);
+}
+```
+

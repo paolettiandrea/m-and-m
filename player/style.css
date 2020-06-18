@@ -179,3 +179,7 @@ label {
   animation: mymove 5s infinite;
   border-radius: 3px
 }
+
+.test-class {
+    background-color: #4CAF50;
+}
