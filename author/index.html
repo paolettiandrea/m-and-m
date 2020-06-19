@@ -43,14 +43,31 @@
 
         const store = new Vuex.Store({
             state: {
-                selectedId: 0
+                selectedId: 0,
+
+                contentTypes: null,
+                inputTypes: null
             },
             mutations: {
                 select (state, id) {
                     state.selectedId = id;
+                },
+
+                // Initializes all the store data that is destined to be constant throughout execution
+                initializeConstData(state) {
+                    axios.get("./components/editor/activity-editor/content-chunk-editors/contentChunkTypes.json").then( res => {
+                        state.contentTypes = res.data.contentChunkTypes;
+                    })
+                    axios.get("./components/editor/activity-editor/input-editors/inputTypes.json").then( res => {
+                        state.inputTypes = res.data.inputTypes;
+                    })
                 }
             }
             })
+
+        store.commit('initializeConstData');
+
+
 
 
 

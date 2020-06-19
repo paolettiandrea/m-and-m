@@ -1,8 +1,10 @@
+
 export default {
     template: `
         <div  v-if="contentChunkTypes">
             
-            <b-button-group style="width: 100%">
+            <b-button-group style="width: 100%" size="sm">
+                    <slot name="button-prepend"></slot>
                     <b-button 
                         variant="outline-primary" 
                         size="sm" 
@@ -22,11 +24,9 @@ export default {
         }
     },
 
-    props: {
-        chunkIndex: NaN,
-        showPop: false,
-        contentChunkTypes: null
-    },
+    computed: Vuex.mapState({
+        contentChunkTypes: state => state.contentTypes
+    }),
 
     methods: {
         emitNewContentEvent(contentType) {

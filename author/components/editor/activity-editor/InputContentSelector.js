@@ -16,9 +16,9 @@ export default {
         </div>
     `,
 
-    props: {
-        inputTypes: null
-    },
+    computed: Vuex.mapState( {
+        inputTypes: state => state.inputTypes
+    }),
 
     methods: {
         emitInputSelectedEvent(inputType) {

@@ -13,18 +13,9 @@
       "title": "Campo testuale",
       "icon": "cursor-text",
       "data":{
-        "possibleAnswers": [
-          {
-            "answers": ["answer1", "answer2"],
-            "outcome": {
-              "outList": []
-            }
-          }
-        ],
-        "fallbackAnswer": {
-          "outcome": {
-            "outList": []
-          }
+        "possibleAnswers": [],
+        "fallbackOutcome": {
+
         }
       }
     },

@@ -1,30 +1,36 @@
 export default {
     template: `
         <div>
-            
             <b-list-group>
                 <div v-for="(inputOutcome, index) in inputOutcomeData.outList">
-                    <b-list-group-item size="sm" button  :key="index">
-                     {{inputOutcome.outcomeType}}
-                     
-                     <b-button size="sm" class="mini-button"> <b-icon icon="trash"></b-icon></b-button>
-                     </b-list-group-item>
+                
+                    <b-input-group class="mb-2" :key="index" size="sm">
+                        <b-input-group-prepend>
+                            <b-button>
+                                <b-icon :icon="iconNameFromOutcomeType(inputOutcome)"></b-icon>
+                            </b-button>
+                        </b-input-group-prepend>
+                        
+                        <b-form-input placeholder="Punti"></b-form-input>
+                        
+                        <b-input-group-append>
+                            <b-button> <b-icon icon="trash" v-on:click="removeOutcome(index)"></b-icon></b-button>
+                        </b-input-group-append>
+                    </b-input-group>
                 </div>
-                <b-list-group-item v-if="!isOutListTerminated">
-                    <b-button size="sm" v-on:click="addPopupOutcome">Popup</b-button>
-                    <b-button size="sm" v-on:click="addNextOutcome">Next</b-button>
-                </b-list-group-item>
-</b-list-group>
+                <div v-if="!isOutListTerminated">
+
+                    <content-type-selector @new:content="addPopup">
+                        <template v-slot:button-prepend>
+                            <b-button v-on:click="addNextActivity"><b-icon icon="arrow-down-square-fill"></b-icon></b-button>
+                        </template>
+                    </content-type-selector>
+                </div>
+            </b-list-group>
         </div>`,
 
     props: {
         inputOutcomeData: null
-    },
-
-    data() {
-        return {
-
-        }
     },
 
     computed: {
@@ -36,24 +42,34 @@ export default {
     },
 
     methods: {
-        addPopupOutcome() {
-            this.inputOutcomeData.outList.push({
-                outcomeType: "popup",
-                popupContent: {
-
+        iconNameFromOutcomeType(outcome) {
+            console.log(outcome);
+            if (outcome.outcomeType === 'popup') {
+                for (const content of this.$store.state.contentTypes) {
+                    if (outcome.popupContent.type === content.type) {
+                        return content.icon;
+                    }
                 }
-            })
+            } else {
+                return 'arrow-down-square-fill'
+            }
+            console.error("contentType not recognised while assigning icon");
         },
 
-        addNextOutcome() {
+        addPopup(outcomeData) {
             this.inputOutcomeData.outList.push({
-                outcomeType: "next",
-
-            })
+                outcomeType: 'popup',
+                popupContent: outcomeData.contentChunk
+            });
         },
+        addNextActivity() {
+            this.inputOutcomeData.outList.push({
+                outcomeType: 'next',
 
-        outcomeClicked(clickedOutcomeData) {
-            this.$bubble('outcome-clicked', clickedOutcomeData);
+            });
+        },
+        removeOutcome(index) {
+            this.inputOutcomeData.outList.splice(index, 1);
         }
     },
 
@@ -64,7 +80,7 @@ export default {
     },
 
     components: {
-        "draggable": () => import('/vuedraggable/dist/vuedraggable.umd.js')
+        "content-type-selector": () => import("../ContentTypeSelector.js")
     }
 
 }
