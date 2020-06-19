@@ -65,7 +65,6 @@ export default {
         window.onresize = () => {
             let yo = document.getElementById("g6Mount");
 
-            console.log(yo);
             this.canvas.graph.changeSize(yo.clientWidth, yo.clientHeight);      // FIXME brutally resizing canvas
         }
     }

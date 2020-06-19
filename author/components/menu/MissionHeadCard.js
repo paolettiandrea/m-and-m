@@ -115,7 +115,6 @@ export default {
             axios.post("/missions/update",
                 {missionHead: this.missionHead,
                 missionContent: this.missionContent}).then(() => {
-                console.log("adsasd");
             })
             this.changed = false;
         }

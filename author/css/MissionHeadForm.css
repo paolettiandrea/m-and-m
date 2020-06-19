@@ -46,7 +46,13 @@ html, body {
     padding: 2px;
 }
 
-/*.vertical-arrow-button {*/
-/*    padding-bottom: 0 !important;*/
-/*    padding-top: 0 !important;*/
-/*}*/
+.vertical-arrow-button {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+
+.vertical-arrow-group {
+    padding-top: 1px;
+    padding-bottom: 1px;
+
+}

@@ -43,7 +43,6 @@ export default {
 
     methods: {
         iconNameFromOutcomeType(outcome) {
-            console.log(outcome);
             if (outcome.outcomeType === 'popup') {
                 for (const content of this.$store.state.contentTypes) {
                     if (outcome.popupContent.type === content.type) {

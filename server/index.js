@@ -36,7 +36,6 @@ app.get('/', function (req, res) {
 app.use("/missions", a)
 app.use("/api", api)
 
-
 // STARTING THE SERVER
 app.listen(3000, () => {
   console.log('listening on port 3000');
