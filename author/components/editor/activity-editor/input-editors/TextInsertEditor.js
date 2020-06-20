@@ -113,7 +113,8 @@ export default {
             this.inputData.possibleAnswers.push({
                 answers: [],
                 outcome: {
-                    outList: []
+                    outList: [],
+                    edgeId: ''
                 }
             })
         },

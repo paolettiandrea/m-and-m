@@ -43,16 +43,23 @@
 
         const store = new Vuex.Store({
             state: {
-                selectedId: 0,
+                selectedId: '',
+                selectedActivityId: '',
 
                 contentTypes: null,
                 inputTypes: null,
 
-                activityClickedCallback: null
+                activityClickedCallback: null,
+
+                canvas: null
             },
             mutations: {
                 select (state, id) {
                     state.selectedId = id;
+                },
+
+                selectActivity(state, activityId) {
+                    state.selectedActivityId = activityId;
                 },
 
                 // Initializes all the store data that is destined to be constant throughout execution
@@ -63,6 +70,10 @@
                     axios.get("./components/editor/activity-editor/input-editors/inputTypes.json").then( res => {
                         state.inputTypes = res.data.inputTypes;
                     })
+                },
+
+                initializeCanvas(state, canvas) {
+                    state.canvas = canvas;
                 },
 
                 addActivityClickedCallback(state, callback) {

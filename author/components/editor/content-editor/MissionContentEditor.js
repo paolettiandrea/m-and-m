@@ -33,6 +33,7 @@ export default {
     methods: {
         activitySelectionCallback(selectedActivity) {
             this.selectedActivity = selectedActivity;
+            this.$store.commit('selectActivity', selectedActivity.uuid);        // TODO bind directly to this (maybe)
             this.$emit('activity:selected', {
                 activity: selectedActivity,
                 callbacks: {

@@ -1,3 +1,6 @@
+import { v1 as uuidv1} from '/uuid/dist/esm-browser/index.js';
+
+
 function buildGraphData(missionContent) {
     var data = {
         nodes: [],
@@ -29,7 +32,10 @@ function buildActivityEdgeData(activity, edgeArray) {
 
     var nextOutcomes = getNextOutcomesFromActivity(activity);
     for (const outcome of nextOutcomes) {
+        console.log(outcome);
+        console.log(outcome.edgeId);
         var newEdge = {
+            id: outcome.edgeId,
             source: activity.uuid,
             target: outcome.nextActivityId,
         };
@@ -38,6 +44,8 @@ function buildActivityEdgeData(activity, edgeArray) {
         console.log(newEdge);
     }
 }
+
+
 
 function recursiveFindFromKey(targetKey, obj, resArray) {
     for (const key in obj) {
@@ -72,7 +80,7 @@ const EDGE_TURNAROUND_PADDING = 20;
 
 function makeEdgePath(startPoint, endPoint) {
     if (startPoint.y > endPoint.y) {    // The edge should do some sort of turnaround since the endPoint is higher
-        var hSign = Math.sign(startPoint.x - endPoint.x);
+        var hSign = Math.sign(startPoint.x - endPoint.x) || -1;     // Defaults to left turnaround if on the same y axis
 
         if (Math.abs(startPoint.x - endPoint.x)> NODE_WIDTH + EDGE_TURNAROUND_PADDING*2) {  // Can fit the turnaround between the nodes
             return [
@@ -127,6 +135,7 @@ export class CanvasManager {
         console.log("CanvasConstructor");
         this.callbacks = settings.callbacks;
         this.store = store;
+        this.store.commit('initializeCanvas', this);
         this.graph = new G6.Graph({
             container: settings.mountId, // String | HTMLElement, required, the id of DOM element or an HTML node
             width: 800, // Number, required, the width of the graph
@@ -198,8 +207,22 @@ export class CanvasManager {
         this.graph.updateItem(targetNode, nodeData);
     }
 
-    addLink(fromActivity, toActivity) {
+    // Adds a new edge to the canvas returning its unique id (allowing for retrieval later)
+    newEdge(fromActivityId, fromOutcome, toActivityId) {
+        var uuid = uuidv1();
+        this.graph.addItem('edge', {
+            id: uuid,
+            source: fromActivityId,
+            target: toActivityId,
+        })
+        fromOutcome.edgeId = uuid;
+        return uuid;
+    }
 
+    deleteEdge(edgeId) {
+        var edge = this.graph.findById(edgeId);
+        console.log(edge);
+        edge.destroy();
     }
 }
 

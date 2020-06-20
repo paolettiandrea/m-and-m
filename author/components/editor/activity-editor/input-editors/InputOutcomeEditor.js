@@ -49,7 +49,7 @@ export default {
         </div>`,
 
     props: {
-        inputOutcomeData: null
+        inputOutcomeData: null,
     },
 
     computed: {
@@ -84,7 +84,6 @@ export default {
             this.inputOutcomeData.outList.push({
                 outcomeType: 'next',
                 nextActivityId: 0
-
             });
         },
         removeOutcome(index) {
@@ -99,8 +98,13 @@ export default {
         pickNextActivity() {
             this.$store.commit('addActivityClickedCallback', (id) => {
                 console.log("Callback");
+                // If already valid id first remove the corresponding edge
+                if (this.lastOutcome().edgeId) {
+                    this.$store.state.canvas.deleteEdge(this.lastOutcome().edgeId);
+                }
+                // Then create a new
                 this.lastOutcome().nextActivityId = id;
-                console.log(id);
+                this.$store.state.canvas.newEdge(this.$store.state.selectedActivityId, this.lastOutcome(), id);
             })
         }
 
