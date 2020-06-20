@@ -61,7 +61,7 @@ export default {
                 selectionCallback: this.activitySelectionCallback
             }
         }
-        this.canvas = new CanvasManager(this.missionContent, canvasSettings);
+        this.canvas = new CanvasManager(this.missionContent, canvasSettings, this.$store);
         window.onresize = () => {
             let yo = document.getElementById("g6Mount");
 

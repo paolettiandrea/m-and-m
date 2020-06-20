@@ -5,7 +5,7 @@ export default {
                     
                     <b-row align-v="center">
                         <b-col cols="1">
-                            <b-button-group vertical size="sm" v-if="index===selectedIndex">
+                            <b-button-group vertical size="sm" class="vertical-arrow-group">
                                 <b-button   class="vertical-arrow-button" variant="outline-secondary" 
                                             :disabled="!(index>0)" 
                                             v-on:click="movePossibility(-1, index)">

@@ -2,7 +2,7 @@ export default {
     template: `
         <div>
             <b-list-group>
-                <div v-for="(inputOutcome, index) in inputOutcomeData.outList">
+                <div v-for="(inputOutcome, index) in inputOutcomeData.outList" v-if="inputOutcome.outcomeType!=='next'">
                 
                     <b-input-group class="mb-2" :key="index" size="sm">
                         <b-input-group-prepend>
@@ -18,6 +18,25 @@ export default {
                         </b-input-group-append>
                     </b-input-group>
                 </div>
+
+<!--Next activity-->
+                <div v-else>
+                    <b-input-group class="mb-2" :key="index" size="sm">
+                        <b-input-group-prepend>
+                            <b-button>
+                                <b-icon icon="arrow-down-square-fill"></b-icon>
+                            </b-button>
+                            <b-button v-on:click="pickNextActivity">Pick</b-button>
+                        </b-input-group-prepend>
+                        
+                        <b-form-input placeholder="Punti"></b-form-input>
+                        
+                        <b-input-group-append>
+                            <b-button> <b-icon icon="trash" v-on:click="removeOutcome(inputOutcomeData.outList.length-1)"></b-icon></b-button>
+                        </b-input-group-append>
+                    </b-input-group>
+</div>
+                
                 <div v-if="!isOutListTerminated">
 
                     <content-type-selector @new:content="addPopup">
@@ -64,12 +83,27 @@ export default {
         addNextActivity() {
             this.inputOutcomeData.outList.push({
                 outcomeType: 'next',
+                nextActivityId: 0
 
             });
         },
         removeOutcome(index) {
             this.inputOutcomeData.outList.splice(index, 1);
+        },
+
+        lastOutcome() {
+            if (this.inputOutcomeData.outList.length>0) return this.inputOutcomeData.outList[this.inputOutcomeData.outList.length-1];
+            else return null;
+        },
+
+        pickNextActivity() {
+            this.$store.commit('addActivityClickedCallback', (id) => {
+                console.log("Callback");
+                this.lastOutcome().nextActivityId = id;
+                console.log(id);
+            })
         }
+
     },
 
     created() {

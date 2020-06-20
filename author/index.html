@@ -46,7 +46,9 @@
                 selectedId: 0,
 
                 contentTypes: null,
-                inputTypes: null
+                inputTypes: null,
+
+                activityClickedCallback: null
             },
             mutations: {
                 select (state, id) {
@@ -61,6 +63,10 @@
                     axios.get("./components/editor/activity-editor/input-editors/inputTypes.json").then( res => {
                         state.inputTypes = res.data.inputTypes;
                     })
+                },
+
+                addActivityClickedCallback(state, callback) {
+                    state.activityClickedCallback = callback;
                 }
             }
             })
