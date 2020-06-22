@@ -18,23 +18,29 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
 
 
-    <link type="text/css" rel="stylesheet" href="css/MissionHeadForm.css"/>
+<!--    <link type="text/css" rel="stylesheet" href="css/MissionHeadForm.css"/>-->
 
     <script src="//cdn.jsdelivr.net/npm/@antv/g6@3.5.0/dist/g6.min.js" ></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.js"></script>
 
-    <script src="../player/components/ActivityDisplayer.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.js"></script>
     <script src="//unpkg.com/vuex@3.4.0/dist/vuex.js"></script>
 
+    <script src="/socket.io-client/dist/socket.io.dev.js"></script>
+
     <script src="/common/js/VueUtils.js"></script>
 
     <title>Title</title>
+
+    <script>
+        var socket = io();
+    </script>
+
 </head>
 <body>
     <div id="app">
-        <author-main></author-main>
+        <p>Supervisor App</p>
     </div>
 
     <script>
@@ -43,46 +49,13 @@
 
         const store = new Vuex.Store({
             state: {
-                selectedId: '',
-                selectedActivityId: '',
 
-                contentTypes: null,
-                inputTypes: null,
-
-                activityClickedCallback: null,
-
-                canvas: null
             },
             mutations: {
-                select (state, id) {
-                    state.selectedId = id;
-                },
 
-                selectActivity(state, activityId) {
-                    state.selectedActivityId = activityId;
-                },
-
-                // Initializes all the store data that is destined to be constant throughout execution
-                initializeConstData(state) {
-                    axios.get("./components/editor/activity-editor/content-chunk-editors/contentChunkTypes.json").then( res => {
-                        state.contentTypes = res.data.contentChunkTypes;
-                    })
-                    axios.get("./components/editor/activity-editor/input-editors/inputTypes.json").then( res => {
-                        state.inputTypes = res.data.inputTypes;
-                    })
-                },
-
-                initializeCanvas(state, canvas) {
-                    state.canvas = canvas;
-                },
-
-                addActivityClickedCallback(state, callback) {
-                    state.activityClickedCallback = callback;
-                }
             }
             })
 
-        store.commit('initializeConstData');
 
 
 
@@ -92,7 +65,7 @@
             el: '#app',
             store,
             components: {
-                'author-main': () => import("./components/AuthorMain.js")
+
             }
         })
     </script>
