@@ -32,7 +32,7 @@ export default {
                         <b-form-input placeholder="Punti"></b-form-input>
                         
                         <b-input-group-append>
-                            <b-button> <b-icon icon="trash" v-on:click="removeOutcome(inputOutcomeData.outList.length-1)"></b-icon></b-button>
+                            <b-button> <b-icon icon="trash" v-on:click="removeNextActivity"></b-icon></b-button>
                         </b-input-group-append>
                     </b-input-group>
 </div>
@@ -88,6 +88,10 @@ export default {
         },
         removeOutcome(index) {
             this.inputOutcomeData.outList.splice(index, 1);
+        },
+        removeNextActivity() {
+            this.$store.state.canvas.deleteEdge(this.lastOutcome().edgeId);
+            this.inputOutcomeData.outList.splice(this.inputOutcomeData.outList.length-1, 1);
         },
 
         lastOutcome() {

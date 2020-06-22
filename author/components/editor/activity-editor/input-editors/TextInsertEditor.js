@@ -106,6 +106,11 @@ export default {
         },
 
         removePossibility(index) {
+            var outcomeList = this.inputData.possibleAnswers[index].outcome.outList
+            var lastOutcome = outcomeList[outcomeList.length-1];
+            if (lastOutcome.outcomeType==='next') {
+                this.$store.state.canvas.deleteEdge(lastOutcome.edgeId);
+            }
             this.inputData.possibleAnswers.splice(index, 1);
         },
 

@@ -74,40 +74,52 @@ function getNextOutcomesFromActivity(activity) {
     return res;
 }
 
-const EDGE_SPLIT_DISTANCE = 20;
+const EDGE_SPLIT_DISTANCE = 30;
 const NODE_WIDTH = 100;
+const NODE_HEIGHT = 20;
 const EDGE_TURNAROUND_PADDING = 20;
+const ARRIVAL_DIStANCE = 35;
+
+const ANGLE_DIST = 10;
+
+// Layout
+const VERTICAL_DISTANCE = EDGE_TURNAROUND_PADDING;
+const HORIZONTAL_DISTANCE = EDGE_TURNAROUND_PADDING*2;
 
 function makeEdgePath(startPoint, endPoint) {
-    if (startPoint.y > endPoint.y) {    // The edge should do some sort of turnaround since the endPoint is higher
+    if (startPoint.y > endPoint.y - EDGE_SPLIT_DISTANCE - ANGLE_DIST) {    // The edge should do some sort of turnaround since the endPoint is higher
         var hSign = Math.sign(startPoint.x - endPoint.x) || -1;     // Defaults to left turnaround if on the same y axis
 
-        if (Math.abs(startPoint.x - endPoint.x)> NODE_WIDTH + EDGE_TURNAROUND_PADDING*2) {  // Can fit the turnaround between the nodes
-            return [
-                ['M', startPoint.x, startPoint.y],
-                ['L', startPoint.x, startPoint.y + EDGE_SPLIT_DISTANCE],
-                ['L', (startPoint.x + endPoint.x)/2, startPoint.y + EDGE_SPLIT_DISTANCE],
-                ['L', (startPoint.x + endPoint.x)/2, endPoint.y - EDGE_SPLIT_DISTANCE],
-                ['L', endPoint.x, endPoint.y - EDGE_SPLIT_DISTANCE],
-                ['L', endPoint.x, endPoint.y],
-            ]
-        } else {
-            var turnaroundX = startPoint.x + (NODE_WIDTH/2+EDGE_TURNAROUND_PADDING)*hSign;
-            return [
-                ['M', startPoint.x, startPoint.y],
-                ['L', startPoint.x, startPoint.y + EDGE_SPLIT_DISTANCE],
-                ['L', turnaroundX, startPoint.y + EDGE_SPLIT_DISTANCE],
-                ['L', turnaroundX, endPoint.y - EDGE_SPLIT_DISTANCE],
-                ['L', endPoint.x, endPoint.y - EDGE_SPLIT_DISTANCE],
-                ['L', endPoint.x, endPoint.y],
-            ]
-        }
-
-    } else {
+        var turnaroundX = startPoint.x + (NODE_WIDTH/2+EDGE_TURNAROUND_PADDING)*hSign;
+        var topY = Math.min(startPoint.y - NODE_HEIGHT, endPoint.y) - ARRIVAL_DIStANCE;
         return [
             ['M', startPoint.x, startPoint.y],
-            ['L', startPoint.x, startPoint.y + EDGE_SPLIT_DISTANCE],
-            ['L', endPoint.x, startPoint.y + EDGE_SPLIT_DISTANCE],
+            ['L', startPoint.x, startPoint.y + EDGE_SPLIT_DISTANCE - ANGLE_DIST],
+            ['L', startPoint.x + ANGLE_DIST*hSign, startPoint.y + EDGE_SPLIT_DISTANCE],
+            ['L', turnaroundX - ANGLE_DIST*hSign, startPoint.y + EDGE_SPLIT_DISTANCE],
+            ['L', turnaroundX, startPoint.y + EDGE_SPLIT_DISTANCE - ANGLE_DIST],
+            ['L', turnaroundX, topY + ANGLE_DIST],
+            ['L', turnaroundX - ANGLE_DIST*hSign, topY],
+            ['L', endPoint.x + ANGLE_DIST*hSign, topY],
+            ['L', endPoint.x, topY + ANGLE_DIST],
+            ['L', endPoint.x, endPoint.y],
+        ]
+
+
+    } else {
+        let vSign = 1;
+        if (Math.abs(startPoint.x - endPoint.x) < ANGLE_DIST*2) {
+            hSign = (startPoint.x - endPoint.x) / (ANGLE_DIST*2);
+            vSign = Math.abs(hSign);
+        } else {
+            var hSign = Math.sign(startPoint.x - endPoint.x);
+        }
+        return [
+            ['M', startPoint.x, startPoint.y],
+            ['L', startPoint.x, endPoint.y - ARRIVAL_DIStANCE - ANGLE_DIST],
+            ['L', startPoint.x - ANGLE_DIST*hSign, endPoint.y - ARRIVAL_DIStANCE],
+            ['L', endPoint.x + ANGLE_DIST*hSign, endPoint.y - ARRIVAL_DIStANCE],
+            ['L', endPoint.x, endPoint.y - ARRIVAL_DIStANCE + ANGLE_DIST * vSign],
             ['L', endPoint.x, endPoint.y],
         ]
     }
@@ -120,6 +132,7 @@ G6.registerEdge('hvh', {
         const shape = group.addShape('path', {
             attrs: {
                 stroke: '#333',
+                lineWidth: 3,
                 endArrow: true,
                 path: makeEdgePath(startPoint, endPoint),
             },
@@ -158,8 +171,8 @@ export class CanvasManager {
             layout: {
                 // Object, the layout configuration. Random layout by default
                 type: 'dagre',
-                nodesep: 20,
-                ranksep: 50,
+                nodesep: HORIZONTAL_DISTANCE,
+                ranksep: VERTICAL_DISTANCE,
                 controlPoints: true,
                 // ...                    // Other configurations for the layout
             },
