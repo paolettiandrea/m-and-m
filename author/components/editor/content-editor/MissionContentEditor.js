@@ -7,29 +7,30 @@ export default {
         <b-navbar variant="primary">
             <b-navbar-brand href="#">{{barTitle}}</b-navbar-brand>
             
-            <b-navbar-nav class="ml-auto">
-            <b-nav-item-dropdown right>
-                <template slot="button-content">
-                    <b-icon icon="gear"></b-icon>
-</template>
-          <b-dropdown-item href="#">EN</b-dropdown-item>
-          <b-dropdown-item href="#">ES</b-dropdown-item>
-          <b-dropdown-item href="#">RU</b-dropdown-item>
-          <b-dropdown-item href="#"><b-button v-on:click="deleteSelectedMission" variant="outline-danger"><b-icon icon="trash"></b-icon> Cancella </b-button></b-dropdown-item>
-        </b-nav-item-dropdown>
-                <b-button-group>
-                    
-</b-button-group>
-</b-navbar-nav>
-</b-navbar>
-        <b-button v-on:click="newActivity()">+</b-button>
-            <div id="g6Mount" class="no-flex-grow full-height"></div>
+            <b-navbar-nav class="ml-auto" v-if="isMissionSelected">
+                <b-button  v-on:click="updateSelectedMission" :disabled="isMissionUpdated"  variant="secondary-primary">
+                    <b-icon icon="cloud-upload" aria-hidden="true"></b-icon>
+                </b-button>
+                <b-nav-item-dropdown right variant="primary">
+                    <template slot="button-content">
+                        <b-icon icon="gear"></b-icon>
+                    </template>
+                    <b-dropdown-item href="#"><b-button v-on:click="deleteSelectedMission" variant="outline-danger"><b-icon icon="trash"></b-icon> Cancella </b-button></b-dropdown-item>
+                </b-nav-item-dropdown>
+            </b-navbar-nav> 
+        </b-navbar>
+        <div id="yoyo">
+        
+        <div id="g6Mount" style="overflow: hidden; height: 80%; margin: 0 auto"></div>
+</div>
     </div>`,
 
     computed: {
         ...Vuex.mapGetters({
             missionContent: 'selectedMissionContent',
-            barTitle: 'missionBarTitle'
+            barTitle: 'missionBarTitle',
+            isMissionSelected: 'isMissionSelected',
+            isMissionUpdated: 'isSelectedMissionUpdated'
         })
     },
 
@@ -39,12 +40,9 @@ export default {
             selectedActivity: null
         }
     },
-    watch: {
-
-    },
     methods: {
         ...Vuex.mapActions([
-            'deleteSelectedMission'
+            'deleteSelectedMission', 'updateSelectedMission'
         ]),
         activitySelectionCallback(selectedActivity) {
             this.selectedActivity = selectedActivity;
@@ -61,17 +59,16 @@ export default {
         }
     },
     mounted() {
-        const canvasSettings = {
+        this.$store.commit('initializeCanvasManager', {
             mountId: "g6Mount",
             callbacks: {
                 selectionCallback: this.activitySelectionCallback
             }
-        }
-        this.canvas = new CanvasManager(canvasSettings, this.$store);
+        })
+
         window.onresize = () => {
             let yo = document.getElementById("g6Mount");
-
-            this.canvas.graph.changeSize(yo.clientWidth, yo.clientHeight);      // FIXME brutally resizing canvas
+            //this.$store.state.canvas.graph.changeSize(yo.offsetWidth, yo.offsetHeight - 10);      // FIXME brutally resizing canvas
         }
     }
 

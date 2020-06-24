@@ -100,23 +100,6 @@ export default {
         },
         deselect() {
             this.selected = false;
-        },
-        deleteMission() {
-            axios.delete("/missions/delete/"+ this.missionHead._id).then((res) => {
-                // Check that the returned deletedContentId matches
-                if (res.data.deletedContentId !== this.missionHead.contentId) {
-                    throw Error("Something went very bad, the returned deletedContentId doesn't match");
-                } else {
-                    this.$bubble('mission:deleted', this.missionHead)
-                }
-            });
-        },
-        uploadMission() {
-            axios.post("/missions/update",
-                {missionHead: this.missionHead,
-                missionContent: this.missionContent}).then(() => {
-            })
-            this.changed = false;
         }
     }
 }

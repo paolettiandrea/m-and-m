@@ -1,7 +1,20 @@
 export default {
     template: `
         <div class="column-flex-container" v-if="activityData">
-        
+            
+            <b-navbar variant="primary">
+            <b-navbar-brand href="#">{{activityData.title}}</b-navbar-brand>
+            
+            <b-navbar-nav class="ml-auto">
+                <b-nav-item-dropdown right variant="primary">
+                    <template slot="button-content">
+                        <b-icon icon="gear"></b-icon>
+                    </template>
+                    <b-dropdown-item href="#"><b-button v-on:click="" variant="outline-danger"><b-icon icon="trash"></b-icon> Cancella </b-button></b-dropdown-item>
+                </b-nav-item-dropdown>
+            </b-navbar-nav> 
+        </b-navbar>
+            
             <div class="no-flex-grow">
                 <b-form v-on:submit.prevent="titleValidation">
                 <b-form-group class="labeled-form-group" label="Title" label-for="title-input" label-cols="3">
@@ -15,11 +28,11 @@ export default {
             
             <div class="full-flex vertical-scroll" style="align-content: center">
             
-                <div v-if="this.activityData.activity.content.length == 0">
+                <div v-if="this.activityData.content.length == 0">
                     <content-type-selector @new:content="newContent" :chunkIndex="0"></content-type-selector>
                 </div>
                 
-                <activity-displayer class="activity-displayer-div" :activity-content="activityData.activity" 
+                <activity-displayer class="activity-displayer-div" :activity-content="activityData" 
                         @content:chunk:clicked="contentChunkClicked" @input:clicked="inputClicked">
                 <template v-slot:inter="props">
                     <b-collapse :id="'add-content-collapse-'+props.index">
@@ -48,16 +61,10 @@ export default {
     </div>
     `,
 
-    props: {
-        activityData: null
-    },
-
-    watch: {
-        'activityData': {
-            handler: function (after, before) {
-                this.title = after.activity.title;
-            }
-        }
+    computed: {
+        ...Vuex.mapGetters({
+            activityData: 'selectedActivity'
+        })
     },
 
     data() {
@@ -76,20 +83,20 @@ export default {
         },
 
         newContent(newContentData) {
-            this.activityData.activity.content.splice(newContentData.index, 0, newContentData.contentChunk);
+            this.activityData.content.splice(newContentData.index, 0, newContentData.contentChunk);
             this.select(newContentData.index, newContentData.contentChunk);
         },
 
         deleteContent(chunkIndex) {
-            this.activityData.activity.content.splice(chunkIndex, 1);
+            this.activityData.content.splice(chunkIndex, 1);
             this.select(NaN);
         },
 
         moveContentChunk(moveData) {
             let newIndex = moveData.index + moveData.offset;
-            if (newIndex >= 0 && newIndex < this.activityData.activity.content.length) {
-                this.activityData.activity.content.splice(moveData.index, 1);
-                this.activityData.activity.content.splice(newIndex, 0, this.selectedContentChunk);
+            if (newIndex >= 0 && newIndex < this.activityData.content.length) {
+                this.activityData.content.splice(moveData.index, 1);
+                this.activityData.content.splice(newIndex, 0, this.selectedContentChunk);
                 this.select(newIndex, this.selectedContentChunk);
             }
         },
@@ -109,7 +116,7 @@ export default {
         },
 
         handleInputSelected(inputComponentData) {
-            this.activityData.activity.inputComponent = inputComponentData;
+            this.activityData.inputComponent = inputComponentData;
         },
 
 

@@ -7,7 +7,7 @@ function buildGraphData(missionContent) {
         edges: []
     };
 
-    for (const activity of missionContent.activities) {
+    for (const activity of Object.values(missionContent.activities)) {
         data.nodes.push(buildActivityNodeData(activity))
         buildActivityEdgeData(activity, data.edges);
     }
@@ -145,7 +145,6 @@ G6.registerEdge('hvh', {
 
 export class CanvasManager {
     constructor(settings, store) {
-        console.log("CanvasConstructor");
         this.callbacks = settings.callbacks;
         this.store = store;
         this.store.commit('initializeCanvas', this);
@@ -156,6 +155,8 @@ export class CanvasManager {
             modes: {
                 default: ['drag-canvas', 'drag-node'],
             },
+            fitView: true,
+            fitCenter: true,
             animate: true,
             defaultEdge: {
                 // ... Other properties for edges
@@ -188,8 +189,20 @@ export class CanvasManager {
         // On click retrieve the corresponding activity and trigger a selection callback
         this.graph.on('node:click', e => {
             if (this.store.state.activityClickedCallback) this.store.state.activityClickedCallback(e.item._cfg.id);
-            else store.dispatch('selectActivity', e.item._cfg.id);
+            else this.store.dispatch('selectActivity', e.item._cfg.id);
         })
+
+        this.graph.on('canvas:click', e => {
+            if (this.store.getters.isActivitySelected) { this.store.dispatch('deselectActivity'); }
+
+        })
+
+        // Double click creates a new activity
+        this.graph.on('canvas:dblclick', e => {
+            let activityId = this.store.dispatch('createActivity');
+        })
+
+        this.graph.on()
 
         this.graph.render(); // Render the graph
     }
@@ -223,7 +236,6 @@ export class CanvasManager {
 
     deleteEdge(edgeId) {
         var edge = this.graph.findById(edgeId);
-        console.log(edge);
         edge.destroy();
     }
 }

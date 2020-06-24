@@ -1,14 +1,11 @@
 
 export default {
-    template: `<div class="full-height">
-        <alt-mission-menu></alt-mission-menu>
+    template: `<div style="display: flex; flex-flow: column; align-items: stretch; height: 100%">
+        <alt-mission-menu style="flex: 0 1 auto"></alt-mission-menu>
         <div>
 </div>
-        <b-container fluid class="full-height">
+        <b-container fluid style="flex: 1 1 auto">
             <b-row class="full-height">
-                <b-col class="full-height" cols="3" region="Mission Menu">
-                    <mission-menu @mission:selection:changed="handleChangeSelection" class="full-height"></mission-menu>
-                </b-col>
                 <b-col class="full-height">
                     <div class="full-height">
                         <mission-editor></mission-editor>
