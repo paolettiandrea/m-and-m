@@ -20,7 +20,11 @@ router.get('/new', function (req, res, next) {
 
 router.get('/heads', function (req, res, next) {
     database.getMissionHeadsList().then( function (missionHeads) {
-        res.json(missionHeads);
+        var headDict = {};
+        for (const head of missionHeads) {
+            headDict[head._id] = head;
+    }
+        res.json(headDict);
     })
 })
 
@@ -31,10 +35,13 @@ router.get('/content/:uid', function (req, res, next) {
 })
 
 router.delete('/delete/:uid', function (req, res, next) {
-    database.deleteMission(req.params.uid).then( (contentId) => {
-        res.json({ deletedContentId: contentId })
-        resources.removeResourceDir(req.params.uid);
-    })
+
+        database.deleteMission(req.params.uid).then( (contentId) => {
+            if (contentId===0) { res.status(500).send({ message: 'No such mission!'});} else {
+                res.json({ deletedContentId: contentId })
+                resources.removeResourceDir(req.params.uid);
+            }
+        })
 })
 
 router.post('/update', function (req, res, next) {

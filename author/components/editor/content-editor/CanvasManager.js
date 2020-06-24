@@ -144,7 +144,7 @@ G6.registerEdge('hvh', {
 });
 
 export class CanvasManager {
-    constructor(missionContent, settings, store) {
+    constructor(settings, store) {
         console.log("CanvasConstructor");
         this.callbacks = settings.callbacks;
         this.store = store;
@@ -181,24 +181,14 @@ export class CanvasManager {
         });
 
 
-        var data = buildGraphData(missionContent);
-        console.log(data);
-        this.graph.data(data); // Load the data defined in Step 2
+        // var data = buildGraphData(missionContent);
+        // console.log(data);
+        // this.graph.data(data); // Load the data defined in Step 2
 
         // On click retrieve the corresponding activity and trigger a selection callback
         this.graph.on('node:click', e => {
             if (this.store.state.activityClickedCallback) this.store.state.activityClickedCallback(e.item._cfg.id);
-            else this.callbacks.selectionCallback(this.activityMap.get(e.item._cfg.id));
-        })
-
-        this.activityMap = new Map();
-        for (const activity of missionContent.activities) {
-            this.activityMap.set(activity.uuid, activity);
-        }
-
-        this.graph.on('node:click', e => {
-            console.log(e.item._cfg.id);
-
+            else store.dispatch('selectActivity', e.item._cfg.id);
         })
 
         this.graph.render(); // Render the graph
@@ -211,7 +201,6 @@ export class CanvasManager {
 
     newActivity(newActivity) {
         this.graph.addItem('node', buildActivityNodeData(newActivity));
-        this.activityMap.set(newActivity.uuid, newActivity);
     }
 
     updateActivityNode(activity) {

@@ -66,9 +66,18 @@ async function deleteMission(uid) {
     return new Promise((resolve)=> {
         MongoClient.connect(dbUrl, function(err, client) {
             if (err) throw err;
+
+            let convertedUid;
+            try {
+                convertedUid = new ObjectId(uid);
+            } catch (e) {
+                resolve(0);
+            }
+
+
             const db = client.db(missionsDB);
             // Remove missionHead from head database
-            db.collection(missionHeadsCol).findOneAndDelete({"_id": new ObjectId(uid)}).then( res => {
+            db.collection(missionHeadsCol).findOneAndDelete({"_id": convertedUid}).then( res => {
                 let contentId = res.value.contentId;
                 // Remove missionContent from content database
                 db.collection(missionContentCol).findOneAndDelete({"_id": new ObjectId(contentId)}).then( res => {

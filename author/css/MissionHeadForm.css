@@ -56,3 +56,11 @@ html, body {
     padding-bottom: 1px;
 
 }
+
+/* Activity editor */
+
+.activity-displayer-div {
+    margin: auto;
+    max-width: 400px;
+    border: 1px solid black;
+}

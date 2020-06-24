@@ -2,29 +2,26 @@ export default {
     template: `
     <div class="full-height">
         <b-row class="full-height">
-            <b-col class="full-height" v-if="missionContent">
+            <b-col class="full-height">
                 <div class="full-height">
                     <mission-content-editor
                         class="full-height column-flex-container no-flex-grow"
-                        :mission-content="missionContent" 
                         @activity:selected="activitySelectedCallback">
                     </mission-content-editor>
                 </div>
             </b-col>
             <b-col class="full-height">
-                <activity-editor class="full-height" :activity-data="selectedActivityData"></activity-editor>
+                <activity-editor class="full-height"></activity-editor>
             </b-col>
         </b-row>
     </div>`,
 
-    props: {
-        missionContent: Object
-    },
     data() {
         return {
             selectedActivityData: null
         }
     },
+
     methods: {
         activitySelectedCallback(selectedActivity) {
             this.selectedActivityData = selectedActivity;

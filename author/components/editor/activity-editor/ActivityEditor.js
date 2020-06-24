@@ -13,13 +13,14 @@ export default {
             </b-form>
             </div>
             
-            <div class="full-flex vertical-scroll">
+            <div class="full-flex vertical-scroll" style="align-content: center">
             
                 <div v-if="this.activityData.activity.content.length == 0">
                     <content-type-selector @new:content="newContent" :chunkIndex="0"></content-type-selector>
                 </div>
                 
-                <activity-displayer  :activity-content="activityData.activity" @content:chunk:clicked="contentChunkClicked" @input:clicked="inputClicked">
+                <activity-displayer class="activity-displayer-div" :activity-content="activityData.activity" 
+                        @content:chunk:clicked="contentChunkClicked" @input:clicked="inputClicked">
                 <template v-slot:inter="props">
                     <b-collapse :id="'add-content-collapse-'+props.index">
                         <content-type-selector @new:content="newContent" :chunkIndex="props.index"></content-type-selector>

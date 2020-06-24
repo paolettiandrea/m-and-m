@@ -22,7 +22,7 @@ const api = require('./routes/api')
 
 
 // MIDDLEWARE
-app.use(bodyParser.json());                  // using bodyParser to parse JSON bodies into JS objects
+app.use(bodyParser.json());                  // using bodyParser to parse JSON bodies into js objects
 app.use(cors());                             // enabling CORS for all requests
 app.use(morgan('combined'));          // adding morgan to log HTTP requests
 app.use(fileUpload({debug: true}));
