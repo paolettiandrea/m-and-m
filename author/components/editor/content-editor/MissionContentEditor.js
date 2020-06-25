@@ -19,9 +19,9 @@ export default {
                 </b-nav-item-dropdown>
             </b-navbar-nav> 
         </b-navbar>
-        <div id="yoyo">
+        <div id="yoyo" style="position: relative; height: 100%">
         
-        <div id="g6Mount" style="overflow: hidden; height: 80%; margin: 0 auto"></div>
+        <div id="g6Mount" style="position: absolute; top: 0; left: 0"></div>
 </div>
     </div>`,
 
@@ -67,8 +67,9 @@ export default {
         })
 
         window.onresize = () => {
-            let yo = document.getElementById("g6Mount");
-            //this.$store.state.canvas.graph.changeSize(yo.offsetWidth, yo.offsetHeight - 10);      // FIXME brutally resizing canvas
+            let yo = document.getElementById("yoyo");
+            console.log(yo.clientHeight);
+            this.$store.state.canvas.graph.changeSize(yo.clientWidth, yo.clientHeight);      // FIXME brutally resizing canvas
         }
     }
 

@@ -26,7 +26,7 @@ export default {
             </b-form>
             </div>
             
-            <div class="full-flex vertical-scroll" style="align-content: center">
+            <div class="full-flex vertical-scroll">
             
                 <div v-if="this.activityData.content.length == 0">
                     <content-type-selector @new:content="newContent" :chunkIndex="0"></content-type-selector>
