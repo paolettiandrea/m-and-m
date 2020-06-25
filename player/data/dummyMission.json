@@ -26,13 +26,21 @@
             {
               "possibleAnswers": ["hello", "ljsadlsakjd"],
               "outcome": {
-
+                "outcomeType": "next",
+                "nextActivityId": "2"
               }
             },
             {
-              "possibleAnswers": ["adadsadasf"],
+              "possibleAnswers": ["a"],
               "outcome": {
-
+                "outcomeType": "popup",
+                "popupContent": {
+                  "contentType": "text-displayer",
+                  "contentData": {
+                    "text": "Sono un primo paragrafo testuale, bla bla bla **BLA**.",
+                    "parseMarkdown": true
+                  }
+                }
               }
             }
           ],
@@ -47,6 +55,25 @@
             "background-color":"white"
           }
         }
+      }
+    },
+
+
+
+
+
+    {
+      "uid": "2",
+      "content": [
+        {
+          "contentType": "text-displayer",
+          "contentData": {
+            "text": "Sono un altra attività",
+            "parseMarkdown": true
+          }
+        }
+      ],
+      "inputComponent": {
       }
     }
 

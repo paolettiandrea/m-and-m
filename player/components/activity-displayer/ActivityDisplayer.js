@@ -66,10 +66,10 @@ Vue.component("activity-displayer", {
             }
         },
         contentChunkClicked(contentData) {
-            this.$bubble("content:chunk:clicked", contentData);
+            //this.$bubble("content:chunk:clicked", contentData);
         },
         inputClicked() {
-            this.$bubble('input:clicked', this.activityContent.inputComponent);
+            //this.$bubble('input:clicked', this.activityContent.inputComponent);
         }
     }
 })
