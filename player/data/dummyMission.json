@@ -1,0 +1,58 @@
+{
+  "activityList": [
+    {
+      "uid": "1",
+      "content": [
+        {
+          "contentType": "text-displayer",
+          "contentData": {
+            "text": "Sono un primo paragrafo testuale, bla bla bla **BLA**.",
+            "parseMarkdown": true
+          }
+        },
+        {
+          "contentType": "img-displayer",
+          "contentData": {
+            "url": "M&M.jpeg",
+            "w": "300",
+            "h": "300"
+          }
+        }
+      ],
+      "inputComponent": {
+        "inputType": "text-insert",
+        "inputData": {
+          "possibilityList": [
+            {
+              "possibleAnswers": ["hello", "ljsadlsakjd"],
+              "outcome": {
+
+              }
+            },
+            {
+              "possibleAnswers": ["adadsadasf"],
+              "outcome": {
+
+              }
+            }
+          ],
+          "fallbackOutcome": {
+
+          },
+
+          "fontData":{
+            "family":"verdana",
+            "size":"1em",
+            "color":"black",
+            "background-color":"white"
+          }
+        }
+      }
+    }
+
+
+  ]
+}
+
+
+

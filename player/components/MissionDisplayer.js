@@ -36,7 +36,7 @@ Vue.component('mission-displayer', {
 
     mounted() {
         axios.
-        get("/player/data/dummycontent.json").
+        get("/player/data/dummyMission.json").
         then(res => {
             console.log(res);
             this.missionData = res.data;
