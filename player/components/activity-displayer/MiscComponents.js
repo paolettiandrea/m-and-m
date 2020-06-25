@@ -65,3 +65,14 @@ Vue.component("canvas-displayer", {
     }
 })
 
+Vue.component("pure-knob", {
+  template: `
+  <div id="demo">
+
+  </div>
+  `,
+  props: {
+      inputData: null
+  }
+
+})

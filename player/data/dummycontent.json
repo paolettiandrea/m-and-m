@@ -20,20 +20,26 @@
                         "w": "300",
                         "h": "300"
                     }
-                }
+                },
+                {
+                        "contentType": "pure-knob",
+                        "contentData": {
+                            "text": ""
+                        }
+                    },
             ],
             "inputComponent": {
                 "inputType": "text-insert",
                 "inputData": {
                   "possibilityList": [
                       {
-                          "possibleAnswers": ["hello", "ljsadlsakjd"],
+                          "possibleAnswers": ["hello", "ciao"],
                           "outcome": {
 
                           }
                       },
                       {
-                          "possibleAnswers": ["adadsadasf"],
+                          "possibleAnswers": ["hola"],
                           "outcome": {
 
                           }
@@ -52,7 +58,7 @@
 
                   "alignment":"center",
                   "markdonText":true,
-                    "textType": "date"
+                    "textType": ""
                 }
               }
         },
@@ -166,7 +172,6 @@
                     ]
                 }
             }
-        }
+        },
     ]
 }
-
