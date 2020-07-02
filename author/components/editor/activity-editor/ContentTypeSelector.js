@@ -32,8 +32,8 @@ export default {
         emitNewContentEvent(contentType) {
             this.$emit("new:content", {
                 contentChunk: {
-                    type: contentType.type,
-                    data: JSON.parse(JSON.stringify(contentType.data)),
+                    contentType: contentType.type,
+                    contentData: JSON.parse(JSON.stringify(contentType.data)),
                 },
                 index: this.chunkIndex
             })
