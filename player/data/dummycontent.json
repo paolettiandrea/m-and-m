@@ -1,94 +1,88 @@
 {
-    "activities": {
-        "initial": {
-
+    "activityList": [{
+            "uid": "1",
             "content": [{
-                "type": "text-displayer",
-                "data": {
-                    "text": "Some initial content"
-                }
-            }, {
-                "type": "img-displayer",
-                "data": {
-                    "imgResData": {
-                        "url": "M&M.jpeg"
-                    },
-                    "w": "300",
-                    "h": "300"
-                }
-            }],
-
-            "inputComponent": {
-                "inputType": "test-input",
-                "inputData": {
-                    "nextActivityId": "1",
-                    "popupContent": {
-                        "type": "text-displayer",
-                        "data": {
-                            "text": "Some text *ciao* \n dsfkjsfkjds"
-                        }
+                    "contentType": "qr-reader",
+                    "contentData": {
+                        "text": ""
                     }
-
-                }
-            }
-        },
-        "1": {
-            "content": [{
-                "type": "qr-reader",
-                "data": {
-                    "text": ""
-                }
-            },
+                },
                 {
-                    "type": "text-displayer",
-                    "data": {
+                    "contentType": "text-displayer",
+                    "contentData": {
                         "text": "Some text *ciao* \n dsfkjsfkjds"
                     }
                 },
                 {
-                    "type": "img-displayer",
-                    "data": {
-                        "imgResData": {
-                            "url": "M&M.jpeg"
-                        },
+                    "contentType": "img-displayer",
+                    "contentData": {
+                        "url": "M&M.jpeg",
                         "w": "300",
                         "h": "300"
                     }
                 },
                 {
-                    "type": "multiple-checkboxes",
-                    "data": {
-                    }
-                }
+                        "contentType": "pure-knob",
+                        "contentData": {
+                            "text": ""
+                        }
+                    },
             ],
             "inputComponent": {
                 "inputType": "text-insert",
                 "inputData": {
-                    "correctAnswer": "asdadsasd",
-                    "text":"Risposta inserita",
-                    "color":"red"
+                  "possibilityList": [
+                      {
+                          "possibleAnswers": ["hello", "ciao"],
+                          "outcome": {
+
+                          }
+                      },
+                      {
+                          "possibleAnswers": ["hola"],
+                          "outcome": {
+
+                          }
+                      }
+                  ],
+                    "fallbackOutcome": {
+
+                    },
+
+                  "fontData":{
+                    "family":"verdana",
+                    "size":"1em",
+                    "color":"black",
+                    "background-color":"white"
+                  },
+
+                  "alignment":"center",
+                  "markdonText":true,
+                    "textType": ""
                 }
-            }
+              }
         },
-        "2": {
+
+        {
+            "uid": "2",
             "content": [{
-                "type": "qr-reader",
-                "data": {
-                    "text": ""
-                }
-            },
+                    "contentType": "qr-reader",
+                    "contentData": {
+                        "text": ""
+                    }
+                },
 
                 {
-                    "type": "text-displayer",
-                    "data": {
+                    "contentType": "text-displayer",
+                    "contentData": {
                         "text": "Sono un altro text **displayer**",
                         "parseMarkdown": true
                     }
                 },
 
                 {
-                    "type": "img-displayer",
-                    "data": {
+                    "contentType": "img-displayer",
+                    "contentData": {
                         "url": "M&M.jpeg",
                         "w": "400",
                         "h": "400"
@@ -96,13 +90,88 @@
                 }
             ],
             "inputComponent": {
-                "inputType": "canvas-displayer",
+                "inputType": "click-img",
                 "inputData": {
-                    "url": "M&M.jpeg",
-                    "w": "100",
-                    "h": "100"
+                    "url": "workplace.jpg",
+                    "w": "400",
+                    "h": "379",
+                    "pos": "right",
+                    "computer": "34,44,270,350",
+                    "telefono": "290,172,333,250",
+                    "caffe": "337,300,44"
                 }
             }
-        }
-    }
+        },
+        {
+            "uid": "3",
+            "content": [
+                {
+                    "contentType": "video-displayer",
+                    "contentData": {
+                        "url": "vue.mp4",
+                        "w": "400",
+                        "pos": "left"
+                    }
+                }
+
+            ],
+            "inputComponent": {
+                "inputType": "canvas-draw",
+                "inputData": {
+                    "w": "300",
+                    "h": "300"
+                }
+            }
+        },
+        {
+            "uid": "4",
+            "content": [{
+                    "contentType": "qr-reader",
+                    "contentData": {
+                        "text": ""
+                    }
+                },
+
+                {
+                    "contentType": "text-displayer",
+                    "contentData": {
+                        "text": "Sono un altro text **displayer**",
+                        "parseMarkdown": true
+                    }
+                },
+
+                {
+                    "contentType": "img-displayer",
+                    "contentData": {
+                        "url": "M&M.jpeg",
+                        "w": "400",
+                        "h": "400"
+                    }
+                }
+            ],
+            "inputComponent": {
+                "inputType": "multiple-checkboxes",
+                "inputData": {
+                    "buttonList": [
+                        {
+                            "button": "Value 1",
+                            "color": "#4CAF50",
+                            "outcome": {
+                                "outcomeType": "popup",
+                                "outcomeContent": {
+
+                                }
+                            }
+                        },
+                        {
+                            "button": "Value 2",
+                            "outcome": {
+
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+    ]
 }

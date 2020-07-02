@@ -1,3 +1,4 @@
+
 Vue.component("mission-displayer", {
     template: `
         <div>
