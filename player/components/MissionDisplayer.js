@@ -40,10 +40,10 @@ Vue.component('mission-displayer', {
                 if (activity.uid===nextMissionId) {
                     this.pointedActivity = activity;
                     this.pointedIndex = i;
+                    return;
                 }
                 i++;
             }
-
         }
     },
 
@@ -57,7 +57,4 @@ Vue.component('mission-displayer', {
             this.pointedActivity = this.missionData.activityList[this.pointedIndex];
         })
     },
-
-    components: {
-    }
 })

@@ -10,9 +10,12 @@ Vue.component("activity-displayer", {
                                    :id="'content-chunk-'+index" 
                                    class="content-chunk" 
                                    :contentData="contentChunk.contentData" ></component>
+                                   
+                                   
                     </div>
-                    <slot name="inter" :index="index+1"></slot>
-                </div>    
+                </div>   
+                
+                <slot name="last-content-chunk"></slot> 
             </div>
             
             <!-- Popup for input response. It contains an activity-displayer used for displaying the popupContent -->
@@ -34,6 +37,9 @@ Vue.component("activity-displayer", {
             <div v-else>
                 <slot name="input-placeholder"></slot>
             </div>
+            
+            
+         
         </div>`,
 
     props: {
@@ -66,10 +72,10 @@ Vue.component("activity-displayer", {
             }
         },
         contentChunkClicked(contentData) {
-            //this.$bubble("content:chunk:clicked", contentData); TODO
+            this.$bubble("content:chunk:clicked", contentData);
         },
         inputClicked() {
-            //this.$bubble('input:clicked', this.activityContent.inputComponent); TODO
+            this.$bubble('input:clicked', this.activityContent.inputComponent);
         }
     }
 })

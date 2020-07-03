@@ -1,27 +1,42 @@
 import { v1 as uuidv1} from '/uuid/dist/esm-browser/index.js';
 import {CanvasManager} from "../components/editor/content-editor/CanvasManager.js";
+
 Vue.use(Vuex);
 
 
 const store = new Vuex.Store({
     state: {
-        selectedId: '',
-        selectedActivityId: '',
 
-        contentTypes: null,
+        // STATIC DATA ================================================================================================
+
+        // Missions data
+        missionHeads: {},
         missionContents: {},
 
+        // Available content types
+        contentTypes: null,
         inputTypes: null,
 
         activityClickedCallback: null,
 
         canvas: null,
-        missionHeads: {},
-        selectedMissionId: null,
-        selectedActivity: null,
 
-        updatedMissionFlags: {}
+
+
+
+        // STATE ======================================================================================================
+
+        selectedMissionId: '',
+        selectedActivityId: '',
+
+        // The index of the selected activity content, NaN if nothing is selected, -1 if the input chunk is selected
+        selectedContentIndex: NaN,
+
+        // A flag for each mission false when there are local modifications that need to be updated to the server
+        updatedMissionFlags: {},
+
     },
+
     actions: {
         initializeStore(context) {
             axios.get("/missions/heads").then((res, err) => {
@@ -117,8 +132,49 @@ const store = new Vuex.Store({
         },
         deleteActivity(context, activityId) {
 
+        },
+
+        // Content chunk management ===================================================================================
+        deleteSelectedActivityChunk(context) {
+            if (context.getters.isChunkSelected) {
+                if (context.getters.isInputChunkSelected) {
+                    Vue.delete(context.getters.selectedActivity, 'inputComponent');
+                } else {
+                    context.getters.selectedActivity.content.splice(context.state.selectedContentIndex, 1);
+                }
+            }
+            context.commit('setSelectedActivityChunk', NaN);
+        },
+
+
+        moveSelectedChunk(context, offset) {
+            let oldIndex = context.state.selectedContentIndex;
+            let newIndex = oldIndex + offset;
+
+            context.commit('moveActivityContentChunk', {
+                selectedActivity: context.getters.selectedActivity,
+                oldIndex: oldIndex,
+                newIndex: newIndex,
+            });
+            context.commit('setSelectedActivityChunk', newIndex);
+        },
+
+        addContentChunk(context, contentData) {
+            context.commit('addContentChunk', [context.getters.selectedActivity, contentData]);
+            context.commit('setSelectedActivityChunk', context.getters.selectedActivity.content.length-1);
+
+        },
+
+        setInputChunk(context, inputData) {
+            context.commit('setInputChunk', [context.getters.selectedActivity, inputData]);
+            context.commit('setSelectedActivityChunk', -1);
+        },
+
+        deselectActivityChunk(context) {
+            context.commit('setSelectedActivityChunk', NaN);
         }
     },
+
     mutations: {
 
         resetUpdatedMissionFlags(state) {
@@ -150,9 +206,7 @@ const store = new Vuex.Store({
         },
 
 
-        select (state, id) {
-            state.selectedId = id;
-        },
+
 
         selectActivity(state, activityId) {
             state.selectedActivityId = activityId;
@@ -174,6 +228,27 @@ const store = new Vuex.Store({
 
         addActivityClickedCallback(state, callback) {
             state.activityClickedCallback = callback;
+        },
+
+        // Activity chunk management ----------------------------------------------------------------------------------
+
+        setSelectedActivityChunk(state, chunkIndex) { state.selectedContentIndex = chunkIndex; },
+
+        moveActivityContentChunk(state, data) {
+            let contentArray = data.selectedActivity.content;
+            if (data.newIndex >= 0 && data.newIndex < contentArray.length) {
+                let chunk = contentArray[data.oldIndex];
+                contentArray.splice(data.oldIndex, 1);
+                contentArray.splice(data.newIndex, 0, chunk);
+            }
+        },
+
+        addContentChunk(state, [targetActivity, contentData]) {
+            targetActivity.content.push(contentData);
+        },
+
+        setInputChunk(state, [targetActivity, inputData]) {
+            Vue.set(targetActivity, 'inputComponent', inputData);
         }
     },
 
@@ -185,9 +260,11 @@ const store = new Vuex.Store({
         selectedMissionHead(state) {
             return state.missionHeads[state.selectedMissionId] || null;
         },
+
         selectedMissionContent(state) {
             return (state.selectedMissionId) ? state.missionContents[state.missionHeads[state.selectedMissionId].contentId] : null;
         },
+
         selectedMissionId(state) { return state.selectedMissionId; },
 
         isActivitySelected(state) {
@@ -197,6 +274,24 @@ const store = new Vuex.Store({
         selectedActivity(state, getters) {
             return (getters.isActivitySelected) ? getters.selectedMissionContent.activities[state.selectedActivityId] : null;
         },
+
+        selectedActivityChunk(state, getters) {
+            if (!isNaN(state.selectedContentIndex)) {
+                if (state.selectedContentIndex === -1) {
+                    return getters.selectedActivity.inputComponent;
+                } else {
+                    return getters.selectedActivity.content[state.selectedContentIndex];
+                }
+            } else {
+                return null;
+            }
+        },
+
+        selectedActivityChunkIndex(state)  { return state.selectedContentIndex; },
+
+        isChunkSelected(state) { return !isNaN(state.selectedContentIndex); },
+
+        isInputChunkSelected(state) { return state.selectedContentIndex === -1; },
 
         missionBarTitle(state, getters) {
             if (getters.isMissionSelected) {
@@ -208,7 +303,11 @@ const store = new Vuex.Store({
 
         isSelectedMissionUpdated(state) {
             return state.updatedMissionFlags[state.selectedMissionId];
-        }
+        },
+
+        isSelectedContentChunkFirst(state) { return state.selectedContentIndex===0; },
+
+        isSelectedContentChunkLast(state, getters) {return state.selectedContentIndex===getters.selectedActivity.content.length-1}
     }
 })
 

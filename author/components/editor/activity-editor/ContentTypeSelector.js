@@ -18,24 +18,15 @@ export default {
         </div>
     `,
 
-    data() {
-        return {
-
-        }
-    },
-
     computed: Vuex.mapState({
         contentChunkTypes: state => state.contentTypes
     }),
 
     methods: {
         emitNewContentEvent(contentType) {
-            this.$emit("new:content", {
-                contentChunk: {
-                    contentType: contentType.type,
-                    contentData: JSON.parse(JSON.stringify(contentType.data)),
-                },
-                index: this.chunkIndex
+            this.$emit("content:type:selected", {
+                contentType: contentType.type,
+                contentData: JSON.parse(JSON.stringify(contentType.data)),
             })
         }
     }

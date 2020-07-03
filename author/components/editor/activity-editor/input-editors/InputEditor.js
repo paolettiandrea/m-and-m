@@ -3,8 +3,8 @@ export default {
         <div>
             <b-card>
                 <template v-slot:header>
-                    <b-button size="sm" v-on:click="emitDeselected"><b-icon icon="x"></b-icon></b-button>
-                    <b-button size="sm" v-on:click="emitDelete"><b-icon icon="trash"></b-icon></b-button>
+                    <b-button size="sm" v-on:click="deselectActivityChunk"><b-icon icon="x"></b-icon></b-button>
+                    <b-button size="sm" v-on:click="deleteSelectedActivityChunk"><b-icon icon="trash"></b-icon></b-button>
                         
                 </template>
                 <component :is="inputData.inputType+'-editor'" :inputData="inputData.inputData" ></component>
@@ -16,12 +16,7 @@ export default {
     },
 
     methods: {
-        emitDeselected() {
-            this.$emit("deselected");
-        },
-        emitDelete() {
-            //this.$emit("delete", this.chunkIndex);
-        }
+        ... Vuex.mapActions(['deleteSelectedActivityChunk', 'deselectActivityChunk'])
     },
 
     components: {

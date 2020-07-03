@@ -79,7 +79,7 @@ export default {
             // Upload new resource to the server and set the url to the corrisponding one
             var formData = new FormData();
             formData.append("resCategory", this.resCategory);
-            formData.append("missionId", this.$store.state.selectedId);
+            formData.append("missionId", this.$store.state.selectedMissionId);
             formData.append("file", this.file);
             axios.post('/missions/uploadRes', formData, {
                 headers: {
