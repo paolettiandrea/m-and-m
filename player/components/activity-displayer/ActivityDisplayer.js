@@ -2,6 +2,7 @@ Vue.component("activity-displayer", {
     template: `
         <div>
             <!-- Content chunks  -->
+              
             <div class="activity-displayer-chunk-container">
                 <slot name="inter" index="0"></slot>
                 <div  v-for="(contentChunk, index) of this.activityContent.content" >

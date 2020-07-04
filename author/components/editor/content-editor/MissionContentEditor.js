@@ -4,7 +4,7 @@ import { v1 as uuidv1} from '/uuid/dist/esm-browser/index.js';
 export default {
     template: `
     <div onresize="console.log('dasd')">
-        <b-navbar variant="primary">
+        <b-navbar class="mm-navbar-primary">
             <b-navbar-brand href="#">{{barTitle}}</b-navbar-brand>
             
             <b-navbar-nav class="ml-auto" v-if="isMissionSelected">

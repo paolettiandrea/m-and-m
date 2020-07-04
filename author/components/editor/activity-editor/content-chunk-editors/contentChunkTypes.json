@@ -7,7 +7,10 @@
       "description": "Mostra un paragrafo testuale formattabile tramite markdown.",
       "data":{
         "text": "Placeholder text",
-        "parseMarkdown": true
+        "parseMarkdown": true,
+        "fontData": {
+          "fontFamily": "Montserrat"
+        }
       }
     },
     {

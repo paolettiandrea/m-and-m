@@ -1,5 +1,6 @@
 import { v1 as uuidv1} from '/uuid/dist/esm-browser/index.js';
 import {CanvasManager} from "../components/editor/content-editor/CanvasManager.js";
+import {FontDB} from "../../common/js/FontController.js"
 
 Vue.use(Vuex);
 
@@ -20,6 +21,8 @@ const store = new Vuex.Store({
         activityClickedCallback: null,
 
         canvas: null,
+
+        fontDB: null,
 
 
 
@@ -43,6 +46,7 @@ const store = new Vuex.Store({
                 if (err) throw err;
                 context.commit('setMissionHeads', res.data);
                 context.commit('resetUpdatedMissionFlags');
+                context.commit('initializeFontDB', 50);
 
                 // Fetch all mission contents
                 for (const head of Object.values(res.data)) {
@@ -177,41 +181,6 @@ const store = new Vuex.Store({
 
     mutations: {
 
-        resetUpdatedMissionFlags(state) {
-            let newFlags = {};
-            for (const key in state.missionHeads) {
-                newFlags[key] = true;
-            }
-            Vue.set(state, 'updatedMissionFlags', newFlags);
-
-        },
-        removeUpdatedMissionFlag(state, missionId) { Vue.delete(state.updatedMissionFlags, missionId); },
-        setUpdatedMissionFlag(state, [missionId, val]) { Vue.set(state.updatedMissionFlags, missionId, val); },
-
-        setMissionHeads(state, heads) { state.missionHeads = heads; },
-        setSelectedMissionId(state, id) { state.selectedMissionId = id; },
-
-        addMissionHead(state, head) { Vue.set(state.missionHeads, head._id, head) },
-
-        addMissionContent(state, missionContent) { Vue.set(state.missionContents, missionContent._id, missionContent); },
-        removeMissionContent(state, contentId) { Vue.delete(state.missionContents, contentId); },
-
-        setSelectedActivity(state, id) { state.selectedActivityId = id; },
-
-        setSelectedMissionAsUpdated(state) { state.updatedMissionFlags[state.selectedMissionId] = true },
-
-
-        initializeCanvasManager(state, canvasSettings) {
-            state.canvas = new CanvasManager(canvasSettings, this);
-        },
-
-
-
-
-        selectActivity(state, activityId) {
-            state.selectedActivityId = activityId;
-        },
-
         // Initializes all the store data that is destined to be constant throughout execution
         initializeConstData(state) {
             axios.get("./components/editor/activity-editor/content-chunk-editors/contentChunkTypes.json").then( res => {
@@ -225,6 +194,47 @@ const store = new Vuex.Store({
         initializeCanvas(state, canvas) {
             state.canvas = canvas;
         },
+
+        initializeFontDB(state, fontNum) {
+            state.fontDB = new FontDB(fontNum);
+        },
+
+        resetUpdatedMissionFlags(state) {
+            let newFlags = {};
+            for (const key in state.missionHeads) {
+                newFlags[key] = true;
+            }
+            Vue.set(state, 'updatedMissionFlags', newFlags);
+
+        },
+
+        removeUpdatedMissionFlag(state, missionId) { Vue.delete(state.updatedMissionFlags, missionId); },
+
+        setUpdatedMissionFlag(state, [missionId, val]) { Vue.set(state.updatedMissionFlags, missionId, val); },
+
+        setMissionHeads(state, heads) { state.missionHeads = heads; },
+
+        setSelectedMissionId(state, id) { state.selectedMissionId = id; },
+
+        addMissionHead(state, head) { Vue.set(state.missionHeads, head._id, head) },
+
+        addMissionContent(state, missionContent) { Vue.set(state.missionContents, missionContent._id, missionContent); },
+
+        removeMissionContent(state, contentId) { Vue.delete(state.missionContents, contentId); },
+
+        setSelectedActivity(state, id) { state.selectedActivityId = id; },
+
+        setSelectedMissionAsUpdated(state) { state.updatedMissionFlags[state.selectedMissionId] = true },
+
+        initializeCanvasManager(state, canvasSettings) {
+            state.canvas = new CanvasManager(canvasSettings, this);
+        },
+
+        selectActivity(state, activityId) {
+            state.selectedActivityId = activityId;
+        },
+
+
 
         addActivityClickedCallback(state, callback) {
             state.activityClickedCallback = callback;
@@ -253,6 +263,10 @@ const store = new Vuex.Store({
     },
 
     getters: {
+        fontDB(state) {
+            return state.fontDB;
+        },
+
         isMissionSelected(state) {
             return !!(state.selectedMissionId);
         },

@@ -2,7 +2,7 @@ export default {
     template: `
         <div class="column-flex-container" v-if="activityData">
             
-            <b-navbar variant="primary">
+            <b-navbar class="mm-navbar">
             <b-navbar-brand href="#">{{activityData.title}}</b-navbar-brand>
             
             <b-navbar-nav class="ml-auto">

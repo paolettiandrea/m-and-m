@@ -1,0 +1,53 @@
+:root {
+
+    --primary-base-hue: 353;
+    /*Greys*/
+    --darkest-grey: hsl(215, 5%, 5%);
+    --dark-grey:    hsl(215, 5%, 10%);
+    --grey:         hsl(215, 5%, 50%);
+    --light-grey:   hsl(215, 5%, 70%);
+    --lightest-grey:hsl(215, 5%, 90%);
+
+    --darkest-primary: hsl(242, 70%, 5%);
+    --dark-primary: hsl(242, 70%, 15%);
+    --primary: hsl(242, 73%, 47%);
+    --light-primary: hsl(242, 70%, 75%);
+    --lightest-primary: hsl(242, 70%, 90%);
+
+    --dark-accent: hsl(5, 70%, 35%);
+    --accent: hsl(5, 70%, 50%);
+    --light-accent: hsl(5, 70%, 65%);
+
+    /*Semantic states*/
+    --danger: red;
+
+}
+
+.mm-navbar-secondary {
+    background-color: var(--light-primary);
+}
+
+.mm-navbar-secondary a {
+    color: var(--dark-primary) !important;
+}
+
+
+.mm-navbar-primary {
+    background-color: var(--dark-primary);
+}
+
+.mm-navbar-primary a {
+    color: var(--light-primary) !important;
+    font-family: 'Tillana', serif;
+    font-weight: 800;
+}
+
+.mm-navbar-primary > ul > button {
+    color: var(--light-primary) !important;
+}
+
+.font-list {
+    max-width: 300px;
+    max-height: 100px;
+    overflow-y: scroll;
+}
