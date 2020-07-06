@@ -130,6 +130,7 @@ const store = new Vuex.Store({
         },
         deselectActivity(context) {
             context.commit('setSelectedActivity', null);
+            context.dispatch('deselectActivityChunk');
         },
         createActivity(context) {
             let activities = context.getters.selectedMissionContent.activities;

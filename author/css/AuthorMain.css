@@ -51,3 +51,52 @@
     max-height: 100px;
     overflow-y: scroll;
 }
+
+.mm-navbar-activity {
+    background-color: #4077b8;
+}
+
+.mm-navbar-chunk {
+    background-color: #6a92c4;
+}
+
+
+.main-column {
+    padding: 10px 10px;
+}
+
+.editor-text {
+    font-family: "Roboto Mono", monospace;
+}
+
+.editor-subpanel-slot {
+    padding-left: 10px;
+}
+
+
+
+
+.activity-panel-transition-enter-active {
+    transition: all 0.6s ease;
+}
+.activity-panel-transition-leave-active {
+    transition: all 0.5s ease;
+}
+.activity-panel-transition-enter, .activity-panel-transition-leave-to {
+    flex-grow: 0;
+    opacity: 0;
+}
+
+
+.content-panel-transition-enter-active {
+    transition: all 0.6s ease;
+}
+.content-panel-transition-leave-active {
+    transition: all 0.5s ease;
+}
+.content-panel-transition-enter, .content-panel-transition-leave-to {
+    flex-grow: 0;
+    opacity: 0;
+}
+
+

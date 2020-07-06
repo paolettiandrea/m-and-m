@@ -2,7 +2,7 @@ export default {
     template: `
         <div class="column-flex-container" v-if="activityData">
             
-            <b-navbar class="mm-navbar">
+            <b-navbar class="mm-navbar-activity">
             <b-navbar-brand href="#">{{activityData.title}}</b-navbar-brand>
             
             <b-navbar-nav class="ml-auto">
@@ -34,17 +34,7 @@ export default {
             
                 
             </div>
-            <div class="no-flex-grow">
-            
-            <div v-if="isChunkSelected">
-                        <input-editor v-if="isInputChunkSelected"
-                                      :inputData="selectedActivityChunk"></input-editor>
-                        <content-editor v-else
-                            :contentChunk="selectedActivityChunk" :chunkIndex="selectedActivityChunkIndex">    
-                        </content-editor>
-            </div>
-           
-        </div>    
+   
     </div>
     `,
 
@@ -80,7 +70,5 @@ export default {
     components: {
         "content-type-selector": () => import("./ContentTypeSelector.js"),
         "input-type-selector": () => import("./InputContentSelector.js"),
-        "content-editor": () => import("./content-chunk-editors/ContentEditor.js"),
-        "input-editor": () => import("./input-editors/InputEditor.js")
     }
 }

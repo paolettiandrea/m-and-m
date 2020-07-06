@@ -1,7 +1,7 @@
 export default {
     template: `
         <div >
-            <resource-form :resData="contentChunkData.imgResData" defaultResource="/common/img_placeholder.png"></resource-form>
+            <resource-form :resData="contentData.imgResData" defaultResource="/common/img_placeholder.png"></resource-form>
             
             <b-button-group>
                 <b-button variant="outline-primary"><b-icon icon="text-left" ></b-icon></b-button>
@@ -13,7 +13,7 @@ export default {
         
     `,
     props: {
-        contentChunkData: null
+        contentData: null
     },
 
     components: {
