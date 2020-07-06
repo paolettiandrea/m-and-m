@@ -1,12 +1,13 @@
 Vue.component('text-displayer', {
     template: ` <div>
-                    <div :style="{fontFamily: contentData.fontData.fontFamily,
-                                  fontSize: 30 + 'px'}" 
+                    <div :style="{fontFamily: (contentData.fontData.fontFamily || defaults.textFontData.fontFamily),
+                                  fontSize: null || defaults.textFontData.fontSize}" 
                             v-html="this.parsed"></div>
                 </div>`,
 
     props: {
-        contentData: null
+        contentData: null,
+        defaults: null
     },
 
     computed: {

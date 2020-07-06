@@ -19,7 +19,7 @@ export default {
             <div class="full-flex vertical-scroll">
    
                 
-            <activity-displayer class="activity-displayer-div" :activity-content="activityData" 
+            <activity-displayer class="activity-displayer-div" :activity-content="activityData" :defaults="selectedMissionContent.defaults" 
                         @content:chunk:clicked="contentChunkClicked" @input:clicked="inputClicked">
                         
                         
@@ -50,6 +50,7 @@ export default {
 
     computed: {
         ...Vuex.mapGetters({
+            selectedMissionContent: 'selectedMissionContent',
             activityData: 'selectedActivity',
             selectedActivityChunk: 'selectedActivityChunk',
             isChunkSelected: 'isChunkSelected',

@@ -5,6 +5,12 @@
   },
 
   "missionContent": {
+    "defaults": {
+      "textFontData": {
+        "fontFamily": "Roboto",
+        "fontSize": "12px"
+      }
+    },
     "activities": {}
   }
 }

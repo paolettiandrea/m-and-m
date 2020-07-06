@@ -10,7 +10,8 @@ Vue.component("activity-displayer", {
                         <component :is="contentChunk.contentType" 
                                    :id="'content-chunk-'+index" 
                                    class="content-chunk" 
-                                   :contentData="contentChunk.contentData" ></component>
+                                   :contentData="contentChunk.contentData"
+                                   :defaults="defaults" ></component>
                                    
                                    
                     </div>
@@ -45,7 +46,7 @@ Vue.component("activity-displayer", {
 
     props: {
         activityContent: null,
-
+        defaults: null
 
     },
 

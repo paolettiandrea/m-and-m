@@ -38,6 +38,12 @@ const store = new Vuex.Store({
         // A flag for each mission false when there are local modifications that need to be updated to the server
         updatedMissionFlags: {},
 
+        panelState: {
+            missionSettingsOpen: false
+        },
+
+        metaDefaults: null
+
     },
 
     actions: {
@@ -53,6 +59,10 @@ const store = new Vuex.Store({
                     context.dispatch('updateMissionContent', head.contentId);
                 }
             })
+        },
+
+        setMissionSettingsPanel(context, open) {
+            context.commit('setMissionSettingsPanel', open);
         },
 
         // Mission management =========================================================================================
@@ -189,6 +199,10 @@ const store = new Vuex.Store({
             axios.get("./components/editor/activity-editor/input-editors/inputTypes.json").then( res => {
                 state.inputTypes = res.data.inputTypes;
             })
+
+            axios.get("./data/defaults.json").then( res => {
+                state.defaults = res.data;
+            })
         },
 
         initializeCanvas(state, canvas) {
@@ -197,6 +211,10 @@ const store = new Vuex.Store({
 
         initializeFontDB(state, fontNum) {
             state.fontDB = new FontDB(fontNum);
+        },
+
+        setMissionSettingsPanel(state, open) {
+            state.panelState.missionSettingsOpen = open;
         },
 
         resetUpdatedMissionFlags(state) {
@@ -263,6 +281,9 @@ const store = new Vuex.Store({
     },
 
     getters: {
+
+        isMissionSettingsPanelOpen(state) { return state.panelState.missionSettingsOpen; },
+
         fontDB(state) {
             return state.fontDB;
         },

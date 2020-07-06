@@ -2,7 +2,7 @@ export default {
     template: `
     <div class="full-height">
         <b-row class="full-height">
-            <b-col class="full-height no-horizontal-padding">
+            <b-col class="full-height no-horizontal-padding" cols="7">
                 <div class="full-height">
                     <mission-content-editor
                         class="full-height column-flex-container no-flex-grow"
@@ -10,7 +10,7 @@ export default {
                     </mission-content-editor>
                 </div>
             </b-col>
-            <b-col class="full-height no-horizontal-padding">
+            <b-col class="full-height no-horizontal-padding" cols="5">
                 <activity-editor class="full-height"></activity-editor>
             </b-col>
         </b-row>
