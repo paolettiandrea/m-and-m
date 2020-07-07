@@ -1,10 +1,8 @@
 Vue.component('defaulted-input-form', {
     template: `
-        <div>
-            <b-form-input :id="uniqueFormId" :value="shownValue" :type="type" @input="handleInput"></b-form-input>
-            
-            <b-popover :target="uniqueFormId"><b-button @click="resetToDefault" size="sm"><b-icon icon="arrow-counterclockwise"></b-icon></b-button></b-popover>
-        </div>
+        <b-input-group>
+                <b-form-input :id="uniqueFormId" :value="shownValue" :type="inputType"  @input="handleInput" size="sm"></b-form-input>
+        </b-input-group>
     `,
 
 
@@ -17,7 +15,8 @@ Vue.component('defaulted-input-form', {
         // The default value for the target field
         defaultVal: "",
 
-        type: 'text'
+        inputType: "",
+
     },
 
     methods: {
@@ -36,7 +35,7 @@ Vue.component('defaulted-input-form', {
 
         resetToDefault() {
             Vue.delete(this.targetContainer, this.targetFieldName);
-        }
+        },
     },
 
     computed: {
@@ -45,8 +44,8 @@ Vue.component('defaulted-input-form', {
         },
 
         shownValue() {
-            if (this.showDefault) return this.defaultVal;
-            else return this.targetContainer[this.targetFieldName];
+                if (this.showDefault) return this.defaultVal;
+                else return this.targetContainer[this.targetFieldName];
         },
 
         uniqueFormId() {

@@ -8,7 +8,8 @@
     "defaults": {
       "textFontData": {
         "fontFamily": "Roboto",
-        "fontSize": "12px"
+        "fontSize": "12px",
+        "fontColor": "#000000"
       }
     },
     "activities": {}

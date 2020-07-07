@@ -1,7 +1,8 @@
 Vue.component('text-displayer', {
     template: ` <div>
                     <div :style="{fontFamily: (contentData.fontData.fontFamily || defaults.textFontData.fontFamily),
-                                  fontSize: null || defaults.textFontData.fontSize}" 
+                                  fontSize: contentData.fontData.fontSize || defaults.textFontData.fontSize,
+                                  color: contentData.fontData.fontColor || defaults.textFontData.fontColor}" 
                             v-html="this.parsed"></div>
                 </div>`,
 
