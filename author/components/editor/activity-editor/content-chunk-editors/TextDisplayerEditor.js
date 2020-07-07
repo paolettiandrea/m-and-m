@@ -7,10 +7,6 @@ export default {
                         v-model="contentData.text"
                         rows="3"
                         max-rows="6"></b-form-textarea>
-                    <b-form-checkbox
-                        v-model="contentData.parseMarkdown"
-                        name="checkbox-1">
-                    Markdown </b-form-checkbox>
                 </b-form-group>
             </editor-subpanel>
             

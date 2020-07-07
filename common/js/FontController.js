@@ -1,7 +1,7 @@
 // Interface with Google Font API for font use
 
 const APIBaseUrl = 'https://www.googleapis.com/webfonts/v1/webfonts?key='
-const APIKey = 'AIzaSyBsxtAP_lkRvpDUg_Il87oMAKGqRKFvaPo';
+const APIKey = 'AIzaSyBsxtAP_lkRvpDUg_Il87oMAKGqRKFvaPo';  // TODO remove api key from repo stuff
 const APIFontList = APIBaseUrl + APIKey + '&sort=popularity';
 
 function loadGoogleFonts(fontFamilyArray) {
@@ -35,7 +35,6 @@ export class FontDB {
         for (const font of this.fontOrderArray) {
             fontArray.push(font)
         }
-        console.log(fontArray);
         loadGoogleFonts(fontArray);
 
     }

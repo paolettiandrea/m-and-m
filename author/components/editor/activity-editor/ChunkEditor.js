@@ -4,7 +4,7 @@ export default {
         
 <!--        Navbar-->
             <b-navbar class="mm-navbar-chunk">
-                <b-navbar-brand href="#">uysadi</b-navbar-brand>
+                <b-navbar-brand href="#">Editor</b-navbar-brand>
                 
                 <b-navbar-nav class="ml-auto">
                 

@@ -13,13 +13,8 @@ Vue.component('text-displayer', {
 
     computed: {
         parsed() {
-            if (this.contentData.parseMarkdown) {
-                var converter = new showdown.Converter();
-                return converter.makeHtml(this.contentData.text);
-            } else {
-                return this.contentData.text;
-            }
-
+            var converter = new showdown.Converter();
+            return converter.makeHtml(this.contentData.text);
         }
     }
 })
