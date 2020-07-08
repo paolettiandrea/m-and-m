@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "devstart": "nodemon index.js",
+    "devstart": "nodemon --ignore './data/resources' index.js",
+    "dbstart": "mongod --dbpath ./data/mongo",
     "test": ""
   },
   "author": "",
@@ -15,9 +16,14 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
     "js-yaml": "^3.13.1",
+    "mongodb": "^3.5.7",
     "morgan": "^1.10.0",
-    "swagger-client": "^3.10.1"
+    "socket.io": "^2.3.0",
+    "swagger-client": "^3.10.1",
+    "uuid": "^8.1.0",
+    "vuedraggable": "^2.23.2"
   },
   "devDependencies": {
     "@apidevtools/swagger-parser": "^9.0.1",

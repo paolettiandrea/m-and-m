@@ -1,41 +1,37 @@
+
 export default {
-    template: `<div>
-        <b-container fluid>
-            <b-row>
-                <b-col cols="3" region="Mission Menu">
-                    <mission-menu @mission:selection:changed="handleMissionSelectionChanged"></mission-menu>
-                </b-col>
-                <b-col>
-                    <div v-if="selectedMissionData">
-                        <mission-editor :mission-head="selectedMissionData.missionHead"></mission-editor>
+    template: `<div style="display: flex; flex-flow: column; align-items: stretch; height: 100%">
+        <alt-mission-menu style="flex: 0 1 auto"></alt-mission-menu>
+        <div>
+</div>
+        <b-container fluid style="flex: 1 1 auto">
+            <b-row class="full-height">
+                <b-col class="full-height">
+                    <div class="full-height">
+                        <mission-editor></mission-editor>
                     </div>
                 </b-col>
             </b-row>
         </b-container>
     </div>`,
 
-    data() {
+    data(){
         return {
-            availableMissions: null,
-            selectedMissionData: null
+            selectedData: null
         }
     },
+
     methods: {
-        handleMissionSelectionChanged(newSelectionData) {
-            if (this.selectedMissionData) {this.selectedMissionData.deselectionCallback()}
-            this.selectedMissionData = newSelectionData;
-            this.selectedMissionData.selectionCallback();
+        handleChangeSelection(selectedData) {
+            this.selectedData = selectedData;
+            this.$store.commit('select', selectedData.missionHead._id);
         }
     },
     components: {
         'mission-menu': () => import("./menu/MissionMenu.js"),
-        'mission-editor': () => import("./editor/MissionEditor.js")
+        'mission-editor': () => import("./editor/MissionEditor.js"),
+        'alt-mission-menu': () => import("./menu/AltMissionMenu.js")
     },
-    mounted() {
-        axios.
-        get("/missions")
-            .then(res => {
-                this.availableMissions = res.data;
-            })
-    }
+
+
 }

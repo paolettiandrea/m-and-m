@@ -28,9 +28,9 @@ Probabilmente sarà utile avere una rappresentazione uniforme di tutte le risors
 
 ```json
 {
-    "fontFamily": "font-family-name"
+    "fontFamily": "font-family-name",
     "size": "12",
-    "color": "come rappresentarlo?",
+    "color": "come rappresentarlo?"
 }
 ```
 
@@ -73,16 +73,16 @@ Mostra un paragrafo testuale
   - Family
   - Size
   - Colore
-- Allineamento
-- Markdown
+- Allineamento 
+- Markdown 
 
 
 
 ```json
 {
     "text": "text content",
-
-    "fontData": { },   // FONT
+    
+    "fontData": { },   // FONT 
     "alignment": "right|center|left",
     "markdownText": true|false
 }
@@ -99,8 +99,10 @@ Mostra un paragrafo testuale
 
 ```json
 {
+	
 
 	"imgResource": {}, // RESOURCE
+	
 
 	"alignment": "right|center|left",
 	"imgDimensions": {}, // DIMENSIONS

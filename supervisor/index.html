@@ -18,40 +18,54 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
 
 
-    <link type="text/css" rel="stylesheet" href="css/MissionHeadForm.css"/>
-    <link type="text/css" rel="stylesheet" href="css/AuthorMain.css"/>
+<!--    <link type="text/css" rel="stylesheet" href="css/MissionHeadForm.css"/>-->
 
     <script src="//cdn.jsdelivr.net/npm/@antv/g6@3.5.0/dist/g6.min.js" ></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.js"></script>
 
-    <script src="../player/components/activity-displayer/ActivityDisplayer.js"></script>
-    <script src="../player/components/ComponentPrefetcher.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.js"></script>
     <script src="//unpkg.com/vuex@3.4.0/dist/vuex.js"></script>
+
+    <script src="/socket.io-client/dist/socket.io.dev.js"></script>
+
     <script src="/common/js/VueUtils.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-
-
-    <script src="components/editor/common/DefaultedInputForms.js"></script>
-    <script src="components/editor/common/DefaultedInputFormUnit.js"></script>
-
     <title>Title</title>
+
+    <script>
+        var socket = io();
+    </script>
+
 </head>
 <body>
     <div id="app">
-        <author-main></author-main>
+        <p>Supervisor App</p>
     </div>
 
-    <script type="module">
-        import store from './js/AuthorStore.js'
+    <script>
+        Vue.use(Vuex);
+
+
+        const store = new Vuex.Store({
+            state: {
+
+            },
+            mutations: {
+
+            }
+            })
+
+
+
+
+
 
         const App = new Vue({
             el: '#app',
             store,
             components: {
-                'author-main': () => import("./components/AuthorMain.js")
+
             }
         })
     </script>

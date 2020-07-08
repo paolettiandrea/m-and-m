@@ -2,6 +2,7 @@ Vue.component("activity-displayer", {
     template: `
         <div>
             <!-- Content chunks  -->
+              
             <div class="activity-displayer-chunk-container">
                 <slot name="inter" index="0"></slot>
                 <div  v-for="(contentChunk, index) of this.activityContent.content" >
@@ -9,10 +10,14 @@ Vue.component("activity-displayer", {
                         <component :is="contentChunk.contentType" 
                                    :id="'content-chunk-'+index" 
                                    class="content-chunk" 
-                                   :contentData="contentChunk.contentData" ></component>
+                                   :contentData="contentChunk.contentData"
+                                   :defaults="defaults" ></component>
+                                   
+                                   
                     </div>
-                    <slot name="inter" :index="index+1"></slot>
-                </div>    
+                </div>   
+                
+                <slot name="last-content-chunk"></slot> 
             </div>
             
             <!-- Popup for input response. It contains an activity-displayer used for displaying the popupContent -->
@@ -34,11 +39,14 @@ Vue.component("activity-displayer", {
             <div v-else>
                 <slot name="input-placeholder"></slot>
             </div>
+            
+            
+         
         </div>`,
 
     props: {
         activityContent: null,
-
+        defaults: null
 
     },
 
@@ -66,10 +74,10 @@ Vue.component("activity-displayer", {
             }
         },
         contentChunkClicked(contentData) {
-            //this.$bubble("content:chunk:clicked", contentData);
+            this.$bubble("content:chunk:clicked", contentData);
         },
         inputClicked() {
-            //this.$bubble('input:clicked', this.activityContent.inputComponent);
+            this.$bubble('input:clicked', this.activityContent.inputComponent);
         }
     }
 })

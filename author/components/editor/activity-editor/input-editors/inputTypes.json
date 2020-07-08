@@ -1,0 +1,31 @@
+{ 
+  "inputTypes": [
+    {
+      "type": "button",
+      "title": "Bottone",
+      "icon": "app",
+      "data":{
+
+      }
+    },
+    {
+      "type": "text-insert",
+      "title": "Campo testuale",
+      "icon": "cursor-text",
+      "data":{
+        "possibleAnswers": [],
+        "fallbackOutcome": {
+
+        }
+      }
+    },
+    {
+      "type": "multiple-checkboxes",
+      "title": "Opzioni",
+      "icon": "grid",
+      "data":{
+
+      }
+    }
+  ]
+}

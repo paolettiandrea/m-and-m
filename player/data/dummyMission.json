@@ -1,4 +1,10 @@
 {
+  "defaults": {
+    "textFontData": {
+      "fontFamily": "Roboto",
+      "fontSize": "12px"
+    }
+  },
   "activityList": [
     {
       "uid": "1",
@@ -7,7 +13,7 @@
           "contentType": "text-displayer",
           "contentData": {
             "text": "Sono un primo paragrafo testuale, bla bla bla **BLA**.",
-            "parseMarkdown": true
+            "fontData": {}
           }
         },
         {
@@ -38,7 +44,7 @@
                   "contentType": "text-displayer",
                   "contentData": {
                     "text": "Sono un primo paragrafo testuale, bla bla bla **BLA**.",
-                    "parseMarkdown": true
+                    "fontData": {}
                   }
                 }
               }
@@ -69,7 +75,7 @@
           "contentType": "text-displayer",
           "contentData": {
             "text": "Sono un altra attività",
-            "parseMarkdown": true
+            "fontData": {}
           }
         }
       ],

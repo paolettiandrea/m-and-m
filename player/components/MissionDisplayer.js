@@ -3,7 +3,7 @@ Vue.component('mission-displayer', {
         <div align="center">
         <transition name="content-slide" mode="out-in">
                 <div class="activity-displayer-div" v-if="this.pointedActivity" :key="this.pointedActivity.uid">
-                    <activity-displayer :activityContent="this.pointedActivity"
+                    <activity-displayer :activityContent="this.pointedActivity" :defaults="this.missionData.defaults"
                                             @next:activity="handleNextActivity"></activity-displayer>
                 </div>
         </transition>
@@ -40,10 +40,10 @@ Vue.component('mission-displayer', {
                 if (activity.uid===nextMissionId) {
                     this.pointedActivity = activity;
                     this.pointedIndex = i;
+                    return;
                 }
                 i++;
             }
-
         }
     },
 
@@ -57,7 +57,4 @@ Vue.component('mission-displayer', {
             this.pointedActivity = this.missionData.activityList[this.pointedIndex];
         })
     },
-
-    components: {
-    }
 })
