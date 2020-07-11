@@ -20,7 +20,7 @@ export default {
             
             <editor-field label="Dimensione">
                 <defaulted-input-form-unit :targetContainer="fontData" targetFieldName="fontSize" 
-                    :possibleUnits='["px", "cm", "mm", "Q", "in", "pc", "pt", "em", "ex"]' :defaultVal="selectedMissionContent.defaults.textFontData.fontSize"></defaulted-input-form-unit>
+                    :possibleUnits='["px", "cm", "mm", "Q", "in", "pc", "pt", "em", "ex", "%"]' :defaultVal="selectedMissionContent.defaults.textFontData.fontSize"></defaulted-input-form-unit>
             </editor-field>
             
             <editor-field label="Colore">
@@ -53,7 +53,7 @@ export default {
 
 
     components: {
-        'editor-field': () => import('../activity-editor/EditorField.js'),
+        'editor-field': () => import('./EditorField.js'),
     }
 
 

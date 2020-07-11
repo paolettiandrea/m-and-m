@@ -19,6 +19,7 @@ export default {
     `,
 
     computed: Vuex.mapState({
+        ... Vuex.mapGetters(['chunkCommonDataAtCreation']),
         contentChunkTypes: state => state.contentTypes
     }),
 
@@ -27,6 +28,7 @@ export default {
             this.$emit("content:type:selected", {
                 contentType: contentType.type,
                 contentData: JSON.parse(JSON.stringify(contentType.data)),
+                commonData: JSON.parse(JSON.stringify(this.chunkCommonDataAtCreation))
             })
         }
     }

@@ -7,11 +7,14 @@ Vue.component("activity-displayer", {
                 <slot name="inter" index="0"></slot>
                 <div  v-for="(contentChunk, index) of this.activityContent.content" >
                     <div v-on:click="contentChunkClicked({content: contentChunk, index: index})">
-                        <component :is="contentChunk.contentType" 
+                        <styling-wrapper :stylingData="contentChunk.commonData" :stylingDefaults="defaults.commonData">
+                            <component :is="contentChunk.contentType" 
                                    :id="'content-chunk-'+index" 
                                    class="content-chunk" 
                                    :contentData="contentChunk.contentData"
                                    :defaults="defaults" ></component>
+                        </styling-wrapper>
+                        
                                    
                                    
                     </div>
@@ -80,5 +83,22 @@ Vue.component("activity-displayer", {
         inputClicked() {
             this.$bubble('input:clicked', this.activityContent.inputComponent);
         }
+    }
+})
+
+Vue.component('styling-wrapper', {
+    template: `
+        <div :style="{borderWidth: stylingData.borderData.borderWidth || stylingDefaults.borderData.borderWidth,
+                      borderColor: stylingData.borderData.borderColor || stylingDefaults.borderData.borderColor,
+                      borderStyle: stylingData.borderData.borderStyle || stylingDefaults.borderData.borderStyle,
+                      borderRadius: stylingData.borderData.borderRadius || stylingDefaults.borderData.borderRadius
+                      }">
+            <slot></slot>
+        </div>
+    `,
+
+    props: {
+        stylingData: null,
+        stylingDefaults: null
     }
 })
