@@ -34,6 +34,7 @@ Vue.component("activity-displayer", {
             <div v-if="activityContent.inputComponent" v-on:click="inputClicked">
                 <component  :is="activityContent.inputComponent.inputType" 
                             :inputData="activityContent.inputComponent.inputData" 
+                            :defaults="defaults"
                             @input-received="handleInputReceived" ></component>
             </div>
             <div v-else>

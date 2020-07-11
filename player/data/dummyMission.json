@@ -2,7 +2,7 @@
   "defaults": {
     "textFontData": {
       "fontFamily": "Roboto",
-      "fontSize": "12px"
+      "fontSize": "30px"
     }
   },
   "activityList": [
@@ -54,11 +54,12 @@
 
           },
 
-          "fontData":{
-            "family":"verdana",
-            "size":"1em",
-            "color":"black",
-            "background-color":"white"
+          "buttonFontData":{
+
+          },
+
+          "buttonData": {
+            ""
           }
         }
       }

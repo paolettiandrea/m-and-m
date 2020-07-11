@@ -1,14 +1,22 @@
 Vue.component('defaulted-input-form-unit', {
     template: `
         <b-input-group>
-                <b-form-input :id="uniqueFormId" :value="shownValue" :type="typeo" @input="handleInput" size="sm"></b-form-input>
+                <b-form-input :id="uniqueFormId" :value="shownValue" :type="type" @input="handleInput" size="sm"></b-form-input>
                 
                 <template v-slot:append>
-                    <b-button size="sm">{{shownUnit}}</b-button>
+                    <b-dropdown v-if="isUnitModeled" :text="shownUnit" variant="success" size="sm">
+                        <b-dropdown-item v-for="unit of possibleUnits" @click="handleUnitChange(unit)" :key="unit">{{unit}}</b-dropdown-item>
+                    </b-dropdown>
+                    <b-button v-else size="sm">{{shownUnit}}</b-button>
                 </template>
         </b-input-group>
     `,
 
+    data() {
+        return {
+            selectedUnit: ''
+        }
+    },
 
     props: {
         // The object containing the target field
@@ -19,23 +27,37 @@ Vue.component('defaulted-input-form-unit', {
         // The default value for the target field
         defaultVal: "",
 
-        typeo: 'text',
+        type: 'text',
+
+        // An array of all the possible units for this input
+        possibleUnits: null,
 
     },
 
     methods: {
-        handleInput(newVal) {
-            newVal = this.parseValue(newVal) + this.shownUnit;
-            if (newVal===this.defaultVal) {
+
+        setNewString(newString) {
+            if (newString===this.defaultVal) {
                 this.resetToDefault();
             } else {
                 if (this.showDefault) {
                     // We were in default mode, we need to create the non-default variable
-                    Vue.set(this.targetContainer, this.targetFieldName, newVal);
+                    Vue.set(this.targetContainer, this.targetFieldName, newString);
                 } else {
-                    this.targetContainer[this.targetFieldName] = newVal;
+                    this.targetContainer[this.targetFieldName] = newString;
                 }
             }
+        },
+
+        handleUnitChange(newUnit) {
+            this.setNewString(this.shownValue + newUnit);
+        },
+
+        handleInput(newVal) {
+            if (newVal) {
+                this.setNewString(this.parseValue(newVal) + this.shownUnit)
+            }
+
         },
 
         resetToDefault() {
@@ -74,14 +96,18 @@ Vue.component('defaulted-input-form-unit', {
 
         shownUnit() {
             if (this.showDefault) {
-                return this.parseUnit(this.defaultVal)
+                return this.parseUnit(this.defaultVal);
             } else {
                 return this.parseUnit(this.targetContainer[this.targetFieldName]);
             }
         },
 
         uniqueFormId() {
-            return 'defaulted-form-input-for-' + this.targetFieldName
+            return 'defaulted-form-input-for-' + this.targetFieldName;
+        },
+
+        isUnitModeled() {
+            return this.possibleUnits!==undefined;
         }
     }
 })
