@@ -1,8 +1,6 @@
 Vue.component('text-displayer', {
     template: ` <div>
-                    <div :style="{fontFamily: (contentData.fontData.fontFamily || defaults.textFontData.fontFamily),
-                                  fontSize: contentData.fontData.fontSize || defaults.textFontData.fontSize,
-                                  color: contentData.fontData.fontColor || defaults.textFontData.fontColor}" 
+                    <div :style="fontData" 
                             v-html="this.parsed"></div>
                 </div>`,
 
@@ -15,6 +13,11 @@ Vue.component('text-displayer', {
         parsed() {
             var converter = new showdown.Converter();
             return converter.makeHtml(this.contentData.text);
+        },
+        fontData() {
+            return buildFontData(this.contentData, this.defaults);
         }
     }
 })
+
+

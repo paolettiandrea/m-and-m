@@ -26,39 +26,32 @@
         }
       ],
       "inputComponent": {
-        "inputType": "text-insert",
+        "inputType": "multiple-checkboxes",
         "inputData": {
-          "possibilityList": [
+
+          "buttonList": [
             {
-              "possibleAnswers": ["hello", "ljsadlsakjd"],
+              "button": "Value 1",
+              "color": "#4CAF50",
               "outcome": {
-                "outcomeType": "next",
-                "nextActivityId": "2"
+                "outcomeType": "popup",
+                "outcomeContent": {
+
+                }
               }
             },
             {
-              "possibleAnswers": ["a"],
+              "button": "Value 2",
               "outcome": {
-                "outcomeType": "popup",
-                "popupContent": {
-                  "contentType": "text-displayer",
-                  "contentData": {
-                    "text": "Sono un primo paragrafo testuale, bla bla bla **BLA**.",
-                    "fontData": {}
-                  }
-                }
+
               }
             }
           ],
-          "fallbackOutcome": {
 
-          },
-
-          "fontData":{
-            "family":"verdana",
-            "size":"1em",
-            "color":"black",
-            "background-color":"white"
+          "textFontData":{
+            "fontFamily":"verdana",
+            "fontSize":"1em",
+            "fontColor":"black"
           }
         }
       }
