@@ -15,13 +15,14 @@ Vue.component("text-insert", {
       </b-form-group>
 
 
-      <b-button type="submit" variant="primary" v-on:click="textState">Submit</b-button>
+      <b-button :style="{fontSize: inputData.buttonFontData.fontSize || defaults.textFontData.fontSize }" type="submit" variant="primary" v-on:click="textState">Submit</b-button>
     </b-form>
     <br>
     </div>`,
 
     props: {
-        inputData: null
+        inputData: null,
+        defaults: null,
     },
     methods: {
         textState() {

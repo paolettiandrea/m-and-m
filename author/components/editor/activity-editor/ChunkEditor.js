@@ -26,6 +26,10 @@ export default {
                 </b-navbar-nav> 
             </b-navbar>
             
+            <editor-subpanel title="Comuni">
+                <shared-properties-editor :commonData="selectedActivityChunk.commonData"></shared-properties-editor>
+            </editor-subpanel>
+            
 <!--        Display the appropriate input/content editor-->
             <div v-if="isChunkSelected" class="main-column">
                 <component v-if="isInputChunkSelected" 
@@ -49,11 +53,12 @@ export default {
     },
 
     components: {
-
+        "shared-properties-editor": () => import("../common/SharedPropertiesEditor.js"),
         "text-displayer-editor": () => import("./content-chunk-editors/TextDisplayerEditor.js"),
         "img-displayer-editor": () => import("./content-chunk-editors/ImgDisplayerEditor.js"),
 
         "input-outcome-editor": () => import("./input-editors/InputOutcomeEditor.js"),
         "text-insert-editor": () => import("./input-editors/TextInsertEditor.js"),
+        "editor-subpanel": () => import("../activity-editor/EditorSubPanel.js")
     }
 }

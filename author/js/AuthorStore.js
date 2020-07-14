@@ -1,11 +1,15 @@
 import { v1 as uuidv1} from '/uuid/dist/esm-browser/index.js';
 import {CanvasManager} from "../components/editor/content-editor/CanvasManager.js";
 import {FontDB} from "../../common/js/FontController.js"
+import {ActivityModule} from "./store/ActivityStore.js"
 
 Vue.use(Vuex);
 
 
 const store = new Vuex.Store({
+    modules: {
+        activity: ActivityModule
+    },
     state: {
 
         // STATIC DATA ================================================================================================
@@ -40,10 +44,7 @@ const store = new Vuex.Store({
 
         panelState: {
             missionSettingsOpen: false
-        },
-
-        metaDefaults: null
-
+        }
     },
 
     actions: {
@@ -53,6 +54,7 @@ const store = new Vuex.Store({
                 context.commit('setMissionHeads', res.data);
                 context.commit('resetUpdatedMissionFlags');
                 context.commit('initializeFontDB', 50);
+                context.commit('initializeActivityModule');
 
                 // Fetch all mission contents
                 for (const head of Object.values(res.data)) {
@@ -177,7 +179,6 @@ const store = new Vuex.Store({
         addContentChunk(context, contentData) {
             context.commit('addContentChunk', [context.getters.selectedActivity, contentData]);
             context.commit('setSelectedActivityChunk', context.getters.selectedActivity.content.length-1);
-
         },
 
         setInputChunk(context, inputData) {
@@ -201,9 +202,6 @@ const store = new Vuex.Store({
                 state.inputTypes = res.data.inputTypes;
             })
 
-            axios.get("./data/defaults.json").then( res => {
-                state.defaults = res.data;
-            })
         },
 
         initializeCanvas(state, canvas) {
@@ -283,6 +281,8 @@ const store = new Vuex.Store({
 
     getters: {
 
+
+
         isMissionSettingsPanelOpen(state) { return state.panelState.missionSettingsOpen; },
 
         fontDB(state) {
@@ -324,6 +324,8 @@ const store = new Vuex.Store({
         },
 
         selectedActivityChunkIndex(state)  { return state.selectedContentIndex; },
+
+        selectedMissionDefaults(state, getters) { return getters.selectedMissionContent.defaults },
 
         isChunkSelected(state) { return !isNaN(state.selectedContentIndex); },
 

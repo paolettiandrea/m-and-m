@@ -10,7 +10,8 @@ export default {
             
             <editor-field label="Famiglia">
                 <defaulted-dropdown :style="{fontFamily: fontData.fontFamily}" :options="fontDB.fontOrderArray"
-                                    :targetContainer="fontData" targetFieldName="fontFamily" :defaultVal="selectedMissionContent.defaults.textFontData.fontFamily">
+                                    :targetContainer="fontData" targetFieldName="fontFamily" 
+                                    :defaultVal="selectedMissionContent.defaults.textFontData.fontFamily">
                     <template v-slot:default="slotProps">
                         <p :style="{fontFamily: slotProps.option}">{{slotProps.option}}</p>
                     </template>
@@ -18,7 +19,8 @@ export default {
             </editor-field>
             
             <editor-field label="Dimensione">
-                <defaulted-input-form-unit :targetContainer="fontData" targetFieldName="fontSize" :defaultVal="selectedMissionContent.defaults.textFontData.fontSize"></defaulted-input-form-unit>
+                <defaulted-input-form-unit :targetContainer="fontData" targetFieldName="fontSize" 
+                    :possibleUnits='["px", "cm", "mm", "Q", "in", "pc", "pt", "em", "ex", "%"]' :defaultVal="selectedMissionContent.defaults.textFontData.fontSize"></defaulted-input-form-unit>
             </editor-field>
             
             <editor-field label="Colore">
@@ -51,7 +53,7 @@ export default {
 
 
     components: {
-        'editor-field': () => import('../activity-editor/EditorField.js'),
+        'editor-field': () => import('./EditorField.js'),
     }
 
 

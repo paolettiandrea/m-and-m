@@ -10,6 +10,19 @@
         "fontFamily": "Roboto",
         "fontSize": "12px",
         "fontColor": "#000000"
+      },
+
+      "commonData": {
+        "borderData": {
+          "borderStyle": "hidden",
+          "borderWidth": "2px",
+          "borderColor": "#000000",
+          "borderRadius": "0px"
+        },
+        "spacingData": {
+          "padding": {},
+          "margin": {}
+        }
       }
     },
     "activities": {}
