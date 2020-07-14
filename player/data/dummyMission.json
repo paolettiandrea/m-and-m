@@ -48,7 +48,7 @@
             }
           ],
 
-          "textFontData":{
+          "buttonTextFontData":{
             "fontFamily":"verdana",
             "fontSize":"1em",
             "fontColor":"black"

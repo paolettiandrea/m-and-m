@@ -88,11 +88,7 @@ Vue.component("activity-displayer", {
 
 Vue.component('styling-wrapper', {
     template: `
-        <div :style="{borderWidth: stylingData.borderData.borderWidth || stylingDefaults.borderData.borderWidth,
-                      borderColor: stylingData.borderData.borderColor || stylingDefaults.borderData.borderColor,
-                      borderStyle: stylingData.borderData.borderStyle || stylingDefaults.borderData.borderStyle,
-                      borderRadius: stylingData.borderData.borderRadius || stylingDefaults.borderData.borderRadius
-                      }">
+        <div :style="wrapperStyle">
             <slot></slot>
         </div>
     `,
@@ -100,5 +96,13 @@ Vue.component('styling-wrapper', {
     props: {
         stylingData: null,
         stylingDefaults: null
+    },
+
+    computed: {
+        wrapperStyle() {
+            if (this.stylingData!==undefined) {
+                return buildBorderStyle(this.stylingData.borderData, this.stylingDefaults.borderData);
+            } else { return {}}
+        }
     }
 })

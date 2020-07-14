@@ -26,8 +26,8 @@ methods: {
 
       buttonStylingData() {
         return mergeStyleData(      // Lasciata a metà testando CommonDataUtils.js
-            buildFontData(this.inputData, this.defaults),
-            buildBorderData(this.inputData, this.defaults))
+            [buildFontStyle(this.inputData.buttonTextFontData, this.defaults),
+            buildBorderStyle(this.inputData, this.defaults)])
       }
   },
 

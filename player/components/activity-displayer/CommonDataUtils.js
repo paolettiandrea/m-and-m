@@ -2,30 +2,37 @@
 // un oggetto contenente le effettive informazioni di stile che devono essere applicate, tale oggetto può essere
 // restituito da una computed property e utilizzato da un :style="..."
 
-function buildFontData(contentData, defaults) {
-    var obj = {fontFamily: (contentData.fontData.fontFamily || defaults.textFontData.fontFamily),
-        fontSize: contentData.fontData.fontSize || defaults.textFontData.fontSize,
-        color: contentData.fontData.fontColor || defaults.textFontData.fontColor};
+function buildFontStyle(fontData, fontDefaults) {
+    var obj = {fontFamily: (fontData.fontFamily || fontDefaults.fontFamily),
+        fontSize: fontData.fontSize || fontDefaults.fontSize,
+        color: fontData.fontColor || fontDefaults.fontColor};
     return obj;
 }
 
-function buildBorderData(contentData, defaults) {
+function buildBorderStyle(borderData, borderDefaults) {
     return {
-        borderColor: "black",
-        borderStyle: "dotted",
-        borderWidth: "10px"     // TODO link to dynamic fields (with defaults)
+        borderWidth: borderData.borderWidth || borderDefaults.borderWidth,
+        borderColor: borderData.borderColor || borderDefaults.borderColor,
+        borderStyle: borderData.borderStyle || borderDefaults.borderStyle,
+        borderRadius: borderData.borderRadius || borderDefaults.borderRadius
     }
 }
 
 
 // Permette di unire dui oggetti conteneti informazioni di stile, permettendo di passarli entrambi a un costrutto :style="..."
-function mergeStyleData(data1, data2) {
+function mergeStyleData(styleDataArray) {
     let obj = {};
-    for (const key in data1) {
-        obj[key] = data1[key];
+
+    console.log(styleDataArray)
+    for (const styleData of styleDataArray) {
+        for (const key in styleData) {
+            if (obj.hasOwnProperty(key)) {}
+            if (obj[key]===undefined) {
+                obj[key] = styleData[key];
+            } else {
+                throw Error("While merging styleData a field was defined multiple times. Maybe you have applied the same style two times?");
+            }
+        }
+        console.log(styleData);
     }
-    for (const key in data2) {
-        obj[key] = data2[key];
-    }
-    return obj;
 }
