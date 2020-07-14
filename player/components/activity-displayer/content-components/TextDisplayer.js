@@ -15,7 +15,7 @@ Vue.component('text-displayer', {
             return converter.makeHtml(this.contentData.text);
         },
         fontData() {
-            return buildFontData(this.contentData, this.defaults);
+            return buildFontStyle(this.contentData.fontData, this.defaults.textFontData);
         }
     }
 })
