@@ -18,12 +18,24 @@ function buildBorderStyle(borderData, borderDefaults) {
     }
 }
 
+function buildSpacingStyle(spacingData, spacingDefaults) {
+    return {
+        paddingTop: spacingData.padding.top || spacingDefaults.padding.top,
+        paddingBottom: spacingData.padding.bottom || spacingDefaults.padding.bottom,
+        paddingRight: spacingData.padding.right || spacingDefaults.padding.right,
+        paddingLeft: spacingData.padding.left || spacingDefaults.padding.left,
+        marginTop: spacingData.margin.top || spacingDefaults.margin.top,
+        marginBottom: spacingData.margin.bottom || spacingDefaults.margin.bottom,
+        marginRight: spacingData.margin.right || spacingDefaults.margin.right,
+        marginLeft: spacingData.margin.left || spacingDefaults.margin.left,
+    }
+}
+
 
 // Permette di unire dui oggetti conteneti informazioni di stile, permettendo di passarli entrambi a un costrutto :style="..."
 function mergeStyleData(styleDataArray) {
     let obj = {};
 
-    console.log(styleDataArray)
     for (const styleData of styleDataArray) {
         for (const key in styleData) {
             if (obj.hasOwnProperty(key)) {}
@@ -33,6 +45,7 @@ function mergeStyleData(styleDataArray) {
                 throw Error("While merging styleData a field was defined multiple times. Maybe you have applied the same style two times?");
             }
         }
-        console.log(styleData);
     }
+    console.log(obj);
+    return obj;
 }

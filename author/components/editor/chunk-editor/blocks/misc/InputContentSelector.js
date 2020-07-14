@@ -1,4 +1,4 @@
-Vue.component('input-content-selector', {
+Vue.component('input-type-selector', {
     template: `
         <div  v-if="inputTypes">
             

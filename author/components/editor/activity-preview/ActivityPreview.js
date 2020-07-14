@@ -65,10 +65,5 @@ Vue.component('activity-preview', {
         inputClicked(inputData) {
             this.$store.commit('setSelectedActivityChunk', -1);
         }
-    },
-
-    components: {
-        "content-type-selector": () => import("../chunk-editor/blocks/misc/ContentTypeSelector.js"),
-        "input-type-selector": () => import("../chunk-editor/blocks/misc/InputContentSelector.js"),
     }
 })

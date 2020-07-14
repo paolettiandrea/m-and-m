@@ -1,7 +1,7 @@
 Vue.component('text-displayer-editor', {
     template: `
         <div v-if="contentData">
-            <editor-subpanel title="Contenuto">
+            <editor-subpanel label="Contenuto">
                 <b-form-group>                
                     <b-form-textarea
                         v-model="contentData.text"

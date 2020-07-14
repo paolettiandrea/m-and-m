@@ -111,7 +111,6 @@ Vue.component('defaulted-dropdown', {
 })
 
 
-
 Vue.component('defaulted-input-form-unit', {
     template: `
         <b-input-group>
@@ -224,4 +223,38 @@ Vue.component('defaulted-input-form-unit', {
             return this.possibleUnits!==undefined;
         }
     }
+})
+
+
+Vue.component('defaulted-quad-input-form-unit', {
+    template: `
+        <div>
+            <b-row align-h="center" no-gutters>
+                <b-col cols="6" class="quad-single-field">
+                    <defaulted-input-form-unit  :targetContainer="target" targetFieldName="top" :defaultVal="defaults.top"></defaulted-input-form-unit>
+                </b-col>
+            </b-row>
+            <b-row no-gutters align-h="center">
+                <b-col class="quad-single-field">
+                    <defaulted-input-form-unit :targetContainer="target" targetFieldName="left" :defaultVal="defaults.left"></defaulted-input-form-unit>
+                </b-col>
+                <b-col class="quad-single-field">
+                    <defaulted-input-form-unit :targetContainer="target" targetFieldName="right" :defaultVal="defaults.right"></defaulted-input-form-unit>
+                </b-col>
+            </b-row>
+            <b-row align-h="center" no-gutters>
+                <b-col cols="6" class="quad-single-field">
+                    <defaulted-input-form-unit  :targetContainer="target" targetFieldName="bottom" :defaultVal="defaults.bottom"></defaulted-input-form-unit>
+                </b-col>
+            </b-row>
+        </div>
+    `,
+
+    props: {
+        // Expected to be an object containing values for top/bottom/left/right
+        target: null,
+        defaults: null
+    },
+
+
 })

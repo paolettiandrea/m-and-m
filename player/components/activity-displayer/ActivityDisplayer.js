@@ -101,7 +101,8 @@ Vue.component('styling-wrapper', {
     computed: {
         wrapperStyle() {
             if (this.stylingData!==undefined) {
-                return buildBorderStyle(this.stylingData.borderData, this.stylingDefaults.borderData);
+                return mergeStyleData([buildBorderStyle(this.stylingData.borderData, this.stylingDefaults.borderData),
+                                                    buildSpacingStyle(this.stylingData.spacingData, this.stylingDefaults.spacingData)]);
             } else { return {}}
         }
     }

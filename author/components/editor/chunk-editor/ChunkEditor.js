@@ -26,7 +26,7 @@ Vue.component('chunk-editor', {
                 </b-navbar-nav> 
             </b-navbar>
             
-            <editor-subpanel title="Comuni">
+            <editor-subpanel label="Comuni" class="main-column">
                 <common-styling-editor :commonData="selectedActivityChunk.commonData"></common-styling-editor>
             </editor-subpanel>
             
