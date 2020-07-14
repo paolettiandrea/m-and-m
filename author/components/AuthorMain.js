@@ -8,7 +8,7 @@ export default {
             <b-row class="full-height">
                 <b-col class="full-height">
                     <div class="full-height">
-                        <mission-editor></mission-editor>
+                        <editor-main></editor-main>
                     </div>
                 </b-col>
             </b-row>
@@ -29,7 +29,7 @@ export default {
     },
     components: {
         'mission-menu': () => import("./menu/MissionMenu.js"),
-        'mission-editor': () => import("./editor/MissionEditor.js"),
+        'mission-editor': () => import("./editor/EditorMain.js"),
         'alt-mission-menu': () => import("./menu/AltMissionMenu.js")
     },
 

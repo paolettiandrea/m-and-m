@@ -1,4 +1,4 @@
-export default {
+Vue.component('input-outcome-editor', {
     template: `
         <div>
             <b-list-group>
@@ -121,7 +121,7 @@ export default {
     },
 
     components: {
-        "content-type-selector": () => import("../ContentTypeSelector.js")
+        "content-type-selector": () => import("../misc/ContentTypeSelector.js")
     }
 
-}
+})

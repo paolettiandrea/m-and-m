@@ -1,4 +1,4 @@
-export default {
+Vue.component('font-editor', {
     template: `
     <div >
         
@@ -50,12 +50,4 @@ export default {
             Vue.delete(this.fontData, 'fontFamily');
         }
     },
-
-
-    components: {
-        'editor-field': () => import('./EditorField.js'),
-    }
-
-
-
-}
+})

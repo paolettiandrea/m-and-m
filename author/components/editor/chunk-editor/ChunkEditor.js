@@ -1,4 +1,4 @@
-export default {
+Vue.component('chunk-editor', {
     template: `
         <div>
         
@@ -27,7 +27,7 @@ export default {
             </b-navbar>
             
             <editor-subpanel title="Comuni">
-                <shared-properties-editor :commonData="selectedActivityChunk.commonData"></shared-properties-editor>
+                <common-styling-editor :commonData="selectedActivityChunk.commonData"></common-styling-editor>
             </editor-subpanel>
             
 <!--        Display the appropriate input/content editor-->
@@ -50,15 +50,5 @@ export default {
 
     methods: {
         ...Vuex.mapActions(['deleteSelectedActivityChunk', 'moveSelectedChunk'])
-    },
-
-    components: {
-        "shared-properties-editor": () => import("../common/SharedPropertiesEditor.js"),
-        "text-displayer-editor": () => import("./content-chunk-editors/TextDisplayerEditor.js"),
-        "img-displayer-editor": () => import("./content-chunk-editors/ImgDisplayerEditor.js"),
-
-        "input-outcome-editor": () => import("./input-editors/InputOutcomeEditor.js"),
-        "text-insert-editor": () => import("./input-editors/TextInsertEditor.js"),
-        "editor-subpanel": () => import("../activity-editor/EditorSubPanel.js")
     }
-}
+})

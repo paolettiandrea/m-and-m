@@ -1,9 +1,9 @@
 import { CanvasManager } from './CanvasManager.js';
 import { v1 as uuidv1} from '/uuid/dist/esm-browser/index.js';
 
-export default {
+Vue.component('mission-editor', {
     template: `
-    <div onresize="console.log('dasd')">
+    <div>
         <b-navbar class="mm-navbar-primary">
             <b-navbar-brand href="#">{{barTitle}}</b-navbar-brand>
             
@@ -88,4 +88,4 @@ export default {
         'defaults-editor': () => import('./DefaultsEditor.js')
     }
 
-}
+})

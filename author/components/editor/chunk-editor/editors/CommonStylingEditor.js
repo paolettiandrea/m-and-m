@@ -1,4 +1,4 @@
-export default {
+Vue.component('common-styling-editor', {
     template: `
         <div>
             <border-editor :borderData="commonData.borderData"></border-editor>
@@ -7,9 +7,5 @@ export default {
 
     props: {
         commonData: null
-    },
-
-    components: {
-        'border-editor': () => import("./BorderEditor.js")
     }
-}
+})

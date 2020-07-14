@@ -1,4 +1,4 @@
-export default {
+Vue.component('input-content-selector', {
     template: `
         <div  v-if="inputTypes">
             
@@ -28,4 +28,4 @@ export default {
             })
         }
     }
-}
+})

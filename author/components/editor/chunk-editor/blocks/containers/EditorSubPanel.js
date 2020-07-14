@@ -1,4 +1,4 @@
-export default {
+Vue.component('editor-subpanel', {
     template: `
         <div class="editor-subpanel">
             <p class="editor-subpanel-title editor-text">{{title}}</p>
@@ -11,4 +11,4 @@ export default {
     props: {
         title: "",
     }
-}
+})

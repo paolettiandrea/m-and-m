@@ -1,4 +1,4 @@
-export default {
+Vue.component('img-displayer-editor', {
     template: `
         <div >
             <resource-form :resData="contentData.imgResData" defaultResource="/common/img_placeholder.png"></resource-form>
@@ -14,9 +14,5 @@ export default {
     `,
     props: {
         contentData: null
-    },
-
-    components: {
-        "resource-form": () => import('../../common/ResourceForm.js')
     }
-}
+})

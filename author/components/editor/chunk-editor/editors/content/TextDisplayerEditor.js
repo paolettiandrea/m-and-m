@@ -1,4 +1,4 @@
-export default {
+Vue.component('text-displayer-editor', {
     template: `
         <div v-if="contentData">
             <editor-subpanel title="Contenuto">
@@ -18,10 +18,5 @@ export default {
 
     props: {
         contentData: null
-    },
-
-    components: {
-        'font-editor': () => import('../../common/FontEditor.js'),
-        'editor-subpanel': () => import('../EditorSubPanel.js')
     }
-}
+})

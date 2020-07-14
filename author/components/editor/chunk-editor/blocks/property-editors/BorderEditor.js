@@ -1,4 +1,4 @@
-export default {
+Vue.component('border-editor', {
     template: `
         <div>
             <b-form-group 
@@ -37,11 +37,7 @@ export default {
         borderData: null
     },
 
-    components: {
-        'editor-field': () => import('./EditorField.js'),
-    },
-
     computed: {
         ... Vuex.mapGetters(['selectedMissionDefaults'])
     }
-}
+})

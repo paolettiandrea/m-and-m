@@ -1,4 +1,4 @@
-export default {
+Vue.component('activity-preview', {
     template: `
         <div class="column-flex-container" v-if="activityData">
             
@@ -68,7 +68,7 @@ export default {
     },
 
     components: {
-        "content-type-selector": () => import("./ContentTypeSelector.js"),
-        "input-type-selector": () => import("./InputContentSelector.js"),
+        "content-type-selector": () => import("../chunk-editor/blocks/misc/ContentTypeSelector.js"),
+        "input-type-selector": () => import("../chunk-editor/blocks/misc/InputContentSelector.js"),
     }
-}
+})

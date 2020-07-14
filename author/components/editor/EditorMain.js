@@ -1,20 +1,20 @@
-export default {
+Vue.component('editor-main', {
     template: `
     <div class="full-height">
         <b-row class="full-height">
             
             <b-col class="full-height no-horizontal-padding" >
                 <div class="full-height">
-                    <mission-content-editor
+                    <mission-editor
                         class="full-height column-flex-container no-flex-grow"
                         @activity:selected="activitySelectedCallback">
-                    </mission-content-editor>
+                    </mission-editor>
                 </div>
             </b-col>
             
             <transition name="activity-panel-transition">
                 <b-col v-if="selectedActivity" class="full-height no-horizontal-padding" key="2">
-                    <activity-editor class="full-height"></activity-editor>
+                    <activity-preview class="full-height"></activity-preview>
                 </b-col>
             </transition>
             
@@ -40,11 +40,5 @@ export default {
 
     computed: {
         ... Vuex.mapGetters(['selectedActivity', 'selectedActivityChunk'])
-    },
-    components: {
-        'mission-head-form': () => import('./MissionHeadForm.js'),
-        'mission-content-editor': () => import('./content-editor/MissionContentEditor.js'),
-        'activity-editor': () => import('./activity-editor/ActivityEditor.js'),
-        'chunk-editor': () => import('./activity-editor/ChunkEditor.js')
     }
-}
+})

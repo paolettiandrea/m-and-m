@@ -1,5 +1,5 @@
 import { v1 as uuidv1} from '/uuid/dist/esm-browser/index.js';
-import {CanvasManager} from "../components/editor/content-editor/CanvasManager.js";
+import {CanvasManager} from "../components/editor/mission-editor/CanvasManager.js";
 import {FontDB} from "../../common/js/FontController.js"
 import {ActivityModule} from "./store/ActivityStore.js"
 
@@ -195,10 +195,11 @@ const store = new Vuex.Store({
 
         // Initializes all the store data that is destined to be constant throughout execution
         initializeConstData(state) {
-            axios.get("./components/editor/activity-editor/content-chunk-editors/contentChunkTypes.json").then( res => {
+            axios.get("./data/contentChunkTypes.json").then( res => {
                 state.contentTypes = res.data.contentChunkTypes;
             })
-            axios.get("./components/editor/activity-editor/input-editors/inputTypes.json").then( res => {
+
+            axios.get("./data/inputTypes.json").then( res => {
                 state.inputTypes = res.data.inputTypes;
             })
 

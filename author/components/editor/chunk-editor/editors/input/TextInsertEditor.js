@@ -1,4 +1,4 @@
-export default {
+Vue.component('text-insert-editor', {
     template: `
         <div>
             <div v-for="(possibleAnswer, index) in inputData.possibleAnswers">
@@ -134,11 +134,5 @@ export default {
             }
         }
 
-    },
-
-
-
-    components: {
-        "input-outcome-editor": () => import("./InputOutcomeEditor.js")
     }
-}
+})

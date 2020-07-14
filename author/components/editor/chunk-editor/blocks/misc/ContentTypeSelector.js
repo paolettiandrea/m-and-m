@@ -1,5 +1,5 @@
 
-export default {
+Vue.component('content-type-selector', {
     template: `
         <div  v-if="contentChunkTypes">
             
@@ -32,4 +32,4 @@ export default {
             })
         }
     }
-}
+})
