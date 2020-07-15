@@ -5,7 +5,9 @@
 function buildFontStyle(fontData, fontDefaults) {
     var obj = {fontFamily: (fontData.fontFamily || fontDefaults.fontFamily),
         fontSize: fontData.fontSize || fontDefaults.fontSize,
-        color: fontData.fontColor || fontDefaults.fontColor};
+        color: fontData.fontColor || fontDefaults.fontColor,
+        fontStyle: fontData.fontStyle || 'normal',
+        fontWeight: fontData.fontWeight || 'normal',};
     return obj;
 }
 

@@ -4,7 +4,7 @@
     /*Greys*/
     --darkest-grey: hsl(215, 5%, 5%);
     --dark-grey: hsl(240, 4%, 11%);
-    --grey:         hsl(215, 5%, 50%);
+    --grey: hsl(214, 3%, 59%);
     --light-grey:   hsl(215, 5%, 70%);
     --lightest-grey:hsl(215, 5%, 90%);
 
@@ -69,17 +69,29 @@
     margin-bottom: 0px;
 }
 
-.subpanel-button {
-    margin-bottom: 5px;
+.editor-button {
     background-color: var(--lightest-grey);
     border-color: var(--light-grey);
-    opacity: 60%;
     color: var(--grey);
     font-weight: bold;
 }
 
+
+.editor-button.active {
+    color: var(--dark-grey);
+}
+.subpanel-button {
+    margin-bottom: 5px;
+    opacity: 60%;
+}
+
 .subpanel-button.active {
+
     opacity: 100%;
+}
+
+.full-width {
+    width: 100%;
 }
 
 .editor-text {

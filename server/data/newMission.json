@@ -9,7 +9,9 @@
       "textFontData": {
         "fontFamily": "Roboto",
         "fontSize": "12px",
-        "fontColor": "#000000"
+        "fontColor": "#000000",
+        "fontStyle": "normal",
+        "fontWeight": "normal"
       },
 
       "commonData": {
@@ -23,12 +25,12 @@
           "padding": {
             "top": "0px",
             "bottom": "10px",
-            "left": "0px",
-            "right": "0px"
+            "left": "5px",
+            "right": "5px"
           },
           "margin": {
             "top": "0px",
-            "bottom": "10px",
+            "bottom": "0px",
             "left": "0px",
             "right": "0px"
           }

@@ -3,7 +3,7 @@ const PADDING_PER_LEVEL = 30;
 Vue.component('editor-subpanel', {
     template: `
         <div class="editor-subpanel subpanel-group"">
-            <b-button size="sm" variant="secondary-outline" class="editor-font subpanel-button" :pressed.sync="toggled" :style="{marginLeft: level*padPerLvl + 'px'}">{{label}}</b-button>
+            <b-button size="sm" variant="secondary-outline" class="editor-font subpanel-button editor-button" :pressed.sync="toggled" :style="{marginLeft: level*padPerLvl + 'px'}">{{label}}</b-button>
             <div class="editor-subpanel-slot">
                 <b-collapse v-model="toggled">
                     <slot></slot>
@@ -43,7 +43,7 @@ Vue.component('editor-subpanel-terminal', {
             class="subpanel-group"
             >
             <template slot="label" >
-                <b-button size="sm" variant="secondary-outline" class="subpanel-button" :pressed.sync="toggled" :style="{marginLeft: level*padPerLvl + 'px'}">{{label}}</b-button>
+                <b-button size="sm" variant="secondary-outline" class="subpanel-button editor-button" :pressed.sync="toggled" :style="{marginLeft: level*padPerLvl + 'px'}">{{label}}</b-button>
                 
             </template>
                 <b-collapse v-model="toggled">

@@ -117,7 +117,7 @@ Vue.component('defaulted-input-form-unit', {
                 <b-form-input :id="uniqueFormId" :value="shownValue" :type="type" @input="handleInput" size="sm"></b-form-input>
                 
                 <template v-slot:append>
-                    <b-dropdown class="editor-text" v-if="isUnitModeled" :text="shownUnit" variant="success" size="sm">
+                    <b-dropdown toggle-class="editor-button editor-text" v-if="isUnitModeled" :text="shownUnit" variant="secondary-outline" size="sm">
                         <b-dropdown-item class="editor-text" v-for="unit of possibleUnits" @click="handleUnitChange(unit)" :key="unit">{{unit}}</b-dropdown-item>
                     </b-dropdown>
                     <b-button v-else size="sm">{{shownUnit}}</b-button>
@@ -127,7 +127,8 @@ Vue.component('defaulted-input-form-unit', {
 
     data() {
         return {
-            selectedUnit: ''
+            selectedUnit: '',
+
         }
     },
 
