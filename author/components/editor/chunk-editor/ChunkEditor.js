@@ -27,13 +27,10 @@ Vue.component('chunk-editor', {
             </b-navbar>
             
             <div class="full-flex"  style="overflow-y: auto">
-               
-                <editor-subpanel label="Comuni" class="main-column">
-                <common-styling-editor :commonData="selectedActivityChunk.commonData"></common-styling-editor>
-                </editor-subpanel>
             
     <!--        Display the appropriate input/content editor-->
-                <div v-if="isChunkSelected" class="main-column">
+            <div class="main-column">
+                <div v-if="isChunkSelected">
                     <component v-if="isInputChunkSelected" 
                                 :is="selectedActivityChunk.inputType+'-editor'" 
                                 :inputData="selectedActivityChunk.inputData" ></component>
@@ -41,6 +38,11 @@ Vue.component('chunk-editor', {
                                 :is="selectedActivityChunk.contentType+'-editor'" 
                                 :contentData="selectedActivityChunk.contentData" ></component>
                           
+                </div>
+                
+                <editor-subpanel label="Generali" level="0">
+                    <common-styling-editor :commonData="selectedActivityChunk.commonData"></common-styling-editor>
+                </editor-subpanel>
                 </div>
             
 </div>

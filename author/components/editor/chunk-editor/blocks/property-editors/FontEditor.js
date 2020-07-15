@@ -2,10 +2,9 @@ Vue.component('font-editor', {
     template: `
     <div >
         
-        <b-form-group 
+        <editor-subpanel-terminal
             label="Font"
-            label-cols-lg="4"
-            label-class="editor-text"
+            :level="level"
             >
             
             <editor-field label="Famiglia">
@@ -27,12 +26,16 @@ Vue.component('font-editor', {
                 <defaulted-input-form :targetContainer="fontData" targetFieldName="fontColor" inputType="color" :defaultVal="selectedMissionContent.defaults.textFontData.fontColor"></defaulted-input-form>
             </editor-field>
 
-        </b-form-group>
+        </editor-subpanel-terminal>
        
     </div>`,
 
     props: {
-        fontData: null
+        fontData: null,
+        level: {
+            type: Number,
+            default: 0
+        }
     },
     
 

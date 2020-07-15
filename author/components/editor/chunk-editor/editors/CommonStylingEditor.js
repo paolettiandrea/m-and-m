@@ -1,9 +1,9 @@
 Vue.component('common-styling-editor', {
     template: `
         <div>
-            <border-editor :borderData="commonData.borderData"></border-editor>
+            <border-editor :borderData="commonData.borderData" :level="level+1"></border-editor>
             
-            <editor-subpanel label="Spaziatura">
+            <editor-subpanel label="Spaziatura" :level="level+1">
                 <editor-field  label="Padding">
                     <defaulted-quad-input-form-unit :target="commonData.spacingData.padding" :defaults="selectedMissionDefaults.commonData.spacingData.padding"></defaulted-quad-input-form-unit>
                 </editor-field>
@@ -16,7 +16,11 @@ Vue.component('common-styling-editor', {
     `,
 
     props: {
-        commonData: null
+        commonData: null,
+        level: {
+            type: Number,
+            default: 0
+        }
     },
 
     computed: {

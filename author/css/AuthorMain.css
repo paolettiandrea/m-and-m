@@ -3,7 +3,7 @@
     --primary-base-hue: 353;
     /*Greys*/
     --darkest-grey: hsl(215, 5%, 5%);
-    --dark-grey:    hsl(215, 5%, 10%);
+    --dark-grey: hsl(240, 4%, 11%);
     --grey:         hsl(215, 5%, 50%);
     --light-grey:   hsl(215, 5%, 70%);
     --lightest-grey:hsl(215, 5%, 90%);
@@ -65,13 +65,43 @@
     padding: 10px 10px;
 }
 
+.subpanel-group {
+    margin-bottom: 0px;
+}
+
+.subpanel-button {
+    margin-bottom: 5px;
+    background-color: var(--lightest-grey);
+    border-color: var(--light-grey);
+    opacity: 60%;
+    color: var(--grey);
+    font-weight: bold;
+}
+
+.subpanel-button.active {
+    opacity: 100%;
+}
+
 .editor-text {
     font-family: "Roboto Mono", monospace;
     color: #3d3d3d;
 }
+.editor-font {
+    font-family: "Roboto Mono", monospace;
+
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.no-vertical-padding {
+    padding-top: 0;
+    padding-bottom: 0;
+}
 
 .editor-subpanel-slot {
-    padding-left: 10px;
+
 }
 
 
