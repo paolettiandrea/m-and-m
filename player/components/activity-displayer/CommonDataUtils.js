@@ -7,7 +7,9 @@ function buildFontStyle(fontData, fontDefaults) {
         fontSize: fontData.fontSize || fontDefaults.fontSize,
         color: fontData.fontColor || fontDefaults.fontColor,
         fontStyle: fontData.fontStyle || 'normal',
-        fontWeight: fontData.fontWeight || 'normal',};
+        fontWeight: fontData.fontWeight || 'normal',
+        textDecoration: fontData.fontDecoration,
+        textAlign: fontData.fontAlignment || 'left'};      // TODO defaults
     return obj;
 }
 

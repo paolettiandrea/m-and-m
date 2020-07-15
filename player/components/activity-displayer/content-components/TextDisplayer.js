@@ -1,6 +1,6 @@
 Vue.component('text-displayer', {
     template: ` <div>
-                    <div :style="fontData" 
+                    <div class="paragraph-container" :style="fontData" 
                             v-html="this.parsed"></div>
                 </div>`,
 
