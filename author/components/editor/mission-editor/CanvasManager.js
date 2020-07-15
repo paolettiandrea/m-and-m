@@ -147,7 +147,6 @@ export class CanvasManager {
     constructor(settings, store) {
         this.callbacks = settings.callbacks;
         this.store = store;
-        this.store.commit('initializeCanvas', this);
         this.graph = new G6.Graph({
             container: settings.mountId, // String | HTMLElement, required, the id of DOM element or an HTML node
             width: 800, // Number, required, the width of the graph

@@ -1,9 +1,7 @@
 export default {
     template: `
         <div >
-            <b-collapse>
-            
-</b-collapse>
+
                 <div ><p style="text-align: center">Disponibili al pubblico</p></div>
                 
                 <div style="text-align: center;">

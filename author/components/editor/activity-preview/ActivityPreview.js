@@ -17,9 +17,9 @@ Vue.component('activity-preview', {
            
             
             <div class="full-flex vertical-scroll">
-   
-                
-            <activity-displayer class="activity-displayer-div" :activity-content="activityData" :defaults="selectedMissionContent.defaults" 
+            
+            <div style="display: flex; flex-direction: column; justify-content: center; height: 100%">
+                <activity-displayer class="activity-displayer-div" :activity-content="activityData" :defaults="selectedMissionContent.defaults" 
                         @content:chunk:clicked="contentChunkClicked" @input:clicked="inputClicked">
                         
                         
@@ -31,6 +31,10 @@ Vue.component('activity-preview', {
                     <input-type-selector @input:selected="setInputChunk"></input-type-selector>
                 </template>
             </activity-displayer>
+            </div>
+   
+                
+            
             
                 
             </div>

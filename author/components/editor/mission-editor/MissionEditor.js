@@ -58,19 +58,10 @@ Vue.component('mission-editor', {
         activitySelectionCallback(selectedActivity) {
             this.selectedActivity = selectedActivity;
             this.$store.commit('selectActivity', selectedActivity.uuid);        // TODO bind directly to this (maybe)
-            this.$emit('activity:selected', {
-                activity: selectedActivity,
-                callbacks: {
-                    updateSelectedActivityTitle: (newTitle) => {
-                        selectedActivity.title = newTitle;
-                        this.canvas.updateActivityNode(selectedActivity);
-                    }
-                }
-            });
         }
     },
     mounted() {
-        this.$store.commit('initializeCanvasManager', {
+        this.$store.dispatch('canvasSetup', {
             mountId: "g6Mount",
             callbacks: {
                 selectionCallback: this.activitySelectionCallback
@@ -83,6 +74,7 @@ Vue.component('mission-editor', {
             this.$store.state.canvas.graph.changeSize(yo.clientWidth, yo.clientHeight);      // FIXME brutally resizing canvas
         }
     },
+
 
     components: {
         'defaults-editor': () => import('./DefaultsEditor.js')

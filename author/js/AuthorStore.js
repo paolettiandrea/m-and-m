@@ -71,7 +71,6 @@ const store = new Vuex.Store({
 
         selectMission(context, missionId) {
             context.commit('setSelectedMissionId', missionId);
-            context.state.canvas.newData(context.getters.selectedMissionContent);
         },
         deselectMission(context) {
             context.commit('setSelectedMissionId', null);
@@ -123,6 +122,11 @@ const store = new Vuex.Store({
             axios.get("/missions/content/" + contentId).then( (res) => {
                 context.commit('addMissionContent', res.data)
             })
+        },
+
+        canvasSetup(context, canvasSettings) {
+            context.commit('initializeCanvasManager', canvasSettings);
+            context.state.canvas.newData(context.getters.selectedMissionContent);
         },
 
         // Activity management ========================================================================================
@@ -203,10 +207,6 @@ const store = new Vuex.Store({
                 state.inputTypes = res.data.inputTypes;
             })
 
-        },
-
-        initializeCanvas(state, canvas) {
-            state.canvas = canvas;
         },
 
         initializeFontDB(state, fontNum) {

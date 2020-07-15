@@ -1,6 +1,6 @@
 Vue.component('chunk-editor', {
     template: `
-        <div>
+        <div class="full-height vertical-flex">
         
 <!--        Navbar-->
             <b-navbar class="mm-navbar-chunk">
@@ -26,20 +26,29 @@ Vue.component('chunk-editor', {
                 </b-navbar-nav> 
             </b-navbar>
             
-            <editor-subpanel label="Comuni" class="main-column">
+            <div class="full-flex"  style="overflow-y: auto">
+               
+                <editor-subpanel label="Comuni" class="main-column">
                 <common-styling-editor :commonData="selectedActivityChunk.commonData"></common-styling-editor>
-            </editor-subpanel>
+                </editor-subpanel>
             
-<!--        Display the appropriate input/content editor-->
-            <div v-if="isChunkSelected" class="main-column">
-                <component v-if="isInputChunkSelected" 
-                            :is="selectedActivityChunk.inputType+'-editor'" 
-                            :inputData="selectedActivityChunk.inputData" ></component>
-                <component v-else
-                            :is="selectedActivityChunk.contentType+'-editor'" 
-                            :contentData="selectedActivityChunk.contentData" ></component>
-                      
-            </div>
+    <!--        Display the appropriate input/content editor-->
+                <div v-if="isChunkSelected" class="main-column">
+                    <component v-if="isInputChunkSelected" 
+                                :is="selectedActivityChunk.inputType+'-editor'" 
+                                :inputData="selectedActivityChunk.inputData" ></component>
+                    <component v-else
+                                :is="selectedActivityChunk.contentType+'-editor'" 
+                                :contentData="selectedActivityChunk.contentData" ></component>
+                          
+                </div>
+            
+</div>
+</div>
+            
+            
+            
+            
         </div>
     `,
 

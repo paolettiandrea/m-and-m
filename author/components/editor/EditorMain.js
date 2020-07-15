@@ -1,7 +1,7 @@
 Vue.component('editor-main', {
     template: `
     <div class="full-height">
-        <b-row class="full-height">
+        <b-row class="full-height" no-gutters>
             
             <b-col class="full-height no-horizontal-padding" >
                 <div class="full-height">
@@ -19,8 +19,8 @@ Vue.component('editor-main', {
             </transition>
             
             <transition name="content-panel-transition">
-            <b-col v-if="selectedActivityChunk" key="3" class="no-horizontal-padding">
-                <chunk-editor></chunk-editor>
+            <b-col v-if="selectedActivityChunk" key="3" class="no-horizontal-padding full-height">
+                <chunk-editor class="full-height"></chunk-editor>
             </b-col>
             </transition>
         </b-row>
