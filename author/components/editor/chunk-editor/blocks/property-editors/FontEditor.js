@@ -23,18 +23,20 @@ Vue.component('font-editor', {
             
             <editor-field label="Stile">
                 <b-button-group class="full-width" size="sm">
-                    <b-button class="editor-button" :pressed.sync="bold" variant="secondary-outline"><b-icon icon="type-bold"></b-icon></b-button>
-                    <b-button class="editor-button" :pressed.sync="italic" variant="secondary-outline"><b-icon icon="type-italic"></b-icon></b-button>
-                    <b-button class="editor-button" :pressed.sync="strikethrough" variant="secondary-outline"><b-icon icon="type-strikethrough"></b-icon></b-button>
+                    <defaulted-input-toggle-button icon="type-bold" :targetContainer="fontData" targetFieldName="fontWeight" :defaultVal="defaults.fontWeight" 
+                                :options="{true: 'bold', false: 'normal'}"></defaulted-input-toggle-button>
+                    <defaulted-input-toggle-button icon="type-italic" :targetContainer="fontData" targetFieldName="fontStyle" :defaultVal="defaults.fontStyle" 
+                                :options="{true: 'italic', false: 'normal'}"></defaulted-input-toggle-button>
+                    <defaulted-input-toggle-button icon="type-strikethrough" :targetContainer="fontData" targetFieldName="fontDecoration" :defaultVal="defaults.textDecoration" 
+                                :options="{true: 'line-through', false: 'none'}"></defaulted-input-toggle-button>
                 </b-button-group>
             </editor-field>
             
             <editor-field label="Allineamento">
-                <b-button-group class="full-width" size="sm">
-                    <b-button class="editor-button" variant="outline-primary" :pressed.sync="left" @click="alignmentChanged('left')"><b-icon icon="text-left" ></b-icon></b-button>
-                    <b-button class="editor-button" variant="outline-primary" :pressed.sync="center" @click="alignmentChanged('center')"><b-icon icon="text-center" ></b-icon></b-button>
-                    <b-button class="editor-button" variant="outline-primary" :pressed.sync="right" @click="alignmentChanged('right')"><b-icon icon="text-right" ></b-icon></b-button>
-                </b-button-group>
+                <defaulted-input-option-form class="full-width" :targetContainer="fontData" targetFieldName="fontAlignment" :defaultVal="defaults.fontAlignment" 
+                                                :options="[ { icon: 'text-left',    val: 'left'     },
+                                                            { icon: 'text-center',  val: 'center'   },
+                                                            { icon: 'text-right',   val: 'right'    }]"></defaulted-input-option-form>
             </editor-field>
             
             <editor-field label="Colore">
@@ -42,18 +44,6 @@ Vue.component('font-editor', {
             </editor-field>
         </editor-subpanel-terminal>
     </div>`,
-
-    data() {
-        return {
-            bold: false,
-            italic:false,
-            strikethrough: false,
-
-            left: false,
-            center: false,
-            right: false,
-        }
-    },
 
     props: {
         fontData: null,
@@ -66,67 +56,5 @@ Vue.component('font-editor', {
 
     computed: {
         ... Vuex.mapGetters(['fontDB', 'selectedMissionContent'])
-    },
-
-
-    watch: {
-        bold: function(newVal, oldVal) {
-            if (newVal===true) {
-                Vue.set(this.fontData, 'fontWeight', "bold");
-            } else {
-                Vue.delete(this.fontData, 'fontWeight');
-            }
-        },
-        italic: function(newVal, oldVal) {
-            if (newVal===true) {
-                Vue.set(this.fontData, 'fontStyle', "italic");
-            } else {
-                Vue.delete(this.fontData, 'fontStyle');
-            }
-        },
-        strikethrough: function(newVal, oldVal) {
-            if (newVal===true) {
-                Vue.set(this.fontData, 'fontDecoration', "line-through");
-            } else {
-                if (this.fontData.fontDecoration === 'line-through') Vue.delete(this.fontData, 'fontDecoration');
-            }
-        }
-    },
-
-    methods: {
-        fontSelected(fontName) {
-            Vue.set(this.fontData, 'fontFamily', fontName);
-
-        },
-
-        reset() {
-            Vue.delete(this.fontData, 'fontFamily');
-        },
-
-        alignmentChanged(alignment) {
-            if (alignment!=='left') this.left = false;
-            if (alignment!=='right') this.right = false;
-            if (alignment!=='center') this.center = false;
-
-            Vue.set(this.fontData, 'fontAlignment', alignment);
-        },
-
-        updateControlBools() {
-            if (this.fontData.fontWeight!==undefined) { this.bold = true;} else {this.bold = false;}
-            if (this.fontData.fontStyle!==undefined) { this.italic = true;} else {this.italic = false;}
-            if (this.fontData.fontDecoration==='line-through') { this.strikethrough = true;} else { this.strikethrough = false;}
-            if (this.fontData.fontAlignment==='right') { this.right = true;} else {this.right = false;}
-            if (this.fontData.fontAlignment=='center') { this.center = true;} else {this.center = false;}
-            if (this.fontData.fontAlignment=='left' || this.fontData.fontAlignment===undefined) { this.left = true;} else {this.left = false;}
-        }
-    },
-
-    mounted() {
-        this.updateControlBools();
-    },
-
-    updated() {
-        this.updateControlBools();
-
     }
 })

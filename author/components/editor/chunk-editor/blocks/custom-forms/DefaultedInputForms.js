@@ -260,3 +260,126 @@ Vue.component('defaulted-quad-input-form-unit', {
 
 
 })
+
+
+Vue.component('defaulted-input-option-form', {
+    template: `
+            <b-button-group size="sm">
+                <b-button class="editor-button" :pressed="shownValue===option.val" @click="handleInput(option.val)" v-for="option of options" :key="uniqueFormId + option.val">
+                    <b-icon :icon="option.icon"></b-icon>
+                </b-button>
+            </b-button-group>            
+    `,
+
+
+    props: {
+        // The object containing the target field
+        targetContainer: null,
+        // The name of the target field
+        targetFieldName: "",
+
+        // The default value for the target field
+        defaultVal: "",
+
+        options: null,
+
+    },
+
+    methods: {
+        handleInput(newVal) {
+            console.log(newVal)
+            if (newVal===this.defaultVal) {
+                this.resetToDefault();
+            } else {
+                if (this.showDefault) {
+                    // We were in default mode, we need to create the non-default variable
+                    Vue.set(this.targetContainer, this.targetFieldName, newVal);
+                } else {
+                    this.targetContainer[this.targetFieldName] = newVal;
+                }
+            }
+        },
+
+        resetToDefault() {
+            Vue.delete(this.targetContainer, this.targetFieldName);
+        },
+    },
+
+    computed: {
+        uniqueFormId() {
+            return 'defaulted-form-input-for-' + this.targetFieldName
+        },
+        showDefault() {
+            return (this.targetContainer[this.targetFieldName]===undefined);
+        },
+
+        shownValue() {
+            if (this.showDefault) return this.defaultVal;
+            else return this.targetContainer[this.targetFieldName];
+        },
+    },
+
+})
+
+Vue.component('defaulted-input-toggle-button', {
+    template: `
+        <b-button class="editor-button" :pressed="shownValue===options.true" @click="handleInput()">
+            <b-icon :icon="icon"></b-icon>
+        </b-button>
+    `,
+
+
+    props: {
+        // The object containing the target field
+        targetContainer: null,
+        // The name of the target field
+        targetFieldName: "",
+
+        // The default value for the target field
+        defaultVal: "",
+
+        options: null,
+
+        icon: {
+            type: String,
+            default: 'trash'
+        }
+
+    },
+
+    methods: {
+        handleInput() {
+            // Toggle the value
+            let newVal = this.options.true;
+            if (this.shownValue===this.options.true) {
+                newVal = this.options.false;
+            }2
+            console.log(newVal)
+            console.log(this.defaultVal)
+            if (newVal===this.defaultVal) {
+                this.resetToDefault();
+            } else {
+                Vue.set(this.targetContainer, this.targetFieldName, newVal);
+            }
+        },
+
+        resetToDefault() {
+            Vue.delete(this.targetContainer, this.targetFieldName);
+        },
+    },
+
+    computed: {
+        uniqueFormId() {
+            return 'defaulted-form-input-for-' + this.targetFieldName
+        },
+        showDefault() {
+            return (this.targetContainer[this.targetFieldName]===undefined);
+        },
+
+        shownValue() {
+            if (this.showDefault) return this.defaultVal;
+            else return this.targetContainer[this.targetFieldName];
+        },
+    },
+
+})
