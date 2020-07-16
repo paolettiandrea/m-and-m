@@ -19,6 +19,7 @@ import('./chunk-editor/blocks/custom-forms/DefaultedInputForms.js')
 import('./chunk-editor/blocks/misc/ContentTypeSelector.js')
 import('./chunk-editor/blocks/misc/InputContentSelector.js')
 import('./chunk-editor/blocks/property-editors/BorderEditor.js')
+import('./chunk-editor/blocks/property-editors/BackgroundEditor.js')
 
 import('./chunk-editor/blocks/property-editors/FontEditor.js')
 import('./chunk-editor/editors/CommonStylingEditor.js')

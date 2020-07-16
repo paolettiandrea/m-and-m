@@ -3,6 +3,8 @@ Vue.component('common-styling-editor', {
         <div>
             <border-editor :borderData="commonData.borderData" :level="level+1"></border-editor>
             
+            <background-editor :backgroundData="commonData.backgroundData" :level="level+1"></background-editor>
+            
             <editor-subpanel label="Spaziatura" :level="level+1">
                 <editor-field  label="Padding">
                     <defaulted-quad-input-form-unit :target="commonData.spacingData.padding" :defaults="selectedMissionDefaults.commonData.spacingData.padding"></defaulted-quad-input-form-unit>
@@ -12,6 +14,7 @@ Vue.component('common-styling-editor', {
                     <defaulted-quad-input-form-unit :target="commonData.spacingData.margin" :defaults="selectedMissionDefaults.commonData.spacingData.margin"></defaulted-quad-input-form-unit>
                 </editor-field>
             </editor-subpanel>
+            
         </div>
     `,
 

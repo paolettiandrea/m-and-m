@@ -35,6 +35,13 @@ function buildSpacingStyle(spacingData, spacingDefaults) {
     }
 }
 
+// TODO background style
+
+function buildBackgroundData(backgroundData, backgroundDefaults) {
+    return {
+        backgroundColor: backgroundData.backgroundColor || backgroundDefaults.backgroundColor,
+    }
+}
 
 // Permette di unire dui oggetti conteneti informazioni di stile, permettendo di passarli entrambi a un costrutto :style="..."
 function mergeStyleData(styleDataArray) {
