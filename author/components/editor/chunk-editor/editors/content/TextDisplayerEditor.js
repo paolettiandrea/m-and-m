@@ -7,16 +7,20 @@ Vue.component('text-displayer-editor', {
                         rows="3"></b-form-textarea>
                 </b-form-group>
             <editor-subpanel label="Testo" :level="0">
-                <font-editor :fontData="contentData.fontData" :level="1"></font-editor>
+                <font-editor :fontData="contentData.fontData" :defaults="fontDefaults" :level="1"></font-editor>
             </editor-subpanel>
-            
-            
-            
-        </div>
-        
-    `,
+        </div>`,
 
     props: {
         contentData: null
+    },
+
+
+    computed: {
+        ...Vuex.mapGetters(['selectedMissionDefaults']),
+
+        fontDefaults() {
+            return buildDefaultObject(this.selectedMissionDefaults.textFontData, uberDefaults.textFontData)
+        }
     }
 })

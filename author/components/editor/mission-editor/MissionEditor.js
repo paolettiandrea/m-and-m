@@ -23,10 +23,9 @@ Vue.component('mission-editor', {
         </b-navbar>
         
         <div v-if="isMissionSettingsPanelOpen">
-            <defaults-editor></defaults-editor>
+            <mission-defaults-editor :defaults="missionContent.defaults" :uberDefaults="uberDefaults"></mission-defaults-editor>
         </div>
         <div v-else id="yoyo" style="position: relative; height: 100%">
-        
 
             
 </b-collapse>
@@ -41,7 +40,9 @@ Vue.component('mission-editor', {
             isMissionSelected: 'isMissionSelected',
             isMissionUpdated: 'isSelectedMissionUpdated',
             isMissionSettingsPanelOpen: 'isMissionSettingsPanelOpen'
-        })
+        }),
+
+        uberDefaults() { return uberDefaults; }
 
     },
 
@@ -73,11 +74,6 @@ Vue.component('mission-editor', {
             console.log(yo.clientHeight);
             this.$store.state.canvas.graph.changeSize(yo.clientWidth, yo.clientHeight);      // FIXME brutally resizing canvas
         }
-    },
-
-
-    components: {
-        'defaults-editor': () => import('./DefaultsEditor.js')
     }
 
 })

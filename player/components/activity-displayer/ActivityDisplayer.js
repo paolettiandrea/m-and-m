@@ -2,7 +2,6 @@ Vue.component("activity-displayer", {
     template: `
         <div style="min-height: 20px; overflow-y: auto;">
             <!-- Content chunks  -->
-              
             <div class="activity-displayer-chunk-container">
                 <slot name="inter" index="0"></slot>
                 <div  v-for="(contentChunk, index) of this.activityContent.content" >
@@ -58,6 +57,12 @@ Vue.component("activity-displayer", {
         return {
             popupContent: null,
             popupVisible: false
+        }
+    },
+
+    computed: {
+        compoundDefaults() {
+            return buildDefaultObject(this.defaults, uberDefaults);
         }
     },
 

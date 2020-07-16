@@ -13,6 +13,7 @@ Vue.component('background-editor', {
     props: {
         backgroundData: null,
         level: 0,
+
     },
 
     computed: {

@@ -203,6 +203,7 @@ Vue.component('defaulted-input-form-unit', {
         },
 
         shownValue() {
+            console.log(this.defaultVal);
             if (this.showDefault) return this.parseValue(this.defaultVal);
             else return this.parseValue(this.targetContainer[this.targetFieldName]);
 

@@ -4,6 +4,7 @@ import('./activity-preview/ActivityPreview.js')
 
 import('./mission-editor/CanvasManager.js')
 import('./mission-editor/MissionEditor.js')
+import('./mission-editor/MissionDefaultsEditor.js')
 
 
 import('./chunk-editor/ChunkEditor.js')

@@ -2,14 +2,84 @@
 // un oggetto contenente le effettive informazioni di stile che devono essere applicate, tale oggetto può essere
 // restituito da una computed property e utilizzato da un :style="..."
 
+const uberDefaults = {
+    // Styling for a text paragraph
+    textFontData: {
+        fontFamily: "Roboto",
+        fontSize: "14px",
+        fontColor: "#000000",
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        textDecoration: 'none',
+        textAlign: 'left'
+    },
+    // Styling data for the container common to every content/input
+    commonData: {
+        borderData: {
+            borderStyle: "hidden",
+            borderWidth: "2px",
+            borderColor: "#000000",
+            borderRadius: "0px"
+        },
+        spacingData: {
+            padding: {
+                top: "0px",
+                bottom: "10px",
+                left: "5px",
+                right: "5px"
+            },
+            margin: {
+                top: "0px",
+                bottom: "0px",
+                left: "0px",
+                right: "0px"
+            }
+        },
+        backgroundData: {
+            backgroundColor: "#ffffff"
+        }
+    }
+}
+
+function buildStyle(valArray) {
+    for (const val of valArray) {
+        if (val) return val;
+    }
+}
+
+// Build an object containing the higher priority defaults for every field
+function buildDefaultObject(defaults, uberDefaults) {
+    let obj = {}
+    for (const def in defaults) {
+        if ((typeof defaults[def])==='object') {
+            // If the pointed field is an object build it with a recursive call
+            if (uberDefaults[def]) obj[def] = buildDefaultObject(defaults[def], uberDefaults[def]);
+            else obj[def] = defaults[def];
+        } else {
+            obj[def] = defaults[def];
+        }
+    }
+
+    if (uberDefaults) {
+        for (const uberDef in uberDefaults) {
+            // If not already defined by the defaults take it from the uberDefs
+            if (!obj[uberDef]) obj[uberDef] = uberDefaults[uberDef];
+        }
+    }
+    return obj;
+}
+
+
+
 function buildFontStyle(fontData, fontDefaults) {
-    var obj = {fontFamily: (fontData.fontFamily || fontDefaults.fontFamily),
-        fontSize: fontData.fontSize || fontDefaults.fontSize,
-        color: fontData.fontColor || fontDefaults.fontColor,
-        fontStyle: fontData.fontStyle || 'normal',
-        fontWeight: fontData.fontWeight || 'normal',
-        textDecoration: fontData.fontDecoration,
-        textAlign: fontData.fontAlignment || 'left'};      // TODO defaults
+    var obj = {
+        fontFamily: buildStyle([fontData.fontFamily, fontDefaults.fontFamily, uberDefaults.textFontData.fontFamily]),
+        fontSize: buildStyle([fontData.fontSize, fontDefaults.fontSize, uberDefaults.textFontData.fontSize]),
+        color: buildStyle([fontData.fontColor, fontDefaults.fontColor, uberDefaults.textFontData.fontColor]),
+        fontStyle: buildStyle([fontData.fontStyle, fontDefaults.fontStyle, uberDefaults.textFontData.fontStyle]),
+        fontWeight: buildStyle([fontData.fontWeight, fontDefaults.fontWeight, uberDefaults.textFontData.fontWeight]),
+        textDecoration: buildStyle([fontData.fontDecoration, fontDefaults.fontDecoration, uberDefaults.textFontData.fontDecoration]),
+        textAlign: buildStyle([fontData.fontAlignment, fontDefaults.fontAlignment, uberDefaults.textFontData.fontAlignment])};      // TODO defaults
     return obj;
 }
 

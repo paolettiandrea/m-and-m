@@ -41,22 +41,21 @@ Vue.component('chunk-editor', {
                 </div>
                 
                 <editor-subpanel label="Generali" level="0">
-                    <common-styling-editor :commonData="selectedActivityChunk.commonData"></common-styling-editor>
+                    <common-styling-editor :commonData="selectedActivityChunk.commonData" :defaults="compoundDefaults.commonData"></common-styling-editor>
                 </editor-subpanel>
                 </div>
-            
-</div>
-</div>
-            
-            
-            
-            
+            </div>
         </div>
+    </div>
     `,
 
     computed: {
         ... Vuex.mapGetters(['selectedActivityChunk', 'selectedActivityChunkIndex', 'isChunkSelected',
-            'isInputChunkSelected', 'isSelectedContentChunkLast', 'isSelectedContentChunkFirst' ])
+            'isInputChunkSelected', 'isSelectedContentChunkLast', 'isSelectedContentChunkFirst', 'selectedMissionDefaults']),
+
+        compoundDefaults() {
+            return buildDefaultObject(this.selectedMissionDefaults, uberDefaults);
+        }
     },
 
     methods: {
