@@ -45,7 +45,7 @@ async function newMission() {
             if (err) throw err;
             const db = client.db(missionsDB);
             // Get default new mission from file (for easy editing)
-            fs.readFile("data/newMission.json", 'utf-8', ((err, data) => {
+            fs.readFile("data/newMissionTemplate.json", 'utf-8', ((err, data) => {
                 var newMissionObj = JSON.parse(data);
 
                 // Insert mission content in database

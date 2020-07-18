@@ -1,8 +1,8 @@
 const fs = require('fs');
 const express = require('express')
 const router = express.Router();
-const database = require('../data/dbController.js')
-const resources = require('../data/resController.js')
+const database = require('../js/altDbController.js')
+const resources = require('../js/resController.js')
 
 router.get('/', function (req, res, next) {
     fs.readFile("data/missions.json", 'utf-8', ((err, data) => {
@@ -10,7 +10,7 @@ router.get('/', function (req, res, next) {
     }));
 })
 
-// Creates a new mission
+// Creates a new missioncollapse
 router.get('/new', function (req, res, next) {
     database.newMission().then( (mission) => {
         res.send(mission);
@@ -20,11 +20,7 @@ router.get('/new', function (req, res, next) {
 
 router.get('/heads', function (req, res, next) {
     database.getMissionHeadsList().then( function (missionHeads) {
-        var headDict = {};
-        for (const head of missionHeads) {
-            headDict[head._id] = head;
-    }
-        res.json(headDict);
+        res.json(missionHeads);
     })
 })
 
@@ -36,11 +32,9 @@ router.get('/content/:uid', function (req, res, next) {
 
 router.delete('/delete/:uid', function (req, res, next) {
 
-        database.deleteMission(req.params.uid).then( (contentId) => {
-            if (contentId===0) { res.status(500).send({ message: 'No such mission!'});} else {
-                res.json({ deletedContentId: contentId })
+        database.deleteMission(req.params.uid).then( () => {
+                res.json({ deletedMissionId: req.res.uid })
                 resources.removeResourceDir(req.params.uid);
-            }
         })
 })
 

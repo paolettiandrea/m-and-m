@@ -2,21 +2,19 @@ import { v1 as uuidv1} from '/uuid/dist/esm-browser/index.js';
 import {CanvasManager} from "../components/editor/mission-editor/CanvasManager.js";
 import {FontDB} from "../../common/js/FontController.js"
 import {ActivityModule} from "./store/ActivityStore.js"
+import {MissionModule} from "./store/MissionStore.js"
 
 Vue.use(Vuex);
 
 
 const store = new Vuex.Store({
     modules: {
-        activity: ActivityModule
+        activity: ActivityModule,
+        mission: MissionModule
     },
     state: {
 
         // STATIC DATA ================================================================================================
-
-        // Missions data
-        missionHeads: {},
-        missionContents: {},
 
         // Available content types
         contentTypes: null,
@@ -29,18 +27,14 @@ const store = new Vuex.Store({
         fontDB: null,
 
 
-
-
         // STATE ======================================================================================================
 
-        selectedMissionId: '',
         selectedActivityId: '',
 
         // The index of the selected activity content, NaN if nothing is selected, -1 if the input chunk is selected
         selectedContentIndex: NaN,
 
-        // A flag for each mission false when there are local modifications that need to be updated to the server
-        updatedMissionFlags: {},
+
 
         panelState: {
             missionSettingsOpen: false
@@ -49,18 +43,10 @@ const store = new Vuex.Store({
 
     actions: {
         initializeStore(context) {
-            axios.get("/missions/heads").then((res, err) => {
-                if (err) throw err;
-                context.commit('setMissionHeads', res.data);
-                context.commit('resetUpdatedMissionFlags');
-                context.commit('initializeFontDB', 50);
-                context.commit('initializeActivityModule');
+            context.dispatch('initializeMissionModule');
+            context.dispatch('initializeActivityModule');
 
-                // Fetch all mission contents
-                for (const head of Object.values(res.data)) {
-                    context.dispatch('updateMissionContent', head.contentId);
-                }
-            })
+            context.commit('initializeFontDB', 20);
         },
 
         setMissionSettingsPanel(context, open) {
@@ -69,60 +55,9 @@ const store = new Vuex.Store({
 
         // Mission management =========================================================================================
 
-        selectMission(context, missionId) {
-            context.commit('setSelectedMissionId', missionId);
-        },
-        deselectMission(context) {
-            context.commit('setSelectedMissionId', null);
-            context.dispatch('deselectActivity');
-        },
-        createMission(context) {
-            axios.get("/missions/new").then((res) => {
-                context.commit('addMissionHead', res.data);
-                context.commit('setUpdatedMissionFlag', [res.data._id, true]);
-            })
-
-        },
-        updateSelectedMission(context) {
-            axios.post("/missions/update", {
-                    missionHead: context.getters.selectedMissionHead,
-                    missionContent: context.getters.selectedMissionContent
-                }).then((res, err) => {
-                    if (err) throw err;
-                    context.commit('setSelectedMissionAsUpdated');
-            })
-        },
-        deleteMission(context, missionId) {
-            axios.delete("/missions/delete/"+ missionId).then((res) => {
-                // Check that the returned deletedContentId matches
-                let correspondingContentId = context.state.missionHeads[missionId].contentId;
-                if (res.data.deletedContentId !== correspondingContentId) {
-                    throw Error("Something went very bad, the returned deletedContentId doesn't match");
-                } else {
-                    Vue.delete(context.state.missionHeads, missionId);
-                    Vue.delete(context.state.missionContents, correspondingContentId);
-                }
-                // If the deleted mission is the selected one deselects it
-                if (missionId === context.state.selectedMissionId) {
-                    context.dispatch('deselectMission');
-                }
-
-                context.commit('removeUpdatedMissionFlag', missionId);
-                context.commit('removeMissionContent', missionId);
-            });
-        },
-        deleteSelectedMission(context) {
-            context.dispatch('deleteMission', context.state.selectedMissionId);
-        },
-
-        setUpdatedMissionFlag(context, [missionId, val]) { context.commit('setUpdatedMissionFlag', [missionId, val])},
 
 
-        updateMissionContent(context, contentId) {
-            axios.get("/missions/content/" + contentId).then( (res) => {
-                context.commit('addMissionContent', res.data)
-            })
-        },
+
 
         canvasSetup(context, canvasSettings) {
             context.commit('initializeCanvasManager', canvasSettings);
@@ -217,32 +152,8 @@ const store = new Vuex.Store({
             state.panelState.missionSettingsOpen = open;
         },
 
-        resetUpdatedMissionFlags(state) {
-            let newFlags = {};
-            for (const key in state.missionHeads) {
-                newFlags[key] = true;
-            }
-            Vue.set(state, 'updatedMissionFlags', newFlags);
-
-        },
-
-        removeUpdatedMissionFlag(state, missionId) { Vue.delete(state.updatedMissionFlags, missionId); },
-
-        setUpdatedMissionFlag(state, [missionId, val]) { Vue.set(state.updatedMissionFlags, missionId, val); },
-
-        setMissionHeads(state, heads) { state.missionHeads = heads; },
-
-        setSelectedMissionId(state, id) { state.selectedMissionId = id; },
-
-        addMissionHead(state, head) { Vue.set(state.missionHeads, head._id, head) },
-
-        addMissionContent(state, missionContent) { Vue.set(state.missionContents, missionContent._id, missionContent); },
-
-        removeMissionContent(state, contentId) { Vue.delete(state.missionContents, contentId); },
-
         setSelectedActivity(state, id) { state.selectedActivityId = id; },
 
-        setSelectedMissionAsUpdated(state) { state.updatedMissionFlags[state.selectedMissionId] = true },
 
         initializeCanvasManager(state, canvasSettings) {
             state.canvas = new CanvasManager(canvasSettings, this);
@@ -290,20 +201,6 @@ const store = new Vuex.Store({
             return state.fontDB;
         },
 
-        isMissionSelected(state) {
-            return !!(state.selectedMissionId);
-        },
-
-        selectedMissionHead(state) {
-            return state.missionHeads[state.selectedMissionId] || null;
-        },
-
-        selectedMissionContent(state) {
-            return (state.selectedMissionId) ? state.missionContents[state.missionHeads[state.selectedMissionId].contentId] : null;
-        },
-
-        selectedMissionId(state) { return state.selectedMissionId; },
-
         isActivitySelected(state) {
             return !!(state.selectedActivityId);
         },
@@ -326,8 +223,6 @@ const store = new Vuex.Store({
 
         selectedActivityChunkIndex(state)  { return state.selectedContentIndex; },
 
-        selectedMissionDefaults(state, getters) { return getters.selectedMissionContent.defaults },
-
         isChunkSelected(state) { return !isNaN(state.selectedContentIndex); },
 
         isInputChunkSelected(state) { return state.selectedContentIndex === -1; },
@@ -340,9 +235,7 @@ const store = new Vuex.Store({
             }
         },
 
-        isSelectedMissionUpdated(state) {
-            return state.updatedMissionFlags[state.selectedMissionId];
-        },
+
 
         isSelectedContentChunkFirst(state) { return state.selectedContentIndex===0; },
 
@@ -354,9 +247,9 @@ store.commit('initializeConstData');
 store.dispatch('initializeStore');
 
 store.watch(
-    state => state.missionContents,
+    state => state.mission.activeMissions,
     () => {
-        if (store.getters.isMissionSelected) store.commit('setUpdatedMissionFlag', [store.state.selectedMissionId, false]);
+        if (store.getters.isMissionSelected) store.commit('setUpdatedMissionFlag', [store.getters.selectedMissionId, false]);
     },
     { deep: true }
 )

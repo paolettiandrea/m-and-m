@@ -26,11 +26,8 @@ Vue.component('mission-editor', {
             <mission-defaults-editor :defaults="missionContent.defaults" :uberDefaults="uberDefaults"></mission-defaults-editor>
         </div>
         <div v-else id="yoyo" style="position: relative; height: 100%">
-
-            
-</b-collapse>
-        <div id="g6Mount" style="position: absolute; top: 0; left: 0"></div>
-</div>
+            <div id="g6Mount" style="position: absolute; top: 0; left: 0"></div>
+        </div>
     </div>`,
 
     computed: {

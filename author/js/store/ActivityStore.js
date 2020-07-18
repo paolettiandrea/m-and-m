@@ -10,10 +10,15 @@ let ActivityModule = {
     },
 
     mutations: {
-        initializeActivityModule(state) {
+        setStaticData(state, staticData) { Vue.set(state, 'staticData', staticData)}
+    },
+
+
+    actions: {
+        initializeActivityModule(context) {
             axios.get('./js/store/ActivityStoreStaticData.json').then((res, err) => {
                 if (err) throw err;
-                state.staticData = res.data;
+                context.commit('setStaticData', res.data)
             })
         }
     }

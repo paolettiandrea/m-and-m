@@ -1,4 +1,5 @@
 const uuid = require('uuid');
+const utils = require('./Utils.js')
 
 const RES_DIR = "data/resources/";
 const RES_REGISTER = "resRegister.json";
@@ -10,28 +11,14 @@ function getMissionDir(missionId) {
     return RES_DIR + missionId;
 }
 
-function deleteFolderRecursive(path) {
-    if( fs.existsSync(path) ) {
-        fs.readdirSync(path).forEach(function(file,index){
-            var curPath = path + "/" + file;
-            if(fs.lstatSync(curPath).isDirectory()) { // recurse
-                deleteFolderRecursive(curPath);
-            } else { // delete file
-                fs.unlinkSync(curPath);
-            }
-        });
-        fs.rmdirSync(path);
-    }
-};
-
 function getRegisterPath(missionId) {
     return getMissionDir(missionId)+ '/' + RES_REGISTER;
 }
 
 function addResourceDir(missionId) {
-    fs.mkdir(getMissionDir(missionId), (err) => {
-        if (err) throw err;
-    });
+    // fs.mkdir(getMissionDir(missionId), (err) => {
+    //     if (err) throw err;
+    // });
 
     // fs.writeFile(getRegisterPath(missionId), JSON.stringify({ resources: {} }, null, 4), function (err) {
     //     if (err) throw err;
@@ -40,7 +27,7 @@ function addResourceDir(missionId) {
 }
 
 function removeResourceDir(missionId) {
-    deleteFolderRecursive(getMissionDir(missionId));
+    utils.deleteFolderRecursive(getMissionDir(missionId));
 }
 
 
