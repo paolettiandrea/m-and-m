@@ -47,6 +47,6 @@ app.use("/missions", a)
 app.use("/api", api)
 
 // STARTING THE SERVER
-server.listen(3000, () => {
+server.listen(8000, () => {
   console.log('listening on port 3000');
 });
