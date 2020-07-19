@@ -1,13 +1,16 @@
 const fs = require('fs');
 const express = require('express')
+const path = require('path')
 const router = express.Router();
-const database = require('../js/altDbController.js')
-const resources = require('../js/resController.js')
+const database = require(path.join(__dirname, '../js/altDbController.js'))
+const resources = require(path.join(__dirname, '../js/resController.js'))
+const proc = require('child_process')
 
 router.get('/', function (req, res, next) {
-    fs.readFile("data/missions.json", 'utf-8', ((err, data) => {
-        res.json(JSON.parse(data).availableMissions)
-    }));
+    // fs.readFile("../data/missions.json", 'utf-8', ((err, data) => {
+    //     res.json(JSON.parse(data).availableMissions)
+    // }));
+    res.send("test");
 })
 
 // Creates a new missioncollapse
@@ -39,6 +42,7 @@ router.delete('/delete/:uid', function (req, res, next) {
 })
 
 router.post('/update', function (req, res, next) {
+    console.log(req)
     database.updateMission(req.body).then( () => {
         res.send("OK");
     })

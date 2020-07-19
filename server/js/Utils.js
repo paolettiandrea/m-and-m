@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 function deleteFolderRecursive(path) {
     if( fs.existsSync(path) ) {
         fs.readdirSync(path).forEach(function(file,index){
