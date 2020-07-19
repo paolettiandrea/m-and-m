@@ -1,18 +1,18 @@
 const fs = require('fs');
 const path = require('path')
 const uuid = require('uuid')
-const utils = require('./Utils.js')
+const utils = require(path.join(__dirname, '/Utils.js'));
 
 const missionContentFileName = 'missionContent.json'
 
-const missionsFolderBasePath = 'data/missions/';
+const missionsFolderBasePath = path.join(__dirname, 'data/missions/');
 const activeFolder = '/active/'
 const archivedFolder = '/archive/'
 
 const activeMissionsDir = path.join(missionsFolderBasePath, activeFolder);
 const activeMissionsHeadListPath = path.join(activeMissionsDir, '/missionHeads.json')
 
-const newMissionTemplatePath = 'data/newMissionTemplate.json';
+const newMissionTemplatePath = path.join(__dirname, 'data/newMissionTemplate.json');
 
 function missionDirectory(id) { return path.join(activeMissionsDir, id) }
 function missionContentFile(id) { return path.join(missionDirectory(id), missionContentFileName) }

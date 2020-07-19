@@ -21,10 +21,9 @@ router.get('/new', function (req, res, next) {
 })
 
 router.get('/heads', function (req, res, next) {
-    // database.getMissionHeadsList().then( function (missionHeads) {
-    //     res.json(missionHeads);
-    // })
-    res.send("asddsa");
+    database.getMissionHeadsList().then( function (missionHeads) {
+        res.json(missionHeads);
+    })
 })
 
 router.get('/content/:uid', function (req, res, next) {
