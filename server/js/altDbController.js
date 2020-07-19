@@ -49,8 +49,8 @@ async function newMission() {
             fs.readFile(activeMissionsHeadListPath, 'utf-8', ((err, missionHeads) => {      // TODO when implementing archive missions can be created in it
                 if (err) resolve(err);
                 missionHeads = JSON.parse(missionHeads);
-                missionHeads[new_id] = newMissionTemplate.missionHead;
                 resolve({sadasd:"sdas"})
+                missionHeads[new_id] = newMissionTemplate.missionHead;
                 fs.writeFile(activeMissionsHeadListPath, JSON.stringify(missionHeads, null, 2), (err) => { if (err){ resolve(err);}})
                 resolve({
                     id: new_id,
