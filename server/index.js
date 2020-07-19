@@ -17,8 +17,8 @@ const server = require('http').Server(app);
 // });
 
 // TEMP stuff
-// const a = require(path.join(__dirname, './routes/missions'));
-// const api = require(path.join(__dirname, './routes/api'))
+const a = require(path.join(__dirname, './routes/missions'));
+const api = require(path.join(__dirname, './routes/api'))
 
 
 // MIDDLEWARE
@@ -43,8 +43,8 @@ app.get('/', function (req, res) {
 })
 
 
-// app.use("/missions", a)
-// app.use("/api", api)
+app.use("/missions", a)
+app.use("/api", api)
 
 // STARTING THE SERVER
 server.listen(8000, () => {
