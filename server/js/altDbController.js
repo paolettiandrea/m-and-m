@@ -39,9 +39,7 @@ async function getMissionContent(uid) {
 // Creates a new mission in the database and returns its missionHead
 async function newMission() {
     return new Promise((resolve)=> {
-        fs.readdir('/').then((res)=> {
-            resolve(res)
-        })
+        resolve({yo: __dirname})
     })
 }
 
