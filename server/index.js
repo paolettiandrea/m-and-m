@@ -17,8 +17,8 @@ const server = require('http').Server(app);
 // });
 
 // TEMP stuff
-const a = require(path.join(__dirname, './routes/missions'));
-const api = require(path.join(__dirname, './routes/api'))
+const a = require(path.join(__dirname, 'routes/missions'));
+const api = require(path.join(__dirname, 'routes/api'))
 
 
 // MIDDLEWARE
