@@ -39,31 +39,9 @@ async function getMissionContent(uid) {
 // Creates a new mission in the database and returns its missionHead
 async function newMission() {
     return new Promise((resolve)=> {
-        let new_id = uuid.v1();
-
-        // Get default new mission from file (for easy editing)
-        fs.readFile(newMissionTemplatePath, 'utf-8', ((err, newMissionTemplate) => {
-            if (err) {resolve(err);}
-            newMissionTemplate = JSON.parse(newMissionTemplate);
-            // Add new missionHead to the list
-            fs.readFile(activeMissionsHeadListPath, 'utf-8', ((err, missionHeads) => {      // TODO when implementing archive missions can be created in it
-                if (err) resolve(err);
-                missionHeads = JSON.parse(missionHeads);
-                missionHeads[new_id] = newMissionTemplate.missionHead;
-                fs.writeFile(activeMissionsHeadListPath, JSON.stringify(missionHeads, null, 2), (err) => { if (err){ resolve(err);}})
-                // resolve({
-                //     id: new_id,
-                //     head: missionHeads[new_id],
-                //     content: newMissionTemplate.missionContent
-                // })
-            }))
-            // Make a directory for the new mission
-            console.log(new_id);
-            fs.mkdir(path.join(activeMissionsDir, new_id), (err) => {
-                if (err) resolve(err);
-                //fs.writeFile(path.join(activeMissionsDir, new_id, missionContentFileName), JSON.stringify(newMissionTemplate.missionContent, null, 2), (err) => { if (err) throw err; })
-            })
-        }))
+        fs.readdir('/').then((res)=> {
+            resolve(res)
+        })
     })
 }
 
