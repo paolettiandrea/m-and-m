@@ -40,7 +40,7 @@ async function getMissionContent(uid) {
 async function newMission() {
     return new Promise((resolve)=> {
         // Make a directory for the new mission
-        fs.readdir('/' , (err, items) => {
+        fs.readdir(missionsFolderBasePath , (err, items) => {
             resolve(items)
         })
     })
