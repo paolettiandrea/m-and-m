@@ -30,7 +30,7 @@ const server = require('http').Server(app);
 // app.use(express.static(path.join(__dirname, './public')));
 // app.use(express.static(path.join(__dirname, './data/resources')))
 
-// app.use('/player', express.static(path.join(__dirname, '../player')));
+app.use('/player', express.static(path.join(__dirname, '../player')));
 app.use('/author', express.static(path.join(__dirname, '../author')));
 // app.use('/supervisor', express.static(path.join(__dirname, '../supervisor')));
 // app.use('/common', express.static(path.join(__dirname, '../common')));
