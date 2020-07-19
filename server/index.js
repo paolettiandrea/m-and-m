@@ -43,8 +43,8 @@ app.get('/', function (req, res) {
 })
 
 
-app.use("/missions", a)
-app.use("/api", api)
+// app.use("/missions", a)
+// app.use("/api", api)
 
 // STARTING THE SERVER
 server.listen(8000, () => {
