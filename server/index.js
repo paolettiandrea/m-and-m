@@ -21,10 +21,10 @@ const server = require('http').Server(app);
 
 
 // MIDDLEWARE
-app.use(bodyParser.json());                  // using bodyParser to parse JSON bodies into js objects
-app.use(cors());                             // enabling CORS for all requests
-app.use(morgan('combined'));          // adding morgan to log HTTP requests
-app.use(fileUpload({debug: true}));
+// app.use(bodyParser.json());                  // using bodyParser to parse JSON bodies into js objects
+// app.use(cors());                             // enabling CORS for all requests
+// app.use(morgan('combined'));          // adding morgan to log HTTP requests
+// app.use(fileUpload({debug: true}));
 
 app.use(express.static(path.join(__dirname, './public')));
 app.use(express.static(path.join(__dirname, './data/resources')))
