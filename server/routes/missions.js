@@ -6,7 +6,7 @@ const database = require(path.join(__dirname, '../js/altDbController.js'))
 const resources = require(path.join(__dirname, '../js/resController.js'))
 
 router.get('/', function (req, res, next) {
-    fs.readFile("data/missions.json", 'utf-8', ((err, data) => {
+    fs.readFile("../data/missions.json", 'utf-8', ((err, data) => {
         res.json(JSON.parse(data).availableMissions)
     }));
 })
