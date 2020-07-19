@@ -6,9 +6,10 @@ const database = require(path.join(__dirname, '../js/altDbController.js'))
 const resources = require(path.join(__dirname, '../js/resController.js'))
 
 router.get('/', function (req, res, next) {
-    fs.readFile("../data/missions.json", 'utf-8', ((err, data) => {
-        res.json(JSON.parse(data).availableMissions)
-    }));
+    // fs.readFile("../data/missions.json", 'utf-8', ((err, data) => {
+    //     res.json(JSON.parse(data).availableMissions)
+    // }));
+    res.send("test");
 })
 
 // Creates a new missioncollapse
