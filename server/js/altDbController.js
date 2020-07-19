@@ -59,10 +59,7 @@ async function newMission() {
             }))
             // Make a directory for the new mission
             console.log(new_id);
-            fs.mkdir(path.join(activeMissionsDir, new_id), (err) => {
-                if (err) resolve(err);
-                //fs.writeFile(path.join(activeMissionsDir, new_id, missionContentFileName), JSON.stringify(newMissionTemplate.missionContent, null, 2), (err) => { if (err) throw err; })
-            }).then((res, err) => {
+            fs.mkdir(path.join(activeMissionsDir, new_id)).then((res, err) => {
                 if (res) resolve(res);
                 if (err) resolve (err);
             })
