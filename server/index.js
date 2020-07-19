@@ -35,7 +35,7 @@ app.use('/author', express.static(path.join(__dirname, '../author')));
 app.use('/supervisor', express.static(path.join(__dirname, '../supervisor')));
 app.use('/common', express.static(path.join(__dirname, '../common')));
 //
-// app.use(express.static(path.join(__dirname, 'node_modules')));
+app.use(express.static(path.join(__dirname, 'node_modules')));
 
 // ROUTING
 app.get('/', function (req, res) {
