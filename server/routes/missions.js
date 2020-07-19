@@ -1,8 +1,9 @@
 const fs = require('fs');
 const express = require('express')
+const path = require('path')
 const router = express.Router();
-const database = require('../js/altDbController.js')
-const resources = require('../js/resController.js')
+const database = require(path.join(__dirname, '../js/altDbController.js'))
+const resources = require(path.join(__dirname, '../js/resController.js'))
 
 router.get('/', function (req, res, next) {
     fs.readFile("data/missions.json", 'utf-8', ((err, data) => {
