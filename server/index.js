@@ -5,7 +5,8 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-app.use('/author', express.static('./m-and-m/author'));
+app.use('/author', express.static(path.join(__dirname, '../author')));
+
 
 
 app.listen(8000, function () {
