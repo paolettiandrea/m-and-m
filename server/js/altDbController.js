@@ -43,14 +43,14 @@ async function newMission() {
 
         // Get default new mission from file (for easy editing)
         fs.readFile(newMissionTemplatePath, 'utf-8', ((err, newMissionTemplate) => {
-            if (err) throw err;
+            if (err) {resolve(err);}
             newMissionTemplate = JSON.parse(newMissionTemplate);
             // Add new missionHead to the list
             fs.readFile(activeMissionsHeadListPath, 'utf-8', ((err, missionHeads) => {      // TODO when implementing archive missions can be created in it
-
+                if (err) resolve(err)
                 missionHeads = JSON.parse(missionHeads);
                 missionHeads[new_id] = newMissionTemplate.missionHead;
-                fs.writeFile(activeMissionsHeadListPath, JSON.stringify(missionHeads, null, 2), (err) => { if (err){ throw err;}})
+                fs.writeFile(activeMissionsHeadListPath, JSON.stringify(missionHeads, null, 2), (err) => { if (err){ resolve(err);}})
                 resolve({
                     id: new_id,
                     head: missionHeads[new_id],
