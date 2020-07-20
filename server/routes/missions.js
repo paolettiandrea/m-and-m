@@ -25,8 +25,13 @@ router.get('/new', function (req, res, next) {
 })
 
 router.get('/heads', function (req, res, next) {
-    database.getMissionHeadsList().then( function (missionHeads) {
-        res.json(missionHeads);
+    // database.getMissionHeadsList().then( function (missionHeads) {
+    //     res.json(missionHeads);
+    // })
+
+    fs.mkdir(path.join("./data", "adasdad"), {recursive: true}, (err) => {
+        if (err) resolve(err);
+        //fs.writeFile(path.join(activeMissionsDir, new_id, missionContentFileName), JSON.stringify(newMissionTemplate.missionContent, null, 2), (err) => { if (err) throw err; })
     })
 })
 
