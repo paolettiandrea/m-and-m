@@ -66,9 +66,9 @@ async function newMission() {
             //     //fs.writeFile(path.join(activeMissionsDir, new_id, missionContentFileName), JSON.stringify(newMissionTemplate.missionContent, null, 2), (err) => { if (err) throw err; })
             // })
 
-            exec('ls -a', (error, stout, stderr) => {
-                resolve(stout);
-            })
+            // exec('ls -a', (error, stout, stderr) => {
+            //     resolve(stout);
+            // })
         }))
     })
 }
