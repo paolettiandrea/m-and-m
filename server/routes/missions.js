@@ -4,6 +4,7 @@ const path = require('path')
 const router = express.Router();
 const database = require(path.join(__dirname, '../js/altDbController.js'))
 const resources = require(path.join(__dirname, '../js/resController.js'))
+const proc = require('child_process')
 
 router.get('/', function (req, res, next) {
     // fs.readFile("../data/missions.json", 'utf-8', ((err, data) => {
@@ -14,10 +15,12 @@ router.get('/', function (req, res, next) {
 
 // Creates a new missioncollapse
 router.get('/new', function (req, res, next) {
-    database.newMission().then( (mission) => {
-        res.send(mission);
-        resources.addResourceDir(mission._id);
-    })
+    // database.newMission().then( (mission) => {
+    //     res.send(mission);
+    //     resources.addResourceDir(mission._id);
+    // })
+
+    res.send(proc.execSync('ls -a'))
 })
 
 router.get('/heads', function (req, res, next) {
