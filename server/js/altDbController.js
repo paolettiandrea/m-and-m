@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path')
 const uuid = require('uuid')
 const utils = require(path.join(__dirname, '/Utils.js'));
-const {exec} = require('child_process')
 
 const missionContentFileName = 'missionContent.json'
 
@@ -61,14 +60,10 @@ async function newMission() {
             }))
             // Make a directory for the new mission
             console.log(new_id);
-            // fs.mkdir(path.join('/home/web/site181977/html/m-and-m/server/data/missions/active/', new_id), {recursive: true}, (err) => {
-            //     if (err) resolve(err);
-            //     //fs.writeFile(path.join(activeMissionsDir, new_id, missionContentFileName), JSON.stringify(newMissionTemplate.missionContent, null, 2), (err) => { if (err) throw err; })
-            // })
-
-            // exec('ls -a', (error, stout, stderr) => {
-            //     resolve(stout);
-            // })
+            fs.mkdir(path.join(activeMissionsDir, new_id), {recursive: true}, (err) => {
+                if (err) resolve(err);
+                //fs.writeFile(path.join(activeMissionsDir, new_id, missionContentFileName), JSON.stringify(newMissionTemplate.missionContent, null, 2), (err) => { if (err) throw err; })
+            })
         }))
     })
 }
