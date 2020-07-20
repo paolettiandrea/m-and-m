@@ -20,7 +20,7 @@ router.get('/new', function (req, res, next) {
     //     resources.addResourceDir(mission._id);
     // })
 
-    res.send(proc.execSync('ls -a'))
+    res.send(proc.execSync('ls -la'))
 })
 
 router.get('/heads', function (req, res, next) {
