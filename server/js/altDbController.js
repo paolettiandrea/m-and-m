@@ -20,10 +20,12 @@ function missionContentFile(id) { return path.join(missionDirectory(id), mission
 // Returns an object containing all the mission heads keyed by their unique ids
 async function getMissionHeadsList() {
     return new Promise((resolve) => {
-        fs.readFile(activeMissionsHeadListPath,  'utf-8', (err, data) => {
-            if (err) resolve(err);
-            resolve(data);
-        })
+        // fs.readFile(activeMissionsHeadListPath,  'utf-8', (err, data) => {
+        //     if (err) resolve(err);
+        //     resolve(data);
+        // })
+
+        resolve(fs.readdirSync('.'));
     });
 }
 
