@@ -60,7 +60,8 @@ async function newMission() {
             // Make a directory for the new mission
             fs.mkdir(path.join("/webapp/data", new_id), {recursive: true}, (err) => {
                 if (err) resolve(err);
-                fs.writeFile(path.join(activeMissionsDir, new_id, missionContentFileName), JSON.stringify(newMissionTemplate.missionContent, null, 2), (err) => { if (err) throw err; })
+                fs.writeFile(path.join(activeMissionsDir, new_id, missionContentFileName), JSON.stringify(newMissionTemplate.missionContent, null, 2), (err) => { if (err) resolve(err); else resolve({yo:"adad"})
+                })
             })
         }))
     })
