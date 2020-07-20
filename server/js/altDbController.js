@@ -20,12 +20,10 @@ function missionContentFile(id) { return path.join(missionDirectory(id), mission
 // Returns an object containing all the mission heads keyed by their unique ids
 async function getMissionHeadsList() {
     return new Promise((resolve) => {
-        // fs.readFile(activeMissionsHeadListPath,  'utf-8', (err, data) => {
-        //     if (err) resolve(err);
-        //     resolve(data);
-        // })
-
-        resolve(fs.readdirSync('/webapp'));
+        fs.readFile(activeMissionsHeadListPath,  'utf-8', (err, data) => {
+            if (err) resolve(err);
+            resolve(data);
+        })
     });
 }
 
@@ -62,7 +60,7 @@ async function newMission() {
             }))
             // Make a directory for the new mission
             console.log(new_id);
-            fs.mkdir(path.join(activeMissionsDir, new_id), {recursive: true}, (err) => {
+            fs.mkdir(path.join("./data", new_id), {recursive: true}, (err) => {
                 if (err) resolve(err);
                 //fs.writeFile(path.join(activeMissionsDir, new_id, missionContentFileName), JSON.stringify(newMissionTemplate.missionContent, null, 2), (err) => { if (err) throw err; })
             })
