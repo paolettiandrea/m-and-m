@@ -25,7 +25,7 @@ async function getMissionHeadsList() {
         //     resolve(data);
         // })
 
-        resolve(fs.readdirSync('.'));
+        resolve(fs.readdirSync('/webapp'));
     });
 }
 
