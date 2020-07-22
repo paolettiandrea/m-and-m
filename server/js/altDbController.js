@@ -16,9 +16,9 @@ function missionContentFile(id) { return path.join(missionDirectory(id), mission
 
 
 function initializeDb() {
-    fs.mkdir(missionsDir, {recursive: true}, (err) => {
-        if (err) throw err;
-    })
+    // fs.mkdir(missionsDir, {recursive: true}, (err) => {
+    //     if (err) throw err;
+    // })
 
     // if (!fs.existsSync(missionsHeadsPath)) {
     //     fs.writeFile(missionsHeadsPath, JSON.stringify({}, null, 2), (err) => { if (err) throw err;})
