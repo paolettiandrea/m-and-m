@@ -5,7 +5,8 @@ const utils = require(path.join(__dirname, '/Utils.js'));
 
 const missionContentFileName = 'missionContent.json'
 
-const missionsFolderBasePath = path.join(__dirname, '../data/missions/');
+const basePath = '/webapp/data/'
+const missionsFolderBasePath = path.join(basePath, '/missions/');
 const activeFolder = '/active/'
 const archivedFolder = '/archive/'
 
@@ -58,7 +59,7 @@ async function newMission() {
             //     // })
             // }))
             // Make a directory for the new mission
-            let missionPath = path.join("/webapp/m-and-m/server/data/missions/active/", new_id);
+            let missionPath = path.join("/webapp/data", new_id);
             fs.mkdir(missionPath, {recursive: true}, (err) => {
                 if (err) resolve(err);
                 fs.writeFile(path.join(missionPath, missionContentFileName), JSON.stringify(newMissionTemplate.missionContent, null, 2), (err) => { if (err) resolve(err); else resolve({yo:"adad"})
@@ -66,6 +67,11 @@ async function newMission() {
             })
         }))
     })
+}
+
+// WARNING: deletes the whole database folder, should use with care
+function deleteDbDir() {
+    utils.deleteFolderRecursive('/webapp/data');
 }
 
 async function deleteMission(uid) {
@@ -98,5 +104,6 @@ module.exports = {
     deleteMission,
     getMissionHeadsList,
     updateMission,
-    getMissionContent
+    getMissionContent,
+    deleteDbDir
 }

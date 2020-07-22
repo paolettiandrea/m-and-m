@@ -6,6 +6,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 const path = require('path');
 
+
+const dbController = require('./js/altDbController.js')
 const app = express();
 const server = require('http').Server(app);
 
@@ -43,6 +45,8 @@ app.get('/', function (req, res) {
 
 
 app.use("/missions", a)
+
+dbController.deleteDbDir();
 
 // STARTING THE SERVER
 server.listen(8000, () => {
