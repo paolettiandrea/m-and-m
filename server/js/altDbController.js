@@ -19,13 +19,13 @@ function initializeDb() {
     fs.mkdir(basePath, {recursive: true}, (err) => {
         if (err) throw err;
     })
-    // fs.mkdir(missionsDir, {recursive: true}, (err) => {
-    //     if (err) throw err;
-    // })
+    fs.mkdir(missionsDir, {recursive: true}, (err) => {
+        if (err) throw err;
+    })
 
-    // if (!fs.existsSync(missionsHeadsPath)) {
-    //     fs.writeFile(missionsHeadsPath, JSON.stringify({}, null, 2), (err) => { if (err) throw err;})
-    // }
+    if (!fs.existsSync(missionsHeadsPath)) {
+        fs.writeFile(missionsHeadsPath, JSON.stringify({}, null, 2), (err) => { if (err) throw err;})
+    }
 }
 
 // Returns an object containing all the mission heads keyed by their unique ids
