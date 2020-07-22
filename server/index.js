@@ -46,7 +46,6 @@ app.get('/', function (req, res) {
 
 app.use("/missions", a)
 
-dbController.deleteDbDir();
 dbController.initializeDb();
 
 // STARTING THE SERVER
