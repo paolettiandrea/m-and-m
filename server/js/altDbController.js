@@ -16,6 +16,9 @@ function missionContentFile(id) { return path.join(missionDirectory(id), mission
 
 
 function initializeDb() {
+    fs.mkdir(basePath, {recursive: true}, (err) => {
+        if (err) throw err;
+    })
     // fs.mkdir(missionsDir, {recursive: true}, (err) => {
     //     if (err) throw err;
     // })
