@@ -16,11 +16,13 @@ function missionContentFile(id) { return path.join(missionDirectory(id), mission
 
 
 function initializeDb() {
-    fs.mkdirSync(basePath, {recursive: true});
-    fs.mkdirSync(missionsDir, {recursive: true});
+    if (!fs.existsSync(basePath)) {
+        fs.mkdirSync(basePath, {recursive: true});
+        fs.mkdirSync(missionsDir, {recursive: true});
 
-    if (!fs.existsSync(missionsHeadsPath)) {
-        fs.writeFile(missionsHeadsPath, JSON.stringify({}, null, 2), (err) => { if (err) throw err;})
+        if (!fs.existsSync(missionsHeadsPath)) {
+            fs.writeFile(missionsHeadsPath, JSON.stringify({}, null, 2), (err) => { if (err) throw err;})
+        }
     }
 }
 
