@@ -11,12 +11,9 @@ const dbController = require('./js/altDbController.js')
 const app = express();
 const server = require('http').Server(app);
 
-// const io = require('socket.io')(server);
-// io.on('connection', (socket) => {
-//   socket.on('disconnect', () => {
-//     console.log("A user disconnected");
-//   });
-// });
+const socket = require('./js/socket/SocketManager.js');
+socket.initialize(server)
+
 
 // TEMP stuff
 const a = require(path.join(__dirname, 'routes/missions'));

@@ -6,29 +6,30 @@
   "scripts": {
     "start": "DB_MODE='sandbox' node index.js",
     "devstart": "DB_MODE='sandbox' nodemon --ignore './data/missions' index.js",
-    "dbstart": "mongod --dbpath ./data/mongo",
-    "test": ""
+    "dbstart": "mongod --dbpath ./data/mongo"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@antv/g6": "^3.5.0",
+    "@antv/g6": "^3.5.12",
     "animate.css": "^4.1.0",
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
-    "child_process": "^1.0.2",
+    "bootstrap-vue": "^2.15.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.7-alpha.3",
+    "intersection-observer": "^0.11.0",
     "js-yaml": "^3.13.1",
     "mongodb": "^3.5.7",
     "morgan": "^1.10.0",
+    "showdown": "^1.9.1",
     "socket.io": "^2.3.0",
-    "swagger-client": "^3.10.1",
-    "uuid": "^8.1.0",
-    "vuedraggable": "^2.23.2"
+    "uuid": "^8.2.0",
+    "vue": "^2.6.11",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
-    "@apidevtools/swagger-parser": "^9.0.1",
     "nodemon": "^2.0.3"
   }
 }
