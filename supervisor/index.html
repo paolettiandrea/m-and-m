@@ -32,47 +32,28 @@
 
 
     <script src="/common/js/VueUtils.js"></script>
+    <script src="components/SupervisorMain.js"></script>
+    <script src="components/SupervisorPrefetcher.js"></script>
 
     <title>Title</title>
-
-    <script>
-        var socket = io();
-        socket.emit('sup-handshake');
-
-    </script>
 
 </head>
 <body>
     <div id="app">
-        <p>Supervisor App</p>
+        <supervisor-main></supervisor-main>
     </div>
 
-    <script>
-        Vue.use(Vuex);
+    <script type="module">
 
-
-        const store = new Vuex.Store({
-            state: {
-
-            },
-            mutations: {
-
-            }
-            })
-
-
-
-
+        import store from './js/SupervisorStore.js'
 
 
         const App = new Vue({
             el: '#app',
-            store,
-            components: {
-
-            }
+            store
         })
+
     </script>
 
-</body>
+    </body>
 </html>

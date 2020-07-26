@@ -56,9 +56,6 @@ const store = new Vuex.Store({
         // Mission management =========================================================================================
 
 
-
-
-
         canvasSetup(context, canvasSettings) {
             context.commit('initializeCanvasManager', canvasSettings);
             context.state.canvas.newData(context.getters.selectedMissionContent);

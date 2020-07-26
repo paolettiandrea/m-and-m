@@ -17,12 +17,16 @@
     <link type="text/css" rel="stylesheet" href="/bootstrap-vue/dist/bootstrap-vue.css" />
     <link type="text/css" rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css" />
 
+    <!-- Socket.io -->
+    <script src="/socket.io-client/dist/socket.io.dev.js"></script>
+
     <!--    General utils-->
     <script src="/axios/dist/axios.js"></script>
     <script src="/uuid/dist/index.js"></script>
 
     <!--    Player dependencies-->
     <script src="/showdown/dist/showdown.js"></script>
+
 
 
     <link rel="stylesheet" href="style.css">
@@ -47,6 +51,12 @@
 
     <script src="/common/js/VueUtils.js"></script>
     <script src="./components/activity-displayer/CommonDataUtils.js"></script>
+
+    <script>
+        var socket = io();
+        socket.emit('player-handshake');
+
+    </script>
 
 </head>
 

@@ -1,73 +1,65 @@
-var activeSockets = {
-    supervisors: {},
-    players: {}
-}
+const {SupervisedRoom} = require('./SupervisedRoom.js')
 
-let supervisor = null;
+let io = null;
+
+// The active supervised rooms
+let activeRooms = {}
 let unsupervisedPlayers = {}
 
-class SupervisorSocket {
-    constructor(socket) {
-        console.log("New supervisor!")
-        socket.join('supervisors');
-    }
-}
-
-class PlayerSocket {
-    constructor(socket) {
-        this.socket = socket;
-        socket.join('players');
-    }
-
-    assignSupervisor(supervisor) {
-        this.supervisor = supervisor;
-}
-
-    id() { return this.socket.id; }
-}
-
-class SupervisedRoom {
-    constructor(supervisorSocket) {
-        this.supervisor = supervisorSocket;
-        this.players = {}
-
-        this.supervisor.join(supervisorSocket.id)
-    }
-}
 
 function initialize(server) {
 
-    const io = require('socket.io')(server);
+    io = require('socket.io')(server);
 
     io.on('connection', (socket) => {
         socket.on('sup-handshake', (msg) => {
-            supervisor = new SupervisorSocket(socket);
+            supervisorConnectedCallback(socket);
+            socket.on('disconnect', () => {
+                supervisorDisconnectedCallback(socket);
+            })
         })
         socket.on('player-handshake', (msg) => {
-            let newPlayer = new PlayerSocket(socket);
-
-            if (supervisor) {
-                newPlayer.assignSupervisor(supervisor);
-            }
-            unsupervisedPlayers[newPlayer.id()] = newPlayer;
+            playerConnectedCallback(socket);
+            socket.on('disconnect', () => {
+                playerDisconnectedCallback(socket);
+            })
         })
         socket.on('disconnect', () => {
             console.log("Generic socket disconnection event")
         })
-        activeSockets.supervisors[socket.id] = socket;
     })
-
-
-    // Initialize supervisor namespace
-
-
-    // io.on('connection', (socket) => {
-    //     console.log('A user connected')
-    //     socket.on('disconnect', () => {
-    //         console.log("A user disconnected");
-    //     });
-    // });
 }
+
+function supervisorConnectedCallback(supSocket) {
+    supSocket.join('supervisors');
+    activeRooms[supSocket.id] = new SupervisedRoom(supSocket);
+    // for (const unsuPlayer in unsupervisedPlayers) {
+    //     supSocket.emit('player-connected', unsuPlayer.model);
+    // }
+    console.log('New supervisor connected');
+}
+
+function supervisorDisconnectedCallback(supSocket) {
+    console.log('Supervisor disconnected');
+}
+
+function playerConnectedCallback(playerSocket) {
+    playerSocket.join('players');
+    let newPlayer = {
+        socket: playerSocket,
+        model: {
+            socketId: playerSocket.id
+        }
+    }
+    unsupervisedPlayers[playerSocket.id] = newPlayer;
+    io.in('supervisors').emit('player-connected', newPlayer.model);
+}
+
+function playerDisconnectedCallback(playerSocket) {
+    console.log('Player disconnected');
+    io.in('supervisors').emit('player-disconnected', {socketId: playerSocket.id});
+}
+
 
 module.exports = {
     initialize
