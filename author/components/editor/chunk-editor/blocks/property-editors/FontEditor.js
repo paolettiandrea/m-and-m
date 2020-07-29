@@ -1,3 +1,5 @@
+
+
 Vue.component('font-editor', {
     template: `
     <div >
@@ -22,15 +24,9 @@ Vue.component('font-editor', {
             </editor-field>
             
             <editor-field label="Stile">
-                <b-button-group class="full-width" size="sm">
-                    <defaulted-input-toggle-button icon="type-bold" :targetContainer="fontData" targetFieldName="fontWeight" :defaultVal="defaults.fontWeight" 
-                                :options="{true: 'bold', false: 'normal'}"></defaulted-input-toggle-button>
-                    <defaulted-input-toggle-button icon="type-italic" :targetContainer="fontData" targetFieldName="fontStyle" :defaultVal="defaults.fontStyle" 
-                                :options="{true: 'italic', false: 'normal'}"></defaulted-input-toggle-button>
-                    <defaulted-input-toggle-button icon="type-strikethrough" :targetContainer="fontData" targetFieldName="fontDecoration" :defaultVal="defaults.textDecoration" 
-                                :options="{true: 'line-through', false: 'none'}"></defaulted-input-toggle-button>
-                </b-button-group>
+                <font-style-editor :fontData="fontData" :defaults="defaults"></font-style-editor>
             </editor-field>
+
             
             <editor-field label="Allineamento">
                 <defaulted-input-option-form class="full-width" :targetContainer="fontData" targetFieldName="fontAlignment" :defaultVal="defaults.fontAlignment" 
