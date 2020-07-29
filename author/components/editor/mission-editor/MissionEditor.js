@@ -20,7 +20,13 @@ Vue.component('mission-editor', {
                         <b-button v-if="isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(false)" variant="outline-secondary"><b-icon icon="trash"></b-icon> Missione </b-button>
                     </b-dropdown-item>
                     <b-dropdown-item href="#"><b-button v-on:click="deleteSelectedMission" variant="outline-danger"><b-icon icon="trash"></b-icon> Cancella </b-button></b-dropdown-item>
-                
+                    <b-dropdown-item href="#">
+                        <b-button v-b-modal.modal-1><b-icon icon="upc-scan"></b-icon> QR Code</b-button>
+                        
+                          <b-modal id="modal-1" title="BootstrapVue">
+                            <b-img :src="'/' + selectedMissionId + '/qrCode.svg'" fluid></b-img>
+                          </b-modal>
+                    </b-dropdown-item>
                 </b-nav-item-dropdown>
             </b-navbar-nav> 
         </b-navbar>
@@ -39,7 +45,8 @@ Vue.component('mission-editor', {
             barTitle: 'missionBarTitle',
             isMissionSelected: 'isMissionSelected',
             isMissionUpdated: 'isSelectedMissionUpdated',
-            isMissionSettingsPanelOpen: 'isMissionSettingsPanelOpen'
+            isMissionSettingsPanelOpen: 'isMissionSettingsPanelOpen',
+            selectedMissionId: 'selectedMissionId'
         }),
 
         uberDefaults() { return uberDefaults; }

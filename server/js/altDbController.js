@@ -2,8 +2,10 @@ const fs = require('fs');
 const path = require('path')
 const uuid = require('uuid')
 const utils = require(path.join(__dirname, '/Utils.js'));
+var qr = require('qr-image');
 
 const missionContentFileName = 'missionContent.json'
+const missionQrCodeFileName = 'qrCode.svg'
 
 let basePath = '/webapp/data/';
 if (process.env.DB_MODE==='sandbox') basePath = path.join(__dirname, '../data/')
@@ -50,6 +52,8 @@ async function newMission() {
     return new Promise((resolve)=> {
         let new_id = uuid.v1();
 
+
+
         // Get default new mission from file (for easy editing)
         fs.readFile(newMissionTemplatePath, 'utf-8', ((err, newMissionTemplate) => {
             if (err) {resolve(err);}
@@ -70,8 +74,9 @@ async function newMission() {
             let missionPath = missionDirectory(new_id);
             fs.mkdir(missionPath, {recursive: true}, (err) => {
                 if (err) resolve(err);
-                fs.writeFile(path.join(missionPath, missionContentFileName), JSON.stringify(newMissionTemplate.missionContent, null, 2), (err) => { if (err) resolve(err); else resolve({yo:"adad"})
-                })
+                var qr_code = qr.image(new_id, { type: 'svg'})
+                qr_code.pipe(fs.createWriteStream(path.join(missionPath, missionQrCodeFileName)));
+                fs.writeFile(path.join(missionPath, missionContentFileName), JSON.stringify(newMissionTemplate.missionContent, null, 2), (err) => { if (err) resolve(err); else resolve({yo:"adad"})})
             })
         }))
     })
