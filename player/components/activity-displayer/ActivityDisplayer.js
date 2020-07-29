@@ -34,10 +34,13 @@ Vue.component("activity-displayer", {
                                  data object inputData as the prop "data" (every input component needs to have 
                                  a data prop that it can use to retrieve all the data needed to define its behaviour)-->
             <div v-if="activityContent.inputComponent" v-on:click="inputClicked">
-                <component  :is="activityContent.inputComponent.inputType" 
-                            :inputData="activityContent.inputComponent.inputData" 
-                            :defaults="defaults"
-                            @input-received="handleInputReceived" ></component>
+                <styling-wrapper :stylingData="activityContent.inputComponent.commonData" :stylingDefaults="defaults.commonData">
+
+                    <component  :is="activityContent.inputComponent.inputType" 
+                                :inputData="activityContent.inputComponent.inputData" 
+                                :defaults="defaults"
+                                @input-received="handleInputReceived" ></component>
+                </styling-wrapper>
             </div>
             <div v-else>
                 <slot name="input-placeholder"></slot>

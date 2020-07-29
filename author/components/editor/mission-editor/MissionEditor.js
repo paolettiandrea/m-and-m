@@ -15,14 +15,17 @@ Vue.component('mission-editor', {
                     <template slot="button-content">
                         <b-icon icon="gear"></b-icon>
                     </template>
-                    <b-dropdown-item href="#"><b-button v-on:click="setMissionSettingsPanel(true)" variant="outline-secondary"><b-icon icon="trash"></b-icon> Defaults </b-button></b-dropdown-item>
+                    <b-dropdown-item href="#">
+                        <b-button v-if="!isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(true)" variant="outline-secondary"><b-icon icon="trash"></b-icon> Defaults </b-button>
+                        <b-button v-if="isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(false)" variant="outline-secondary"><b-icon icon="trash"></b-icon> Missione </b-button>
+                    </b-dropdown-item>
                     <b-dropdown-item href="#"><b-button v-on:click="deleteSelectedMission" variant="outline-danger"><b-icon icon="trash"></b-icon> Cancella </b-button></b-dropdown-item>
                 
                 </b-nav-item-dropdown>
             </b-navbar-nav> 
         </b-navbar>
         
-        <div v-if="isMissionSettingsPanelOpen">
+        <div v-if="isMissionSettingsPanelOpen" class="full-flex vertical-scroll">
             <mission-defaults-editor :defaults="missionContent.defaults" :uberDefaults="uberDefaults"></mission-defaults-editor>
         </div>
         <div v-else id="yoyo" style="position: relative; height: 100%">
@@ -58,6 +61,7 @@ Vue.component('mission-editor', {
             this.$store.commit('selectActivity', selectedActivity.uuid);        // TODO bind directly to this (maybe)
         }
     },
+
     mounted() {
         this.$store.dispatch('canvasSetup', {
             mountId: "g6Mount",
@@ -68,7 +72,6 @@ Vue.component('mission-editor', {
 
         window.onresize = () => {
             let yo = document.getElementById("yoyo");
-            console.log(yo.clientHeight);
             this.$store.state.canvas.graph.changeSize(yo.clientWidth, yo.clientHeight);      // FIXME brutally resizing canvas
         }
     }

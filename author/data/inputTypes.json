@@ -14,9 +14,8 @@
       "icon": "cursor-text",
       "data":{
         "possibleAnswers": [],
-        "fallbackOutcome": {
-
-        }
+        "fallbackOutcome": { },
+        "buttonFontData": {}
       }
     },
     {

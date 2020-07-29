@@ -1,7 +1,6 @@
 Vue.component('mission-defaults-editor', {
     template: `
-        <div>
-            <p> Mission defaults editor </p>
+        <div class="main-column">
             <editor-subpanel label="Testo">
                 <font-editor :fontData="defaults.textFontData" :defaults="uberDefaults.textFontData"></font-editor>
             </editor-subpanel>

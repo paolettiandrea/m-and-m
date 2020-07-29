@@ -17,6 +17,7 @@ Vue.component('input-type-selector', {
     `,
 
     computed: Vuex.mapState( {
+        ... Vuex.mapGetters(['chunkCommonDataAtCreation']),
         inputTypes: state => state.inputTypes
     }),
 
@@ -25,6 +26,7 @@ Vue.component('input-type-selector', {
             this.$emit("input:selected", {
                     inputType: inputType.type,
                     inputData: JSON.parse(JSON.stringify(inputType.data)),
+                    commonData: JSON.parse(JSON.stringify(this.chunkCommonDataAtCreation))
             })
         }
     }
