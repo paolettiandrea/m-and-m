@@ -17,6 +17,10 @@ Vue.component('chunk-editor', {
                         </b-button>
                     </b-button-group>
                     
+<!--                Normal editor / JSON editor toggle-->
+                    <b-button v-if="editorMode==='normal'" @click="setEditorMode('json')">JSON</b-button>
+                    <b-button v-else @click="setEditorMode('normal')">Normal</b-button>
+                    
                     <b-nav-item-dropdown right variant="primary">
                         <template slot="button-content">
                             <b-icon icon="gear"></b-icon>
@@ -29,25 +33,35 @@ Vue.component('chunk-editor', {
             <div class="full-flex"  style="overflow-y: auto">
             
     <!--        Display the appropriate input/content editor-->
-            <div class="main-column">
-                <div v-if="isChunkSelected">
-                    <component v-if="isInputChunkSelected" 
-                                :is="selectedActivityChunk.inputType+'-editor'" 
-                                :inputData="selectedActivityChunk.inputData" ></component>
-                    <component v-else
-                                :is="selectedActivityChunk.contentType+'-editor'" 
-                                :contentData="selectedActivityChunk.contentData" ></component>
-                          
-                </div>
-                
-                <editor-subpanel label="Generali" level="0">
-                    <common-styling-editor :commonData="selectedActivityChunk.commonData" :defaults="compoundDefaults.commonData"></common-styling-editor>
-                </editor-subpanel>
+                <div class="main-column">
+                    <div v-if="editorMode==='normal'">
+                        <component v-if="isInputChunkSelected" 
+                                    :is="selectedActivityChunk.inputType+'-editor'" 
+                                    :inputData="selectedActivityChunk.inputData" ></component>
+                        <component v-else
+                                    :is="selectedActivityChunk.contentType+'-editor'" 
+                                    :contentData="selectedActivityChunk.contentData" ></component>
+                              
+                    
+                    
+                        <editor-subpanel label="Generali" level="0">
+                            <common-styling-editor :commonData="selectedActivityChunk.commonData" :defaults="compoundDefaults.commonData"></common-styling-editor>
+                        </editor-subpanel>
+                    </div>
+                    <div v-else>
+                        <json-editor :editedObj="selectedActivityChunk"></json-editor>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     `,
+
+    data() {
+        return {
+            editorMode: 'normal'
+        }
+    },
 
     computed: {
         ... Vuex.mapGetters(['selectedActivityChunk', 'selectedActivityChunkIndex', 'isChunkSelected',
@@ -59,6 +73,10 @@ Vue.component('chunk-editor', {
     },
 
     methods: {
-        ...Vuex.mapActions(['deleteSelectedActivityChunk', 'moveSelectedChunk'])
+        ...Vuex.mapActions(['deleteSelectedActivityChunk', 'moveSelectedChunk']),
+
+        setEditorMode(newMode) {
+            this.editorMode = newMode;
+        }
     }
 })

@@ -24,6 +24,7 @@ import('./chunk-editor/blocks/property-editors/BackgroundEditor.js')
 
 import('./chunk-editor/blocks/property-editors/FontEditor.js')
 import('./chunk-editor/editors/CommonStylingEditor.js')
+import('./chunk-editor/editors/JSONEditor.js')
 import('./chunk-editor/editors/content/TextDisplayerEditor.js')
 import('./chunk-editor/editors/content/ImgDisplayerEditor.js')
 import('./chunk-editor/editors/input/TextInsertEditor.js')
