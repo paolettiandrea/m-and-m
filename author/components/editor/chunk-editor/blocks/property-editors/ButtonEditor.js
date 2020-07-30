@@ -11,7 +11,7 @@ Vue.component('button-editor', {
                 <b-form-input v-model="buttonData.label"></b-form-input>
             </editor-field>
             
-            <background-editor :level="level+1" :backgroundData="buttonData.buttonBackgroundData"></background-editor>
+            <background-editor :level="level+1" :backgroundData="buttonData.buttonBackgroundData" :defaults="defaults.buttonBackgroundData"></background-editor>
             <border-editor :level="level+1" :borderData="buttonData.buttonBorderData" :defaults="defaults.buttonBorderData"></border-editor>
             <font-editor :level="level+1" :fontData="buttonData.labelFontData" :defaults="defaults.labelFontData"></font-editor>
             

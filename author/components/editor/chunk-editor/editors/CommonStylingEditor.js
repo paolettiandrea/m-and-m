@@ -3,7 +3,7 @@ Vue.component('common-styling-editor', {
         <div>
             <border-editor :borderData="commonData.borderData" :defaults="defaults.borderData" :level="level+1"></border-editor>
             
-            <background-editor :backgroundData="commonData.backgroundData" :level="level+1"></background-editor>
+            <background-editor :backgroundData="commonData.backgroundData" :level="level+1" :defaults="defaults.backgroundData"></background-editor>
             
             <editor-subpanel label="Spaziatura" :level="level+1">
                 <editor-field  label="Padding">

@@ -4,7 +4,7 @@ Vue.component('background-editor', {
             <editor-subpanel-terminal label="Sfondo" :level="level">
                 <editor-field label="Colore">
                     <defaulted-input-form :targetContainer="backgroundData" targetFieldName="backgroundColor" 
-                                            :defaultVal="selectedMissionDefaults.commonData.backgroundData.backgroundColor" inputType="color" label="Colore"></defaulted-input-form>
+                                            :defaultVal="defaults.backgroundColor" inputType="color" label="Colore"></defaulted-input-form>
                 </editor-field>
         </editor-subpanel-terminal>
         </div>
@@ -12,6 +12,7 @@ Vue.component('background-editor', {
 
     props: {
         backgroundData: null,
+        defaults: null,
         level: 0,
 
     },
