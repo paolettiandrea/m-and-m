@@ -1,7 +1,7 @@
 Vue.component('input-type-selector', {
     template: `
-        <div  v-if="inputTypes">
-            
+        <div v-if="inputTypes" class="type-selector">
+            <p class="editor-text editor-light-text type-selector-text">Aggiungi un input</p>
             <b-button-group style="width: 100%">
                     <b-button 
                         variant="outline-primary" 

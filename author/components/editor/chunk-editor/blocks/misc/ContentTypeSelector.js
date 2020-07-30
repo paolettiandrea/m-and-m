@@ -1,8 +1,8 @@
 
 Vue.component('content-type-selector', {
     template: `
-        <div  v-if="contentChunkTypes">
-            
+        <div  v-if="contentChunkTypes" class="type-selector">
+            <p class="editor-text editor-light-text type-selector-text">Aggiungi un contenuto</p>
             <b-button-group style="width: 100%" size="sm">
                     <slot name="button-prepend"></slot>
                     <b-button 

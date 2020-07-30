@@ -2,7 +2,7 @@ Vue.component('mission-displayer', {
     template: `
         <div align="center">
         <transition name="content-slide" mode="out-in">
-                <div class="activity-displayer-div" v-if="this.pointedActivity" :key="this.pointedActivity.uid">
+                <div v-if="this.pointedActivity" :key="this.pointedActivity.uid">
                     <activity-displayer :activityContent="this.pointedActivity" :defaults="this.missionData.defaults"
                                             @next:activity="handleNextActivity"></activity-displayer>
                 </div>

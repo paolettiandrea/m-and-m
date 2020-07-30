@@ -16,22 +16,20 @@ Vue.component('activity-preview', {
         </b-navbar>
            
             
-            <div class="full-flex vertical-scroll">
+            <div class="full-flex vertical-scroll activity-preview-container">
             
-            <div style="display: flex; flex-direction: column; justify-content: center; height: 100%">
-                <activity-displayer class="activity-displayer-div" :activity-content="activityData" :defaults="selectedMissionContent.defaults" 
-                        @content:chunk:clicked="contentChunkClicked" @input:clicked="inputClicked">
-                        
-                        
-                <template v-slot:last-content-chunk>
-                        <content-type-selector @content:type:selected="addContentChunk" ></content-type-selector>
-                </template>
-                
-                <template v-slot:input-placeholder>
-                    <input-type-selector @input:selected="setInputChunk"></input-type-selector>
-                </template>
-            </activity-displayer>
-            </div>
+                <div class="vertical-flex full-flex" style="justify-content: center; height: 100%; padding: 10px">
+                        <activity-displayer class="full-flex activity-preview" style="max-height: 500px;" :activity-content="activityData" :defaults="selectedMissionContent.defaults" 
+                                @content:chunk:clicked="contentChunkClicked" @input:clicked="inputClicked">
+                                
+                            <template v-slot:last-content-chunk>
+                                    <content-type-selector @content:type:selected="addContentChunk" ></content-type-selector>
+                            </template>
+                            <template v-slot:input-placeholder>
+                                <input-type-selector @input:selected="setInputChunk"></input-type-selector>
+                            </template>
+                        </activity-displayer>
+                </div>
    
                 
             

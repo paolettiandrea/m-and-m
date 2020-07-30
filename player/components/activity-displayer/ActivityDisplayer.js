@@ -1,6 +1,6 @@
 Vue.component("activity-displayer", {
     template: `
-        <div style="min-height: 20px; overflow-y: auto;">
+        <div class="activity-displayer-div" style="min-height: 20px; overflow-y: auto;">
             <!-- Content chunks  -->
             <div class="activity-displayer-chunk-container">
                 <slot name="inter" index="0"></slot>

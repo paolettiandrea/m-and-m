@@ -23,8 +23,9 @@ Vue.component('mission-editor', {
                     <b-dropdown-item href="#">
                         <b-button v-b-modal.modal-1><b-icon icon="upc-scan"></b-icon> QR Code</b-button>
                         
-                          <b-modal id="modal-1" title="BootstrapVue">
+                          <b-modal id="modal-1" title="QR Code">
                             <b-img :src="'/' + selectedMissionId + '/qrCode.svg'" fluid></b-img>
+                            <p class="editor-text"> Questo codice può essere inquadrato dal player per lanciare la missione.</p>
                           </b-modal>
                     </b-dropdown-item>
                 </b-nav-item-dropdown>

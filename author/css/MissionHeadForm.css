@@ -64,9 +64,3 @@ html, body {
 
 /* Activity editor */
 
-.activity-displayer-div {
-    margin: auto;
-    max-width: 400px;
-    width: 100%;
-    border: 1px solid black;
-}

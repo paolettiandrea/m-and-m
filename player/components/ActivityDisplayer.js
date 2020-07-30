@@ -1,8 +1,8 @@
 
 Vue.component("mission-displayer", {
     template: `
-        <div>
-        <transition name="content-slide" mode="out-in">
+        <div >
+        <transition name="content-slide" mode="out-in" >
             <div class="activity-displayer-div" v-if="this.pointedActivity" :key="this.pointedActivity.uid">
                 <activity-displayer :activityContent="this.pointedActivity"
                     @next:activity="handleNextActivity"></activity-displayer>
