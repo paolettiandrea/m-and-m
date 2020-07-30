@@ -9,6 +9,28 @@
       "textFontData": {
       },
 
+      "buttonData": {
+        "label": "Continua",
+        "labelFontData": {
+          "fontFamily": "Roboto",
+          "fontSize": "14px",
+          "fontColor": "#000000",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+          "textDecoration": "none",
+          "textAlign": "left"
+        },
+        "buttonBorderData": {
+          "borderWidth": "2px",
+          "borderRadius": "1px",
+          "borderColor": "#000000",
+          "borderStyle": "dotted"
+        },
+        "buttonBackgroundData": {
+          "backgroundColor": "black"
+        }
+      },
+
       "commonData": {
         "borderData": {
           "borderStyle": "hidden",

@@ -29,7 +29,6 @@ let MissionModule = {
         selectedMissionDefaults(state, getters) { return getters.selectedMissionContent.defaults },
 
         isSelectedMissionUpdated(state) {
-            console.log("sdaads", state.updatedMissionFlags);
             return state.updatedMissionFlags[state.selectedMissionId];
         },
 

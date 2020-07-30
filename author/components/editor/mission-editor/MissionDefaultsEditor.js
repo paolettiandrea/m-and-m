@@ -5,6 +5,7 @@ Vue.component('mission-defaults-editor', {
                 <font-editor :fontData="defaults.textFontData" :defaults="uberDefaults.textFontData"></font-editor>
             </editor-subpanel>
             <common-styling-editor :commonData="defaults.commonData" :defaults="uberDefaults.commonData"></common-styling-editor>
+            <button-editor :buttonData="defaults.buttonData" :defaults="uberDefaults.buttonData"></button-editor>
         </div>
     `,
 

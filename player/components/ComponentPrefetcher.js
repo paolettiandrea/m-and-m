@@ -11,6 +11,7 @@ import('./activity-displayer/input-components/CanvasDraw.js')
 import('./activity-displayer/input-components/ClickImg.js')
 import('./activity-displayer/input-components/MultipleCheckboxes.js')
 import('./activity-displayer/input-components/TextInsert.js')
+import('./activity-displayer/input-components/SimpleButton.js')
 
 
 

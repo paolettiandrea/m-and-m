@@ -1,11 +1,17 @@
 { 
   "inputTypes": [
     {
-      "type": "button",
+      "type": "simple-button",
       "title": "Bottone",
       "icon": "app",
       "data":{
-
+        "buttonData": {
+          "label": "Continua",
+          "labelFontData": {},
+          "buttonBorderData": {},
+          "buttonBackgroundData": {}
+        },
+        "outcome": {}
       }
     },
     {

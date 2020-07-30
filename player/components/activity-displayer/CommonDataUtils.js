@@ -13,6 +13,28 @@ const uberDefaults = {
         textDecoration: 'none',
         textAlign: 'left'
     },
+
+    buttonData: {
+        label: 'Continua',
+        labelFontData: {
+            fontFamily: "Roboto",
+            fontSize: "14px",
+            fontColor: "#000000",
+            fontStyle: 'normal',
+            fontWeight: 'normal',
+            textDecoration: 'none',
+            textAlign: 'left'
+        },
+        buttonBorderData: {
+            borderWidth: "2px",
+            borderRadius: "1px",
+            borderColor: "#000000",
+            borderStyle: "dotted"
+        },
+        buttonBackgroundData: {
+            backgroundColor: 'black'
+        }
+    },
     // Styling data for the container common to every content/input
     commonData: {
         borderData: {
@@ -69,47 +91,77 @@ function buildDefaultObject(defaults, uberDefaults) {
     return obj;
 }
 
-
-
-function buildFontStyle(fontData, fontDefaults) {
-    var obj = {
-        fontFamily: buildStyle([fontData.fontFamily, fontDefaults.fontFamily, uberDefaults.textFontData.fontFamily]),
-        fontSize: buildStyle([fontData.fontSize, fontDefaults.fontSize, uberDefaults.textFontData.fontSize]),
-        color: buildStyle([fontData.fontColor, fontDefaults.fontColor, uberDefaults.textFontData.fontColor]),
-        fontStyle: buildStyle([fontData.fontStyle, fontDefaults.fontStyle, uberDefaults.textFontData.fontStyle]),
-        fontWeight: buildStyle([fontData.fontWeight, fontDefaults.fontWeight, uberDefaults.textFontData.fontWeight]),
-        textDecoration: buildStyle([fontData.fontDecoration, fontDefaults.fontDecoration, uberDefaults.textFontData.fontDecoration]),
-        textAlign: buildStyle([fontData.fontAlignment, fontDefaults.fontAlignment, uberDefaults.textFontData.fontAlignment])};      // TODO defaults
+function buildCompositeStyle(data, defs, uberDefs, fields) {
+    let obj = {}
+    for (const style in fields) {
+        let fieldName = fields[style];
+        obj[style] = buildStyle([data[fieldName] || defs[fieldName] || uberDefs[fieldName]])
+    }
     return obj;
 }
 
-function buildBorderStyle(borderData, borderDefaults) {
+function buildFontStyle(fontData, fontDefaults, uberDefs) {
+    return buildCompositeStyle(fontData, fontDefaults, uberDefs, {
+        fontFamily: 'fontFamily',
+        fontSize: 'fontSize',
+        color: 'fontColor',
+        fontStyle: 'fontStyle',
+        fontWeight: 'fontWeight',
+        textDecoration: 'fontDecoration',
+        textAlign: 'fontAlignment'})}
+
+function buildFontData(fontData, fontDefaults, uberDefs) {
+    return buildCompositeStyle(fontData, fontDefaults, uberDefs, {
+        fontFamily: 'fontFamily',
+        fontSize: 'fontSize',
+        color: 'fontColor',
+        fontStyle: 'fontStyle',
+        fontWeight: 'fontWeight',
+        fontDecoration: 'fontDecoration',
+        fontAlignment: 'fontAlignment'})}
+
+function buildBorderStyle(borderData, borderDefaults, uberDefs) {
+    return buildCompositeStyle(borderData, borderDefaults, uberDefs, {
+        borderColor: 'borderColor' ,
+        borderWidth: 'borderWidth',
+        borderStyle: 'borderStyle',
+        borderRadius: 'borderRadius'
+    })}
+
+function buildWrapperStyle(commonData, commonDefaults, uberDefs) {
     return {
-        borderWidth: borderData.borderWidth || borderDefaults.borderWidth,
-        borderColor: borderData.borderColor || borderDefaults.borderColor,
-        borderStyle: borderData.borderStyle || borderDefaults.borderStyle,
-        borderRadius: borderData.borderRadius || borderDefaults.borderRadius
+        ...buildBorderStyle(commonData.borderData, commonDefaults.borderData, uberDefs.borderData),
+        ...buildSpacingStyle(commonData.spacingData, commonDefaults.spacingData, uberDefs.spacingData),
+        ...buildBackgroundData(commonData.backgroundData, commonDefaults.backgroundData, uberDefs.backgroundData)
     }
 }
 
-function buildSpacingStyle(spacingData, spacingDefaults) {
+function buildSpacingStyle(spacingData, spacingDefaults, uberDefs) {
     return {
-        paddingTop: spacingData.padding.top || spacingDefaults.padding.top,
-        paddingBottom: spacingData.padding.bottom || spacingDefaults.padding.bottom,
-        paddingRight: spacingData.padding.right || spacingDefaults.padding.right,
-        paddingLeft: spacingData.padding.left || spacingDefaults.padding.left,
-        marginTop: spacingData.margin.top || spacingDefaults.margin.top,
-        marginBottom: spacingData.margin.bottom || spacingDefaults.margin.bottom,
-        marginRight: spacingData.margin.right || spacingDefaults.margin.right,
-        marginLeft: spacingData.margin.left || spacingDefaults.margin.left,
+        paddingTop: spacingData.padding.top || spacingDefaults.padding.top || uberDefs.padding.top,
+        paddingBottom: spacingData.padding.bottom || spacingDefaults.padding.bottom || uberDefs.padding.bottom,
+        paddingRight: spacingData.padding.right || spacingDefaults.padding.right || uberDefs.padding.right,
+        paddingLeft: spacingData.padding.left || spacingDefaults.padding.left || uberDefs.padding.left,
+        marginTop: spacingData.margin.top || spacingDefaults.margin.top || uberDefs.margin.top,
+        marginBottom: spacingData.margin.bottom || spacingDefaults.margin.bottom || uberDefs.margin.bottom,
+        marginRight: spacingData.margin.right || spacingDefaults.margin.right || uberDefs.margin.right,
+        marginLeft: spacingData.margin.left || spacingDefaults.margin.left || uberDefs.margin.left,
     }
 }
 
-// TODO background style
-
-function buildBackgroundData(backgroundData, backgroundDefaults) {
+function buildBackgroundData(backgroundData, backgroundDefaults, uberDefaults) {
     return {
-        backgroundColor: backgroundData.backgroundColor || backgroundDefaults.backgroundColor,
+        backgroundColor: backgroundData.backgroundColor || backgroundDefaults.backgroundColor || uberDefaults.backgroundColor
+    }
+}
+
+
+function buildButtonData(buttonData, buttonDefs, uberDefs) {
+    return {
+        label: buildStyle([buttonData.label, buttonDefs.label, uberDefs.label]),
+        buttonBackgroundData: buildBackgroundData(buttonData.buttonBackgroundData, buttonDefs.buttonBackgroundData, uberDefs.buttonBackgroundData),
+        labelFontData: buildFontData(buttonData.labelFontData, buttonDefs.labelFontData, uberDefs.labelFontData),
+        buttonBorderData: buildBorderStyle(buttonData.buttonBorderData, buttonDefs.buttonBorderData, uberDefs.buttonBorderData),
     }
 }
 
@@ -127,6 +179,5 @@ function mergeStyleData(styleDataArray) {
             }
         }
     }
-    console.log(obj);
     return obj;
 }
