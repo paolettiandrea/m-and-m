@@ -166,6 +166,10 @@ const store = new Vuex.Store({
             state.activityClickedCallback = callback;
         },
 
+        deleteActivityClickedCallback(state) {
+            state.activityClickedCallback = null;
+        },
+
         // Activity chunk management ----------------------------------------------------------------------------------
 
         setSelectedActivityChunk(state, chunkIndex) { state.selectedContentIndex = chunkIndex; },

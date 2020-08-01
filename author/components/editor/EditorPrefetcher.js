@@ -14,6 +14,7 @@ import('./chunk-editor/blocks/containers/EditorField.js')
 import('./chunk-editor/blocks/containers/EditorSubPanel.js')
 import('./chunk-editor/blocks/custom-forms/InputOutcomeEditor.js')
 import('./chunk-editor/blocks/custom-forms/ResourceForm.js')
+import('./chunk-editor/blocks/custom-forms/ActivityPicker.js')
 
 import('./chunk-editor/blocks/custom-forms/DefaultedInputForms.js')
 

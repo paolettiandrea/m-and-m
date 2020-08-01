@@ -6,6 +6,8 @@ let MissionModule = {
 
         // A flag for each mission false when there are local modifications that need to be updated to the server
         updatedMissionFlags: {},
+
+        pickingActivityMode: false
     }),
 
     getters: {
@@ -36,6 +38,10 @@ let MissionModule = {
             return state.activeMissions;
         },
 
+        isPickingActivity(state) {
+            return state.pickingActivityMode;
+        }
+
 
     },
 
@@ -61,6 +67,14 @@ let MissionModule = {
         setUpdatedMissionFlag(state, [missionId, val]) { Vue.set(state.updatedMissionFlags, missionId, val); },
 
         setSelectedMissionAsUpdated(state) { state.updatedMissionFlags[state.selectedMissionId] = true },
+
+        pickActivity(state) {
+            state.pickingActivityMode = true;
+        },
+
+        cancelPickActivity(state) {
+            state.pickingActivityMode = false;
+        }
     },
 
     actions: {
@@ -132,6 +146,14 @@ let MissionModule = {
 
         setUpdatedMissionFlag(context, [missionId, val]) { context.commit('setUpdatedMissionFlag', [missionId, val])},
 
+        activityClickCallback(context, id) {
+            if (id===null) {
+                // Clicked blank canvas
+            } else {
+
+                context.dispatch('selectActivity', id);
+            }
+        }
     }
 }
 

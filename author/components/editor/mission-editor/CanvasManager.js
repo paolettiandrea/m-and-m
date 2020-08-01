@@ -71,6 +71,9 @@ function getNextOutcomesFromActivity(activity) {
             }
         }
     }
+
+    recursiveFindFromKey('outcome', activity.inputComponent, res);
+
     return res;
 }
 
@@ -192,7 +195,8 @@ export class CanvasManager {
         })
 
         this.graph.on('canvas:click', e => {
-            if (this.store.getters.isActivitySelected) { this.store.dispatch('deselectActivity'); }
+            if (this.store.state.activityClickedCallback) this.store.commit('deleteActivityClickedCallback')
+            else if (this.store.getters.isActivitySelected) { this.store.dispatch('deselectActivity'); }
 
         })
 

@@ -11,7 +11,10 @@
           "buttonBorderData": {},
           "buttonBackgroundData": {}
         },
-        "outcome": {}
+        "outcome": {
+          "outcomeType": "next",
+          "nextActivityId": ""
+        }
       }
     },
     {
