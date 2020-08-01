@@ -1,5 +1,5 @@
 Vue.component('modeled-button', {
-    template: `<b-button :style="buttonStyle">{{buttonData.label}}</b-button>`,
+    template: `<b-button @click="onClick" :style="buttonStyle">{{buttonData.label}}</b-button>`,
     props: {
         buttonData: { required: true },
         buttonDefaults: { required: true }
@@ -12,12 +12,18 @@ Vue.component('modeled-button', {
                 buildBackgroundData(this.buttonData.buttonBackgroundData, this.buttonDefaults.buttonBackgroundData, uberDefaults.buttonData.buttonBackgroundData),
             ])
         }
+    },
+
+    methods: {
+        onClick() {
+            this.$emit('click')
+        }
     }
 })
 
 Vue.component('simple-button', {
     template: `
-        <modeled-button :buttonData="inputData.buttonData" :buttonDefaults="defaults.buttonData"></modeled-button>
+        <modeled-button @click="buttonClicked" :buttonData="inputData.buttonData" :buttonDefaults="defaults.buttonData"></modeled-button>
     `,
 
     props: {
@@ -27,5 +33,10 @@ Vue.component('simple-button', {
 
     computed: {
 
+    },
+    methods: {
+        buttonClicked() {
+            this.$emit('input-received', this.inputData.outcome)
+        }
     }
 })

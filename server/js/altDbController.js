@@ -41,7 +41,7 @@ async function getMissionHeadsList() {
 async function getMissionContent(uid) {
     return new Promise((resolve) => {
         fs.readFile(missionContentFile(uid), 'utf-8', (err, missionContent) => {
-            if (err) throw err;
+            if (err) resolve (err);
             resolve(missionContent);
         } )
     });

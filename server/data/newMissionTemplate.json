@@ -57,6 +57,12 @@
         }
       }
     },
-    "activities": {}
+    "activities": {
+      "initial": {
+        "title": "Attività iniziale",
+        "content": [],
+        "uuid": "initial"
+      }
+    }
   }
 }

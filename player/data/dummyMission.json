@@ -5,9 +5,9 @@
       "fontSize": "30px"
     }
   },
-  "activityList": [
-    {
-      "uid": "1",
+  "activities": {
+    "initial": {
+      "uuid": "initial",
       "content": [
         {
           "contentType": "text-displayer",
@@ -61,8 +61,8 @@
 
 
 
-    {
-      "uid": "2",
+    "1": {
+      "uuid": "1",
       "content": [
         {
           "contentType": "text-displayer",
@@ -77,7 +77,7 @@
     }
 
 
-  ]
+  }
 }
 
 

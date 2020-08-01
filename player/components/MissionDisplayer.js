@@ -2,7 +2,7 @@ Vue.component('mission-displayer', {
     template: `
         <div align="center">
         <transition name="content-slide" mode="out-in">
-                <div v-if="this.pointedActivity" :key="this.pointedActivity.uid">
+                <div v-if="this.pointedActivity" :key="this.pointedActivity.uuid">
                     <activity-displayer :activityContent="this.pointedActivity" :defaults="this.missionData.defaults"
                                             @next:activity="handleNextActivity"></activity-displayer>
                 </div>
@@ -30,31 +30,45 @@ Vue.component('mission-displayer', {
         nextActivity() {
             // Funzione temporanea che cambia la pointedActivity a quella successiva nella lista contenuta in missionData
             this.pointedIndex++;
-            if (this.pointedIndex >= this.missionData.activityList.length) { this.pointedIndex = 0; }
-            this.pointedActivity = this.missionData.activityList[this.pointedIndex];
+            if (this.pointedIndex >= this.missionData.activities.length) { this.pointedIndex = 0; }
+            this.pointedActivity = this.missionData.activities[this.pointedIndex];
         },
 
         handleNextActivity(nextMissionId) {
-            var i = 0;
-            for (const activity of this.missionData.activityList) {
-                if (activity.uid===nextMissionId) {
-                    this.pointedActivity = activity;
-                    this.pointedIndex = i;
-                    return;
-                }
-                i++;
-            }
+            this.pointedActivity =  this.missionData.activities[nextMissionId];
+            // var i = 0;
+            // for (const activity of this.missionData.activities) {
+            //     if (activity.uid===nextMissionId) {
+            //         this.pointedActivity = activity;
+            //         this.pointedIndex = i;
+            //         return;
+            //     }
+            //     i++;
+            // }
         }
     },
 
     mounted() {
-        axios.
-        get("/player/data/dummyMission.json").
-        then(res => {
-            console.log(res);
-            this.missionData = res.data;
+        let uri = window.location.search.substring(1);
+        let params = new URLSearchParams(uri);
+        let missionId = params.get("missionId")
+        if (missionId) {
+            axios.
+            get("/missions/content/" + missionId).
+            then(res => {
+                this.missionData = JSON.parse(res.data);
+                this.pointedActivity = this.missionData.activities.initial;
+            })
+        } else {
+            axios.
+            get("/player/data/dummyMission.json").
+            then(res => {
+                this.missionData = res.data;
+                this.pointedActivity = this.missionData.activities.initial;
+            })
+        }
 
-            this.pointedActivity = this.missionData.activityList[this.pointedIndex];
-        })
+
+
     },
 })

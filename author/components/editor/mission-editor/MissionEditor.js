@@ -11,6 +11,9 @@ Vue.component('mission-editor', {
                 <b-button  v-on:click="updateSelectedMission" :disabled="isMissionUpdated"  variant="secondary-primary">
                     <b-icon icon="cloud-upload" aria-hidden="true"></b-icon>
                 </b-button>
+                <b-button @click="playMission"> 
+                    <b-icon icon="play"></b-icon> 
+                </b-button>
                 <b-nav-item-dropdown right variant="primary">
                     <template slot="button-content">
                         <b-icon icon="gear"></b-icon>
@@ -67,6 +70,9 @@ Vue.component('mission-editor', {
         activitySelectionCallback(selectedActivity) {
             this.selectedActivity = selectedActivity;
             this.$store.commit('selectActivity', selectedActivity.uuid);        // TODO bind directly to this (maybe)
+        },
+        playMission() {
+            window.location.href = '/player?missionId=' + this.selectedMissionId
         }
     },
 
