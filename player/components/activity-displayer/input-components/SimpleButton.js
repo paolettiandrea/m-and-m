@@ -6,11 +6,7 @@ Vue.component('modeled-button', {
     },
     computed: {
         buttonStyle() {
-            return mergeStyleData([
-                buildBorderStyle(this.buttonData.buttonBorderData, this.buttonDefaults.buttonBorderData, uberDefaults.buttonData.buttonBorderData),
-                buildFontStyle(this.buttonData.labelFontData, this.buttonDefaults.labelFontData, uberDefaults.buttonData.labelFontData),
-                buildBackgroundData(this.buttonData.buttonBackgroundData, this.buttonDefaults.buttonBackgroundData, uberDefaults.buttonData.buttonBackgroundData),
-            ])
+            return buildButtonStyle(this.buttonData, this.buttonDefaults, uberDefaults.buttonData);
         }
     },
 

@@ -33,7 +33,12 @@
       "description": "Riproduce un suono o una canzone",
       "data": {
         "audioResourceData": {
-          "url": "http://soundbible.com/mp3/Air Plane Ding-SoundBible.com-496729130.mp3"
+          "url": "http://soundbible.com/grab.php?id=1815&type=mp3"
+        },
+        "buttonData": {
+          "labelFontData": {},
+          "buttonBorderData": {},
+          "buttonBackgroundData": {}
         }
       }
     }

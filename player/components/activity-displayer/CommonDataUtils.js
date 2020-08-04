@@ -165,6 +165,15 @@ function buildButtonData(buttonData, buttonDefs, uberDefs) {
     }
 }
 
+
+function buildButtonStyle(buttonData, buttonDefs, uberDefs) {
+    return mergeStyleData([
+        buildBorderStyle(buttonData.buttonBorderData, buttonDefs.buttonBorderData, uberDefs.buttonBorderData),
+        buildFontStyle(buttonData.labelFontData, buttonDefs.labelFontData, uberDefs.labelFontData),
+        buildBackgroundData(buttonData.buttonBackgroundData, buttonDefs.buttonBackgroundData, uberDefs.buttonBackgroundData),
+    ])
+}
+
 // Permette di unire dui oggetti conteneti informazioni di stile, permettendo di passarli entrambi a un costrutto :style="..."
 function mergeStyleData(styleDataArray) {
     let obj = {};

@@ -26,8 +26,7 @@ app.use(bodyParser.json());                  // using bodyParser to parse JSON b
 app.use(fileUpload({debug: true}));
 
 app.use(express.static(path.join(__dirname, './public')));
-app.use(express.static(path.join(__dirname, './data/resources')))
-app.use(express.static(path.join(__dirname, './data/missions')))
+app.use(express.static(dbController.missionsDir))
 
 app.use('/player', express.static(path.join(__dirname, '../player')));
 app.use('/author', express.static(path.join(__dirname, '../author')));

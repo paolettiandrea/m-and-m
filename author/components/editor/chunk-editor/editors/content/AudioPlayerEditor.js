@@ -3,6 +3,8 @@ Vue.component('audio-player-editor', {
         <div >
             <resource-form resCategory="audio" :resourceData="contentData.audioResourceData" ></resource-form>
             
+            <button-editor :buttonData="contentData.buttonData" :defaults="selectedMissionDefaults.buttonData" :iconLabel="true"></button-editor>
+
         
         
         </div>
@@ -10,5 +12,9 @@ Vue.component('audio-player-editor', {
     `,
     props: {
         contentData: null
+    },
+
+    computed: {
+        ... Vuex.mapGetters(['selectedMissionDefaults'])
     }
 })

@@ -122,5 +122,7 @@ module.exports = {
     updateMission,
     getMissionContent,
     deleteDbDir,
-    initializeDb
+    initializeDb,
+
+    missionsDir
 }

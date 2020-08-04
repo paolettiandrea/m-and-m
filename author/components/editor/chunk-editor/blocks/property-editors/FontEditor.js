@@ -8,7 +8,7 @@ Vue.component('font-editor', {
             :level="level"
             >
             
-            <editor-field label="Famiglia">
+            <editor-field label="Famiglia" v-if="!iconLabel">
                 <defaulted-dropdown :style="{fontFamily: fontData.fontFamily}" :options="fontDB.fontOrderArray"
                                     :targetContainer="fontData" targetFieldName="fontFamily" 
                                     :defaultVal="defaults.fontFamily">
@@ -23,7 +23,7 @@ Vue.component('font-editor', {
                     :possibleUnits='["px", "cm", "mm", "Q", "in", "pc", "pt", "em", "ex", "%"]' :defaultVal="defaults.fontSize"></defaulted-input-form-unit>
             </editor-field>
             
-            <editor-field label="Stile">
+            <editor-field label="Stile" v-if="!iconLabel">
                 <font-style-editor :fontData="fontData" :defaults="defaults"></font-style-editor>
             </editor-field>
 
@@ -47,7 +47,9 @@ Vue.component('font-editor', {
             type: Number,
             default: 0
         },
-        defaults: null
+        defaults: null,
+
+        iconLabel: { default: false }
     },
 
     computed: {
