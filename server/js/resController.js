@@ -1,14 +1,17 @@
 const uuid = require('uuid');
 const utils = require('./Utils.js')
+const fs = require('fs')
 
-const RES_DIR = "data/resources/";
+const RES_DIR = "./data/missions/";
 const RES_REGISTER = "resRegister.json";
 
 // TODO json register concurrent issue: if a uploadRes follows a deleteRes the uploadRes could read the register file before the deleteRes has wrote it.
 // A possible solution would be a sobstituteRes or a different reg file for every resource
 
+
+
 function getMissionDir(missionId) {
-    return RES_DIR + missionId;
+    return RES_DIR + missionId + /resources/;
 }
 
 function getRegisterPath(missionId) {
@@ -16,15 +19,12 @@ function getRegisterPath(missionId) {
 }
 
 function addResourceDir(missionId) {
-    // fs.mkdir(getMissionDir(missionId), (err) => {
-    //     if (err) throw err;
-    // });
-
-    // fs.writeFile(getRegisterPath(missionId), JSON.stringify({ resources: {} }, null, 4), function (err) {
-    //     if (err) throw err;
-    //
-    // });
+    fs.mkdir(getMissionDir(missionId), (err) => {
+        if (err) throw err;
+    });
 }
+
+
 
 function removeResourceDir(missionId) {
     utils.deleteFolderRecursive(getMissionDir(missionId));
@@ -42,14 +42,11 @@ function addResource(missionId, file) {
     }
 
     let newResData = {
-        relPath: missionId + '/' + fileName,
-        path: getMissionDir(missionId) + '/' + fileName,
+        resId: fileName,
         originalName: file.name,
-        fileName: fileName,
-        uses: 1
     }
 
-    fs.writeFile(newResData.path, file.data, (err => {
+    fs.writeFile(getMissionDir(missionId) + fileName, file.data, (err => {
         if (err) throw err;
     }))
 

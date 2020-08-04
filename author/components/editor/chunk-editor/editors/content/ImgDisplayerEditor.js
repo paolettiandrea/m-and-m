@@ -1,7 +1,7 @@
 Vue.component('img-displayer-editor', {
     template: `
         <div >
-            <resource-form :resData="contentData.imgResData" defaultResource="/common/img_placeholder.png"></resource-form>
+            <resource-form :resourceData="contentData.imgResData" defaultResource="/common/img_placeholder.png"></resource-form>
             
             <b-button-group>
                 <b-button variant="outline-primary"><b-icon icon="text-left" ></b-icon></b-button>

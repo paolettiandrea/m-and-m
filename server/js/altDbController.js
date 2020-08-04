@@ -77,6 +77,9 @@ async function newMission() {
                 var qr_code = qr.image(new_id, { type: 'svg'})
                 qr_code.pipe(fs.createWriteStream(path.join(missionPath, missionQrCodeFileName)));
                 fs.writeFile(path.join(missionPath, missionContentFileName), JSON.stringify(newMissionTemplate.missionContent, null, 2), (err) => { if (err) resolve(err); else resolve({yo:"adad"})})
+
+                // fs.mkdir(missionPath + '/resources/', {recursive: true}, (err) => {
+                //     if (err) resolve(err);})
             })
         }))
     })

@@ -8,7 +8,6 @@
     "defaults": {
       "textFontData": {
       },
-
       "buttonData": {
         "label": "Continua",
         "labelFontData": {
@@ -22,15 +21,14 @@
         },
         "buttonBorderData": {
           "borderWidth": "2px",
-          "borderRadius": "1px",
+          "borderRadius": "5px",
           "borderColor": "#000000",
-          "borderStyle": "dotted"
+          "borderStyle": "solid"
         },
         "buttonBackgroundData": {
-          "backgroundColor": "black"
+          "backgroundColor": "#ffffff"
         }
       },
-
       "commonData": {
         "borderData": {
           "borderStyle": "hidden",
@@ -63,6 +61,7 @@
         "content": [],
         "uuid": "initial"
       }
-    }
+    },
+    "usedResources": { }
   }
 }

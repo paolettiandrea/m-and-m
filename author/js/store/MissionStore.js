@@ -74,7 +74,9 @@ let MissionModule = {
 
         cancelPickActivity(state) {
             state.pickingActivityMode = false;
-        }
+        },
+
+
     },
 
     actions: {
@@ -153,7 +155,13 @@ let MissionModule = {
 
                 context.dispatch('selectActivity', id);
             }
+        },
+
+        addUsedResource(context, resourceData) {
+            context.getters.selectedMissionContent.usedResources[resourceData.resId] = resourceData;
         }
+
+
     }
 }
 

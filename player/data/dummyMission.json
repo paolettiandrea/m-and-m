@@ -17,6 +17,15 @@
           }
         },
         {
+          "type": "audio-player",
+          "title": "Suono",
+          "icon": "play",
+          "description": "Riproduce un suono o una canzone",
+          "data": {
+            "url": "http://soundbible.com/mp3/Air Plane Ding-SoundBible.com-496729130.mp3"
+          }
+        },
+        {
           "contentType": "img-displayer",
           "contentData": {
             "url": "M&M.jpeg",

@@ -32,6 +32,7 @@ Vue.component('mission-displayer', {
             this.pointedIndex++;
             if (this.pointedIndex >= this.missionData.activities.length) { this.pointedIndex = 0; }
             this.pointedActivity = this.missionData.activities[this.pointedIndex];
+
         },
 
         handleNextActivity(nextMissionId) {

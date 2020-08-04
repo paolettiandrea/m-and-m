@@ -5,6 +5,7 @@ import('./activity-displayer/content-components/ImgDisplayer.js')
 import('./activity-displayer/content-components/VideoDisplayer.js')
 import('./activity-displayer/content-components/TextDisplayer.js')
 import('./activity-displayer/content-components/CardDisplayer.js')
+import('./activity-displayer/content-components/AudioPlayer.js')
 
 // Input components
 import('./activity-displayer/input-components/CanvasDraw.js')

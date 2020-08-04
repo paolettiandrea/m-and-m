@@ -20,10 +20,21 @@
       "description": "Mostra un'immagine.",
       "data": {
         "imgResData": {
-          "url": "",
-          "originalTitle": ""
+          "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png"
         },
         "alignment": "center"
+      }
+    },
+
+    {
+      "type": "audio-player",
+      "title": "Suono",
+      "icon": "play",
+      "description": "Riproduce un suono o una canzone",
+      "data": {
+        "audioResourceData": {
+          "url": "http://soundbible.com/mp3/Air Plane Ding-SoundBible.com-496729130.mp3"
+        }
       }
     }
   ]

@@ -29,6 +29,7 @@ import('./chunk-editor/editors/CommonStylingEditor.js')
 import('./chunk-editor/editors/JSONEditor.js')
 import('./chunk-editor/editors/content/TextDisplayerEditor.js')
 import('./chunk-editor/editors/content/ImgDisplayerEditor.js')
+import('./chunk-editor/editors/content/AudioPlayerEditor.js')
 import('./chunk-editor/editors/input/TextInsertEditor.js')
 import('./chunk-editor/editors/input/SimpleButtonEditor.js')
 
