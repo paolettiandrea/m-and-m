@@ -65,6 +65,7 @@ const store = new Vuex.Store({
 
         selectActivity(context, activityId) {
             context.commit('setSelectedActivity', activityId);
+            context.state.canvas.activitySelectedCallback(context.getters.selectedActivity)
         },
         deselectActivity(context) {
             context.commit('setSelectedActivity', null);

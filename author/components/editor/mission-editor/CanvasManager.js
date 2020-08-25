@@ -24,8 +24,20 @@ function buildActivityNodeData(activity) {
         anchorPoints: [
             [0.5, 0],
             [0.5, 1],
-        ]
+        ],
+
+        style: {
+            fill: '#fff'
+        }
     }
+}
+
+function buildSelectedActivityNodeData(activity) {
+    var obj = buildActivityNodeData(activity);
+    obj.style = {
+        fill: '#000'
+    }
+    return obj;
 }
 
 function buildActivityEdgeData(activity, edgeArray) {
@@ -150,6 +162,7 @@ export class CanvasManager {
     constructor(settings, store) {
         this.callbacks = settings.callbacks;
         this.store = store;
+        this.selectedActivity = '';
         this.graph = new G6.Graph({
             container: settings.mountId, // String | HTMLElement, required, the id of DOM element or an HTML node
             width: 800, // Number, required, the width of the graph
@@ -190,13 +203,22 @@ export class CanvasManager {
 
         // On click retrieve the corresponding activity and trigger a selection callback
         this.graph.on('node:click', e => {
-            if (this.store.state.activityClickedCallback) this.store.state.activityClickedCallback(e.item._cfg.id);
-            else this.store.dispatch('selectActivity', e.item._cfg.id);
+            let id = e.item._cfg.id;
+            if (this.store.state.activityClickedCallback) {this.store.state.activityClickedCallback(id)}
+            else {
+                this.store.dispatch('selectActivity', id)
+            }
         })
 
         this.graph.on('canvas:click', e => {
             if (this.store.state.activityClickedCallback) this.store.commit('deleteActivityClickedCallback')
-            else if (this.store.getters.isActivitySelected) { this.store.dispatch('deselectActivity'); }
+            else if (this.store.getters.isActivitySelected) { this.store.dispatch('deselectActivity');
+                if (this.selectedActivity) {
+                    let deselectedActivity = this.selectedActivity;
+                    this.selectedActivity = null;
+                    this.updateActivityNode(deselectedActivity)
+                }
+            }
 
         })
 
@@ -206,7 +228,6 @@ export class CanvasManager {
         })
 
         this.graph.on()
-
         this.graph.render(); // Render the graph
     }
 
@@ -221,8 +242,17 @@ export class CanvasManager {
 
     updateActivityNode(activity) {
         let targetNode = this.graph.findById(activity.uuid);
-        let nodeData = buildActivityNodeData(activity);
+        let nodeData = (this.selectedActivity && activity.uuid===this.selectedActivity.uuid)
+                                ? buildSelectedActivityNodeData(activity)
+                                : buildActivityNodeData(activity);
         this.graph.updateItem(targetNode, nodeData);
+    }
+
+    activitySelectedCallback(activity) {
+        let prevSelectedActivity = this.selectedActivity;
+        this.selectedActivity = activity;
+        this.updateActivityNode(this.selectedActivity)
+        if (prevSelectedActivity) this.updateActivityNode(prevSelectedActivity)
     }
 
     // Adds a new edge to the canvas returning its unique id (allowing for retrieval later)
