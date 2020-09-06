@@ -5,15 +5,24 @@
       "fontSize": "30px"
     }
   },
-  "activityList": [
-    {
-      "uid": "1",
+  "activities": {
+    "initial": {
+      "uuid": "initial",
       "content": [
         {
           "contentType": "text-displayer",
           "contentData": {
             "text": "Sono un primo paragrafo testuale, bla bla bla **BLA**.",
             "fontData": {}
+          }
+        },
+        {
+          "type": "audio-player",
+          "title": "Suono",
+          "icon": "play",
+          "description": "Riproduce un suono o una canzone",
+          "data": {
+            "url": "http://soundbible.com/mp3/Air Plane Ding-SoundBible.com-496729130.mp3"
           }
         },
         {
@@ -61,8 +70,8 @@
 
 
 
-    {
-      "uid": "2",
+    "1": {
+      "uuid": "1",
       "content": [
         {
           "contentType": "text-displayer",
@@ -77,7 +86,7 @@
     }
 
 
-  ]
+  }
 }
 
 

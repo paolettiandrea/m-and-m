@@ -1,8 +1,7 @@
 Vue.component("activity-displayer", {
     template: `
-        <div>
+        <div class="activity-displayer-div" style="min-height: 20px; overflow-y: auto;">
             <!-- Content chunks  -->
-              
             <div class="activity-displayer-chunk-container">
                 <slot name="inter" index="0"></slot>
                 <div  v-for="(contentChunk, index) of this.activityContent.content" >
@@ -35,10 +34,13 @@ Vue.component("activity-displayer", {
                                  data object inputData as the prop "data" (every input component needs to have 
                                  a data prop that it can use to retrieve all the data needed to define its behaviour)-->
             <div v-if="activityContent.inputComponent" v-on:click="inputClicked">
-                <component  :is="activityContent.inputComponent.inputType" 
-                            :inputData="activityContent.inputComponent.inputData" 
-                            :defaults="defaults"
-                            @input-received="handleInputReceived" ></component>
+                <styling-wrapper :stylingData="activityContent.inputComponent.commonData" :stylingDefaults="defaults.commonData">
+
+                    <component  :is="activityContent.inputComponent.inputType" 
+                                :inputData="activityContent.inputComponent.inputData" 
+                                :defaults="defaults"
+                                @input-received="handleInputReceived" ></component>
+                </styling-wrapper>
             </div>
             <div v-else>
                 <slot name="input-placeholder"></slot>
@@ -58,6 +60,12 @@ Vue.component("activity-displayer", {
         return {
             popupContent: null,
             popupVisible: false
+        }
+    },
+
+    computed: {
+        compoundDefaults() {
+            return buildDefaultObject(this.defaults, uberDefaults);
         }
     },
 
@@ -101,7 +109,7 @@ Vue.component('styling-wrapper', {
     computed: {
         wrapperStyle() {
             if (this.stylingData!==undefined) {
-                return buildBorderStyle(this.stylingData.borderData, this.stylingDefaults.borderData);
+                return buildWrapperStyle(this.stylingData, this.stylingDefaults, uberDefaults.commonData)
             } else { return {}}
         }
     }

@@ -3,8 +3,8 @@
     --primary-base-hue: 353;
     /*Greys*/
     --darkest-grey: hsl(215, 5%, 5%);
-    --dark-grey:    hsl(215, 5%, 10%);
-    --grey:         hsl(215, 5%, 50%);
+    --dark-grey: hsl(240, 4%, 11%);
+    --grey: hsl(214, 3%, 59%);
     --light-grey:   hsl(215, 5%, 70%);
     --lightest-grey:hsl(215, 5%, 90%);
 
@@ -65,13 +65,62 @@
     padding: 10px 10px;
 }
 
+.subpanel-group {
+    margin-bottom: 0px;
+}
+
+.editor-button {
+    background-color: var(--lightest-grey);
+    border-color: var(--light-grey);
+    color: var(--grey);
+    font-weight: bold;
+}
+
+
+.editor-button.active {
+    color: var(--dark-grey);
+}
+.subpanel-button {
+    margin-bottom: 5px;
+    opacity: 60%;
+}
+
+.subpanel-button.active {
+
+    opacity: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
 .editor-text {
     font-family: "Roboto Mono", monospace;
     color: #3d3d3d;
 }
+.editor-font {
+    font-family: "Roboto Mono", monospace;
+
+}
+
+.editor-light-text {
+    font-size: 13px;
+    color: var(--light-grey);
+}
+
+
+
+.no-margin {
+    margin: 0;
+}
+
+.no-vertical-padding {
+    padding-top: 0;
+    padding-bottom: 0;
+}
 
 .editor-subpanel-slot {
-    padding-left: 10px;
+
 }
 
 
@@ -98,6 +147,85 @@
 .content-panel-transition-enter, .content-panel-transition-leave-to {
     flex-grow: 0;
     opacity: 0;
+}
+
+.full-height{
+    height: 100%;
+}
+
+.vertical-flex {
+    display: flex;
+    flex-flow: column;
+}
+
+.full-flex {
+    flex: 1 1 auto;
+}
+
+.horizontal-flex {
+    display: flex;
+    flex-flow: row;;
+}
+
+
+
+.quad-single-field {
+    max-width: 80px;
+}
+
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.reset-button {
+    background-color: transparent;
+    border:none;
+    color: var(--light-grey);
+}
+
+.reset-button.disabled:hover {
+    background-color: transparent;
+    border:none;
+    color: transparent;
+}
+.reset-button.disabled {
+    background-color: transparent;
+    border:none;
+    color: transparent;
+}
+
+.reset-button:hover {
+    background-color: transparent;
+    border:none;
+    color: var(--grey);
+}
+
+
+
+.type-selector-text {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.type-selector {
+    margin: 10px
+}
+
+.activity-preview-container {
+    background-color: var(--lightest-grey);
+}
+
+.activity-displayer-div {
+    margin: auto;
+    max-width: 400px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: white;
 }
 
 

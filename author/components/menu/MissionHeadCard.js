@@ -67,7 +67,7 @@ export default {
         }
     },
     components: {
-        "mission-head-form": () => import("../editor/MissionHeadForm.js")
+        "mission-head-form": () => import("../../old/MissionHeadForm.js")
     },
     computed: {
         headFormButId() {

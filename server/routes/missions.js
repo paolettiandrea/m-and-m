@@ -1,30 +1,22 @@
 const fs = require('fs');
 const express = require('express')
+const path = require('path')
 const router = express.Router();
-const database = require('../data/dbController.js')
-const resources = require('../data/resController.js')
+const database = require(path.join(__dirname, '../js/altDbController.js'))
+const resources = require(path.join(__dirname, '../js/resController.js'))
+const proc = require('child_process')
 
-router.get('/', function (req, res, next) {
-    fs.readFile("data/missions.json", 'utf-8', ((err, data) => {
-        res.json(JSON.parse(data).availableMissions)
-    }));
-})
 
-// Creates a new mission
 router.get('/new', function (req, res, next) {
     database.newMission().then( (mission) => {
         res.send(mission);
-        resources.addResourceDir(mission._id);
+        resources.addResourceDir(mission.id);
     })
 })
 
 router.get('/heads', function (req, res, next) {
     database.getMissionHeadsList().then( function (missionHeads) {
-        var headDict = {};
-        for (const head of missionHeads) {
-            headDict[head._id] = head;
-    }
-        res.json(headDict);
+        res.json(missionHeads);
     })
 })
 
@@ -36,22 +28,21 @@ router.get('/content/:uid', function (req, res, next) {
 
 router.delete('/delete/:uid', function (req, res, next) {
 
-        database.deleteMission(req.params.uid).then( (contentId) => {
-            if (contentId===0) { res.status(500).send({ message: 'No such mission!'});} else {
-                res.json({ deletedContentId: contentId })
+        database.deleteMission(req.params.uid).then( () => {
+                res.json({ deletedMissionId: req.res.uid })
                 resources.removeResourceDir(req.params.uid);
-            }
         })
 })
 
 router.post('/update', function (req, res, next) {
+    console.log(req)
     database.updateMission(req.body).then( () => {
         res.send("OK");
     })
 })
 
 router.post('/uploadRes', function (req, res, next) {
-
+    console.log(req)
     let resData = resources.addResource(req.body.missionId, req.files.file)
     res.json(resData)
 })

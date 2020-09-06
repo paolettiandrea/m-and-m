@@ -1,0 +1,46 @@
+{
+  "contentChunkTypes": [
+    {
+      "type": "text-displayer",
+      "title": "Campo testuale",
+      "icon": "card-text",
+      "description": "Mostra un paragrafo testuale formattabile tramite markdown.",
+      "data":{
+        "text": "Placeholder text",
+        "parseMarkdown": true,
+        "fontData": {
+
+        }
+      }
+    },
+    {
+      "type": "img-displayer",
+      "title": "Immagine",
+      "icon": "card-image",
+      "description": "Mostra un'immagine.",
+      "data": {
+        "imgResData": {
+          "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png"
+        },
+        "alignment": "center"
+      }
+    },
+
+    {
+      "type": "audio-player",
+      "title": "Suono",
+      "icon": "play",
+      "description": "Riproduce un suono o una canzone",
+      "data": {
+        "audioResourceData": {
+          "url": "http://soundbible.com/grab.php?id=1815&type=mp3"
+        },
+        "buttonData": {
+          "labelFontData": {},
+          "buttonBorderData": {},
+          "buttonBackgroundData": {}
+        }
+      }
+    }
+  ]
+}

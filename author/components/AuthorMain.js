@@ -1,18 +1,9 @@
 
 export default {
-    template: `<div style="display: flex; flex-flow: column; align-items: stretch; height: 100%">
-        <alt-mission-menu style="flex: 0 1 auto"></alt-mission-menu>
-        <div>
-</div>
-        <b-container fluid style="flex: 1 1 auto">
-            <b-row class="full-height">
-                <b-col class="full-height">
-                    <div class="full-height">
-                        <mission-editor></mission-editor>
-                    </div>
-                </b-col>
-            </b-row>
-        </b-container>
+    template: `<div class="full-height">
+ 
+        <editor-main class="full-height" v-if="selectedMissionContent"></editor-main>
+        <alt-mission-menu v-else  style=""></alt-mission-menu>
     </div>`,
 
     data(){
@@ -27,9 +18,13 @@ export default {
             this.$store.commit('select', selectedData.missionHead._id);
         }
     },
+
+    computed: {
+        ...Vuex.mapGetters(['selectedMissionContent'])
+    },
     components: {
         'mission-menu': () => import("./menu/MissionMenu.js"),
-        'mission-editor': () => import("./editor/MissionEditor.js"),
+        'mission-editor': () => import("./editor/EditorMain.js"),
         'alt-mission-menu': () => import("./menu/AltMissionMenu.js")
     },
 
