@@ -120,7 +120,6 @@ function makeEdgePath(startPoint, endPoint) {
             ['L', endPoint.x, endPoint.y],
         ]
 
-
     } else {
         let vSign = 1;
         if (Math.abs(startPoint.x - endPoint.x) < ANGLE_DIST*2) {

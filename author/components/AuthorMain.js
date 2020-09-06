@@ -4,9 +4,6 @@ export default {
  
         <editor-main class="full-height" v-if="selectedMissionContent"></editor-main>
         <alt-mission-menu v-else  style=""></alt-mission-menu>
-
-
-
     </div>`,
 
     data(){
