@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "DB_MODE='sandbox' node index.js",
-    "devstart": "DB_MODE='sandbox' nodemon --ignore './data/missions' index.js",
+    "start": "node index.js DB_MODE='sandbox'",
+    "devstart": "nodemon --ignore './data/missions' index.js DB_MODE='sandbox'",
     "dbstart": "mongod --dbpath ./data/mongo"
   },
   "author": "",

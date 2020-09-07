@@ -8,7 +8,7 @@ const missionContentFileName = 'missionContent.json'
 const missionQrCodeFileName = 'qrCode.svg'
 
 let basePath = '/webapp/data/';
-if (process.env.DB_MODE==='sandbox') basePath = path.join(__dirname, '../data/')
+if (!process.env.DB_MODE || process.env.DB_MODE==='sandbox') basePath = path.join(__dirname, '../data/')
 const missionsDir = path.join(basePath, '/missions/');
 const missionsHeadsPath = path.join(missionsDir, '/missionHeads.json')
 const newMissionTemplatePath = path.join(__dirname, '../data/newMissionTemplate.json');
