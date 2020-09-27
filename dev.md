@@ -2,6 +2,9 @@
 
 - [Styling dinamico con Vue](https://www.digitalocean.com/community/tutorials/vuejs-dynamic-styles)
 
+# TODO
+- Semplice menu di selezione delle missioni disponibili (utile per noi durante lo sviluppo e per l'accessibilità in seguito)
+- 
 
 # Components
 
@@ -156,6 +159,9 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 
 
 ### `multiple-checkboxes`
+
+
+
 
 
 

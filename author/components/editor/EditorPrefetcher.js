@@ -1,3 +1,5 @@
+// TODO d a simple load in the HTML (it's more reliable)
+
 import('./EditorMain.js')
 
 import('./activity-preview/ActivityPreview.js')
