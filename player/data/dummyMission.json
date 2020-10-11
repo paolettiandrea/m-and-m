@@ -15,75 +15,12 @@
             "text": "Sono un primo paragrafo testuale, bla bla bla **BLA**.",
             "fontData": {}
           }
-        },
-        {
-          "type": "audio-player",
-          "title": "Suono",
-          "icon": "play",
-          "description": "Riproduce un suono o una canzone",
-          "data": {
-            "url": "http://soundbible.com/mp3/Air Plane Ding-SoundBible.com-496729130.mp3"
-          }
-        },
-        {
-          "contentType": "img-displayer",
-          "contentData": {
-            "url": "M&M.jpeg",
-            "w": "300",
-            "h": "300"
-          }
         }
-      ],
-      "inputComponent": {
-        "inputType": "multiple-checkboxes",
-        "inputData": {
-
-          "buttonList": [
-            {
-              "button": "Value 1",
-              "color": "#4CAF50",
-              "outcome": {
-                "outcomeType": "popup",
-                "outcomeContent": {
-
-                }
-              }
-            },
-            {
-              "button": "Value 2",
-              "outcome": {
-
-              }
-            }
-          ],
-
-          "buttonTextFontData":{
-            "fontFamily":"verdana",
-            "fontSize":"1em",
-            "fontColor":"black"
-          }
-        }
-      }
-    },
-
-
-
-
-
-    "1": {
-      "uuid": "1",
-      "content": [
-        {
-          "contentType": "text-displayer",
-          "contentData": {
-            "text": "Sono un altra attività",
-            "fontData": {}
-          }
-        }
-      ],
-      "inputComponent": {
-      }
+      ]
     }
+
+
+
 
 
   }

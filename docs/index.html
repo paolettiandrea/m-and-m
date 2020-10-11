@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Vue -->
+    <script src="/intersection-observer/intersection-observer.js"></script> <!-- Polyfills some required functionality for older browsers-->
+    <script src="/vue/dist/vue.js"></script>
+    <!-- <script src="/vuex/dist/vuex.js"></script> -->
+
+
+    <!--    General utils-->
+    <script src="/axios/dist/axios.js"></script>
+
+    <!--    Player dependencies-->
+    <script src="/showdown/dist/showdown.js"></script>
+		<script src="/showdown-highlight/lib/index.js" type="module"></script>
+
+    <script src="/common/js/VueUtils.js"></script>
+		<script src="/docs/components/DocsMain.js"></script>
+    <title>Title</title>
+
+</head>
+<body>
+    <div id="app">
+        <docs-main></docs-main>
+    </div>
+
+    <script type="module">
+        const App = new Vue({
+            el: '#app',
+        })
+
+    </script>
+
+    </body>
+</html>
