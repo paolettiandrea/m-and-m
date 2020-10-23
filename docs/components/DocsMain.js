@@ -1,26 +1,27 @@
 Vue.component('docs-main', {
     template: `<div>
-        <p>Main</p>
-								<div v-if="this.parsed"
-												v-html="this.parsed"></div>
+		<div v-if="this.parsed" v-html="this.parsed"></div>
     </div>`,
 		
-		data() { return {
-				parsed: null,
-		}},
+	data() { return {
+			parsed: null,
+	}},
 
-		mounted() {
-				this.loadDocPage("index.md"); 
-		},
+	mounted() {
+			this.loadDocPage("pages/index.md");
+	},
 		
     updated() {
 			let links = document.getElementsByTagName("a");
 			for (link of links) {
 				if (!link.hash) {
 
+					let fullPath = link.origin + link.pathname;
+					console.log("O:", link.origin, "\nP: ", link.pathname);
+
 					link.addEventListener("click", (ev) => {
-						console.log("Custom click event");
-						this.loadDocPage(link.origin + link.pathname);
+
+						this.loadDocPage(fullPath);
 						ev.preventDefault();
 					});
 				}
@@ -30,14 +31,12 @@ Vue.component('docs-main', {
 
 		methods: {
 			loadDocPage(path) {
-					axios.
-            get(path).
-            then(res => {
-            var converter = new showdown.Converter({
-						});
-							console.log(converter.makeHtml(res.data));
-            this.parsed = converter.makeHtml(res.data);
-						})
+				axios.get(path).
+					then(res => {
+						var converter = new showdown.Converter();
+						console.log("Loading page", path);
+						this.parsed = converter.makeHtml(res.data);
+					})
 			}
 		}
 })

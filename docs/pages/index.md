@@ -1,3 +1,9 @@
+**Indice**:
+* [TODO](pages/todos.md)
+* Storie
+    * [Musica nel mondo](pages/storie/musica-nel-mondo.md)  
+
+
 # Player
 Dal punto di vista dell'utente in seguito alla scelta di una missione (attraverso il puntamento ad un QRcode) il player permette di riprodurre quest'ultima. Il giocatore, partendo dall'attività iniziale avanzerà di attività in attività fino a raggiungere un'attività conclusiva, che terminerà la missione. Al termine sarà visualizzato un qualche tipo di punteggio o classifica, durante il gioco sarà possibile interagire con il supervisore.
 
@@ -27,14 +33,14 @@ e un qualche tipo di input che permetta la progressione all'attività successiva
 ```js
 var someActivity = {
 	title: "some title",		// Un titolo utilizzato dall'autore per identificare l'attività
-	content: [...]					// array che contiene i dati per tutti i componenti di contenuto dell'attività nell'ordine in cui devono essere presentati
+	content: [...],					// array che contiene i dati per tutti i componenti di contenuto dell'attività nell'ordine in cui devono essere presentati
 	inputComponent: {...}		// dati per il componente di input che verrà mostrato in fondo alla schermata
 }
 ```
 
 ### ContentComponents
 Sono componenti che mostrano un qualche tipo di contenuto non interattivo, sono rappresentati con la seguente struttura base:
-```js
+```c
 var someContentData = {
 	contentType: "some-content-type",		// Nome con cui è stato registrato il componente a cui sono destinati questi dati, l'ActivityDisplayer provvederà a istanziarlo e a passargli i dati seguenti
 	contentData: {},										// Tutti i dati necessari per questo componente nello specifico
