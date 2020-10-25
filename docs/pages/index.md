@@ -2,6 +2,13 @@
 * [TODO](pages/todos.md)
 * Storie
     * [Musica nel mondo](pages/storie/musica-nel-mondo.md)  
+    * [Un'altra storia](pages/storie/nuova-missione.md)
+
+## Bacheca temporanea
+Dove segnare note a caso e robe di cui parlare all'incontro successivo
+
+- Tipo bacheca di trello per l'implementazione dei component?
+- Organizzarsi su come usarei branchj git
 
 
 # Player

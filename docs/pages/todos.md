@@ -22,3 +22,5 @@ Possibile piano:
     - Scelta di continuazione a attività diverse (scelta multipla?)
     - Visualizzazione più comoda per i dati dei componenti content/input
     - Salvataggio posizione attività nel grafico
+    
+
