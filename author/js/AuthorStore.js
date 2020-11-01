@@ -74,15 +74,19 @@ const store = new Vuex.Store({
         createActivity(context) {
             let activities = context.getters.selectedMissionContent.activities;
             let uuid = uuidv1();
-            Vue.set(context.getters.selectedMissionContent.activities, uuid, {
+            let newActivity = {
                 uuid: uuid,
                 title: "Nuova attività",
                 content: [],
                 inputComponent: null
-            })
+            }
+            Vue.set(activities, uuid, newActivity);
+            context.state.canvas.newActivity(newActivity);
             context.dispatch('selectActivity', uuid);
-            context.state.canvas.newActivity(context.getters.selectedActivity);
             return uuid;
+        },
+        renameSelectedActivity(context,  newTitle) {
+            Vue.set(context.getters.selectedActivity, "title", newTitle);
         },
         deleteActivity(context, activityId) {
 

@@ -14,13 +14,17 @@ Possibile piano:
 
 ## Autore
 - Funzionalità utili per sketch missioni:
-    - Salvataggio missioni integrabile con VCS
-    - Creazione attività
-    - Scrittura testo nelle attività
-    - Cambio titolo per le attività
-    - Salvataggio comodo/automatico attività
-    - Scelta di continuazione a attività diverse (scelta multipla?)
-    - Visualizzazione più comoda per i dati dei componenti content/input
-    - Salvataggio posizione attività nel grafico
+    - [ ] Salvataggio missioni integrabile con VCS
+    - [ ] Creazione attività
+        - [x] Creazione attività con doppio click sul grafo
+        - [ ] Creazione nel punto del click (ora create in 0,0)
+    - [x] Scrittura testo nelle attività (base)
+    - [ ] Cambio titolo per le attività
+        - [x] Cambio titolo da NavBar
+        - [ ] Aggiornamento titolo attività nel grafo
+    - [ ] Salvataggio comodo/automatico attività
+    - [x] Scelta di continuazione a attività diverse (scelta multipla?)
+    - [ ] Visualizzazione più comoda per i dati dei componenti content/input
+    - [ ] Salvataggio posizione attività nel grafico
     
 

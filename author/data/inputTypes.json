@@ -32,7 +32,21 @@
       "title": "Opzioni",
       "icon": "grid",
       "data":{
-
+        "multipleChoice": false,
+        "optionList": [
+          {
+              "buttonData": {
+                "label": "Bottone",
+                "labelFontData": {},
+                "buttonBorderData": {},
+                "buttonBackgroundData": {}
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": ""
+              }
+          }
+        ]
       }
     }
   ]

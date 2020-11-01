@@ -8,7 +8,7 @@
 Dove segnare note a caso e robe di cui parlare all'incontro successivo
 
 - Tipo bacheca di trello per l'implementazione dei component?
-- Organizzarsi su come usarei branchj git
+- Organizzarsi su come usarei branch git
 
 
 # Player

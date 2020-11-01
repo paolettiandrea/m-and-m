@@ -3,7 +3,9 @@ Vue.component('activity-preview', {
         <div class="column-flex-container" v-if="activityData">
             
             <b-navbar class="mm-navbar-activity">
-            <b-navbar-brand href="#">{{activityData.title}}</b-navbar-brand>
+            <b-navbar-brand href="#">
+                <b-form-input size="sm" :value="activityData.title" @change="titleClickHandler" style="padding: 0px"></b-form-input>
+            </b-navbar-brand>
             
             <b-navbar-nav class="ml-auto">
                 <b-nav-item-dropdown right variant="primary">
@@ -66,6 +68,11 @@ Vue.component('activity-preview', {
 
         inputClicked(inputData) {
             this.$store.commit('setSelectedActivityChunk', -1);
+        },
+
+        titleClickHandler(newTitle) {
+            console.log("Title click, new: ", newTitle);
+            this.$store.dispatch('renameSelectedActivity', newTitle);
         }
     }
 })
