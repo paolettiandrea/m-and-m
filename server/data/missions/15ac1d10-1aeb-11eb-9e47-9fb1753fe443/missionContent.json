@@ -1,0 +1,242 @@
+{
+  "defaults": {
+    "textFontData": {},
+    "buttonData": {
+      "label": "Continua",
+      "labelFontData": {
+        "fontFamily": "Roboto",
+        "fontSize": "14px",
+        "fontColor": "#000000",
+        "fontStyle": "normal",
+        "fontWeight": "normal",
+        "textDecoration": "none",
+        "textAlign": "left"
+      },
+      "buttonBorderData": {
+        "borderWidth": "2px",
+        "borderRadius": "5px",
+        "borderColor": "#000000",
+        "borderStyle": "solid"
+      },
+      "buttonBackgroundData": {
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "commonData": {
+      "borderData": {
+        "borderStyle": "hidden",
+        "borderWidth": "2px",
+        "borderColor": "#000000",
+        "borderRadius": "0px"
+      },
+      "spacingData": {
+        "padding": {
+          "top": "0px",
+          "bottom": "10px",
+          "left": "5px",
+          "right": "5px"
+        },
+        "margin": {
+          "top": "0px",
+          "bottom": "0px",
+          "left": "0px",
+          "right": "0px"
+        }
+      },
+      "backgroundData": {
+        "backgroundColor": "#ffffff"
+      }
+    }
+  },
+  "activities": {
+    "initial": {
+      "title": "Attività iniziale",
+      "content": [
+        {
+          "contentType": "text-displayer",
+          "contentData": {
+            "text": "Placeholder text \n\nsfsfssdfsdf",
+            "parseMarkdown": true,
+            "fontData": {
+              "fontSize": "16px"
+            }
+          },
+          "commonData": {
+            "borderData": {
+              "borderStyle": "dotted",
+              "borderWidth": "10px"
+            },
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        }
+      ],
+      "uuid": "initial",
+      "inputComponent": {
+        "inputType": "multiple-checkboxes",
+        "inputData": {
+          "multipleChoice": false,
+          "optionList": [
+            {
+              "buttonData": {
+                "label": "Bottone 1",
+                "labelFontData": {
+                  "fontFamily": "Open Sans"
+                },
+                "buttonBorderData": {},
+                "buttonBackgroundData": {}
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": "1b0f2a40-1c67-11eb-bb19-a3de30879891",
+                "edgeId": "3cea4f50-1c67-11eb-bb19-a3de30879891"
+              }
+            },
+            {
+              "buttonData": {
+                "label": "Bottone 2",
+                "labelFontData": {},
+                "buttonBorderData": {},
+                "buttonBackgroundData": {}
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": "0e4cde60-1c67-11eb-bb19-a3de30879891",
+                "edgeId": "54579fd0-1c67-11eb-bb19-a3de30879891"
+              }
+            },
+            {
+              "buttonData": {
+                "label": "Bottone 3",
+                "labelFontData": {},
+                "buttonBorderData": {
+                  "borderStyle": "groove"
+                },
+                "buttonBackgroundData": {}
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": "69c94a90-1c6b-11eb-abf8-c14f4ace3370",
+                "edgeId": "7f2ebd20-1c6b-11eb-abf8-c14f4ace3370"
+              }
+            }
+          ]
+        },
+        "commonData": {
+          "borderData": {},
+          "spacingData": {
+            "padding": {},
+            "margin": {}
+          },
+          "backgroundData": {}
+        }
+      }
+    },
+    "0e4cde60-1c67-11eb-bb19-a3de30879891": {
+      "uuid": "0e4cde60-1c67-11eb-bb19-a3de30879891",
+      "title": "Attività 1",
+      "content": [],
+      "inputComponent": {
+        "inputType": "multiple-checkboxes",
+        "inputData": {
+          "multipleChoice": false,
+          "optionList": [
+            {
+              "buttonData": {
+                "label": "Bottone",
+                "labelFontData": {},
+                "buttonBorderData": {},
+                "buttonBackgroundData": {}
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": "2e693c70-1c67-11eb-bb19-a3de30879891",
+                "edgeId": "65ed93d0-1c67-11eb-bb19-a3de30879891"
+              }
+            }
+          ]
+        },
+        "commonData": {
+          "borderData": {},
+          "spacingData": {
+            "padding": {},
+            "margin": {}
+          },
+          "backgroundData": {}
+        }
+      }
+    },
+    "1b0f2a40-1c67-11eb-bb19-a3de30879891": {
+      "uuid": "1b0f2a40-1c67-11eb-bb19-a3de30879891",
+      "title": "Attività 2",
+      "content": [],
+      "inputComponent": {
+        "inputType": "multiple-checkboxes",
+        "inputData": {
+          "multipleChoice": false,
+          "optionList": [
+            {
+              "buttonData": {
+                "label": "Bottone",
+                "labelFontData": {},
+                "buttonBorderData": {},
+                "buttonBackgroundData": {}
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": "2e693c70-1c67-11eb-bb19-a3de30879891",
+                "edgeId": "9267fdb0-1c67-11eb-bb19-a3de30879891"
+              }
+            }
+          ]
+        },
+        "commonData": {
+          "borderData": {},
+          "spacingData": {
+            "padding": {},
+            "margin": {}
+          },
+          "backgroundData": {}
+        }
+      }
+    },
+    "2e693c70-1c67-11eb-bb19-a3de30879891": {
+      "uuid": "2e693c70-1c67-11eb-bb19-a3de30879891",
+      "title": "Nuova attività",
+      "content": []
+    },
+    "69c94a90-1c6b-11eb-abf8-c14f4ace3370": {
+      "uuid": "69c94a90-1c6b-11eb-abf8-c14f4ace3370",
+      "title": "Nuova attività",
+      "content": [],
+      "inputComponent": {
+        "inputType": "simple-button",
+        "inputData": {
+          "buttonData": {
+            "label": "Continua",
+            "labelFontData": {},
+            "buttonBorderData": {},
+            "buttonBackgroundData": {}
+          },
+          "outcome": {
+            "outcomeType": "next",
+            "nextActivityId": "initial",
+            "edgeId": "848047d0-1c6b-11eb-abf8-c14f4ace3370"
+          }
+        },
+        "commonData": {
+          "borderData": {},
+          "spacingData": {
+            "padding": {},
+            "margin": {}
+          },
+          "backgroundData": {}
+        }
+      }
+    }
+  },
+  "usedResources": {}
+}

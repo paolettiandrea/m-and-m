@@ -1,0 +1,66 @@
+html, body {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+#app {
+    height: 100%;
+}
+
+
+.full-height {
+    height: 100%;
+
+}
+
+.vertical-scroll {
+    overflow-y: auto;
+}
+
+
+.column-flex-container {
+    display: flex;
+    flex-flow: column;
+}
+
+
+.no-flex-grow {
+    flex: 0 1 auto;
+}
+
+.full-flex {
+    flex: 1 1 auto;
+}
+
+#g6Mount {
+    overflow: hidden;
+}
+
+.content-chunk:hover {
+    background-color: beige;
+    border-color: #555555;
+}
+
+
+.mini-button {
+    padding: 2px;
+}
+
+.vertical-arrow-button {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+
+.vertical-arrow-group {
+    padding-top: 1px;
+    padding-bottom: 1px;
+
+}
+
+.no-horizontal-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Activity editor */
+

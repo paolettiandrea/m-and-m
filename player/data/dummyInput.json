@@ -1,0 +1,26 @@
+{
+  "type": "canvas-displayer",
+  "data": {
+    "wrong": "1231231231",
+    "right": "asdasdasfdasd",
+
+    "rightPos": "",
+    "radius": ""
+  }
+}
+
+
+{
+  "consequenceType": "nextActivity",
+  "consequenceData": {
+    "nextActivityId": "asdadas"
+  }
+}
+
+
+{
+  "consequenceType": "popup",
+  "consequenceData": {
+    "popup-text": "asodjsaljdas asdljasdlaksd"
+  }
+}

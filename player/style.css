@@ -1,0 +1,185 @@
+#test {
+    background-color: black;
+    opacity: 0.8;
+    color: aliceblue;
+    height: 100%;
+    background-size: 100%;
+}
+
+#canva {
+    width: 450px;
+    padding: 200px 300px;
+    text-align: center;
+    border: 1px solid #f1f1f1;
+}
+
+canvas {
+    border: 1px solid red;
+    cursor: crosshair;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 280px;
+}
+
+
+/* The popup chat - hidden by default */
+
+.chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+}
+
+
+/* Add styles to the form container */
+
+.form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+}
+
+
+/* Full-width textarea */
+
+.form-container textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+    resize: none;
+    min-height: 200px;
+}
+
+
+/* When the textarea gets focus, do something */
+
+.form-container textarea:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+
+/* Set a style for the submit/send button */
+
+.form-container .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+
+/* Add a red background color to the cancel button */
+
+.form-container .cancel {
+    background-color: red;
+}
+
+
+/* Add some hover effects to buttons */
+
+.form-container .btn:hover,
+.open-button:hover {
+    opacity: 1;
+}
+
+
+/*Avoid horizontal bar on translation*/
+
+.activity-displayer-div {
+    overflow-x: hidden;
+}
+
+.content-slide-enter-active,
+.content-slide-leave-active {
+    transition: all 0.5s;
+}
+
+.content-slide-enter,
+.content-slide-leave-to
+/* .list-leave-active below version 2.1.8 */
+
+{
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.content-slide-leave-to {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.labeled-form-group {
+    label-cols: 3
+}
+
+
+/* QR code reader style */
+
+body,
+input {
+    font-size: 14pt
+}
+
+input,
+label {
+    vertical-align: middle
+}
+
+.qrcode-text {
+    padding-right: 1.7em;
+    margin-right: 0
+}
+
+.qrcode-text-btn {
+    display: inline-block;
+    background: url(//dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/07/1499401426qr_icon.svg) 50% 50% no-repeat;
+    height: 1em;
+    width: 1.7em;
+    margin-left: -1.7em;
+    cursor: pointer
+}
+
+.qrcode-text-btn>input[type=file] {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    opacity: 0
+}
+
+#input-1{
+  width:70%;
+  color: #000000;
+  animation: mymove 5s infinite;
+  border-radius: 3px
+}
+
+.test-class {
+    background-color: #4CAF50;
+}

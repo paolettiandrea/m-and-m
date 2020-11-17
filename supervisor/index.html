@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Vue -->
+    <script src="/intersection-observer/intersection-observer.js"></script> <!-- Polyfills some required functionality for older browsers-->
+    <script src="/vue/dist/vue.js"></script>
+    <script src="/vuex/dist/vuex.js"></script>
+
+
+    <!-- Bootstrap -->
+    <script src="/bootstrap-vue/dist/bootstrap-vue.js"></script>
+    <script src="/bootstrap-vue/dist/bootstrap-vue-icons.js"></script>
+    <link type="text/css" rel="stylesheet" href="/bootstrap-vue/dist/bootstrap-vue.css" />
+    <link type="text/css" rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css" />
+
+    <!--    General utils-->
+    <script src="/axios/dist/axios.js"></script>
+    <script src="/uuid/dist/index.js"></script>
+
+    <!--    Player dependencies-->
+    <script src="/showdown/dist/showdown.js"></script>
+
+
+    <!-- G6 -->
+    <script src="/@antv/g6/dist/g6.min.js" ></script>
+
+    <!-- Socket.io -->
+    <script src="/socket.io-client/dist/socket.io.dev.js"></script>
+
+
+    <script src="/common/js/VueUtils.js"></script>
+    <script src="components/SupervisorMain.js"></script>
+    <script src="components/SupervisorPrefetcher.js"></script>
+
+    <title>Title</title>
+
+</head>
+<body>
+    <div id="app">
+        <supervisor-main></supervisor-main>
+    </div>
+
+    <script type="module">
+
+        import store from './js/SupervisorStore.js'
+
+
+        const App = new Vue({
+            el: '#app',
+            store
+        })
+
+    </script>
+
+    </body>
+</html>

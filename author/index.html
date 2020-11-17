@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Vue -->
+    <script src="/intersection-observer/intersection-observer.js"></script> <!-- Polyfills some required functionality for older browsers-->
+    <script src="/vue/dist/vue.js"></script>
+    <script src="/vuex/dist/vuex.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="/bootstrap-vue/dist/bootstrap-vue.js"></script>
+    <script src="/bootstrap-vue/dist/bootstrap-vue-icons.js"></script>
+    <link type="text/css" rel="stylesheet" href="/bootstrap-vue/dist/bootstrap-vue.css" />
+    <link type="text/css" rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css" />
+
+    <!-- General utils -->
+    <script src="/axios/dist/axios.js"></script>
+    <script src="/uuid/dist/index.js"></script>
+
+    <!-- Player dependencies -->
+    <script src="/showdown/dist/showdown.js"></script>
+
+    <!-- G6 -->
+    <script src="/@antv/g6/dist/g6.min.js" ></script>
+
+    <script src="/jsoneditor/dist/jsoneditor.js"></script>
+    <link type="text/css" rel="stylesheet" href="/jsoneditor/dist/jsoneditor.css"/>
+
+
+
+
+    <!-- Stylesheets -->
+    <link type="text/css" rel="stylesheet" href="css/MissionHeadForm.css"/>
+    <link type="text/css" rel="stylesheet" href="css/AuthorMain.css"/>
+    <link type="text/css" rel="stylesheet" href="/common/css/ActivityDisplayer.css" />
+
+
+    <script src="/common/js/VueUtils.js"></script>
+    <script src="../player/components/activity-displayer/CommonDataUtils.js"></script>
+
+    <title>Title</title>
+</head>
+<body>
+    <div id="app" class="vertical-flex">
+        <author-main></author-main>
+    </div>
+
+    <script type="module">
+        import store from './js/AuthorStore.js'
+
+        const App = new Vue({
+            el: '#app',
+            store,
+            components: {
+                'author-main': () => import("./components/AuthorMain.js")
+            }
+        })
+    </script>
+
+    <script src="../player/components/activity-displayer/ActivityDisplayer.js"></script>
+
+    <!-- Content/Input Components-->
+    <script src="/player/components/activity-displayer/content-components/TextDisplayer.js"></script>
+    <script src="/player/components/activity-displayer/content-components/ImgDisplayer.js"></script>
+    <script src="/player/components/activity-displayer/content-components/AudioPlayer.js"></script>
+    <script src="/player/components/activity-displayer/content-components/CardDisplayer.js"></script>
+    <script src="/player/components/activity-displayer/content-components/VideoDisplayer.js"></script>
+    <script src="/player/components/activity-displayer/input-components/CanvasDraw.js"></script>
+    <script src="/player/components/activity-displayer/input-components/ClickImg.js"></script>
+    <script src="/player/components/activity-displayer/input-components/MultipleCheckboxes.js"></script>
+    <script src="/player/components/activity-displayer/input-components/SimpleButton.js"></script>
+    <script src="/player/components/activity-displayer/input-components/TextInsert.js"></script>
+
+    <script src="components/editor/EditorPrefetcher.js" type="module"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+</body>
+</html>

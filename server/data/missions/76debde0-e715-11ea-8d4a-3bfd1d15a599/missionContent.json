@@ -1,0 +1,227 @@
+{
+  "defaults": {
+    "textFontData": {},
+    "buttonData": {
+      "label": "Continua",
+      "labelFontData": {
+        "fontFamily": "Roboto",
+        "fontSize": "14px",
+        "fontColor": "#000000",
+        "fontStyle": "normal",
+        "fontWeight": "normal",
+        "textDecoration": "none",
+        "textAlign": "left"
+      },
+      "buttonBorderData": {
+        "borderWidth": "2px",
+        "borderRadius": "5px",
+        "borderColor": "#000000",
+        "borderStyle": "solid"
+      },
+      "buttonBackgroundData": {
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "commonData": {
+      "borderData": {
+        "borderStyle": "hidden",
+        "borderWidth": "2px",
+        "borderColor": "#000000",
+        "borderRadius": "0px"
+      },
+      "spacingData": {
+        "padding": {
+          "top": "0px",
+          "bottom": "10px",
+          "left": "5px",
+          "right": "5px"
+        },
+        "margin": {
+          "top": "0px",
+          "bottom": "0px",
+          "left": "0px",
+          "right": "0px"
+        }
+      },
+      "backgroundData": {
+        "backgroundColor": "#ffffff"
+      }
+    }
+  },
+  "activities": {
+    "initial": {
+      "title": "Attività iniziale",
+      "content": [
+        {
+          "contentType": "text-displayer",
+          "contentData": {
+            "text": "Placeholder text",
+            "invert": false,
+            "parseMarkdown": true,
+            "fontData": {}
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        },
+        {
+          "contentType": "text-displayer",
+          "contentData": {
+            "text": "Placeholder text",
+            "parseMarkdown": true,
+            "fontData": {}
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        },
+        {
+          "contentType": "audio-player",
+          "contentData": {
+            "audioResourceData": {
+              "url": "http://soundbible.com/grab.php?id=1815&type=mp3"
+            },
+            "buttonData": {
+              "labelFontData": {},
+              "buttonBorderData": {},
+              "buttonBackgroundData": {}
+            }
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        },
+        {
+          "contentType": "audio-player",
+          "contentData": {
+            "audioResourceData": {
+              "url": "http://soundbible.com/grab.php?id=1815&type=mp3"
+            },
+            "buttonData": {
+              "labelFontData": {},
+              "buttonBorderData": {},
+              "buttonBackgroundData": {}
+            }
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        },
+        {
+          "contentType": "img-displayer",
+          "contentData": {
+            "imgResData": {
+              "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png"
+            },
+            "alignment": "center"
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        }
+      ],
+      "uuid": "initial"
+    },
+    "4ee3f340-e716-11ea-be6a-1d50b1939584": {
+      "uuid": "4ee3f340-e716-11ea-be6a-1d50b1939584",
+      "title": "Nuova attività",
+      "content": [],
+      "inputComponent": null
+    },
+    "5074a560-e716-11ea-be6a-1d50b1939584": {
+      "uuid": "5074a560-e716-11ea-be6a-1d50b1939584",
+      "title": "Nuova attività",
+      "content": [
+        {
+          "contentType": "text-displayer",
+          "contentData": {
+            "text": "Placeholder text",
+            "parseMarkdown": true,
+            "fontData": {}
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        },
+        {
+          "contentType": "img-displayer",
+          "contentData": {
+            "imgResData": {
+              "url": "/76debde0-e715-11ea-8d4a-3bfd1d15a599/resources/db1aa940-f057-11ea-8b18-6fe6e710d4c.png",
+              "id": "db1aa940-f057-11ea-8b18-6fe6e710d94c.png"
+            },
+            "alignment": "center"
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        },
+        {
+          "contentType": "audio-player",
+          "contentData": {
+            "audioResourceData": {
+              "url2": "",
+              "url": "http://soundbibe.com/grab.php?id=1815&type=mp3"
+            },
+            "buttonData": {
+              "labelFontData": {},
+              "buttonBorderData": {},
+              "buttonBackgroundData": {}
+            }
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        }
+      ],
+      "inputComponent": null
+    }
+  },
+  "usedResources": {
+    "db1aa940-f057-11ea-8b18-6fe6e710d94c.png": {
+      "uses": 1,
+      "originalFileName": "2020-04-13-200501_1600x900_scrot.png",
+      "category": "generic"
+    }
+  }
+}

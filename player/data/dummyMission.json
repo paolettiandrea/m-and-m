@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "textFontData": {
+      "fontFamily": "Roboto",
+      "fontSize": "30px"
+    }
+  },
+  "activities": {
+    "initial": {
+      "uuid": "initial",
+      "content": [
+        {
+          "contentType": "text-displayer",
+          "contentData": {
+            "text": "Sono un primo paragrafo testuale, bla bla bla **BLA**.",
+            "fontData": {}
+          }
+        }
+      ]
+    }
+
+
+
+
+
+  }
+}
+
+
+

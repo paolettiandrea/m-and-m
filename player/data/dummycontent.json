@@ -1,0 +1,177 @@
+{
+    "activities": [{
+            "uid": "1",
+            "content": [{
+                    "contentType": "qr-reader",
+                    "contentData": {
+                        "text": ""
+                    }
+                },
+                {
+                    "contentType": "text-displayer",
+                    "contentData": {
+                        "text": "Some text *ciao* \n dsfkjsfkjds"
+                    }
+                },
+                {
+                    "contentType": "img-displayer",
+                    "contentData": {
+                        "url": "M&M.jpeg",
+                        "w": "300",
+                        "h": "300"
+                    }
+                },
+                {
+                        "contentType": "pure-knob",
+                        "contentData": {
+                            "text": ""
+                        }
+                    },
+            ],
+            "inputComponent": {
+                "inputType": "text-insert",
+                "inputData": {
+                  "possibilityList": [
+                      {
+                          "possibleAnswers": ["hello", "ciao"],
+                          "outcome": {
+
+                          }
+                      },
+                      {
+                          "possibleAnswers": ["hola"],
+                          "outcome": {
+
+                          }
+                      }
+                  ],
+                    "fallbackOutcome": {
+
+                    },
+
+                  "fontData":{
+                    "family":"verdana",
+                    "size":"1em",
+                    "color":"black",
+                    "background-color":"white"
+                  },
+
+                  "alignment":"center",
+                  "markdonText":true,
+                    "textType": ""
+                }
+              }
+        },
+
+        {
+            "uid": "2",
+            "content": [{
+                    "contentType": "qr-reader",
+                    "contentData": {
+                        "text": ""
+                    }
+                },
+
+                {
+                    "contentType": "text-displayer",
+                    "contentData": {
+                        "text": "Sono un altro text **displayer**",
+                        "parseMarkdown": true
+                    }
+                },
+
+                {
+                    "contentType": "img-displayer",
+                    "contentData": {
+                        "url": "M&M.jpeg",
+                        "w": "400",
+                        "h": "400"
+                    }
+                }
+            ],
+            "inputComponent": {
+                "inputType": "click-img",
+                "inputData": {
+                    "url": "workplace.jpg",
+                    "w": "400",
+                    "h": "379",
+                    "pos": "right",
+                    "computer": "34,44,270,350",
+                    "telefono": "290,172,333,250",
+                    "caffe": "337,300,44"
+                }
+            }
+        },
+        {
+            "uid": "3",
+            "content": [
+                {
+                    "contentType": "video-displayer",
+                    "contentData": {
+                        "url": "vue.mp4",
+                        "w": "400",
+                        "pos": "left"
+                    }
+                }
+
+            ],
+            "inputComponent": {
+                "inputType": "canvas-draw",
+                "inputData": {
+                    "w": "300",
+                    "h": "300"
+                }
+            }
+        },
+        {
+            "uid": "4",
+            "content": [{
+                    "contentType": "qr-reader",
+                    "contentData": {
+                        "text": ""
+                    }
+                },
+
+                {
+                    "contentType": "text-displayer",
+                    "contentData": {
+                        "text": "Sono un altro text **displayer**",
+                        "parseMarkdown": true
+                    }
+                },
+
+                {
+                    "contentType": "img-displayer",
+                    "contentData": {
+                        "url": "M&M.jpeg",
+                        "w": "400",
+                        "h": "400"
+                    }
+                }
+            ],
+            "inputComponent": {
+                "inputType": "multiple-checkboxes",
+                "inputData": {
+                    "buttonList": [
+                        {
+                            "button": "Value 1",
+                            "color": "#4CAF50",
+                            "outcome": {
+                                "outcomeType": "popup",
+                                "outcomeContent": {
+
+                                }
+                            }
+                        },
+                        {
+                            "button": "Value 2",
+                            "outcome": {
+
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+    ]
+}
