@@ -75,3 +75,64 @@ Vue.component('editor-subpanel-terminal', {
         }
     }
 })
+
+Vue.component('editor-subpanel-list', {
+    template: `
+        <div class="editor-subpanel subpanel-group"">
+            <div class="editor-subpanel-slot" v-for="(elem,i) in list" :style="{marginLeft: level*padPerLvl + 'px'}">
+                <b-card class="list-card">
+                <template #header>
+                    <b-button-group>
+                        <b-button size="sm" @click="moveElement(i, +1)"><b-icon icon="caret-down"></b-icon></b-button>
+                        <b-button size="sm" @click="moveElement(i, -1)"><b-icon icon="caret-up"></b-icon></b-button>
+                    </b-button-group>
+                     <b-button size="sm" @click="removeElement(i)"><b-icon icon="trash"></b-icon></b-button>
+</template>
+                    <slot v-bind:element="elem"></slot>
+</b-card>
+                
+            </div>
+        </div>
+    `,
+
+    data() {
+        return {
+            toggled: false
+        }
+    },
+
+    methods: {
+        removeElement(index) {
+            this.list.splice(index, 1);
+        },
+        moveElement(index, offset) {
+            array_move(this.list, index, index + offset);
+        }
+    },
+
+    props: {
+        label: "",
+        level: 0,
+        list: Array,
+
+        elementLabelGetter: null
+    },
+
+    computed: {
+        padPerLvl() {
+            return PADDING_PER_LEVEL;
+        }
+    }
+})
+
+
+function array_move(arr, old_index, new_index) {
+    if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {
+            arr.push(undefined);
+        }
+    }
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+    return arr; // for testing
+};

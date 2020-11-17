@@ -51,7 +51,29 @@
   "activities": {
     "initial": {
       "title": "Attività iniziale",
-      "content": [],
+      "content": [
+        {
+          "contentType": "text-displayer",
+          "contentData": {
+            "text": "Placeholder text \n\nsfsfssdfsdf",
+            "parseMarkdown": true,
+            "fontData": {
+              "fontSize": "16px"
+            }
+          },
+          "commonData": {
+            "borderData": {
+              "borderStyle": "dotted",
+              "borderWidth": "10px"
+            },
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        }
+      ],
       "uuid": "initial",
       "inputComponent": {
         "inputType": "multiple-checkboxes",
@@ -60,8 +82,10 @@
           "optionList": [
             {
               "buttonData": {
-                "label": "Bottone",
-                "labelFontData": {},
+                "label": "Bottone 1",
+                "labelFontData": {
+                  "fontFamily": "Open Sans"
+                },
                 "buttonBorderData": {},
                 "buttonBackgroundData": {}
               },
@@ -73,7 +97,7 @@
             },
             {
               "buttonData": {
-                "label": "Bottone",
+                "label": "Bottone 2",
                 "labelFontData": {},
                 "buttonBorderData": {},
                 "buttonBackgroundData": {}
@@ -82,6 +106,21 @@
                 "outcomeType": "next",
                 "nextActivityId": "0e4cde60-1c67-11eb-bb19-a3de30879891",
                 "edgeId": "54579fd0-1c67-11eb-bb19-a3de30879891"
+              }
+            },
+            {
+              "buttonData": {
+                "label": "Bottone 3",
+                "labelFontData": {},
+                "buttonBorderData": {
+                  "borderStyle": "groove"
+                },
+                "buttonBackgroundData": {}
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": "69c94a90-1c6b-11eb-abf8-c14f4ace3370",
+                "edgeId": "7f2ebd20-1c6b-11eb-abf8-c14f4ace3370"
               }
             }
           ]
@@ -167,26 +206,26 @@
     "2e693c70-1c67-11eb-bb19-a3de30879891": {
       "uuid": "2e693c70-1c67-11eb-bb19-a3de30879891",
       "title": "Nuova attività",
+      "content": []
+    },
+    "69c94a90-1c6b-11eb-abf8-c14f4ace3370": {
+      "uuid": "69c94a90-1c6b-11eb-abf8-c14f4ace3370",
+      "title": "Nuova attività",
       "content": [],
       "inputComponent": {
-        "inputType": "multiple-checkboxes",
+        "inputType": "simple-button",
         "inputData": {
-          "multipleChoice": false,
-          "optionList": [
-            {
-              "buttonData": {
-                "label": "Bottone",
-                "labelFontData": {},
-                "buttonBorderData": {},
-                "buttonBackgroundData": {}
-              },
-              "outcome": {
-                "outcomeType": "next",
-                "nextActivityId": "initial",
-                "edgeId": "984c0460-1c67-11eb-bb19-a3de30879891"
-              }
-            }
-          ]
+          "buttonData": {
+            "label": "Continua",
+            "labelFontData": {},
+            "buttonBorderData": {},
+            "buttonBackgroundData": {}
+          },
+          "outcome": {
+            "outcomeType": "next",
+            "nextActivityId": "initial",
+            "edgeId": "848047d0-1c6b-11eb-abf8-c14f4ace3370"
+          }
         },
         "commonData": {
           "borderData": {},

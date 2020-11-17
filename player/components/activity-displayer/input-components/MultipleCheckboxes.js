@@ -13,7 +13,6 @@ props: {
 
 methods: {
   clickReceived(clickedButtonData) {
-      console.log(clickedButtonData);
     this.$emit('input-received', clickedButtonData);
   }
 },
