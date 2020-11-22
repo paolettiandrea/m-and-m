@@ -71,14 +71,16 @@ const store = new Vuex.Store({
             context.commit('setSelectedActivity', null);
             context.dispatch('deselectActivityChunk');
         },
-        createActivity(context) {
+        createActivity(context, mouseCanvasPos) {
+            console.log(mouseCanvasPos);
             let activities = context.getters.selectedMissionContent.activities;
             let uuid = uuidv1();
             let newActivity = {
                 uuid: uuid,
                 title: "Nuova attività",
                 content: [],
-                inputComponent: null
+                inputComponent: null,
+                graphPosition: mouseCanvasPos
             }
             Vue.set(activities, uuid, newActivity);
             context.state.canvas.newActivity(newActivity);
@@ -90,6 +92,11 @@ const store = new Vuex.Store({
         },
         deleteActivity(context, activityId) {
 
+        },
+        updateActivityGraphPosition(context, payload) {
+            console.log("Inside dispath: ", payload.id);
+            payload.missionContent = context.getters.selectedMissionContent;
+            context.commit('updateGraphPosition', payload);
         },
 
         // Content chunk management ===================================================================================
@@ -133,7 +140,10 @@ const store = new Vuex.Store({
     },
 
     mutations: {
+        updateGraphPosition(state, payload) {
 
+            payload.missionContent.activities[payload.id].graphPosition = payload.pos;
+        },
         // Initializes all the store data that is destined to be constant throughout execution
         initializeConstData(state) {
             axios.get("./data/contentChunkTypes.json").then( res => {
@@ -145,6 +155,7 @@ const store = new Vuex.Store({
             })
 
         },
+
 
         initializeFontDB(state, fontNum) {
             state.fontDB = new FontDB(fontNum);

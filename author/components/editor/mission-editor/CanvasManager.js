@@ -1,5 +1,11 @@
 import { v1 as uuidv1} from '/uuid/dist/esm-browser/index.js';
 
+let graphOffset = {
+    x: 0,
+    y:0
+}
+
+let bufGraphPosition = null;
 
 function buildGraphData(missionContent) {
     var data = {
@@ -20,6 +26,10 @@ function buildActivityNodeData(activity) {
         type: 'rect',
         id: activity.uuid,
         label: activity.title,
+
+        x: activity.graphPosition.x,
+        y: activity.graphPosition.y,
+
 
         anchorPoints: [
             [0.5, 0],
@@ -167,7 +177,6 @@ export class CanvasManager {
             },
             fitView: true,
             fitCenter: true,
-            animate: true,
             defaultEdge: {
                 // ... Other properties for edges
                 type: 'hvh',
@@ -179,16 +188,6 @@ export class CanvasManager {
                     // ... Other style properties
                 },
             },
-            layout: {
-                // Object, the layout configuration. Random layout by default
-                type: 'dagre',
-                nodesep: HORIZONTAL_DISTANCE,
-                ranksep: VERTICAL_DISTANCE,
-                controlPoints: true,
-                // ...                    // Other configurations for the layout
-            },
-
-
         });
 
 
@@ -217,9 +216,37 @@ export class CanvasManager {
 
         })
 
+        this.graph.on('canvas:dragstart', e => {
+            console.log(e);
+            bufGraphPosition = {x: e.canvasX, y: e.canvasY}
+        })
+
+        this.graph.on('canvas:dragend', e => {
+            if (bufGraphPosition) {
+                console.log("End", e);
+                graphOffset = {
+                    x: graphOffset.x + (e.canvasX - bufGraphPosition.x),
+                    y: graphOffset.y + (e.canvasY - bufGraphPosition.y)
+                }
+                bufGraphPosition = null;
+            }
+
+            console.log("Offset: ", graphOffset);
+
+        })
+
+        this.graph.on('node:dragend', e => {
+            let id = e.item._cfg.id;
+            console.log(id);
+            let pos = { x:0, y:0 }
+            this.store.dispatch('updateActivityGraphPosition', {pos: pos, id: id});
+            console.log(e);
+        })
+
         // Double click creates a new activity
         this.graph.on('canvas:dblclick', e => {
-            let activityId = this.store.dispatch('createActivity');
+            let mouseCanvasPos = { x: e.canvasX + graphOffset.x, y: e.canvasY - graphOffset.y }
+            let activityId = this.store.dispatch('createActivity', mouseCanvasPos);
         })
 
         this.graph.on()
@@ -232,6 +259,7 @@ export class CanvasManager {
     }
 
     newActivity(newActivity) {
+        console.log(newActivity);
         this.graph.addItem('node', buildActivityNodeData(newActivity));
     }
 
