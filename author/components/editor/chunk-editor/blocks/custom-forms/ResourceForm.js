@@ -131,8 +131,6 @@ Vue.component('resource-form', {
         },
 
         changeResourceUsage(resId, usageOffset) {
-            console.log("Change resource usage");
-            console.log(usageOffset);
             if (this.selectedMissionContent.usedResources.hasOwnProperty(resId)) {
                 let newUses = this.selectedMissionContent.usedResources[resId].uses + usageOffset;
                 if (newUses>0) {

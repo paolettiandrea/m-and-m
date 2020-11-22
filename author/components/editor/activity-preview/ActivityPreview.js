@@ -71,7 +71,6 @@ Vue.component('activity-preview', {
         },
 
         titleClickHandler(newTitle) {
-            console.log("Title click, new: ", newTitle);
             this.$store.dispatch('renameSelectedActivity', newTitle);
         }
     }

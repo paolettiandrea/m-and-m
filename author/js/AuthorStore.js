@@ -199,7 +199,7 @@ const store = new Vuex.Store({
 
     getters: {
 
-
+        isWaitingForActivityClick(state) {return state.activityClickedCallback !== null },
 
         isMissionSettingsPanelOpen(state) { return state.panelState.missionSettingsOpen; },
 

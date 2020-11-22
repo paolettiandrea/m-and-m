@@ -187,7 +187,6 @@ Vue.component('defaulted-input-form-unit', Vue.extend({
         },
 
         shownValue() {
-            console.log(this.defaultVal);
             if (this.showDefault) return this.parseValue(this.defaultVal);
             else return this.parseValue(this.targetContainer[this.targetFieldName]);
 

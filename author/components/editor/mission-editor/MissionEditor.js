@@ -41,6 +41,10 @@ Vue.component('mission-editor', {
             <mission-defaults-editor :defaults="missionContent.defaults" :uberDefaults="uberDefaults"></mission-defaults-editor>
         </div>
         <div v-else id="yoyo" style="position: relative; height: 100%">
+            <div v-if="isWaitingForActivityClick" style="z-index: 3">
+                <p>Seleziona una attività o </p>
+                <b-button size="sm" @click="deleteActivityClickedCallback" variant="danger">annulla</b-button>
+             </div>
             <div id="g6Mount" style="position: absolute; top: 0; left: 0"></div>
         </div>
     </div>`,
@@ -53,7 +57,8 @@ Vue.component('mission-editor', {
             isMissionSelected: 'isMissionSelected',
             isMissionUpdated: 'isSelectedMissionUpdated',
             isMissionSettingsPanelOpen: 'isMissionSettingsPanelOpen',
-            selectedMissionId: 'selectedMissionId'
+            selectedMissionId: 'selectedMissionId',
+            isWaitingForActivityClick: 'isWaitingForActivityClick'
         }),
 
         uberDefaults() { return uberDefaults; }
@@ -68,7 +73,7 @@ Vue.component('mission-editor', {
     },
     methods: {
         ...Vuex.mapActions([
-            'deleteSelectedMission', 'updateSelectedMission', 'setMissionSettingsPanel'
+            'deleteSelectedMission', 'updateSelectedMission', 'setMissionSettingsPanel', 'deleteActivityClickedCallback'
         ]),
         activitySelectionCallback(selectedActivity) {
             this.selectedActivity = selectedActivity;
