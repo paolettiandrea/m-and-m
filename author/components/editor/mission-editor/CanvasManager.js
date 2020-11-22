@@ -236,6 +236,7 @@ export class CanvasManager {
         })
 
         this.graph.on('node:dragend', e => {
+            // FIXME some problem with the offset(now removed), it doesn't save the correct position
             let id = e.item._cfg.id;
             console.log(id);
             let pos = { x:0, y:0 }
