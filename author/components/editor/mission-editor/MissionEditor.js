@@ -5,7 +5,9 @@ Vue.component('mission-editor', {
     template: `
     <div>
         <b-navbar class="mm-navbar-primary">
-            <b-navbar-brand href="#">{{barTitle}}</b-navbar-brand>
+            <b-navbar-brand href="#">
+                <b-form-input size="sm" v-model="missionHead.title" style="padding: 0px"></b-form-input>
+            </b-navbar-brand>
             
             <b-navbar-nav class="ml-auto" v-if="isMissionSelected">
                 <b-button  v-on:click="updateSelectedMission" :disabled="isMissionUpdated"  variant="secondary-primary">
@@ -46,6 +48,7 @@ Vue.component('mission-editor', {
     computed: {
         ...Vuex.mapGetters({
             missionContent: 'selectedMissionContent',
+            missionHead: 'selectedMissionHead',
             barTitle: 'missionBarTitle',
             isMissionSelected: 'isMissionSelected',
             isMissionUpdated: 'isSelectedMissionUpdated',

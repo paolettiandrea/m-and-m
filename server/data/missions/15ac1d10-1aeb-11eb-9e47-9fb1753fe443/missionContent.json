@@ -72,6 +72,23 @@
             },
             "backgroundData": {}
           }
+        },
+        {
+          "contentType": "img-displayer",
+          "contentData": {
+            "imgResData": {
+              "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png"
+            },
+            "alignment": "center"
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
         }
       ],
       "uuid": "initial",

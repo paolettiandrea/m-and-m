@@ -9,8 +9,9 @@ Possibile piano:
     - viene implementata
     - viene implementato il corrispondente editor nell'autore
     - la feature viene utilizzata in una qualche storia attraverso l'autore
-
-
+- Iniziare a decidere la schermata finale cosa mostra (punteggio/classifica/resoconto...)
+- ImageDisplayer:
+    - 
 
 ## Autore
 - Funzionalità utili per sketch missioni:
