@@ -17,7 +17,6 @@ Vue.component('docs-main', {
 				if (!link.hash) {
 
 					let fullPath = link.origin + link.pathname;
-					console.log("O:", link.origin, "\nP: ", link.pathname);
 
 					link.addEventListener("click", (ev) => {
 
@@ -26,7 +25,6 @@ Vue.component('docs-main', {
 					});
 				}
 			}
-			console.log(links);
     },
 
 		methods: {

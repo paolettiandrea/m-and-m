@@ -35,14 +35,12 @@ router.delete('/delete/:uid', function (req, res, next) {
 })
 
 router.post('/update', function (req, res, next) {
-    console.log(req)
     database.updateMission(req.body).then( () => {
         res.send("OK");
     })
 })
 
 router.post('/uploadRes', function (req, res, next) {
-    console.log(req)
     let resData = resources.addResource(req.body.missionId, req.files.file)
     res.json(resData)
 })

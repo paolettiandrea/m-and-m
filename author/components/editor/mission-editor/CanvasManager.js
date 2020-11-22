@@ -44,16 +44,12 @@ function buildActivityEdgeData(activity, edgeArray) {
 
     var nextOutcomes = getNextOutcomesFromActivity(activity);
     for (const outcome of nextOutcomes) {
-        console.log(outcome);
-        console.log(outcome.edgeId);
         var newEdge = {
             id: outcome.edgeId,
             source: activity.uuid,
             target: outcome.nextActivityId,
         };
         edgeArray.push(newEdge);
-        console.log("New edge");
-        console.log(newEdge);
     }
 }
 
