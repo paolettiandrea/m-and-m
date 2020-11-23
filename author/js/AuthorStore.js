@@ -100,25 +100,19 @@ const store = new Vuex.Store({
         },
 
         // Content chunk management ===================================================================================
-        deleteSelectedActivityChunk(context) {
-            if (context.getters.isChunkSelected) {
-                if (context.getters.isInputChunkSelected) {
-                    Vue.delete(context.getters.selectedActivity, 'inputComponent');
-                } else {
-                    context.getters.selectedActivity.content.splice(context.state.selectedContentIndex, 1);
-                }
-            }
-            context.commit('setSelectedActivityChunk', NaN);
+        deleteSelectedActivityInputComponent(context) {
+            Vue.delete(context.getters.selectedActivity, 'inputComponent');
+        },
+        deleteSelectedActivityContentChunk(context, index) {
+            context.getters.selectedActivity.content.splice(index, 1);
         },
 
-
-        moveSelectedChunk(context, offset) {
-            let oldIndex = context.state.selectedContentIndex;
-            let newIndex = oldIndex + offset;
+        moveSelectedActivityChunk(context, {offset, index}) {
+            let newIndex = index + offset;
 
             context.commit('moveActivityContentChunk', {
                 selectedActivity: context.getters.selectedActivity,
-                oldIndex: oldIndex,
+                oldIndex: index,
                 newIndex: newIndex,
             });
             context.commit('setSelectedActivityChunk', newIndex);

@@ -52,6 +52,8 @@ Vue.component('chunk-editor', {
                         <json-editor :editedObj="selectedActivityChunk"></json-editor>
                     </div>
                 </div>
+                
+                <activity-editor-subpanel></activity-editor-subpanel>
             </div>
         </div>
     </div>

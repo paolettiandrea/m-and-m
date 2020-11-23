@@ -35,4 +35,6 @@ import('./chunk-editor/editors/content/AudioPlayerEditor.js')
 import('./chunk-editor/editors/input/TextInsertEditor.js')
 import('./chunk-editor/editors/input/SimpleButtonEditor.js')
 import('./chunk-editor/editors/input/MultipleCheckboxesEditor.js')
+import('./activity-editor/ActivityEditor.js')
+import('../../data/contentTypes.js')
 
