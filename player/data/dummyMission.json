@@ -10,10 +10,13 @@
       "uuid": "initial",
       "content": [
         {
-          "contentType": "text-displayer",
+          "contentType": "lastScreen-displayer",
           "contentData": {
-            "text": "Sono un primo paragrafo testuale, bla bla bla **BLA**.",
-            "fontData": {}
+            "text": "Ultima schermata",
+            "fontData": {
+              "fontFamily" : "American Typewriter",
+              "fontSize" : "40px"
+            }
           }
         }
       ]
