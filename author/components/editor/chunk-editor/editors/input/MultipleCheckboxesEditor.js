@@ -1,8 +1,8 @@
 Vue.component('multiple-checkboxes-editor', {
     template: `
-        <editor-subpanel label="Opzioni" level="0">
-<!--                    <editor-subpanel :label="i" :level="1" v-for="(optionData, i) in inputData.optionList">-->
-<!--                    </editor-subpanel> -->
+        <activity-editor-subpanel label="Opzioni" level="0">
+<!--                    <activity-editor-subpanel :label="i" :level="1" v-for="(optionData, i) in inputData.optionList">-->
+<!--                    </activity-editor-subpanel> -->
                     <editor-subpanel-list :level="1" :list="inputData.optionList">
                         <template v-slot:default="slotProps" >
                             <simple-button-editor :inputData="slotProps.element"></simple-button-editor>
@@ -10,7 +10,7 @@ Vue.component('multiple-checkboxes-editor', {
                     </editor-subpanel-list>
                 <b-button @click="addOption">+</b-button>
             </div>
-        </editor-subpanel>`,
+        </activity-editor-subpanel>`,
 
     props: {
         inputData: null

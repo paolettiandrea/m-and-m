@@ -10,7 +10,9 @@ Vue.component('activity-editor', {
                 <div v-if="activity.inputComponent">
                     <activity-editor-component-panel :componentData="activity.inputComponent"></activity-editor-component-panel>
                 </div>
-                <p v-else>Aggiungi</p>
+                <div v-else>
+                
+                </div>
             </div>
         
         </div>

@@ -1,39 +1,85 @@
 const PADDING_PER_LEVEL = 30;
 
+Vue.component('editor-subpanel-terminal', {
+    template: `
+        <div>
+            <b-card class="activity-editor-card">
+                <template #header size="sm">
+                    {{label}} 
+                </template> 
+                <slot></slot>
+            </b-card>
+        </div>
+    `,
+
+    props: {
+        label: ""
+    }
+})
+
 Vue.component('activity-editor-subpanel', {
     template: `
         <div>
-            <b-button class="activity-editor-subpanel-main-button">Yoyo</b-button>
+            <b-button-group style="width: 100%">
+                <b-button class="activity-editor-fake-input-button input-group-text" @click="collapseButtonClicked">{{label}}</b-button>
+            </b-button-group>
+            <div class="editor-subpanel-left-padded-slot">
+                <b-collapse :id="collapseId">
+                <slot></slot>
+</b-collapse> 
+            </div>
         </div>
-    `
+    `,
+
+    props: {
+        label: ""
+    },
+
+    methods: {
+        collapseButtonClicked() {
+            this.$root.$emit('bv::toggle::collapse', this.collapseId)
+        }
+    },
+
+    computed: {
+        collapseId() { return 'subpanel-editor-collpase-' + this.label}
+    }
 })
 
 Vue.component('activity-editor-component-panel', {
     template: `
         <div>
             <b-button-toolbar class="activity-editor-subpanel-main-button">
-                <b-button-group style="flex: 1">
-                    <b-button @click="onClick" >
+            <b-input-group style="flex: 1">
+                <template #prepend>
+                    <b-input-group-text>
                         <b-icon :icon="chunkMetadata.icon"></b-icon>
+                    </b-input-group-text>
+                </template>
+                <template #append style="flex: 1;">
+                    <b-button class="activity-editor-fake-input-button input-group-text" @click="onClick"  style="flex: 1;">
                         {{chunkMetadata.title}}
                     </b-button>
+                </template>
+            </b-input-group>
+                <b-button-group>
+                    <b-button variant="outline-secondary" @click="moveSelectedActivityChunk({offset: 1, index: index})" ><b-icon icon="caret-down"></b-icon></b-button>
+                    <b-button variant="outline-secondary" @click="moveSelectedActivityChunk({offset: -1, index: index})" ><b-icon icon="caret-up"></b-icon></b-button>
                 </b-button-group>
                 <b-button-group>
-                    <b-button @click="moveSelectedActivityChunk({offset: 1, index: index})" ><b-icon icon="caret-down"></b-icon></b-button>
-                    <b-button @click="moveSelectedActivityChunk({offset: -1, index: index})" ><b-icon icon="caret-up"></b-icon></b-button>
-                </b-button-group>
-                <b-button-group>
-                    <b-button @click="deleteContent" ><b-icon icon="trash"></b-icon></b-button>
+                    <b-button variant="outline-danger" @click="deleteContent" ><b-icon icon="trash"></b-icon></b-button>
                 </b-button-group>
             </b-button-toolbar>
                     
-            <b-collapse :id="collapseId" accordion="content-editors-accordion" style="padding-left: 5px">
+            <b-collapse :id="collapseId" class="editor-subpanel-left-padded-slot activity-editor-component-content" accordion="content-editors-accordion">
                         <component v-if="isInputComponent(componentData)" 
                                     :is="componentData.inputType+'-editor'" 
                                     :inputData="componentData.inputData" ></component>
                         <component v-else
                                     :is="componentData.contentType+'-editor'" 
                                     :contentData="componentData.contentData" ></component>
+                        
+                        <common-styling-editor :commonData="componentData.commonData"></common-styling-editor>
 </b-collapse>
         </div>
     `,
@@ -124,47 +170,6 @@ Vue.component('editor-subpanel', {
     }
 })
 
-Vue.component('editor-subpanel-terminal', {
-    template: `
-    <div>
-        <b-form-group
-            label-cols-lg="4"
-            label-class="editor-text no-vertical-padding"
-            class="subpanel-group"
-            >
-            <template slot="label" >
-                <b-button size="sm" variant="secondary-outline" class="subpanel-button editor-button" :pressed.sync="toggled" :style="{marginLeft: level*padPerLvl + 'px'}">{{label}}</b-button>
-                
-            </template>
-                <b-collapse v-model="toggled">
-                    <slot></slot>
-                </b-collapse>
-        </b-form-group >
-    </div>`,
-
-    data() {
-        return {
-            toggled: false
-        }
-    },
-
-    methods: {
-        toggle() {
-            this.toggled = !this.toggled;
-        }
-    },
-
-    props: {
-        label: "",
-        level: 0,
-    },
-
-    computed: {
-        padPerLvl() {
-            return PADDING_PER_LEVEL;
-        }
-    }
-})
 
 Vue.component('editor-subpanel-list', {
     template: `

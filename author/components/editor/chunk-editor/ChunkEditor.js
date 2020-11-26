@@ -44,9 +44,9 @@ Vue.component('chunk-editor', {
                               
                     
                     
-                        <editor-subpanel label="Generali" level="0">
+                        <activity-editor-subpanel label="Generali" level="0">
                             <common-styling-editor :commonData="selectedActivityChunk.commonData" :defaults="compoundDefaults.commonData"></common-styling-editor>
-                        </editor-subpanel>
+                        </activity-editor-subpanel>
                     </div>
                     <div v-else>
                         <json-editor :editedObj="selectedActivityChunk"></json-editor>
