@@ -1,5 +1,32 @@
 const PADDING_PER_LEVEL = 30;
 
+Vue.component('activity-editor-list', {
+    template: `
+        <div>
+            <div v-for="(e, i) in list">
+                <activity-editor-subpanel :label="calculateLabel(e,i)">
+                    <slot v-bind:index="i" v-bind:elem="e"></slot>
+                </activity-editor-subpanel>
+            </div> 
+        </div>
+    `,
+
+    props: {
+        list: [],
+        labelFunction: null
+    },
+
+    methods: {
+        calculateLabel(elem, index) {
+            if (this.labelFunction) {
+                return this.labelFunction(elem, index);
+            } else {
+                return index;
+            }
+        }
+    }
+})
+
 Vue.component('editor-subpanel-terminal', {
     template: `
         <div>
