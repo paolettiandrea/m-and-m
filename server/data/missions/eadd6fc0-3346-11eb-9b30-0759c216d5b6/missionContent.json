@@ -55,30 +55,12 @@
         {
           "contentType": "text-displayer",
           "contentData": {
-            "text": "Placeholder text kdfjhsf\n",
+            "text": "Contenuti iniziali",
             "parseMarkdown": true,
             "fontData": {
-              "fontFamily": "Noto Sans JP",
-              "fontWeight": "bold",
-              "fontAlignment": "right"
+              "fontFamily": "Roboto Condensed",
+              "fontSize": "40px"
             }
-          },
-          "commonData": {
-            "borderData": {},
-            "spacingData": {
-              "padding": {},
-              "margin": {}
-            },
-            "backgroundData": {}
-          }
-        },
-        {
-          "contentType": "img-displayer",
-          "contentData": {
-            "imgResData": {
-              "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png"
-            },
-            "alignment": "center"
           },
           "commonData": {
             "borderData": {},
@@ -92,7 +74,7 @@
         {
           "contentType": "text-displayer",
           "contentData": {
-            "text": "Placeholder text",
+            "text": "Esempio a caso di un percorso con una schermata facoltativa o che il giocatore vede in seguito ad un errore o una particolare risposta.",
             "parseMarkdown": true,
             "fontData": {}
           },
@@ -108,8 +90,8 @@
       ],
       "uuid": "initial",
       "graphPosition": {
-        "x": 0,
-        "y": 0
+        "x": 77,
+        "y": 26
       },
       "inputComponent": {
         "inputType": "multiple-checkboxes",
@@ -118,14 +100,28 @@
           "optionList": [
             {
               "buttonData": {
-                "label": "Bottone",
+                "label": "Salta",
                 "labelFontData": {},
                 "buttonBorderData": {},
                 "buttonBackgroundData": {}
               },
               "outcome": {
                 "outcomeType": "next",
-                "nextActivityId": ""
+                "nextActivityId": "13a58000-3347-11eb-b23b-19cbd7a0dfe8",
+                "edgeId": "1c120650-3347-11eb-b23b-19cbd7a0dfe8"
+              }
+            },
+            {
+              "buttonData": {
+                "label": "Facoltativa",
+                "labelFontData": {},
+                "buttonBorderData": {},
+                "buttonBackgroundData": {}
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": "203b64b0-3347-11eb-b23b-19cbd7a0dfe8",
+                "edgeId": "e4440650-3347-11eb-89d9-0137619628ad"
               }
             }
           ]
@@ -140,48 +136,16 @@
         }
       }
     },
-    "fead1f90-3324-11eb-8f89-3b99744571ae": {
-      "uuid": "fead1f90-3324-11eb-8f89-3b99744571ae",
-      "title": "Nuova attività",
-      "content": [],
-      "inputComponent": null,
-      "graphPosition": {
-        "x": 0,
-        "y": 0
-      }
-    },
-    "03847130-3325-11eb-8f89-3b99744571ae": {
-      "uuid": "03847130-3325-11eb-8f89-3b99744571ae",
-      "title": "Nuova attività",
+    "13a58000-3347-11eb-b23b-19cbd7a0dfe8": {
+      "uuid": "13a58000-3347-11eb-b23b-19cbd7a0dfe8",
+      "title": "Altra attivita",
       "content": [
         {
-          "contentType": "img-displayer",
+          "contentType": "text-displayer",
           "contentData": {
-            "imgResData": {
-              "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png"
-            },
-            "alignment": "center"
-          },
-          "commonData": {
-            "borderData": {},
-            "spacingData": {
-              "padding": {},
-              "margin": {}
-            },
-            "backgroundData": {}
-          }
-        },
-        {
-          "contentType": "audio-player",
-          "contentData": {
-            "audioResourceData": {
-              "url": "http://soundbible.com/grab.php?id=1815&type=mp3"
-            },
-            "buttonData": {
-              "labelFontData": {},
-              "buttonBorderData": {},
-              "buttonBackgroundData": {}
-            }
+            "text": "Altri contenuti, qui il giocatore deve passare per forza.",
+            "parseMarkdown": true,
+            "fontData": {}
           },
           "commonData": {
             "borderData": {},
@@ -207,19 +171,8 @@
               },
               "outcome": {
                 "outcomeType": "next",
-                "nextActivityId": ""
-              }
-            },
-            {
-              "buttonData": {
-                "label": "Bottone",
-                "labelFontData": {},
-                "buttonBorderData": {},
-                "buttonBackgroundData": {}
-              },
-              "outcome": {
-                "outcomeType": "next",
-                "nextActivityId": ""
+                "nextActivityId": "5e656fa0-3348-11eb-9a83-2d3564c8b261",
+                "edgeId": "905edcd0-3348-11eb-9a83-2d3564c8b261"
               }
             }
           ]
@@ -234,8 +187,90 @@
         }
       },
       "graphPosition": {
-        "x": 455,
-        "y": 112
+        "x": 204,
+        "y": 296
+      }
+    },
+    "203b64b0-3347-11eb-b23b-19cbd7a0dfe8": {
+      "uuid": "203b64b0-3347-11eb-b23b-19cbd7a0dfe8",
+      "title": "Facoltativa",
+      "content": [
+        {
+          "contentType": "text-displayer",
+          "contentData": {
+            "text": "Contenuti facoltativi",
+            "parseMarkdown": true,
+            "fontData": {}
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        }
+      ],
+      "inputComponent": {
+        "inputType": "multiple-checkboxes",
+        "inputData": {
+          "multipleChoice": false,
+          "optionList": [
+            {
+              "buttonData": {
+                "label": "Bottone",
+                "labelFontData": {},
+                "buttonBorderData": {},
+                "buttonBackgroundData": {}
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": "13a58000-3347-11eb-b23b-19cbd7a0dfe8",
+                "edgeId": "2bf2f750-3347-11eb-b23b-19cbd7a0dfe8"
+              }
+            }
+          ]
+        },
+        "commonData": {
+          "borderData": {},
+          "spacingData": {
+            "padding": {},
+            "margin": {}
+          },
+          "backgroundData": {}
+        }
+      },
+      "graphPosition": {
+        "x": 235,
+        "y": 152
+      }
+    },
+    "5e656fa0-3348-11eb-9a83-2d3564c8b261": {
+      "uuid": "5e656fa0-3348-11eb-9a83-2d3564c8b261",
+      "title": "Attivita finale",
+      "content": [
+        {
+          "contentType": "text-displayer",
+          "contentData": {
+            "text": "Qui finisce, ancora non abbiamo implementato il sistema, ma quando si raggiunge una attivita finale la schermata con puntaggio e info varie viene lanciata",
+            "parseMarkdown": true,
+            "fontData": {}
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        }
+      ],
+      "inputComponent": null,
+      "graphPosition": {
+        "x": 270,
+        "y": 385
       }
     }
   },

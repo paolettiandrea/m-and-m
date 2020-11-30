@@ -163,6 +163,10 @@ G6.registerEdge('hvh', {
     },
 });
 
+let dragBuffer = {
+    x: 0, y:0
+}
+
 export class CanvasManager {
     constructor(settings, store) {
         this.callbacks = settings.callbacks;
@@ -216,37 +220,22 @@ export class CanvasManager {
 
         })
 
-        this.graph.on('canvas:dragstart', e => {
-            console.log(e);
-            bufGraphPosition = {x: e.canvasX, y: e.canvasY}
-        })
+        this.graph.on('node:dragstart', e => {
+            console.log("Drag start", e);
 
-        this.graph.on('canvas:dragend', e => {
-            if (bufGraphPosition) {
-                console.log("End", e);
-                graphOffset = {
-                    x: graphOffset.x + (e.canvasX - bufGraphPosition.x),
-                    y: graphOffset.y + (e.canvasY - bufGraphPosition.y)
-                }
-                bufGraphPosition = null;
-            }
-
-            console.log("Offset: ", graphOffset);
 
         })
-
         this.graph.on('node:dragend', e => {
             // FIXME some problem with the offset(now removed), it doesn't save the correct position
             let id = e.item._cfg.id;
-            console.log(id);
-            let pos = { x:0, y:0 }
+            let pos = { x:e.x, y:e.y }
             this.store.dispatch('updateActivityGraphPosition', {pos: pos, id: id});
             console.log(e);
         })
 
         // Double click creates a new activity
         this.graph.on('canvas:dblclick', e => {
-            let mouseCanvasPos = { x: e.canvasX + graphOffset.x, y: e.canvasY - graphOffset.y }
+            let mouseCanvasPos = { x: e.x, y: e.y}
             let activityId = this.store.dispatch('createActivity', mouseCanvasPos);
         })
 
