@@ -1,7 +1,7 @@
 Vue.component('common-styling-editor', {
     template: `
         <div>
-            <activity-editor-subpanel label="Generali"> 
+            <activity-editor-subpanel label="Contenitore"> 
             
                 <border-editor :borderData="commonData.borderData" :defaults="selectedMissionDefaults.borderData" :level="level+1"></border-editor>
                 

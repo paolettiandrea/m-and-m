@@ -49,6 +49,29 @@ Vue.component('activity-editor-list', {
     }
 })
 
+Vue.component('activity-editor-tab-container', {
+    template: `
+        <div>
+            <b-tabs content-class="mt-3" vertical>
+                <slot></slot>
+            </b-tabs>
+        </div>
+    `,
+
+    props: {
+        tabSelectedCallback: null
+    }
+})
+Vue.component('activity-editor-tab', {
+    template: `
+        <b-tab :title="title"></b-tab>
+    `,
+
+    props: {
+        title: ""
+    }
+})
+
 Vue.component('editor-subpanel-terminal', {
     template: `
         <div>
