@@ -1,12 +1,12 @@
 Vue.component('background-editor', {
     template: `
         <div>
-            <editor-subpanel-terminal label="Sfondo" :level="level">
+            <activity-editor-subpanel label="Sfondo" :level="level">
                 <editor-field label="Colore">
                     <defaulted-input-form :targetContainer="backgroundData" targetFieldName="backgroundColor" 
                                             :defaultVal="defaults.backgroundColor" inputType="color" label="Colore"></defaulted-input-form>
                 </editor-field>
-        </editor-subpanel-terminal>
+        </activity-editor-subpanel>
         </div>
     `,
 

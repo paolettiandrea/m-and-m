@@ -1,4 +1,4 @@
-const PADDING_PER_LEVEL = 30;
+const PADDING_PER_LEVEL = 20;
 
 Vue.component('activity-editor-list', {
     template: `

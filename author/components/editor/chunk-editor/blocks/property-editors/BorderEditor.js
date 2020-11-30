@@ -1,7 +1,7 @@
 Vue.component('border-editor', {
     template: `
         <div>
-            <editor-subpanel-terminal label="Bordo" :level="level"
+            <activity-editor-subpanel label="Bordo" :level="level"
             >
             
             <editor-field label="Stile">
@@ -26,7 +26,7 @@ Vue.component('border-editor', {
                 <defaulted-input-form inputType="color" :targetContainer="borderData" targetFieldName="borderColor" :defaultVal="usedDefaults.borderColor"></defaulted-input-form>
             </editor-field>
 
-        </editor-subpanel-terminal>
+        </activity-editor-subpanel>
         </div>
     `,
 
