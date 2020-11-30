@@ -3,7 +3,7 @@ Vue.component('multiple-checkboxes-editor', {
         <activity-editor-subpanel label="Opzioni" level="0">
 <!--                    <activity-editor-subpanel :label="i" :level="1" v-for="(optionData, i) in inputData.optionList">-->
 <!--                    </activity-editor-subpanel> -->
-                    <activity-editor-list :list="inputData.optionList">
+                    <activity-editor-list :list="inputData.optionList" :labelFunction="labelFunc" :addCallback="addOption">
                         <template v-slot:default="slotProps">
                             <simple-button-editor :inputData="slotProps.elem"></simple-button-editor>
                         </template>
@@ -12,7 +12,7 @@ Vue.component('multiple-checkboxes-editor', {
 <!--                        <template v-slot:default="slotProps" >-->
 <!--                        </template>-->
 <!--                    </editor-subpanel-list>-->
-                <b-button @click="addOption">+</b-button>
+<!--                <b-button @click="addOption">+</b-button>-->
             </div>
         </activity-editor-subpanel>`,
 
@@ -36,6 +36,9 @@ Vue.component('multiple-checkboxes-editor', {
                    "outcomeType": "next",
                    "nextActivityId": ""
                }})
+        },
+        labelFunc(elem, i) {
+            return "Button " + i;
         }
     }
 })

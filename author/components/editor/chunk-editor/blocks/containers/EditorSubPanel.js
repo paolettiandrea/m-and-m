@@ -3,17 +3,29 @@ const PADDING_PER_LEVEL = 30;
 Vue.component('activity-editor-list', {
     template: `
         <div>
-            <div v-for="(e, i) in list">
+            <div v-if="list" v-for="(e, i) in list">
                 <activity-editor-subpanel :label="calculateLabel(e,i)">
                     <slot v-bind:index="i" v-bind:elem="e"></slot>
+                    <template v-slot:toolbarappend class="btn-group">
+                   
+                        <b-button-group>
+                            <b-button variant="outline-secondary" @click="moveElement(i, +1)" ><b-icon icon="caret-down"></b-icon></b-button>
+                            <b-button variant="outline-secondary" @click="moveElement(i, -1)" ><b-icon icon="caret-up"></b-icon></b-button>
+                        </b-button-group>
+                        <b-button-group>
+                            <b-button variant="outline-danger" @click="deleteElement(i)" ><b-icon icon="trash"></b-icon></b-button>
+                        </b-button-group>
+                    </template>
                 </activity-editor-subpanel>
             </div> 
+            <b-button style="width: 100%" variant="outline-primary" @click="addCallback()">Add</b-button>
         </div>
     `,
 
     props: {
-        list: [],
-        labelFunction: null
+        list: Array,
+        labelFunction: null,
+        addCallback: null
     },
 
     methods: {
@@ -23,6 +35,16 @@ Vue.component('activity-editor-list', {
             } else {
                 return index;
             }
+        },
+
+        moveElement(index, offset) {
+            let elem = this.list[index];
+            this.list.splice(index, 1);
+            this.list.splice(index+offset, 0, elem)
+        },
+
+        deleteElement(index) {
+            this.list.splice(index, 1);
         }
     }
 })
@@ -47,9 +69,14 @@ Vue.component('editor-subpanel-terminal', {
 Vue.component('activity-editor-subpanel', {
     template: `
         <div>
-            <b-button-group style="width: 100%">
-                <b-button class="activity-editor-fake-input-button input-group-text" @click="collapseButtonClicked">{{label}}</b-button>
-            </b-button-group>
+            <b-button-toolbar style="width: 100%">
+            
+                <b-button-group style="flex: 1">
+                    <b-button class="activity-editor-fake-input-button input-group-text" @click="collapseButtonClicked">{{label}}</b-button>
+                </b-button-group>
+                
+               <slot name="toolbarappend"></slot>
+            </b-button-toolbar>
             <div class="editor-subpanel-left-padded-slot">
                 <b-collapse :id="collapseId">
                 <slot></slot>

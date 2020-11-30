@@ -23,4 +23,5 @@
 
 .activity-editor-fake-input-button {
     font-family: "Roboto Mono", monospace;
+    flex: 1;
 }
