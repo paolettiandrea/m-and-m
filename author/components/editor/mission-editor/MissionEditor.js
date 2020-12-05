@@ -92,6 +92,9 @@ Vue.component('mission-editor', {
             }
         })
 
+        let yo = document.getElementById("yoyo");
+        this.$store.state.canvas.graph.changeSize(yo.clientWidth, yo.clientHeight);      // FIXME brutally resizing canvas
+
         window.onresize = () => {
             let yo = document.getElementById("yoyo");
             this.$store.state.canvas.graph.changeSize(yo.clientWidth, yo.clientHeight);      // FIXME brutally resizing canvas

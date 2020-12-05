@@ -11,10 +11,8 @@ Vue.component('activity-preview', {
                                 @content:chunk:clicked="contentChunkClicked" @input:clicked="inputClicked">
                                 
                             <template v-slot:last-content-chunk>
-                                    <content-type-selector @content:type:selected="addContentChunk" ></content-type-selector>
                             </template>
                             <template v-slot:input-placeholder>
-                                <input-type-selector @input:selected="setInputChunk"></input-type-selector>
                             </template>
                         </activity-displayer>
                 </div>
@@ -46,7 +44,6 @@ Vue.component('activity-preview', {
     },
 
     methods: {
-        ...Vuex.mapActions(['addContentChunk', 'setInputChunk']),
 
         contentChunkClicked(contentData) {
             this.$store.commit('setSelectedActivityChunk', contentData.index);

@@ -26,7 +26,7 @@ Vue.component('editor-main', {
                                 <template slot="button-content">
                                     <b-icon icon="gear"></b-icon>
                                 </template>
-                                <b-dropdown-item href="#"><b-button v-on:click="" variant="outline-danger"><b-icon icon="trash"></b-icon> Cancella </b-button></b-dropdown-item>
+                                <b-dropdown-item href="#"><b-button v-on:click="deleteSelectedActivity" variant="outline-danger"><b-icon icon="trash"></b-icon> Cancella </b-button></b-dropdown-item>
                             </b-nav-item-dropdown>
                         </b-navbar-nav> 
                     </b-navbar>
@@ -56,6 +56,7 @@ Vue.component('editor-main', {
     },
 
     methods: {
+        ...Vuex.mapActions(['deleteSelectedActivity']),
         activitySelectedCallback(selectedActivity) {
             this.selectedActivityData = selectedActivity;
         }

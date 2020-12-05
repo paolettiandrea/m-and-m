@@ -90,8 +90,9 @@ const store = new Vuex.Store({
         renameSelectedActivity(context,  newTitle) {
             Vue.set(context.getters.selectedActivity, "title", newTitle);
         },
-        deleteActivity(context, activityId) {
-
+        deleteSelectedActivity(context) {
+            context.commit('deleteSelectedActivity');
+            context.dispatch('deselectActivity')
         },
         updateActivityGraphPosition(context, payload) {
             console.log("Inside dispath: ", payload.id);
@@ -134,6 +135,18 @@ const store = new Vuex.Store({
     },
 
     mutations: {
+
+        deleteSelectedActivity(state) {
+            console.log(state.mission)
+            let selectedMission = state.mission.activeMissions[state.mission.selectedMissionId];
+            console.log(selectedMission)
+            let selectedActivity = selectedMission.content.activities[state.selectedActivityId];
+
+            console.log(state.selectedActivityId)
+            console.log(selectedMission.content.activities)
+            Vue.delete(selectedMission.content.activities, state.selectedActivityId);
+        },
+
         updateGraphPosition(state, payload) {
 
             payload.missionContent.activities[payload.id].graphPosition = payload.pos;

@@ -4,14 +4,17 @@ Vue.component('activity-editor', {
             <div>
             
                 <div v-for="(content, index) of activity.content">
-                    <activity-editor-component-panel :index="index" :componentData="content" ></activity-editor-component-panel>
+                    <activity-editor-component-panel :index="index" :componentData="content" :last="index===activity.content.length-1"></activity-editor-component-panel>
                 
                 </div>
+                
+                <content-type-selector @content:type:selected="addContentChunk" ></content-type-selector>
+                
                 <div v-if="activity.inputComponent">
                     <activity-editor-component-panel :componentData="activity.inputComponent"></activity-editor-component-panel>
                 </div>
                 <div v-else>
-                
+                    <input-type-selector @input:selected="setInputChunk"></input-type-selector>
                 </div>
             </div>
         

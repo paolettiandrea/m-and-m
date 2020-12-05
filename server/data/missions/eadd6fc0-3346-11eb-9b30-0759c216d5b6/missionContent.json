@@ -210,20 +210,6 @@
             },
             "backgroundData": {}
           }
-        },
-        {
-          "contentType": "video-displayer",
-          "contentData": {
-            "url": "https://www.youtube.com/watch?v=ScMzIvxBSi4"
-          },
-          "commonData": {
-            "borderData": {},
-            "spacingData": {
-              "padding": {},
-              "margin": {}
-            },
-            "backgroundData": {}
-          }
         }
       ],
       "inputComponent": {
@@ -283,8 +269,8 @@
       ],
       "inputComponent": null,
       "graphPosition": {
-        "x": 270,
-        "y": 385
+        "x": 321,
+        "y": 389
       }
     }
   },

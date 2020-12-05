@@ -139,9 +139,9 @@ Vue.component('activity-editor-component-panel', {
                     </b-button>
                 </template>
             </b-input-group>
-                <b-button-group>
-                    <b-button variant="outline-secondary" @click="moveSelectedActivityChunk({offset: 1, index: index})" ><b-icon icon="caret-down"></b-icon></b-button>
-                    <b-button variant="outline-secondary" @click="moveSelectedActivityChunk({offset: -1, index: index})" ><b-icon icon="caret-up"></b-icon></b-button>
+                <b-button-group v-if="isContentComponent(componentData)">
+                    <b-button :disabled="last" variant="outline-secondary" @click="moveSelectedActivityChunk({offset: 1, index: index})" ><b-icon icon="caret-down"></b-icon></b-button>
+                    <b-button :disabled="index===0" variant="outline-secondary" @click="moveSelectedActivityChunk({offset: -1, index: index})" ><b-icon icon="caret-up"></b-icon></b-button>
                 </b-button-group>
                 <b-button-group>
                     <b-button variant="outline-danger" @click="deleteContent" ><b-icon icon="trash"></b-icon></b-button>
@@ -163,7 +163,8 @@ Vue.component('activity-editor-component-panel', {
 
     props: {
         componentData: {},
-        index: 0
+        index: 0,
+        last: false
     },
 
     computed: {
