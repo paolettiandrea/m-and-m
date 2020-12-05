@@ -5,6 +5,25 @@
 
 Vue.component('resource-form', {
     template: `<div>
+        <activity-editor-subpanel label="Risorsa">
+            <b-tabs pills>
+                <b-tab title="Link"></b-tab>
+                <b-tab title="File"></b-tab>
+</b-tabs>
+            <p>test</p>
+        </activity-editor-subpanel>
+</div>`,
+
+    methods: {
+        pickedFileCallback() {
+
+        }
+    }
+})
+
+
+Vue.component('resource-formu', {
+    template: `<div>
                 
             
                 <b-input-group size="sm">

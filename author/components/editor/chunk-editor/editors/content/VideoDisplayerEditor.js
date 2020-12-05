@@ -1,7 +1,7 @@
 Vue.component('video-displayer-editor', {
     template: `
         <div >
-            <p> Video editor stuff (only link?)</p>            
+            <url-input :target="contentData" fieldName="url"></url-input>
         </div>
         
     `,
@@ -11,5 +11,20 @@ Vue.component('video-displayer-editor', {
 
     computed: {
         ... Vuex.mapGetters(['selectedMissionDefaults'])
+    }
+})
+
+
+Vue.component('url-input', {
+    template: `
+        <div>
+            <b-input-group prepend="Link">
+                <b-form-input v-model="target[fieldName]"></b-form-input>
+            </b-input-group>
+        </div>`,
+
+    props: {
+        target: null,
+        fieldName: ""
     }
 })

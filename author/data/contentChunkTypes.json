@@ -3,9 +3,10 @@
     {
       "type": "video-displayer",
       "title": "Video",
+      "description": "Mostra un video di YouTube",
       "icon": "camera-video",
       "data":{
-
+        "url": "https://www.youtube.com/watch?v=ScMzIvxBSi4"
       }
     },
     {

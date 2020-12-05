@@ -210,6 +210,20 @@
             },
             "backgroundData": {}
           }
+        },
+        {
+          "contentType": "video-displayer",
+          "contentData": {
+            "url": "https://www.youtube.com/watch?v=ScMzIvxBSi4"
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
         }
       ],
       "inputComponent": {
