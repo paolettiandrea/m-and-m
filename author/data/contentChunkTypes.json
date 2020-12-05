@@ -1,6 +1,14 @@
 {
   "contentChunkTypes": [
     {
+      "type": "video-displayer",
+      "title": "Video",
+      "icon": "camera-video",
+      "data":{
+
+      }
+    },
+    {
       "type": "text-displayer",
       "title": "Campo testuale",
       "icon": "card-text",

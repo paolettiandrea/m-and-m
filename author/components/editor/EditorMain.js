@@ -31,10 +31,10 @@ Vue.component('editor-main', {
                         </b-navbar-nav> 
                     </b-navbar>
                     <b-row class="full-height" no-gutters>
-                        <b-col  class="full-height no-horizontal-padding">
+                        <b-col  class="full-height no-horizontal-padding" style="overflow-y: hidden">
                             <activity-preview class="full-height"></activity-preview>
                         </b-col>
-                        <b-col>
+                        <b-col class="full-height" style="overflow-y: auto">
                             <activity-editor class="full-height"></activity-editor>
                         </b-col>
                     </b-row>
