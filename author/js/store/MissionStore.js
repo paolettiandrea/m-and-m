@@ -114,8 +114,6 @@ let MissionModule = {
         },
         createMission(context) {
             axios.get("/missions/new").then((res) => {
-                console.log("create mission");
-                console.log(res);
                 context.commit('addMission', res.data);
             })
         },

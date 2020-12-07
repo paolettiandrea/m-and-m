@@ -30,7 +30,6 @@ async function getMissionContent(uid) {
             if (err) throw err;
             const db = client.db(missionsDB);
             db.collection(missionContentCol).findOne({ "_id" : new ObjectId(uid)}).then( res => {
-                console.log(res);
                 client.close();
                 resolve(res);
             })

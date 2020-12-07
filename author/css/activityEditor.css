@@ -1,0 +1,27 @@
+.activity-editor-subpanel-main-button {
+    width: 100%;
+}
+
+.activity-editor-subpanel-main-button > .input-group > .input-group-append {
+    flex: 1;
+}
+
+.editor-subpanel-left-padded-slot {
+    padding-left: 46px;
+ }
+
+.activity-editor-component-content {
+    padding-right: 5px;
+}
+
+.activity-editor-card > .card-header {
+    padding: 5px;
+}
+.activity-editor-card > .card-body {
+    padding: 5px;
+}
+
+.activity-editor-fake-input-button {
+    font-family: "Roboto Mono", monospace;
+    flex: 1;
+}

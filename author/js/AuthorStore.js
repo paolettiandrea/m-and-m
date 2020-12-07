@@ -71,14 +71,16 @@ const store = new Vuex.Store({
             context.commit('setSelectedActivity', null);
             context.dispatch('deselectActivityChunk');
         },
-        createActivity(context) {
+        createActivity(context, mouseCanvasPos) {
+            console.log(mouseCanvasPos);
             let activities = context.getters.selectedMissionContent.activities;
             let uuid = uuidv1();
             let newActivity = {
                 uuid: uuid,
                 title: "Nuova attività",
                 content: [],
-                inputComponent: null
+                inputComponent: null,
+                graphPosition: mouseCanvasPos
             }
             Vue.set(activities, uuid, newActivity);
             context.state.canvas.newActivity(newActivity);
@@ -88,30 +90,30 @@ const store = new Vuex.Store({
         renameSelectedActivity(context,  newTitle) {
             Vue.set(context.getters.selectedActivity, "title", newTitle);
         },
-        deleteActivity(context, activityId) {
-
+        deleteSelectedActivity(context) {
+            context.commit('deleteSelectedActivity');
+            context.dispatch('deselectActivity')
+        },
+        updateActivityGraphPosition(context, payload) {
+            console.log("Inside dispath: ", payload.id);
+            payload.missionContent = context.getters.selectedMissionContent;
+            context.commit('updateGraphPosition', payload);
         },
 
         // Content chunk management ===================================================================================
-        deleteSelectedActivityChunk(context) {
-            if (context.getters.isChunkSelected) {
-                if (context.getters.isInputChunkSelected) {
-                    Vue.delete(context.getters.selectedActivity, 'inputComponent');
-                } else {
-                    context.getters.selectedActivity.content.splice(context.state.selectedContentIndex, 1);
-                }
-            }
-            context.commit('setSelectedActivityChunk', NaN);
+        deleteSelectedActivityInputComponent(context) {
+            Vue.delete(context.getters.selectedActivity, 'inputComponent');
+        },
+        deleteSelectedActivityContentChunk(context, index) {
+            context.getters.selectedActivity.content.splice(index, 1);
         },
 
-
-        moveSelectedChunk(context, offset) {
-            let oldIndex = context.state.selectedContentIndex;
-            let newIndex = oldIndex + offset;
+        moveSelectedActivityChunk(context, {offset, index}) {
+            let newIndex = index + offset;
 
             context.commit('moveActivityContentChunk', {
                 selectedActivity: context.getters.selectedActivity,
-                oldIndex: oldIndex,
+                oldIndex: index,
                 newIndex: newIndex,
             });
             context.commit('setSelectedActivityChunk', newIndex);
@@ -134,6 +136,21 @@ const store = new Vuex.Store({
 
     mutations: {
 
+        deleteSelectedActivity(state) {
+            console.log(state.mission)
+            let selectedMission = state.mission.activeMissions[state.mission.selectedMissionId];
+            console.log(selectedMission)
+            let selectedActivity = selectedMission.content.activities[state.selectedActivityId];
+
+            console.log(state.selectedActivityId)
+            console.log(selectedMission.content.activities)
+            Vue.delete(selectedMission.content.activities, state.selectedActivityId);
+        },
+
+        updateGraphPosition(state, payload) {
+
+            payload.missionContent.activities[payload.id].graphPosition = payload.pos;
+        },
         // Initializes all the store data that is destined to be constant throughout execution
         initializeConstData(state) {
             axios.get("./data/contentChunkTypes.json").then( res => {
@@ -145,6 +162,7 @@ const store = new Vuex.Store({
             })
 
         },
+
 
         initializeFontDB(state, fontNum) {
             state.fontDB = new FontDB(fontNum);
@@ -199,7 +217,7 @@ const store = new Vuex.Store({
 
     getters: {
 
-
+        isWaitingForActivityClick(state) {return state.activityClickedCallback !== null },
 
         isMissionSettingsPanelOpen(state) { return state.panelState.missionSettingsOpen; },
 

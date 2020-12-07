@@ -59,7 +59,11 @@
       "initial": {
         "title": "Attività iniziale",
         "content": [],
-        "uuid": "initial"
+        "uuid": "initial",
+        "graphPosition": {
+          "x": 0,
+          "y": 0
+        }
       }
     },
     "usedResources": { }
