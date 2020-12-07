@@ -3,7 +3,7 @@
 * Storie
     * [Musica nel mondo](pages/storie/musica-nel-mondo.md)  
     * [Un'altra storia](pages/storie/nuova-missione.md)
-
+    * [Uncharted](pages/storie/pseudo-uncharted.md)
 ## Bacheca temporanea
 Dove segnare note a caso e robe di cui parlare all'incontro successivo
 
