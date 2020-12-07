@@ -44,21 +44,21 @@ Vue.component('mission-displayer', {
         let uri = window.location.search.substring(1);
         let params = new URLSearchParams(uri);
         let missionId = params.get("missionId")
-        if (missionId) {
+      /*  if (missionId) {
             axios.
             get("/missions/content/" + missionId).
             then(res => {
                 this.missionData = JSON.parse(res.data);
                 this.pointedActivity = this.missionData.activities.initial;
             })
-        } else {
+        } else {*/
             axios.
             get("/player/data/dummyMission.json").
             then(res => {
                 this.missionData = res.data;
                 this.pointedActivity = this.missionData.activities.initial;
             })
-        }
+        //}
 
 
 
