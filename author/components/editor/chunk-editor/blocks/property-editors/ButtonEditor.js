@@ -2,7 +2,7 @@
 Vue.component('button-editor', {
     template: `
     <div >
-        <editor-subpanel
+        <activity-editor-subpanel
             label="Bottone"
             :level="level"
             >
@@ -15,7 +15,7 @@ Vue.component('button-editor', {
             <border-editor :level="level+1" :borderData="buttonData.buttonBorderData" :defaults="defaults.buttonBorderData"></border-editor>
             <background-editor :level="level+1" :backgroundData="buttonData.buttonBackgroundData" :defaults="defaults.buttonBackgroundData"></background-editor>
             
-        </editor-subpanel>
+        </activity-editor-subpanel>
     </div>`,
 
     props: {

@@ -3,7 +3,7 @@
 Vue.component('font-editor', {
     template: `
     <div >
-        <editor-subpanel-terminal
+        <activity-editor-subpanel
             label="Font"
             :level="level"
             >
@@ -38,7 +38,7 @@ Vue.component('font-editor', {
             <editor-field label="Colore">
                 <defaulted-input-form :targetContainer="fontData" targetFieldName="fontColor" inputType="color" :defaultVal="defaults.fontColor"></defaulted-input-form>
             </editor-field>
-        </editor-subpanel-terminal>
+        </activity-editor-subpanel>
     </div>`,
 
     props: {

@@ -7,7 +7,6 @@ Vue.component('mission-displayer', {
                                             @next:activity="handleNextActivity"></activity-displayer>
                 </div>
         </transition>
-        <button  v-on:click="nextActivity">Next mission</button>
         <chat></chat>
         </div>
     `,
@@ -27,14 +26,6 @@ Vue.component('mission-displayer', {
         }
     },
     methods: {
-        nextActivity() {
-            // Funzione temporanea che cambia la pointedActivity a quella successiva nella lista contenuta in missionData
-            this.pointedIndex++;
-            if (this.pointedIndex >= this.missionData.activities.length) { this.pointedIndex = 0; }
-            this.pointedActivity = this.missionData.activities[this.pointedIndex];
-
-        },
-
         handleNextActivity(nextMissionId) {
             this.pointedActivity =  this.missionData.activities[nextMissionId];
             // var i = 0;

@@ -1,5 +1,11 @@
 import { v1 as uuidv1} from '/uuid/dist/esm-browser/index.js';
 
+let graphOffset = {
+    x: 0,
+    y:0
+}
+
+let bufGraphPosition = null;
 
 function buildGraphData(missionContent) {
     var data = {
@@ -20,6 +26,10 @@ function buildActivityNodeData(activity) {
         type: 'rect',
         id: activity.uuid,
         label: activity.title,
+
+        x: activity.graphPosition.x,
+        y: activity.graphPosition.y,
+
 
         anchorPoints: [
             [0.5, 0],
@@ -44,16 +54,12 @@ function buildActivityEdgeData(activity, edgeArray) {
 
     var nextOutcomes = getNextOutcomesFromActivity(activity);
     for (const outcome of nextOutcomes) {
-        console.log(outcome);
-        console.log(outcome.edgeId);
         var newEdge = {
             id: outcome.edgeId,
             source: activity.uuid,
             target: outcome.nextActivityId,
         };
         edgeArray.push(newEdge);
-        console.log("New edge");
-        console.log(newEdge);
     }
 }
 
@@ -157,6 +163,10 @@ G6.registerEdge('hvh', {
     },
 });
 
+let dragBuffer = {
+    x: 0, y:0
+}
+
 export class CanvasManager {
     constructor(settings, store) {
         this.callbacks = settings.callbacks;
@@ -171,7 +181,6 @@ export class CanvasManager {
             },
             fitView: true,
             fitCenter: true,
-            animate: true,
             defaultEdge: {
                 // ... Other properties for edges
                 type: 'hvh',
@@ -183,16 +192,6 @@ export class CanvasManager {
                     // ... Other style properties
                 },
             },
-            layout: {
-                // Object, the layout configuration. Random layout by default
-                type: 'dagre',
-                nodesep: HORIZONTAL_DISTANCE,
-                ranksep: VERTICAL_DISTANCE,
-                controlPoints: true,
-                // ...                    // Other configurations for the layout
-            },
-
-
         });
 
 
@@ -221,9 +220,23 @@ export class CanvasManager {
 
         })
 
+        this.graph.on('node:dragstart', e => {
+            console.log("Drag start", e);
+
+
+        })
+        this.graph.on('node:dragend', e => {
+            // FIXME some problem with the offset(now removed), it doesn't save the correct position
+            let id = e.item._cfg.id;
+            let pos = { x:e.x, y:e.y }
+            this.store.dispatch('updateActivityGraphPosition', {pos: pos, id: id});
+            console.log(e);
+        })
+
         // Double click creates a new activity
         this.graph.on('canvas:dblclick', e => {
-            let activityId = this.store.dispatch('createActivity');
+            let mouseCanvasPos = { x: e.x, y: e.y}
+            let activityId = this.store.dispatch('createActivity', mouseCanvasPos);
         })
 
         this.graph.on()
@@ -236,6 +249,7 @@ export class CanvasManager {
     }
 
     newActivity(newActivity) {
+        console.log(newActivity);
         this.graph.addItem('node', buildActivityNodeData(newActivity));
     }
 

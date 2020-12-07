@@ -1,8 +1,7 @@
 Vue.component('audio-player-editor', {
     template: `
         <div >
-            <resource-form resCategory="audio" :resourceData="contentData.audioResourceData" ></resource-form>
-            
+            <url-input :target="contentData.audioResourceData" fieldName="url"></url-input>
             <button-editor :buttonData="contentData.buttonData" :defaults="selectedMissionDefaults.buttonData" :iconLabel="true"></button-editor>
 
         
