@@ -14,4 +14,4 @@ Vue.component('lastScreen-displayer', {
         </div>
         </body>
     `
-  }
+  });

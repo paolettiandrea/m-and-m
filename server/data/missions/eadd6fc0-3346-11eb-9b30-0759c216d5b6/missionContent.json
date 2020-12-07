@@ -267,7 +267,34 @@
           }
         }
       ],
-      "inputComponent": null,
+      "inputComponent": {
+        "inputType": "multiple-checkboxes",
+        "inputData": {
+          "multipleChoice": false,
+          "optionList": [
+            {
+              "buttonData": {
+                "label": "Bottone",
+                "labelFontData": {},
+                "buttonBorderData": {},
+                "buttonBackgroundData": {}
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": ""
+              }
+            }
+          ]
+        },
+        "commonData": {
+          "borderData": {},
+          "spacingData": {
+            "padding": {},
+            "margin": {}
+          },
+          "backgroundData": {}
+        }
+      },
       "graphPosition": {
         "x": 321,
         "y": 389
