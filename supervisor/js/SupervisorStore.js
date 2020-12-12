@@ -1,18 +1,29 @@
 const store = new Vuex.Store({
     state: {
         socket: null,
-        players: {}
+        players: {},
+        selectedPlayerId: null
     },
     actions: {
         initializeSupervisorStore(context) {
             context.commit('initializeSocket');
+        },
+
+        selectPlayer(context, playerId) {
+            context.commit('setSelectedPlayer', playerId)
         }
     },
     mutations: {
+        setSelectedPlayer(state, playerId) {
+            state.selectedPlayerId = playerId;
+        },
         initializeSocket(state) {
             state.socket = io();
             state.socket.emit('sup-handshake');
 
+            state.socket.on('player-state-changed', (player) => {
+                store.commit('playerStateChanged', player);
+            })
             state.socket.on('player-connected', (player) => {
                 console.log('Player connected', player)
                 store.commit('playerConnected', player);
@@ -25,6 +36,10 @@ const store = new Vuex.Store({
 
         playerConnected(state, player) {
             Vue.set(state.players, player.id, player)
+        },
+
+        playerStateChanged(state, playerState) {
+            Vue.set(state.players, playerState.id, playerState)
         },
 
         playerDisconnected(state, player) {

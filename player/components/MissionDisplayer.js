@@ -61,6 +61,8 @@ Vue.component('mission-displayer', {
                 this.missionData = JSON.parse(res.data);
                 this.pointedActivity = this.missionData.activities.initial;
             })
+
+            socket.emit('starting-mission', missionId)
         } else {
             axios.
             get("/player/data/dummyMission.json").
