@@ -1,46 +1,56 @@
 const store = new Vuex.Store({
     state: {
         socket: null,
-        unsupervisedPlayers: {},
-        supervisedPlayers: {}
+        players: {},
+        selectedPlayerId: null
     },
     actions: {
         initializeSupervisorStore(context) {
             context.commit('initializeSocket');
+        },
+
+        selectPlayer(context, playerId) {
+            context.commit('setSelectedPlayer', playerId)
         }
     },
     mutations: {
+        setSelectedPlayer(state, playerId) {
+            state.selectedPlayerId = playerId;
+        },
         initializeSocket(state) {
             state.socket = io();
             state.socket.emit('sup-handshake');
 
+            state.socket.on('player-state-changed', (player) => {
+                store.commit('playerStateChanged', player);
+            })
             state.socket.on('player-connected', (player) => {
-                store.commit('addUnsupervisedPlayer', player);
+                console.log('Player connected', player)
+                store.commit('playerConnected', player);
             })
 
             state.socket.on('player-disconnected', (player) => {
-                store.commit('removePlayer', player.socketId);
+                store.commit('playerDisconnected', player);
             })
         },
 
-        addUnsupervisedPlayer(state, player) {
-            Vue.set(state.unsupervisedPlayers, player.socketId, player)
+        playerConnected(state, player) {
+            Vue.set(state.players, player.id, player)
         },
 
-        removePlayer(state, playerId) {
-            if (state.unsupervisedPlayers.hasOwnProperty(playerId)) {
-                Vue.delete(state.unsupervisedPlayers, playerId);
-            } else if (state.supervisedPlayers.hasOwnProperty(playerId)) {
-                // TODO The player was supervised by me
-            }
+        playerStateChanged(state, playerState) {
+            Vue.set(state.players, playerState.id, playerState)
+        },
+
+        playerDisconnected(state, player) {
+                Vue.delete(state.players, player.id);
         }
     },
 
     getters: {
-        supervisorSocket(state) { return state.socket; },
 
-        unsupervisedPlayers(state) {
-            return state.unsupervisedPlayers;
+        players(state) {
+            return state.players;
         }
     }
 })
