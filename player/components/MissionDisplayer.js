@@ -11,6 +11,7 @@ Vue.component('mission-displayer', {
             <lastScreen-displayer></lastScreen-displayer>
 </div>
             <chat></chat>
+            <score-displayer align="right" :score="this.missionScore"></score-displayer>
            
         </div>
     `,
@@ -22,6 +23,7 @@ Vue.component('mission-displayer', {
             pointedActivity: null,
             pointedIndex: 0,
             stile: 'test',
+            missionScore: 23,
             missionEnded: false
             /*stile: {
                 'background-color': 'black',
@@ -34,6 +36,7 @@ Vue.component('mission-displayer', {
         handleNextActivity(nextMissionId) {
             if (nextMissionId) {
                 this.pointedActivity =  this.missionData.activities[nextMissionId];
+                this.missionScore = this.missionScore + 10;
             } else {
                 this.missionEnded = true;
                 this.pointedActivity = null;
