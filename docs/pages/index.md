@@ -1,5 +1,6 @@
 **Indice**:
 * [TODO](pages/todos.md)
+* [Author todos](https://trello.com/b/WmFyaZqN/author-todos)
 * Storie
     * [Musica nel mondo](pages/storie/musica-nel-mondo.md)  
     * [Un'altra storia](pages/storie/nuova-missione.md)

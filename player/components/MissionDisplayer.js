@@ -1,6 +1,7 @@
 Vue.component('mission-displayer', {
     template: `
         <div id="mission-displayer-main" align="center">
+            <score-displayer align="right" :score="this.missionScore"></score-displayer>
             <transition name="content-slide" mode="out-in">
                     <div v-if="this.pointedActivity" :key="this.pointedActivity.uuid">
                         <activity-displayer :activityContent="this.pointedActivity" :defaults="this.missionData.defaults"
@@ -11,7 +12,6 @@ Vue.component('mission-displayer', {
             <lastScreen-displayer></lastScreen-displayer>
         </div>
             <chat></chat>
-            <score-displayer align="right" :score="this.missionScore"></score-displayer>
            
         </div>
     `,
@@ -33,7 +33,16 @@ Vue.component('mission-displayer', {
         }
     },
     methods: {
+        nextActivity() {
+            // Funzione temporanea che cambia la pointedActivity a quella successiva nella lista contenuta in missionData
+            this.pointedIndex++;
+            if (this.pointedIndex >= this.missionData.activities.length) { this.pointedIndex = 0; }
+            this.pointedActivity = this.missionData.activities[this.pointedIndex];
+
+        },
+
         handleNextActivity(nextMissionId) {
+            this.pointedActivity = this.missionData.activities[nextMissionId];
             if (nextMissionId) {
                 this.pointedActivity =  this.missionData.activities[nextMissionId];
                 this.missionScore = this.missionScore + 10;
@@ -74,8 +83,5 @@ Vue.component('mission-displayer', {
                 this.pointedActivity = this.missionData.activities.initial;
             })
         }
-
-
-
     },
 })
