@@ -1,4 +1,4 @@
-#test {
+#app {
     background-color: black;
     opacity: 0.8;
     color: aliceblue;
@@ -183,6 +183,7 @@ label {
 .test-class {
     background-color: #4CAF50;
 }
+
 
 #mission-displayer-main {
     height: 100vh;
