@@ -183,3 +183,8 @@ label {
 .test-class {
     background-color: #4CAF50;
 }
+
+#mission-displayer-main {
+    height: 100vh;
+    width: 100vw;
+}

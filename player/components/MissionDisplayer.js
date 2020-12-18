@@ -1,6 +1,6 @@
 Vue.component('mission-displayer', {
     template: `
-        <div align="center">
+        <div id="mission-displayer-main" align="center">
             <transition name="content-slide" mode="out-in">
                     <div v-if="this.pointedActivity" :key="this.pointedActivity.uuid">
                         <activity-displayer :activityContent="this.pointedActivity" :defaults="this.missionData.defaults"
@@ -9,7 +9,7 @@ Vue.component('mission-displayer', {
             </transition>
             <div v-if="missionEnded">
             <lastScreen-displayer></lastScreen-displayer>
-</div>
+        </div>
             <chat></chat>
            
         </div>
