@@ -37,14 +37,14 @@
           "right": "5px"
         },
         "margin": {
-          "top": "0px",
-          "bottom": "0px",
+          "top": "10px",
+          "bottom": "10px",
           "left": "0px",
           "right": "0px"
         }
       },
       "backgroundData": {
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#c53535"
       }
     }
   },
@@ -84,7 +84,9 @@
               "padding": {},
               "margin": {}
             },
-            "backgroundData": {}
+            "backgroundData": {
+              "backgroundColor": "#574444"
+            }
           }
         }
       ],
@@ -267,7 +269,34 @@
           }
         }
       ],
-      "inputComponent": null,
+      "inputComponent": {
+        "inputType": "multiple-checkboxes",
+        "inputData": {
+          "multipleChoice": false,
+          "optionList": [
+            {
+              "buttonData": {
+                "label": "Bottone",
+                "labelFontData": {},
+                "buttonBorderData": {},
+                "buttonBackgroundData": {}
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": ""
+              }
+            }
+          ]
+        },
+        "commonData": {
+          "borderData": {},
+          "spacingData": {
+            "padding": {},
+            "margin": {}
+          },
+          "backgroundData": {}
+        }
+      },
       "graphPosition": {
         "x": 321,
         "y": 389

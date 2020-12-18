@@ -13,7 +13,7 @@ Vue.component("qr-reader", {
 Vue.component("chat", {
     template: `<div>
     
-    <img src="chatimg.png" width="50" height="50" align="right" v-on:click="openForm">
+    <img class="chat-icon" src="chatimg.png" width="50" height="50" v-on:click="openForm">
 
 
     <div class="chat-popup" id="myForm">
