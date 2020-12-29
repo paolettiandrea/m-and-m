@@ -1,12 +1,11 @@
 Vue.component('player-main', {
     template: `
         <div>
-            <mission-displayer></mission-displayer>
+          <backgroundThird-screen :score="120"></backgroundThird-screen>
+
+
         </div>`,
 
     components: {
     }
 })
-
-
-
