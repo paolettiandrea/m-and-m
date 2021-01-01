@@ -10,7 +10,7 @@ Vue.component('mission-defaults-editor', {
                 <button-editor :buttonData="defaults.buttonData" :defaults="uberDefaults.buttonData"></button-editor>
             </activity-editor-subpanel>
             <activity-editor-subpanel label="Schermata">
-                <common-styling-editor :commonData="missionContent.screenStylingData" :defaults="uberDefaults.commonData"></common-styling-editor>
+                <screen-style-editor :screenStyleData="defaults.screenStyleData"></screen-style-editor>
 </activity-editor-subpanel>
         </div>
     `,

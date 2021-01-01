@@ -82,23 +82,14 @@ const store = new Vuex.Store({
                 graphPosition: mouseCanvasPos,
                 screenStyleData: {
                     "inner": {
-                        "borderData": {
-                            "borderStyle": "hidden",
-                            "borderWidth": "2px",
-                            "borderColor": "#000000",
-                            "borderRadius": "0px"
-                        },
+                        "borderData": {},
                         "spacingData": {
                             "padding": {},
                             "margin": {}
                         },
-                        "backgroundData": {
-                            "backgroundColor": "#ffffff"
-                        }
+                        "backgroundData": {}
                     }, "outer": {
-                        "backgroundData": {
-                            "backgroundColor": "#ffffff"
-                        }
+                        "backgroundData": {}
                     }
                 },
             }

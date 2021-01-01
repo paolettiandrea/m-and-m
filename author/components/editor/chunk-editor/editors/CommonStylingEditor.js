@@ -44,7 +44,7 @@ Vue.component('screen-style-editor', {
             <activity-editor-subpanel label="Interno">
                 <background-editor :backgroundData="screenStyleData.inner.backgroundData" :defaults="selectedMissionDefaults.screenStyleData.inner.backgroundData"></background-editor>
                 
-                <border-editor :borderData="screenStyleData.inner.borderData" :defaults="screenStyleData.inner.borderData"></border-editor>
+                <border-editor :borderData="screenStyleData.inner.borderData" :defaults="selectedMissionDefaults.screenStyleData.inner.borderData"></border-editor>
                 <activity-editor-subpanel label="Spaziatura">
                     <editor-field  label="Padding">
                         <defaulted-quad-input-form-unit :target="screenStyleData.inner.spacingData.padding" :defaults="selectedMissionDefaults.screenStyleData.inner.spacingData.padding"></defaulted-quad-input-form-unit>
@@ -62,7 +62,7 @@ Vue.component('screen-style-editor', {
     </div>`,
 
     props: {
-        screenStyleData: null
+        screenStyleData: null,
     },
 
     computed: {

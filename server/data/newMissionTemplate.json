@@ -101,12 +101,7 @@
         },
         "screenStyleData": {
           "inner": {
-            "borderData": {
-              "borderStyle": "hidden",
-              "borderWidth": "2px",
-              "borderColor": "#000000",
-              "borderRadius": "0px"
-            },
+            "borderData": {},
             "spacingData": {
               "padding": {},
               "margin": {}
