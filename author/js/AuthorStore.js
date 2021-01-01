@@ -80,7 +80,27 @@ const store = new Vuex.Store({
                 content: [],
                 inputComponent: null,
                 graphPosition: mouseCanvasPos,
-                screenStyleData: {inner: {}, outer: {}},
+                screenStyleData: {
+                    "inner": {
+                        "borderData": {
+                            "borderStyle": "hidden",
+                            "borderWidth": "2px",
+                            "borderColor": "#000000",
+                            "borderRadius": "0px"
+                        },
+                        "spacingData": {
+                            "padding": {},
+                            "margin": {}
+                        },
+                        "backgroundData": {
+                            "backgroundColor": "#ffffff"
+                        }
+                    }, "outer": {
+                        "backgroundData": {
+                            "backgroundColor": "#ffffff"
+                        }
+                    }
+                },
             }
 
             Vue.set(activities, uuid, newActivity);
