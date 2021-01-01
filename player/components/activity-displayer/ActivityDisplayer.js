@@ -2,8 +2,8 @@ Vue.component("activity-displayer", {
     template: `
         <div class="activity-displayer-div" >
             <!-- Content chunks  -->
-            <styling-wrapper :stylingData="activityContent.screenStyleData.outer" :stylingDefaults="defaults.screenStyleData.outer" style="min-height: 20px; overflow-y: auto; height: 100%">
-            <styling-wrapper :stylingData="activityContent.screenStyleData.inner" :stylingDefaults="defaults.screenStyleData.inner" style="height: 100%">
+            <styling-wrapper :stylingData="activityContent.screenStyleData.outer" :stylingDefaults="defaults.screenStyleData.outer" style="min-height: 20px; overflow-y: auto; height: 100%" class="vertical-flex">
+            <styling-wrapper :stylingData="activityContent.screenStyleData.inner" :stylingDefaults="defaults.screenStyleData.inner" style="flex: 1">
             
             <div class="activity-displayer-chunk-container">
                 <slot name="inter" index="0"></slot>

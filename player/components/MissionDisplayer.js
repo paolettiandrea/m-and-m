@@ -1,10 +1,10 @@
 Vue.component('mission-displayer', {
     template: `
-        <div id="mission-displayer-main" align="center">
-            <score-displayer align="right" :score="this.missionScore"></score-displayer>
+        <div id="mission-displayer-main">
+<!--            <score-displayer align="right" :score="this.missionScore"></score-displayer>-->
             <transition name="content-slide" mode="out-in">
-                    <div v-if="this.pointedActivity" :key="this.pointedActivity.uuid">
-                        <activity-displayer :activityContent="this.pointedActivity" :defaults="this.missionData.defaults" :styling="missionData.screenStylingData"
+                    <div v-if="this.pointedActivity" :key="this.pointedActivity.uuid" style="height: 100%">
+                        <activity-displayer :activityContent="this.pointedActivity" :defaults="this.missionData.defaults" style="height: 100%"
                                                 @next:activity="handleNextActivity"></activity-displayer>
                     </div>
             </transition>

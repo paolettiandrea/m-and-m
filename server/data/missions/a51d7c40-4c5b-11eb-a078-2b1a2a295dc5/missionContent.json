@@ -138,6 +138,22 @@
         {
           "contentType": "text-displayer",
           "contentData": {
+            "text": "Placeholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\nPlaceholder text\n\n",
+            "parseMarkdown": true,
+            "fontData": {}
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        },
+        {
+          "contentType": "text-displayer",
+          "contentData": {
             "text": "Placeholder text",
             "parseMarkdown": true,
             "fontData": {}
