@@ -4,7 +4,7 @@ Vue.component('mission-displayer', {
             <score-displayer align="right" :score="this.missionScore"></score-displayer>
             <transition name="content-slide" mode="out-in">
                     <div v-if="this.pointedActivity" :key="this.pointedActivity.uuid">
-                        <activity-displayer :activityContent="this.pointedActivity" :defaults="this.missionData.defaults"
+                        <activity-displayer :activityContent="this.pointedActivity" :defaults="this.missionData.defaults" :styling="missionData.screenStylingData"
                                                 @next:activity="handleNextActivity"></activity-displayer>
                     </div>
             </transition>

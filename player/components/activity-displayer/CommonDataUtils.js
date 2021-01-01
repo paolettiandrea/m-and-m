@@ -32,7 +32,8 @@ const uberDefaults = {
             borderStyle: "dotted"
         },
         buttonBackgroundData: {
-            backgroundColor: 'black'
+            backgroundColor: 'black',
+            opacity: 1,
         }
     },
     // Styling data for the container common to every content/input
@@ -150,9 +151,34 @@ function buildSpacingStyle(spacingData, spacingDefaults, uberDefs) {
 }
 
 function buildBackgroundData(backgroundData, backgroundDefaults, uberDefaults) {
-    return {
-        backgroundColor: backgroundData.backgroundColor || backgroundDefaults.backgroundColor || uberDefaults.backgroundColor
+
+    let color = backgroundData.backgroundColor || backgroundDefaults.backgroundColor || uberDefaults.backgroundColor;
+    let opacity = backgroundData.opacity || backgroundDefaults.opacity || 1.0;
+    let backgroundImg = backgroundData.backgroundImage || backgroundDefaults.backgroundImage || uberDefaults.backgroundImage
+    let rgb = hexToRgb(color);
+    let rgb_string = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + "," + opacity + ")";
+
+    let background_style = {
+        backgroundColor: rgb_string,
+
+
     }
+    if (backgroundImg) {
+        background_style.backgroundImage = "url(" + backgroundImg + ")";
+        background_style.backgroundRepeat = "no-repeat";
+        background_style.backgroundSize= "cover";
+
+    }
+    return background_style;
+}
+
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
 }
 
 

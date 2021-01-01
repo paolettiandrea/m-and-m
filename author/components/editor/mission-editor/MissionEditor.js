@@ -38,7 +38,7 @@ Vue.component('mission-editor', {
         </b-navbar>
         
         <div v-if="isMissionSettingsPanelOpen" class="full-flex vertical-scroll">
-            <mission-defaults-editor :defaults="missionContent.defaults" :uberDefaults="uberDefaults"></mission-defaults-editor>
+            <mission-defaults-editor :defaults="missionContent.defaults" :uberDefaults="uberDefaults" :missionContent="missionContent"></mission-defaults-editor>
         </div>
         <div v-else id="yoyo" style="position: relative; height: 100%">
             <div v-if="isWaitingForActivityClick" style="z-index: 3">

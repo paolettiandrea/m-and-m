@@ -1,7 +1,9 @@
 Vue.component("activity-displayer", {
     template: `
-        <div class="activity-displayer-div" style="min-height: 20px; overflow-y: auto;">
+        <div class="activity-displayer-div" style="min-height: 20px; overflow-y: auto; height: 100%">
             <!-- Content chunks  -->
+            <styling-wrapper :stylingData="styling" :stylingDefaults="defaults.commonData" style="height: 100%">
+            
             <div class="activity-displayer-chunk-container">
                 <slot name="inter" index="0"></slot>
                 <div  v-for="(contentChunk, index) of this.activityContent.content" >
@@ -21,6 +23,7 @@ Vue.component("activity-displayer", {
                 
                 <slot name="last-content-chunk"></slot> 
             </div>
+</styling-wrapper>
             
             <!-- Popup for input response. It contains an activity-displayer used for displaying the popupContent -->
             <b-collapse v-model="popupVisible">
@@ -36,7 +39,7 @@ Vue.component("activity-displayer", {
             <div v-if="activityContent.inputComponent" v-on:click="inputClicked">
                 <styling-wrapper :stylingData="activityContent.inputComponent.commonData" :stylingDefaults="defaults.commonData">
 
-                    <component  :is="activityContent.inputComponent.inputType" 
+                    <component :is="activityContent.inputComponent.inputType" 
                                 :inputData="activityContent.inputComponent.inputData" 
                                 :defaults="defaults"
                                 @input-received="handleInputReceived" ></component>
@@ -52,7 +55,8 @@ Vue.component("activity-displayer", {
 
     props: {
         activityContent: null,
-        defaults: null
+        defaults: null,
+        styling: null
 
     },
 

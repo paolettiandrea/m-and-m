@@ -55,6 +55,31 @@
         }
       }
     },
+    "screenStylingData": {
+      "borderData": {
+        "borderStyle": "hidden",
+        "borderWidth": "2px",
+        "borderColor": "#000000",
+        "borderRadius": "0px"
+      },
+      "spacingData": {
+        "padding": {
+          "top": "0px",
+          "bottom": "10px",
+          "left": "5px",
+          "right": "5px"
+        },
+        "margin": {
+          "top": "0px",
+          "bottom": "0px",
+          "left": "0px",
+          "right": "0px"
+        }
+      },
+      "backgroundData": {
+        "backgroundColor": "#ffffff"
+      }
+    },
     "activities": {
       "initial": {
         "title": "Attività iniziale",
