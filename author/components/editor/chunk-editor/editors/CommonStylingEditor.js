@@ -33,3 +33,35 @@ Vue.component('common-styling-editor', {
         ...Vuex.mapGetters(['selectedMissionDefaults']),
     }
 })
+
+
+Vue.component('screen-style-editor', {
+    template: `<div>
+        <activity-editor-subpanel label="Stile schermata">
+            <activity-editor-subpanel label="Esterno">
+                <background-editor :backgroundData="screenStyleData.outer.backgroundData" :defaults="selectedMissionDefaults.screenStyleData.outer.backgroundData"></background-editor>
+</activity-editor-subpanel>
+            <activity-editor-subpanel label="Interno">
+                <background-editor :backgroundData="screenStyleData.inner.backgroundData" :defaults="selectedMissionDefaults.screenStyleData.inner.backgroundData"></background-editor>
+                <activity-editor-subpanel label="Spaziatura">
+                    <editor-field  label="Padding">
+                        <defaulted-quad-input-form-unit :target="screenStyleData.inner.spacingData.padding" :defaults="selectedMissionDefaults.screenStyleData.inner.spacingData.padding"></defaulted-quad-input-form-unit>
+                    </editor-field>
+                    
+                    <editor-field  label="Margine">
+                        <defaulted-quad-input-form-unit :target="screenStyleData.inner.spacingData.margin" :defaults="selectedMissionDefaults.screenStyleData.inner.spacingData.margin"></defaulted-quad-input-form-unit>
+                    </editor-field>
+                </activity-editor-subpanel>
+            </activity-editor-subpanel>
+</activity-editor-subpanel>
+</activity-editor-subpanel>
+    </div>`,
+
+    props: {
+        screenStyleData: null
+    },
+
+    computed: {
+        ...Vuex.mapGetters(['selectedMissionDefaults']),
+    }
+})

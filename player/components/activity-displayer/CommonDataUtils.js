@@ -59,7 +59,7 @@ const uberDefaults = {
             }
         },
         backgroundData: {
-            backgroundColor: "#ffffff"
+            backgroundColor: "#ffffff",
         }
     }
 }
@@ -131,9 +131,9 @@ function buildBorderStyle(borderData, borderDefaults, uberDefs) {
 
 function buildWrapperStyle(commonData, commonDefaults, uberDefs) {
     return {
-        ...buildBorderStyle(commonData.borderData, commonDefaults.borderData, uberDefs.borderData),
-        ...buildSpacingStyle(commonData.spacingData, commonDefaults.spacingData, uberDefs.spacingData),
-        ...buildBackgroundData(commonData.backgroundData, commonDefaults.backgroundData, uberDefs.backgroundData)
+        ... (commonData.borderData) ? buildBorderStyle(commonData.borderData, commonDefaults.borderData, uberDefs.borderData) : null,
+        ... (commonData.spacingData) ? buildSpacingStyle(commonData.spacingData, commonDefaults.spacingData, uberDefs.spacingData) : null,
+        ... (commonData.backgroundData) ? buildBackgroundData(commonData.backgroundData, commonDefaults.backgroundData, uberDefs.backgroundData) : null
     }
 }
 
@@ -153,7 +153,7 @@ function buildSpacingStyle(spacingData, spacingDefaults, uberDefs) {
 function buildBackgroundData(backgroundData, backgroundDefaults, uberDefaults) {
 
     let color = backgroundData.backgroundColor || backgroundDefaults.backgroundColor || uberDefaults.backgroundColor;
-    let opacity = backgroundData.opacity || backgroundDefaults.opacity || 1.0;
+    let opacity = backgroundData.opacity || backgroundDefaults.opacity || uberDefaults.opacity;
     let backgroundImg = backgroundData.backgroundImage || backgroundDefaults.backgroundImage || uberDefaults.backgroundImage
     let rgb = hexToRgb(color);
     let rgb_string = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + "," + opacity + ")";

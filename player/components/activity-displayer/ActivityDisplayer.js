@@ -1,8 +1,9 @@
 Vue.component("activity-displayer", {
     template: `
-        <div class="activity-displayer-div" style="min-height: 20px; overflow-y: auto; height: 100%">
+        <div class="activity-displayer-div" >
             <!-- Content chunks  -->
-            <styling-wrapper :stylingData="styling" :stylingDefaults="defaults.commonData" style="height: 100%">
+            <styling-wrapper :stylingData="activityContent.screenStyleData.outer" :stylingDefaults="defaults.screenStyleData.outer" style="min-height: 20px; overflow-y: auto; height: 100%">
+            <styling-wrapper :stylingData="activityContent.screenStyleData.inner" :stylingDefaults="defaults.screenStyleData.inner" style="height: 100%">
             
             <div class="activity-displayer-chunk-container">
                 <slot name="inter" index="0"></slot>
@@ -23,7 +24,6 @@ Vue.component("activity-displayer", {
                 
                 <slot name="last-content-chunk"></slot> 
             </div>
-</styling-wrapper>
             
             <!-- Popup for input response. It contains an activity-displayer used for displaying the popupContent -->
             <b-collapse v-model="popupVisible">
@@ -50,13 +50,16 @@ Vue.component("activity-displayer", {
             </div>
             
             
+</styling-wrapper>
+            
+</styling-wrapper>
+            
          
         </div>`,
 
     props: {
         activityContent: null,
-        defaults: null,
-        styling: null
+        defaults: null
 
     },
 
@@ -98,7 +101,7 @@ Vue.component("activity-displayer", {
     }
 })
 
-Vue.component('styling-wrapper', {
+Vue.component('screen-styling-wrapper', {
     template: `
         <div :style="wrapperStyle">
             <slot></slot>
@@ -108,6 +111,27 @@ Vue.component('styling-wrapper', {
     props: {
         stylingData: null,
         stylingDefaults: null
+    },
+
+    computed: {
+        wrapperStyle() {
+            if (this.stylingData!==undefined) {
+                return buildWrapperStyle(this.stylingData, this.stylingDefaults, uberDefaults.commonData)
+            } else { return {}}
+        }
+    }
+})
+
+Vue.component('styling-wrapper', {
+    template: `
+        <div :style="wrapperStyle">
+            <slot></slot>
+        </div>
+    `,
+
+    props: {
+        stylingData: null,
+        stylingDefaults: null,
     },
 
     computed: {

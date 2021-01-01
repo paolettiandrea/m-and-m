@@ -72,7 +72,6 @@ const store = new Vuex.Store({
             context.dispatch('deselectActivityChunk');
         },
         createActivity(context, mouseCanvasPos) {
-            console.log(mouseCanvasPos);
             let activities = context.getters.selectedMissionContent.activities;
             let uuid = uuidv1();
             let newActivity = {
@@ -80,8 +79,10 @@ const store = new Vuex.Store({
                 title: "Nuova attività",
                 content: [],
                 inputComponent: null,
-                graphPosition: mouseCanvasPos
+                graphPosition: mouseCanvasPos,
+                screenStyleData: {inner: {}, outer: {}},
             }
+
             Vue.set(activities, uuid, newActivity);
             context.state.canvas.newActivity(newActivity);
             context.dispatch('selectActivity', uuid);
