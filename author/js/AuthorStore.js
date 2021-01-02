@@ -6,28 +6,30 @@ import {MissionModule} from "./store/MissionStore.js"
 
 Vue.use(Vuex);
 
-function recursivePruneActivityPointers(obj) {
-    console.log('Recursing in ', obj);
-    if (obj.nextActivityId && obj.outcomeType==='next') {
+function recursivePruneActivityPointers(obj, targetNext) {
+    // console.log('Recursing in ', obj, " lookinf for id ", targetNext);
+    if (obj.nextActivityId && obj.outcomeType==='next' && obj.nextActivityId===targetNext) {
+        // console.log("FOUND IT!!!!!!!!!!!!!!")
         obj.nextActivityId = null;
         delete obj.outcomeType
         delete obj.edgeId
     }
 
+
     for (let key in obj) {
         if (obj.hasOwnProperty(key) && obj[key]) {
             if (typeof obj[key] == "object") {
-                recursivePruneActivityPointers(obj[key]);
+                recursivePruneActivityPointers(obj[key], targetNext);
             }
         }
     }
 }
 
-function pruneNextActivityPointers(activity) {
+function pruneNextActivityPointers(activity, targetNext) {
     let inputData = activity.inputComponent.inputData;
-    console.log('Before prune: ', inputData)
-    recursivePruneActivityPointers(inputData);
-    console.log('After prune: ', inputData)
+    // console.log('Before prune: ', inputData)
+    recursivePruneActivityPointers(inputData, targetNext);
+    // console.log('After prune: ', inputData)
 }
 
 const store = new Vuex.Store({
@@ -131,7 +133,12 @@ const store = new Vuex.Store({
             Vue.set(context.getters.selectedActivity, "title", newTitle);
         },
         deleteSelectedActivity(context) {
+            let selectedActivity = context.getters.selectedActivity;
             context.commit('deleteSelectedActivity');
+            console.log('Before prune', context.getters.selectedMissionContent)
+            console.log('Selected activity', selectedActivity)
+            recursivePruneActivityPointers(context.getters.selectedMissionContent, selectedActivity.uuid);
+            console.log('After prune', context.getters.selectedMissionContent)
             context.dispatch('deselectActivity')
         },
         updateActivityGraphPosition(context, payload) {
