@@ -16,14 +16,13 @@ Vue.component('mission-editor', {
                 <b-button @click="playMission"> 
                     <b-icon icon="play"></b-icon> 
                 </b-button>
+                <b-button @click="pasteActivity">Incolla attivita</b-button>
+                        <b-button v-if="!isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(true)" variant="outline-secondary">Defaults </b-button>
+                        <b-button v-if="isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(false)" variant="outline-secondary">Grafico attivita </b-button>
                 <b-nav-item-dropdown right variant="primary">
                     <template slot="button-content">
                         <b-icon icon="gear"></b-icon>
                     </template>
-                    <b-dropdown-item href="#">
-                        <b-button v-if="!isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(true)" variant="outline-secondary"><b-icon icon="trash"></b-icon> Defaults </b-button>
-                        <b-button v-if="isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(false)" variant="outline-secondary"><b-icon icon="trash"></b-icon> Missione </b-button>
-                    </b-dropdown-item>
                     <b-dropdown-item href="#"><b-button v-on:click="deleteSelectedMission" variant="outline-danger"><b-icon icon="trash"></b-icon> Cancella </b-button></b-dropdown-item>
                     <b-dropdown-item href="#">
                         <b-button v-b-modal.modal-1><b-icon icon="upc-scan"></b-icon> QR Code</b-button>
@@ -73,7 +72,7 @@ Vue.component('mission-editor', {
     },
     methods: {
         ...Vuex.mapActions([
-            'deleteSelectedMission', 'updateSelectedMission', 'setMissionSettingsPanel', 'deleteActivityClickedCallback'
+            'deleteSelectedMission', 'updateSelectedMission', 'setMissionSettingsPanel', 'deleteActivityClickedCallback', 'pasteActivity'
         ]),
         activitySelectionCallback(selectedActivity) {
             this.selectedActivity = selectedActivity;

@@ -6,6 +6,29 @@ import {MissionModule} from "./store/MissionStore.js"
 
 Vue.use(Vuex);
 
+function recursivePruneActivityPointers(obj) {
+    console.log('Recursing in ', obj);
+    if (obj.nextActivityId && obj.outcomeType==='next') {
+        obj.nextActivityId = null;
+        delete obj.outcomeType
+        delete obj.edgeId
+    }
+
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key) && obj[key]) {
+            if (typeof obj[key] == "object") {
+                recursivePruneActivityPointers(obj[key]);
+            }
+        }
+    }
+}
+
+function pruneNextActivityPointers(activity) {
+    let inputData = activity.inputComponent.inputData;
+    console.log('Before prune: ', inputData)
+    recursivePruneActivityPointers(inputData);
+    console.log('After prune: ', inputData)
+}
 
 const store = new Vuex.Store({
     modules: {
@@ -38,6 +61,11 @@ const store = new Vuex.Store({
 
         panelState: {
             missionSettingsOpen: false
+        },
+
+        clipboard: {
+            activity: null,
+            mission: null
         }
     },
 
@@ -112,6 +140,33 @@ const store = new Vuex.Store({
             context.commit('updateGraphPosition', payload);
         },
 
+        duplicateSelectedActivity(context) {
+            let activities = context.getters.selectedMissionContent.activities;
+            let uuid = uuidv1();
+            let dupActivity = JSON.parse(JSON.stringify(context.getters.selectedActivity));
+            dupActivity.uuid = uuid;
+            dupActivity.graphPosition.x += 30;
+            pruneNextActivityPointers(dupActivity);
+            console.log('Dup activity: ', dupActivity)
+            Vue.set(activities, uuid,dupActivity);
+            context.state.canvas.newActivity(dupActivity);
+        },
+
+        copySelectedActivity(context) {
+            context.commit('copyActivity', context.getters.selectedActivity);
+        },
+
+        pasteActivity(context) {
+            let activities = context.getters.selectedMissionContent.activities;
+            let uuid = uuidv1();
+            let dupActivity = JSON.parse(JSON.stringify(context.getters.copiedActivity));
+            dupActivity.uuid = uuid;
+            dupActivity.graphPosition.x += 30;
+            pruneNextActivityPointers(dupActivity);
+            Vue.set(activities, uuid,dupActivity);
+            context.state.canvas.newActivity(dupActivity);
+        },
+
         // Content chunk management ===================================================================================
         deleteSelectedActivityInputComponent(context) {
             Vue.delete(context.getters.selectedActivity, 'inputComponent');
@@ -157,6 +212,10 @@ const store = new Vuex.Store({
             console.log(state.selectedActivityId)
             console.log(selectedMission.content.activities)
             Vue.delete(selectedMission.content.activities, state.selectedActivityId);
+        },
+
+        copyActivity(state, activity) {
+              state.clipboard.activity = JSON.parse(JSON.stringify(activity));
         },
 
         updateGraphPosition(state, payload) {
@@ -228,6 +287,8 @@ const store = new Vuex.Store({
     },
 
     getters: {
+
+        copiedActivity(state) { return state.clipboard.activity; },
 
         isWaitingForActivityClick(state) {return state.activityClickedCallback !== null },
 
