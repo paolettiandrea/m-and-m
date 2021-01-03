@@ -87,7 +87,7 @@ Vue.component("activity-displayer", {
                     break;
 
                 case "next":        // Send a next activity event to the mission displayer
-                    this.$emit('next:activity', inputOutcome.nextActivityId);
+                    this.$emit('next:activity', inputOutcome.nextActivityId, inputOutcome.points);
                     this.popupContent = null;
                     this.popupVisible = false;
             }
