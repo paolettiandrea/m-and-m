@@ -1,7 +1,7 @@
 Vue.component('player-main', {
     template: `
         <div>
-          <backgroundThird-screen :score="120"></backgroundThird-screen>
+          <knob :value="20"></knob>
 
 
         </div>`,
