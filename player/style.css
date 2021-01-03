@@ -59,12 +59,13 @@ body {
 
 body,
 input {
-    font-size: 14pt
+    font-size: 20pt
 }
 
 input,
 label {
-    vertical-align: middle
+    vertical-align: middle;
+    margin-top: 1.7em;
 }
 
 .qrcode-text {
@@ -98,6 +99,11 @@ label {
 
 .test-class {
     background-color: #4CAF50;
+}
+
+.title {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 30px;
 }
 
 
