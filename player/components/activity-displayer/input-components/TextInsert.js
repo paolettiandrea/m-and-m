@@ -30,29 +30,42 @@ Vue.component("text-insert", {
 
             //var correct = this.answer == this.inputData.correctAnswer ? true : false
 
-            var processedAnswer = this.answer.trim().toLowerCase();
 
             for (var possibility of this.inputData.possibilityList) {
-                // Check each answer of this possibility, if one matches launch the corresponding outcome
-                for(var answer of possibility.possibleAnswers) {
-                    if (processedAnswer===answer) {
-                        console.log("Emitting outcome for defined answer");
-                        this.$emit('input-received', possibility.outcome);
-                        return;
+
+                switch (possibility.inputType) {
+                    case "string": {
+
+                        var processedAnswer = this.answer.trim().toLowerCase();
+                        switch (possibility.operator) {
+                            case "eq": {
+                                var processedVal = possibility.val.trim().toLowerCase();
+                                if (processedVal === processedAnswer) {
+                                    console.log("Emitting outcome for defined answer");
+                                    this.$emit('input-received', possibility.outcome);
+                                    return;
+                                }
+                                break;
+                            }
+                        }
+                        break;
                     }
+                    case "number": {
+                        break;
+                    }
+
                 }
+
+                this.$emit('input-received', this.inputData.fallbackOutcome);
+                console.log("Emitting fallback");
+
+
+                // if(correct){
+                //     this.$emit('input-received', this.inputData.rightOutcome);
+                // } else{
+                //     this.$emit('input-received', this.inputData.wrongOutcome);
+                // }
             }
-
-            this.$emit('input-received', this.inputData.fallbackOutcome);
-            console.log("Emitting fallback");
-
-
-
-            // if(correct){
-            //     this.$emit('input-received', this.inputData.rightOutcome);
-            // } else{
-            //     this.$emit('input-received', this.inputData.wrongOutcome);
-            // }
         }
     },
     data() {

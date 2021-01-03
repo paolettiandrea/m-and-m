@@ -1,7 +1,10 @@
 Vue.component("activity-displayer", {
     template: `
-        <div class="activity-displayer-div" style="min-height: 20px; overflow-y: auto;">
+        <div class="activity-displayer-div" >
             <!-- Content chunks  -->
+            <styling-wrapper :stylingData="activityContent.screenStyleData.outer" :stylingDefaults="defaults.screenStyleData.outer" style="min-height: 20px; overflow-y: auto; height: 100%; display: flex; flex-direction: column">
+            <styling-wrapper :stylingData="activityContent.screenStyleData.inner" :stylingDefaults="defaults.screenStyleData.inner" style="flex: 1">
+            
             <div class="activity-displayer-chunk-container">
                 <slot name="inter" index="0"></slot>
                 <div  v-for="(contentChunk, index) of this.activityContent.content" >
@@ -36,7 +39,7 @@ Vue.component("activity-displayer", {
             <div v-if="activityContent.inputComponent" v-on:click="inputClicked">
                 <styling-wrapper :stylingData="activityContent.inputComponent.commonData" :stylingDefaults="defaults.commonData">
 
-                    <component  :is="activityContent.inputComponent.inputType" 
+                    <component :is="activityContent.inputComponent.inputType" 
                                 :inputData="activityContent.inputComponent.inputData" 
                                 :defaults="defaults"
                                 @input-received="handleInputReceived" ></component>
@@ -46,6 +49,10 @@ Vue.component("activity-displayer", {
                 <slot name="input-placeholder"></slot>
             </div>
             
+            
+</styling-wrapper>
+            
+</styling-wrapper>
             
          
         </div>`,
@@ -73,23 +80,44 @@ Vue.component("activity-displayer", {
         // Called when the InputComponent triggers an input-received event.
         // inputResponse defines what should happen next
         handleInputReceived(inputOutcome) {
-            switch (inputOutcome.outcomeType) {
-                case "popup":
-                    this.popupContent = inputOutcome.popupContent;
-                    this.popupVisible = true;
-                    break;
-
-                case "next":        // Send a next activity event to the mission displayer
-                    this.$emit('next:activity', inputOutcome.nextActivityId);
+            // switch (inputOutcome.outcomeType) {
+            //     case "popup":
+            //         this.popupContent = inputOutcome.popupContent;
+            //         this.popupVisible = true;
+            //         break;
+            //
+            //     case "next":        // Send a next activity event to the mission displayer
+                    this.$emit('next:activity', inputOutcome.nextActivityId, inputOutcome.points);
                     this.popupContent = null;
                     this.popupVisible = false;
-            }
+            // }
         },
         contentChunkClicked(contentData) {
             this.$bubble("content:chunk:clicked", contentData);
         },
         inputClicked() {
             this.$bubble('input:clicked', this.activityContent.inputComponent);
+        }
+    }
+})
+
+Vue.component('screen-styling-wrapper', {
+    template: `
+        <div :style="wrapperStyle">
+            <slot></slot>
+        </div>
+    `,
+
+    props: {
+        stylingData: null,
+        stylingDefaults: null
+    },
+
+    computed: {
+        wrapperStyle() {
+            if (this.stylingData!==undefined) {
+                return buildWrapperStyle(this.stylingData, this.stylingDefaults, uberDefaults.commonData)
+            } else { return {}}
         }
     }
 })
@@ -103,7 +131,7 @@ Vue.component('styling-wrapper', {
 
     props: {
         stylingData: null,
-        stylingDefaults: null
+        stylingDefaults: null,
     },
 
     computed: {

@@ -1,10 +1,10 @@
 Vue.component('mission-displayer', {
     template: `
-        <div id="mission-displayer-main" align="center">
-            <score-displayer align="right" :score="this.missionScore"></score-displayer>
+        <div id="mission-displayer-main">
+            <score-displayer align="right" :score="this.missionScore" style="position: absolute; top: 10px; right: 10px"></score-displayer>
             <transition name="content-slide" mode="out-in">
-                    <div v-if="this.pointedActivity" :key="this.pointedActivity.uuid">
-                        <activity-displayer :activityContent="this.pointedActivity" :defaults="this.missionData.defaults"
+                    <div v-if="this.pointedActivity" :key="this.pointedActivity.uuid" style="height: 100%">
+                        <activity-displayer :activityContent="this.pointedActivity" :defaults="this.missionData.defaults" style="height: 100%"
                                                 @next:activity="handleNextActivity"></activity-displayer>
                     </div>
             </transition>
@@ -23,7 +23,7 @@ Vue.component('mission-displayer', {
             pointedActivity: null,
             pointedIndex: 0,
             stile: 'test',
-            missionScore: 23,
+            missionScore: 0,
             missionEnded: false
             /*stile: {
                 'background-color': 'black',
@@ -41,11 +41,13 @@ Vue.component('mission-displayer', {
 
         },
 
-        handleNextActivity(nextMissionId) {
+        handleNextActivity(nextMissionId, points) {
             this.pointedActivity = this.missionData.activities[nextMissionId];
             if (nextMissionId) {
                 this.pointedActivity =  this.missionData.activities[nextMissionId];
-                this.missionScore = this.missionScore + 10;
+                if (points) {
+                    this.missionScore = this.missionScore + parseInt(points);
+                }
             } else {
                 this.missionEnded = true;
                 this.pointedActivity = null;

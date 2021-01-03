@@ -16,14 +16,13 @@ Vue.component('mission-editor', {
                 <b-button @click="playMission"> 
                     <b-icon icon="play"></b-icon> 
                 </b-button>
+                <b-button @click="pasteActivity">Incolla attivita</b-button>
+                        <b-button v-if="!isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(true)" variant="outline-secondary">Defaults </b-button>
+                        <b-button v-if="isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(false)" variant="outline-secondary">Grafico attivita </b-button>
                 <b-nav-item-dropdown right variant="primary">
                     <template slot="button-content">
                         <b-icon icon="gear"></b-icon>
                     </template>
-                    <b-dropdown-item href="#">
-                        <b-button v-if="!isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(true)" variant="outline-secondary"><b-icon icon="trash"></b-icon> Defaults </b-button>
-                        <b-button v-if="isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(false)" variant="outline-secondary"><b-icon icon="trash"></b-icon> Missione </b-button>
-                    </b-dropdown-item>
                     <b-dropdown-item href="#"><b-button v-on:click="deleteSelectedMission" variant="outline-danger"><b-icon icon="trash"></b-icon> Cancella </b-button></b-dropdown-item>
                     <b-dropdown-item href="#">
                         <b-button v-b-modal.modal-1><b-icon icon="upc-scan"></b-icon> QR Code</b-button>
@@ -38,7 +37,7 @@ Vue.component('mission-editor', {
         </b-navbar>
         
         <div v-if="isMissionSettingsPanelOpen" class="full-flex vertical-scroll">
-            <mission-defaults-editor :defaults="missionContent.defaults" :uberDefaults="uberDefaults"></mission-defaults-editor>
+            <mission-defaults-editor :defaults="missionContent.defaults" :uberDefaults="uberDefaults" :missionContent="missionContent"></mission-defaults-editor>
         </div>
         <div v-else id="yoyo" style="position: relative; height: 100%">
             <div v-if="isWaitingForActivityClick" style="z-index: 3">
@@ -73,7 +72,7 @@ Vue.component('mission-editor', {
     },
     methods: {
         ...Vuex.mapActions([
-            'deleteSelectedMission', 'updateSelectedMission', 'setMissionSettingsPanel', 'deleteActivityClickedCallback'
+            'deleteSelectedMission', 'updateSelectedMission', 'setMissionSettingsPanel', 'deleteActivityClickedCallback', 'pasteActivity'
         ]),
         activitySelectionCallback(selectedActivity) {
             this.selectedActivity = selectedActivity;
