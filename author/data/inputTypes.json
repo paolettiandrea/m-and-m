@@ -22,8 +22,8 @@
       "title": "Campo testuale",
       "icon": "cursor-text",
       "data":{
-        "possibleAnswers": [],
-        "fallbackOutcome": { },
+        "possibilityList": [],
+        "fallbackOutcome": {},
         "buttonFontData": {}
       }
     },

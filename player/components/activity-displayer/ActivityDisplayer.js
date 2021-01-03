@@ -80,17 +80,17 @@ Vue.component("activity-displayer", {
         // Called when the InputComponent triggers an input-received event.
         // inputResponse defines what should happen next
         handleInputReceived(inputOutcome) {
-            switch (inputOutcome.outcomeType) {
-                case "popup":
-                    this.popupContent = inputOutcome.popupContent;
-                    this.popupVisible = true;
-                    break;
-
-                case "next":        // Send a next activity event to the mission displayer
+            // switch (inputOutcome.outcomeType) {
+            //     case "popup":
+            //         this.popupContent = inputOutcome.popupContent;
+            //         this.popupVisible = true;
+            //         break;
+            //
+            //     case "next":        // Send a next activity event to the mission displayer
                     this.$emit('next:activity', inputOutcome.nextActivityId, inputOutcome.points);
                     this.popupContent = null;
                     this.popupVisible = false;
-            }
+            // }
         },
         contentChunkClicked(contentData) {
             this.$bubble("content:chunk:clicked", contentData);
