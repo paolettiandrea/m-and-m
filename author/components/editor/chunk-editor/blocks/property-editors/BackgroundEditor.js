@@ -5,9 +5,13 @@ Vue.component('background-editor', {
                 <editor-field label="Colore">
                     <defaulted-input-form :targetContainer="backgroundData" targetFieldName="backgroundColor" 
                                             :defaultVal="defaults.backgroundColor" inputType="color" label="Colore"></defaulted-input-form>
+                </editor-field>
+                <editor-field label="Link">
+                    <url-input :target="backgroundData" fieldName="backgroundImage"></url-input>
+                </editor-field>
+                <editor-field label="Opacita'">
                     <defaulted-input-form :targetContainer="backgroundData" targetFieldName="opacity" 
                                             :defaultVal="defaults.backgroundColor" inputType="number" label="Opacita'"></defaulted-input-form>
-                    <url-input :target="backgroundData" fieldName="backgroundImage"></url-input>
                 </editor-field>
         </activity-editor-subpanel>
         </div>

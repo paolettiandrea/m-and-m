@@ -26,10 +26,12 @@ function recursivePruneActivityPointers(obj, targetNext) {
 }
 
 function pruneNextActivityPointers(activity, targetNext) {
-    let inputData = activity.inputComponent.inputData;
-    // console.log('Before prune: ', inputData)
-    recursivePruneActivityPointers(inputData, targetNext);
-    // console.log('After prune: ', inputData)
+    if (activity.inputComponent) {
+        let inputData = activity.inputComponent.inputData;
+        // console.log('Before prune: ', inputData)
+        recursivePruneActivityPointers(inputData, targetNext);
+        // console.log('After prune: ', inputData)
+    }
 }
 
 const store = new Vuex.Store({
