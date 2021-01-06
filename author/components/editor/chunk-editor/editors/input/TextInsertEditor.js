@@ -60,6 +60,7 @@ Vue.component('text-insert-editor', {
                     <next-activity-outcome-editor :outcomeData="inputData.fallbackOutcome"></next-activity-outcome-editor>
 </activity-editor-subpanel>
             </activity-editor-subpanel>
+            <button-editor :buttonData="inputData.buttonData" :defaults="selectedMissionDefaults.buttonData"></button-editor>
 </div>`,
 
     props: {
@@ -69,6 +70,9 @@ Vue.component('text-insert-editor', {
     data() {
         return {
         }
+    },
+    computed: {
+        ...Vuex.mapGetters(['selectedMissionDefaults'])
     },
 
     methods: {

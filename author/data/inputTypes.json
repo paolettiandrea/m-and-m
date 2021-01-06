@@ -24,7 +24,12 @@
       "data":{
         "possibilityList": [],
         "fallbackOutcome": {},
-        "buttonFontData": {}
+        "buttonData": {
+          "label": "Manda",
+          "labelFontData": {},
+          "buttonBorderData": {},
+          "buttonBackgroundData": {}
+        }
       }
     },
     {

@@ -1,10 +1,8 @@
 Vue.component("text-insert", {
-    template:` <div>
-      <b-form-group
+    template:` <div style="display: flex">
+      <b-form-group style="flex: 1; margin-bottom: 0; margin-right: 0.5rem"
         id="input"
-        label="Enter your answer:"
-        label-for="input-1"
-      >
+        label-for="input-1">
         <b-form-input
           id="input-1"
           v-model="answer"
@@ -14,10 +12,7 @@ Vue.component("text-insert", {
         ></b-form-input>
       </b-form-group>
 
-
-      <b-button :style="{fontSize: inputData.buttonFontData.fontSize || defaults.textFontData.fontSize }" type="submit" variant="primary" v-on:click="textState">Submit</b-button>
-    </b-form>
-    <br>
+     <simple-button style="flex: 0; white-space: nowrap" :inputData="inputData" :defaults="defaults" @input-received="textState"></simple-button>
     </div>`,
 
     props: {
@@ -26,6 +21,7 @@ Vue.component("text-insert", {
     },
     methods: {
         textState() {
+            console.log('Clicked')
             //window.alert( this.answer );
 
             //var correct = this.answer == this.inputData.correctAnswer ? true : false
@@ -92,13 +88,6 @@ Vue.component("text-insert", {
 
                 this.$emit('input-received', this.inputData.fallbackOutcome);
                 console.log("Emitting fallback");
-
-
-                // if(correct){
-                //     this.$emit('input-received', this.inputData.rightOutcome);
-                // } else{
-                //     this.$emit('input-received', this.inputData.wrongOutcome);
-                // }
             }
         }
     },
