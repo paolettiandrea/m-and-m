@@ -1,10 +1,10 @@
 Vue.component('text-input-possibility-editor', {
     template: `<div>
         <editor-field label="Tipo">
-            <b-form-select v-model="possibilityData.inputType" :options="['string', 'number']" @change="inputTypeChanged"></b-form-select>
+            <b-form-select size="sm" v-model="possibilityData.inputType" :options="[{value: 'string', text: 'Testo'} , { value: 'number', text: 'Numero'}]" @change="inputTypeChanged"></b-form-select>
 </editor-field>
         <editor-field label="Operatore">
-            <b-form-select v-model="possibilityData.operator" :options="possibleOperators"></b-form-select>
+            <b-form-select size="sm" v-model="possibilityData.operator" :options="possibleOperators"></b-form-select>
 </editor-field>
         <editor-field label="Valore">
         
@@ -24,19 +24,20 @@ Vue.component('text-input-possibility-editor', {
         possibleOperators() {
 
             switch (this.possibilityData.inputType) {
-                case "string": { return ["eq"]}
-                case "number": { return ["eq", "lt", "gt"]}
+                case "string": { return [{value: "eq", text: "="}, {value: 'eqw', text: '= (ignora spazi)'}]}
+                case "number": { return [{value: "eq", text: '='}, {value: "lt", text:"<"} , {value: "gt", text: ">"} ]}
             }
         }
     },
 
     methods: {
         inputTypeChanged(newType) {
-                this.possibilityData.operator = "eq";
                 if (newType==="number") {
 
+                    this.possibilityData.operator = "eq";
                     this.possibilityData.val = 0;
                 } else {
+                    this.possibilityData.operator = "eqw";
                     this.possibilityData.val = ""
                 }
         }
@@ -84,6 +85,7 @@ Vue.component('text-insert-editor', {
             this.inputData.possibilityList.push({
                 inputType: "string",
                 operator: "eq",
+                val: "",
                 outcome: {}
             })
         },
