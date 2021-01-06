@@ -38,15 +38,20 @@ Vue.component("text-insert", {
 
                         switch (possibility.operator) {
                             case "eq": {
-                                var processedAnswer = this.answer.trim().toLowerCase();
-                                var processedVal = possibility.val.trim().toLowerCase();
-                                if (processedVal === processedAnswer) {
-                                    console.log("Emitting outcome for defined answer");
+                                if (this.answer === possibility.val) {
                                     this.$emit('input-received', possibility.outcome);
                                     return;
                                 }
                                 break;
                             }
+                            case "eqw": {
+                                var processedAnswer = this.answer.trim().toLowerCase();
+                                var processedVal = possibility.val.trim().toLowerCase();
+                                if (processedVal === processedAnswer) {
+                                    this.$emit('input-received', possibility.outcome);
+                                    return;
+                                }
+                                break;}
                         }
                         break;
                     }
