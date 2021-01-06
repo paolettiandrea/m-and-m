@@ -36,9 +36,9 @@ Vue.component("text-insert", {
                 switch (possibility.inputType) {
                     case "string": {
 
-                        var processedAnswer = this.answer.trim().toLowerCase();
                         switch (possibility.operator) {
                             case "eq": {
+                                var processedAnswer = this.answer.trim().toLowerCase();
                                 var processedVal = possibility.val.trim().toLowerCase();
                                 if (processedVal === processedAnswer) {
                                     console.log("Emitting outcome for defined answer");
@@ -51,9 +51,38 @@ Vue.component("text-insert", {
                         break;
                     }
                     case "number": {
+                        let answerParsed = parseInt(this.answer);
+                        let valParsed = parseInt(possibility.val);
+                        console.log('Parsed float answer: ', answerParsed)
+                        console.log('Parsed float answer: ', valParsed)
+                        switch (possibility.operator) {
+                            case "eq": {
+                                if (answerParsed===valParsed) {
+                                    console.log('Input num found to be equal')
+                                    this.$emit('input-received', possibility.outcome);
+                                    return;
+                                }
+                                break;
+                            }
+                            case "lt": {
+                                if (answerParsed<valParsed) {
+                                    console.log('Input num found to be lower')
+                                    this.$emit('input-received', possibility.outcome);
+                                    return;
+                                }
+                                break;
+                            }
+                            case "gt": {
+                                if (answerParsed > valParsed) {
+                                    console.log('Input num found to be greater')
+                                    this.$emit('input-received', possibility.outcome);
+                                    return;
+                                }
+                                break;
+                            }
+                        }
                         break;
                     }
-
                 }
 
                 this.$emit('input-received', this.inputData.fallbackOutcome);
@@ -72,6 +101,6 @@ Vue.component("text-insert", {
         return {
             answer: '',
         }
-    }
+    },
 
 })

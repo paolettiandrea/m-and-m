@@ -1,96 +1,120 @@
 {
-  "defaults": {
-      "textFontData": {},
-      "buttonData": {
-          "label": "Continua",
-          "labelFontData": {
-              "fontFamily": "Roboto",
-              "fontSize": "14px",
-              "fontColor": "#000000",
-              "fontStyle": "normal",
-              "fontWeight": "normal",
-              "textDecoration": "none",
-              "textAlign": "left"
-          },
-          "buttonBorderData": {
-              "borderWidth": "2px",
-              "borderRadius": "5px",
-              "borderColor": "#000000",
-              "borderStyle": "solid"
-          },
-          "buttonBackgroundData": {
-              "backgroundColor": "#ffffff"
-          }
-      },
-      "commonData": {
-          "borderData": {
-              "borderStyle": "hidden",
-              "borderWidth": "2px",
-              "borderColor": "#000000",
-              "borderRadius": "0px"
-          },
-          "spacingData": {
-              "padding": {
-                  "top": "0px",
-                  "bottom": "10px",
-                  "left": "5px",
-                  "right": "5px"
-              },
-              "margin": {
-                  "top": "0px",
-                  "bottom": "0px",
-                  "left": "0px",
-                  "right": "0px"
-              }
-          },
-          "backgroundData": {
-              "backgroundColor": "#ffffff"
-          }
-      }
-  },
-  "activities": {
-      "initial": {
-          "title": "Attività iniziale",
-          "content": [{
-              "contentType": "img-displayer",
-              "contentData": {
-                  "imgResData": {
-                      "url": "chatimg.png"
-                  },
-                  "alignment": "center"
-              },
-              "commonData": {
-                  "borderData": {},
-                  "spacingData": {
-                      "padding": {},
-                      "margin": {}
-                  },
-                  "backgroundData": {}
-              }
-          }],
-          "uuid": "initial",
-          "inputComponent": {
-              "inputType": "click-img",
-              "inputData": {
-                  "url": "workplace.jpg",
-                  "w": "400",
-                  "h": "379",
-                  "pos": "left",
-
-                  "computer": "34,44,270,350",
-                  "telefono": "290,172,333,250",
-                  "caffe": "337,300,44"
-              },
-              "commonData": {
-                  "borderData": {},
-                  "spacingData": {
-                      "padding": {},
-                      "margin": {}
-                  },
-                  "backgroundData": {}
-              }
-          }
-      }
-  },
-  "usedResources": {}
+    "defaults": {
+        "textFontData": {},
+        "buttonData": {
+            "label": "Continua",
+            "labelFontData": {
+                "fontFamily": "Roboto",
+                "fontSize": "14px",
+                "fontColor": "#000000",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+                "textDecoration": "none",
+                "textAlign": "left"
+            },
+            "buttonBorderData": {
+                "borderWidth": "2px",
+                "borderRadius": "5px",
+                "borderColor": "#000000",
+                "borderStyle": "solid"
+            },
+            "buttonBackgroundData": {
+                "backgroundColor": "#ffffff"
+            }
+        },
+        "commonData": {
+            "borderData": {
+                "borderStyle": "hidden",
+                "borderWidth": "2px",
+                "borderColor": "#000000",
+                "borderRadius": "0px"
+            },
+            "spacingData": {
+                "padding": {
+                    "top": "0px",
+                    "bottom": "10px",
+                    "left": "5px",
+                    "right": "5px"
+                },
+                "margin": {
+                    "top": "0px",
+                    "bottom": "0px",
+                    "left": "0px",
+                    "right": "0px"
+                }
+            },
+            "backgroundData": {
+                "backgroundColor": "#ffffff",
+                "opacity": 0
+            }
+        },
+        "screenStyleData": {
+            "inner": {
+                "borderData": {
+                    "borderStyle": "hidden",
+                    "borderWidth": "2px",
+                    "borderColor": "#000000",
+                    "borderRadius": "0px"
+                },
+                "spacingData": {
+                    "padding": {
+                        "top": "0px",
+                        "bottom": "0px",
+                        "left": "0px",
+                        "right": "0px"
+                    },
+                    "margin": {
+                        "top": "10px",
+                        "bottom": "10px",
+                        "left": "10px",
+                        "right": "10px"
+                    }
+                },
+                "backgroundData": {
+                    "backgroundColor": "#ffffff",
+                    "opacity": 0
+                }
+            },
+            "outer": {
+                "backgroundData": {
+                    "backgroundColor": "#ffffff",
+                    "opacity": 1
+                }
+            }
+        }
+    },
+    "activities": {
+        "initial": {
+            "title": "Attività iniziale",
+            "content": [
+                {
+                    "contentType": "text-displayer",
+                    "contentData": {
+                        "text": "Placeholder text",
+                        "parseMarkdown": true,
+                        "fontData": {}
+                    }
+                }
+            ],
+            "uuid": "initial",
+            "graphPosition": {
+                "x": 0,
+                "y": 0
+            },
+            "screenStyleData": {
+                "inner": {
+                    "borderData": {},
+                    "spacingData": {
+                        "padding": {},
+                        "margin": {}
+                    },
+                    "backgroundData": {}
+                },
+                "outer": {
+                    "backgroundData": {}
+                }
+            }
+        }
+    },
+    "usedResources": {}
 }

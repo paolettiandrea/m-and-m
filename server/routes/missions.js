@@ -10,7 +10,7 @@ const proc = require('child_process')
 router.get('/new', function (req, res, next) {
     database.newMission().then( (mission) => {
         res.send(mission);
-        resources.addResourceDir(mission.id);
+        // resources.addResourceDir(mission.id);
     })
 })
 
