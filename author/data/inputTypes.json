@@ -53,6 +53,13 @@
           }
         ]
       }
+    },
+    {
+      "type": "canvas-draw",
+      "title": "Canvas",
+      "icon": "cursor-text",
+      "data":{
+      }
     }
   ]
 }
