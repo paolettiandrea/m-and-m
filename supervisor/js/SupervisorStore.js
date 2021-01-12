@@ -7,6 +7,8 @@ const store = new Vuex.Store({
 
         missionHeads: {},
         missionContents: {},
+
+        chats: {}
     },
     actions: {
         initializeSupervisorStore(context) {
@@ -16,6 +18,11 @@ const store = new Vuex.Store({
 
         selectPlayer(context, playerId) {
             context.commit('setSelectedPlayer', playerId)
+        },
+
+        sendSelectedPlayerMessage(context, message) {
+            console.log("dasdasd")
+            context.commit('sendPlayerMessage', {message: message, player: context.getters.selectedPlayer.id})
         }
     },
     mutations: {
@@ -39,6 +46,7 @@ const store = new Vuex.Store({
             // Initialize the socket to the player and send the handshake
             state.socket = io();
             state.socket.emit('sup-handshake');
+            state.chats = {};
 
             state.socket.on('player-state-changed', (player) => {
                 console.log("Player state changed socket event: ", player);
@@ -53,10 +61,26 @@ const store = new Vuex.Store({
             state.socket.on('player-disconnected', (player) => {
                 store.commit('playerDisconnected', player);
             })
+
+            state.socket.on('message-from-player', ({message, id}) => {
+                console.log("Message from player", message, id);
+                state.chats[id].messages.push({author: id, body: message});
+            }) 
+
+        },
+
+        sendPlayerMessage(state, {message, player}) {
+            console.log("Sending message");
+            state.socket.emit('message-for-player', {message, player});
+
+            state.chats[player].messages.push({author: 'supervisor', body: message})
         },
 
         playerConnected(state, player) {
             Vue.set(state.players, player.id, player)
+            Vue.set(state.chats, player.id, {
+                messages: []
+            })
         },
 
         playerStateChanged(state, playerState) {
@@ -65,6 +89,7 @@ const store = new Vuex.Store({
 
         playerDisconnected(state, player) {
                 Vue.delete(state.players, player.id);
+                Vue.delete(state.chats, player.id)
         }
     },
 
@@ -73,6 +98,10 @@ const store = new Vuex.Store({
         players(state) {
             return state.players;
         },
+
+        socket(state) { return state.socket; },
+
+        selectedPlayerChat(state) { return state.chats[state.selectedPlayerId]},
         
         missionContents(state) { return state.missionContents; },
         missionHeads(state) { return state.missionHeads; },

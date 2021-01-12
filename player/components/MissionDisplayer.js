@@ -49,7 +49,6 @@ Vue.component('mission-displayer', {
                     this.missionScore = this.missionScore + parseInt(points);
                 }
                 console.log("Emitting started activity event");
-                console.log(socket);
                 socket.emit('starting-activity', nextActivityId);
             } else {
                 this.missionEnded = true;

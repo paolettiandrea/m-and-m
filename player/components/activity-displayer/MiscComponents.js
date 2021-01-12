@@ -40,20 +40,7 @@ data() {
     return{
         bobMessage: '', 
         youMessage: '', 
-        messages: [
-            {
-                body: 'Welcome to the chat, I\'m Bob!',
-                author: 'bob'
-              },
-              {
-                body: 'Thank you Bob',
-                author: 'you'
-              },
-              {
-                body: 'You\'re most welcome',
-                author: 'bob'
-              }
-        ]
+        messages: []
     }
 },
 
@@ -76,6 +63,7 @@ data() {
             }
             if (direction === 'out') {
               this.messages.push({body: this.youMessage, author: 'you'})
+              socket.emit('message-for-supervisor', this.youMessage);
               this.youMessage = ''
             } else if (direction === 'in') {
               this.messages.push({body: this.bobMessage, author: 'bob'})
@@ -91,6 +79,12 @@ data() {
           clearAllMessages() {
             this.messages = []
           }
+    },
+
+    mounted() {
+        socket.on('message-from-supervisor', (message) => {
+            this.messages.push({body: message, author: 'bob'})
+        })
     }
 
 })

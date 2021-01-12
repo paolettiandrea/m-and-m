@@ -11,6 +11,8 @@ function initialize(server) {
     io = require('socket.io')(server);
 
     io.on('connection', (socket) => {
+
+        // Supervisor
         socket.on('sup-handshake', (msg) => {
             if (supervisor) {
                 console.warn('There is already a supervisor connected!')
@@ -21,17 +23,35 @@ function initialize(server) {
                 for (let id in players) {
                     players[id].setSupervisor(supervisor);
                 }
+
+                socket.on('message-for-player', ({message, player}) => {
+                    console.log("Message: ", message, " for player: ", player);
+                    let targetPlayer = players[player];
+                    targetPlayer.socket.emit('message-from-supervisor', message);
+                })
+
                 socket.on('disconnect', () => {
                     console.log('Supervisor disconnected');
                     supervisor = null;
                 })
             }
         })
+
+        // Player
         socket.on('player-handshake', (msg) => {
+
+
             let id = getUnusedPlayerId();
             players[id] = new Player(socket, id);
-            console.log('Player ' + id + ' connected')
             if (supervisor) { players[id].setSupervisor(supervisor)}
+            console.log('Player ' + id + ' connected')
+            
+            socket.on('message-for-supervisor', (message) => {
+                if (supervisor) {
+                    supervisor.socket.emit("message-from-player", {message, id})
+                }
+            })
+            
             socket.on('disconnect', () => {
                 console.log('Player ' + id + ' disconnected')
                 delete players[id]

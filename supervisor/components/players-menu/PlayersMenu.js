@@ -21,7 +21,10 @@ Vue.component('player-menu-card', {
                     <h6>{{player.id}}</h6>
                 </template>
             
+                <div v-if="playingMissionData && playingActivityData">
+
                 <span>{{playingMissionData.head.title}}</span> - <span>{{playingActivityData.title}}</span>
+                </div>
             </b-card>
     `,
 
@@ -50,17 +53,13 @@ Vue.component('player-menu-card', {
         },
 
         playingActivityData() {
-            if (this.player.playingActivityId) {
-                return this.playingMissionData.content.activities[this.player.playingActivityId];
-            } else { return null; }
+            if (this.player.playingActivityId && this.playingMissionData) {
+                if (this.playingMissionData.content) {
+                    return this.playingMissionData.content.activities[this.player.playingActivityId];
+                }
+            }
+            return null;
         }
     },
 })
 
-
-Vue.component('player-main-panel', {
-    template: `<div>
-    
-    </div>`
-
-})

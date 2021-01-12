@@ -6,3 +6,23 @@
     display: flex;
     flex-flow: column;
 }
+
+.message-box {
+    max-width: 75%;
+}
+
+.message-in {
+}
+
+.message-in-inner {
+    background-color: bisque;
+}
+
+.message-out {
+}
+.message-out-inner {
+    background-color: darkgrey;
+}
+.message-out-inner p {
+    text-align: right;
+}
