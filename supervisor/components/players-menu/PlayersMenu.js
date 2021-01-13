@@ -16,7 +16,7 @@ Vue.component('players-menu', {
 Vue.component('player-menu-card', {
     template: `
     
-            <b-card href="#" @click="playerClicked(player.id)">
+            <b-card href="#" @click="playerClicked(player.id)" :class="{'selected-player-card': isPlayerSelected}">
                 <template #header>
                     <h6>{{player.id}}</h6>
                 </template>
@@ -41,8 +41,13 @@ Vue.component('player-menu-card', {
     },
 
     computed: {
-        ... Vuex.mapGetters(['missionHeads', 'missionContents']),
+        ... Vuex.mapGetters(['missionHeads', 'missionContents', 'selectedPlayer']),
 
+        isPlayerSelected() {
+            if (this.selectedPlayer) {
+                return this.player.id === this.selectedPlayer.id
+            } else { return false}
+        },
         playingMissionData() {
             if (this.player.playingMissionId) {
                 let data = {};

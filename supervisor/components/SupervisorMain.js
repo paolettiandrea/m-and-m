@@ -11,14 +11,14 @@ Vue.component('supervisor-main', {
     </div>`,
 
     computed: {
-        ... Vuex.mapGetters(['selectedPlayer'])
+        ...Vuex.mapGetters(['selectedPlayer'])
     }
 })
 
 
 // Functionality:
 // - see what the player is seeing
-// - chat with the player
+// - chat with the player [DONE]
 // - see a list of the pending score and hint requests
 Vue.component('player-main-panel', {
     template: `<b-row style="height: 100%" no-gutters>
@@ -36,30 +36,29 @@ Vue.component('player-main-panel', {
     },
 
     computed: {
-        ... Vuex.mapGetters(['selectedPlayerChat'])
+        ...Vuex.mapGetters(['selectedPlayerChat'])
     }
 
 })
 
 
 Vue.component('chat', {
-    template: `<div class="vertical-flex">
+    template: `<div class="vertical-flex full-height" style="overflow-y:hidden; max-height: 100vh">
 
-        <p style="flex: 0">chat</p>
 
         <!-- Message history -->
-        <div style="flex: 1">
+        <section style="flex: 1; overflow-y: auto">
             <div v-for="message in chat.messages" 
                 style="display:flex"
                 :class="{'message-out': message.author==='supervisor', 'message-in': message.author!=='supervisor'}">
-                <div v-if="message.author==='supervisor'" style="flex:1"></div>
+                 <div v-if="message.author==='supervisor'" style="flex:1"></div>
                 <div 
                 :class="{'message-out-inner': message.author==='supervisor', 'message-in-inner': message.author!=='supervisor', 'message-box': true}">
 
                     <p>{{message.body}}</p>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Send message form -->
         <div style="flex: 0">
@@ -72,16 +71,18 @@ Vue.component('chat', {
         </div>
     </div>`,
 
-    data() { return {
-        message: ""
-    }},
+    data() {
+        return {
+            message: ""
+        }
+    },
 
     props: {
         chat: null
     },
 
     methods: {
-        ... Vuex.mapActions(['sendSelectedPlayerMessage']),
+        ...Vuex.mapActions(['sendSelectedPlayerMessage']),
         sendMessage() {
             console.log("Sending message: ", this.message);
             this.sendSelectedPlayerMessage(this.message);
@@ -91,6 +92,6 @@ Vue.component('chat', {
 
 
     computed: {
-        ... Vuex.mapGetters(['socket'])
+        ...Vuex.mapGetters(['socket'])
     }
 })
