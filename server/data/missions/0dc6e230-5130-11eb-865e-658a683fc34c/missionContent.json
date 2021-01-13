@@ -152,15 +152,18 @@
         }
       },
       "inputComponent": {
-        "inputType": "canvas-draw",
+        "inputType": "simple-button",
         "inputData": {
-          "sendButtonData": {
-            "buttonData": {
-              "label": "Invia",
-              "labelFontData": {},
-              "buttonBorderData": {},
-              "buttonBackgroundData": {}
-            }
+          "buttonData": {
+            "label": "Continua",
+            "labelFontData": {},
+            "buttonBorderData": {},
+            "buttonBackgroundData": {}
+          },
+          "outcome": {
+            "outcomeType": "next",
+            "nextActivityId": "69821980-54c0-11eb-8afb-694777034679",
+            "edgeId": "f8488580-55c6-11eb-a7c0-531a62b1acf3"
           }
         },
         "commonData": {
@@ -179,8 +182,8 @@
       "content": [],
       "inputComponent": null,
       "graphPosition": {
-        "x": 127,
-        "y": 264
+        "x": 227,
+        "y": 316
       },
       "screenStyleData": {
         "inner": {
