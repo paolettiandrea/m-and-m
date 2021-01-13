@@ -13,6 +13,7 @@ Vue.component('players-menu', {
     }
 })
 
+
 Vue.component('player-menu-card', {
     template: `
     
@@ -24,6 +25,7 @@ Vue.component('player-menu-card', {
                 <div v-if="playingMissionData && playingActivityData">
 
                 <span>{{playingMissionData.head.title}}</span> - <span>{{playingActivityData.title}}</span>
+                <last-activity-displayer :keyy="player.id" :time="player.lastStateChangeTime" :connectionTime="player.connectionTime" :maxMinutes="3"></last-activity-displayer>
                 </div>
             </b-card>
     `,
@@ -65,6 +67,82 @@ Vue.component('player-menu-card', {
             }
             return null;
         }
+    },
+})
+
+
+Vue.component('last-activity-displayer', {
+    template: `
+        <div>
+            <b-tooltip :target="labelId">
+                {{tooltipLabel}}    
+            </b-tooltip>
+            <span :id="labelId" class="last-activity-elapsed-text" :class="{'elapsed-text-warning': maxMinutesPassed, 'elapsed-text-normal': !maxMinutesPassed}">{{elapsedLabel}}</span>
+        </div>
+    `,
+
+    props: {
+        time: null,
+        keyy: null,
+        connectionTime: null,
+        maxMinutes: null
+    },
+
+    data() {
+        return {
+            timer: null,
+            elapsed_minutes: null,
+        }
+    },
+
+    computed: {
+        elapsedLabel() {
+            let minutes = this.elapsed_minutes;
+            if (minutes>1) {
+                return minutes + " minuti fa"
+            } else {
+                if (minutes===1) { return "un minuto fa"} else {
+                    return "meno di un minuto fa"
+                }
+            }
+        },
+
+        tooltipLabel() {
+            let s =  "Ultima attivita': " + this.elapsedLabel;
+            if (this.connectionTime) {
+                s += "\nConnesso: " + this.elapsedMinutes(this.connectionTime) + " minuti fa"
+            }
+            return s
+        },
+
+        labelId() { return "last-activity-displayer-" + this.keyy},
+
+        maxMinutesPassed() {
+            return this.elapsed_minutes > this.maxMinutes;
+        }
+
+    },
+
+    watch: {
+        time: function(val) {
+            this.refreshElapsed();
+        }
+    },
+
+    methods: {
+
+        elapsedSeconds(time) { return Math.floor((Date.now() - time)/1000)},
+        elapsedMinutes(time) { return Math.floor(this.elapsedSeconds(time)/60)},
+
+        refreshElapsed() {
+            this.elapsed_minutes = this.elapsedMinutes(this.time);
+        }
+    },
+
+    mounted() {
+        this.timer = setInterval(() => {
+            this.refreshElapsed();
+        }, 1000)
     },
 })
 

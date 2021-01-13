@@ -78,6 +78,7 @@ const store = new Vuex.Store({
 
         playerConnected(state, player) {
             Vue.set(state.players, player.id, player)
+            state.players[player.id].lastStateChangeTime = Date.now();
             Vue.set(state.chats, player.id, {
                 messages: []
             })
@@ -85,6 +86,7 @@ const store = new Vuex.Store({
 
         playerStateChanged(state, playerState) {
             Vue.set(state.players, playerState.id, playerState)
+            state.players[playerState.id].lastStateChangeTime = Date.now();
         },
 
         playerDisconnected(state, player) {

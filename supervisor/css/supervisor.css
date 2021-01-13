@@ -33,3 +33,15 @@
 .selected-player-card {
     background-color: aliceblue;
 }
+
+.last-activity-elapsed-text {
+    font-size: 10px;
+}
+
+.elapsed-text-normal {
+    color: cadetblue;
+}
+
+.elapsed-text-warning {
+    color: red;
+}
