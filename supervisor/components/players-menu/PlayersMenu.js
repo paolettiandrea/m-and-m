@@ -1,5 +1,5 @@
 Vue.component('players-menu', {
-    template: `<div>
+    template: `<div style="overflow-y: auto" class="full-height">
         <div v-for="player in players">
             <player-menu-card :player="player"></player-menu-card>
         </div>
