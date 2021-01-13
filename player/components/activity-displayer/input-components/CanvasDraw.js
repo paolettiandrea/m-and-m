@@ -10,6 +10,7 @@ Vue.component("canvas-draw", {
       <button @click='resetCanvas'>Reset Canvas</button>
       <button @click='saveImage'>Save Image</button>
       <button @click='replay'>Replay</button>
+      <simple-button :inputData="inputData.sendButtonData" :defaults="defaults" @input-received="sendImage()"></simple-button>
     </div>
     <hr>
     <img ref="img" src="" id='canvas-image'>
@@ -17,7 +18,8 @@ Vue.component("canvas-draw", {
   </div>
     `,
     props: {
-        inputData: null
+        inputData: null,
+        defaults: null
     },
 
     data() {
@@ -39,6 +41,10 @@ Vue.component("canvas-draw", {
         document.addEventListener('mouseup', vm.mouseup);
     },
     methods: {
+
+        sendImage() {
+            console.log("TO BE IMPLEMENTED: send the image drawn on the canvas to the supervisor for scoring")
+        },
         mousedown(e) {
             var vm = this
             var rect = vm.canvas.getBoundingClientRect();

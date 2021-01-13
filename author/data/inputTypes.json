@@ -57,8 +57,16 @@
     {
       "type": "canvas-draw",
       "title": "Canvas",
-      "icon": "cursor-text",
+      "icon": "brush",
       "data":{
+        "sendButtonData": {
+          "buttonData": {
+            "label": "Invia",
+            "labelFontData": {},
+            "buttonBorderData": {},
+            "buttonBackgroundData": {}
+          }
+        }
       }
     }
   ]
