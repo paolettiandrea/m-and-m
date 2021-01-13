@@ -11,6 +11,7 @@
 
 .message-box {
     max-width: 75%;
+    border-radius: 5px;
 }
 
 .message-in {
@@ -44,4 +45,9 @@
 
 .elapsed-text-warning {
     color: red;
+}
+
+.side-panel {
+    background-color: rgb(190, 190, 190);
+    margin: 5px;
 }

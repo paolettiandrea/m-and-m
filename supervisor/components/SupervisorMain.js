@@ -27,7 +27,8 @@ Vue.component('player-main-panel', {
         </b-col>
         <b-col cols="6" style="display: flex; flex-direction:column">
             <p style="flex:0"> Controls </p>
-            <chat style="flex: 1" :chat="selectedPlayerChat"></chat>
+            <pending-actions-panel id="pending-actions-panel" class="side-panel" style="flex:1"></pending-actions-panel>
+            <chat style="flex: 1" :chat="selectedPlayerChat" class="side-panel"></chat>
         </b-col>
     </b-row>`,
 
@@ -40,6 +41,12 @@ Vue.component('player-main-panel', {
     }
 
 })
+
+Vue.component('pending-actions-panel', {
+    template: `<div>
+        <p> Pending actions </p>
+    </div>`
+});
 
 
 Vue.component('chat', {
@@ -55,7 +62,7 @@ Vue.component('chat', {
                 <div 
                 :class="{'message-out-inner': message.author==='supervisor', 'message-in-inner': message.author!=='supervisor', 'message-box': true}">
 
-                    <p>{{message.body}}</p>
+                    <span>{{message.body}}</span>
                 </div>
             </div>
         </section>
