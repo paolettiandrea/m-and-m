@@ -3,7 +3,10 @@
     opacity: 0.8;
     color: aliceblue;
     height: 100%;
-    background-size: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("861304.jpg");
 }
 
 #canva {
@@ -104,6 +107,7 @@ label {
 .title {
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     font-size: 30px;
+    color: white;
 }
 
 

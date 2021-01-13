@@ -1,7 +1,7 @@
 Vue.component("qr-reader", {
-    template: `<div align=center>
+    template: `<div align=center margin-top=20px>
         
-        <h class=title>Scansiona un QR code per avviare una storia</h>
+        <h class=title>Premi sul QR code per scansionarne uno e avviare una storia</h>
         
         <div>
         <input type=text size=16 placeholder="QR code" class=qrcode-text>
