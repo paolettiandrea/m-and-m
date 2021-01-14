@@ -41,6 +41,9 @@
     <script src="/common/js/VueUtils.js"></script>
     <script src="../player/components/activity-displayer/CommonDataUtils.js"></script>
 
+    <script type="text/javascript" src="https://unpkg.com/vue-plyr"></script>
+    <link rel="stylesheet" href="https://unpkg.com/vue-plyr/dist/vue-plyr.css" />
+
     <title>Title</title>
 </head>
 <body>
@@ -55,7 +58,8 @@
             el: '#app',
             store,
             components: {
-                'author-main': () => import("./components/AuthorMain.js")
+                'author-main': () => import("./components/AuthorMain.js"),
+                'vue-plyr': VuePlyr
             }
         })
     </script>

@@ -1,12 +1,17 @@
 Vue.component('video-displayer', {
     template: `
     <div  :align="contentData.pos">
-        <video :width="contentData.w"  controls>
-            <source :src="contentData.url" type="video/mp4">
-        </video>
+        <iframe style="width: 100%" :src="embedUrl">
+        </iframe>
     </div>
     `,
     props: {
         contentData: null
+    },
+
+    computed: {
+        embedUrl() {
+            return this.contentData.url.replace("watch?v=", "embed/");
+        }
     }
 })

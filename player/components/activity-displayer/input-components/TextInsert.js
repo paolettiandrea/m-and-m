@@ -1,10 +1,8 @@
 Vue.component("text-insert", {
-    template:` <div>
-      <b-form-group
+    template:` <div style="display: flex">
+      <b-form-group style="flex: 1; margin-bottom: 0; margin-right: 0.5rem"
         id="input"
-        label="Enter your answer:"
-        label-for="input-1"
-      >
+        label-for="input-1">
         <b-form-input
           id="input-1"
           v-model="answer"
@@ -14,10 +12,7 @@ Vue.component("text-insert", {
         ></b-form-input>
       </b-form-group>
 
-
-      <b-button :style="{fontSize: inputData.buttonFontData.fontSize || defaults.textFontData.fontSize }" type="submit" variant="primary" v-on:click="textState">Submit</b-button>
-    </b-form>
-    <br>
+     <simple-button style="flex: 0; white-space: nowrap" :inputData="inputData" :defaults="defaults" @input-received="textState"></simple-button>
     </div>`,
 
     props: {
@@ -26,6 +21,7 @@ Vue.component("text-insert", {
     },
     methods: {
         textState() {
+            console.log('Clicked')
             //window.alert( this.answer );
 
             //var correct = this.answer == this.inputData.correctAnswer ? true : false
@@ -36,12 +32,50 @@ Vue.component("text-insert", {
                 switch (possibility.inputType) {
                     case "string": {
 
-                        var processedAnswer = this.answer.trim().toLowerCase();
                         switch (possibility.operator) {
                             case "eq": {
+                                if (this.answer === possibility.val) {
+                                    this.$emit('input-received', possibility.outcome);
+                                    return;
+                                }
+                                break;
+                            }
+                            case "eqw": {
+                                var processedAnswer = this.answer.trim().toLowerCase();
                                 var processedVal = possibility.val.trim().toLowerCase();
                                 if (processedVal === processedAnswer) {
-                                    console.log("Emitting outcome for defined answer");
+                                    this.$emit('input-received', possibility.outcome);
+                                    return;
+                                }
+                                break;}
+                        }
+                        break;
+                    }
+                    case "number": {
+                        let answerParsed = parseInt(this.answer);
+                        let valParsed = parseInt(possibility.val);
+                        console.log('Parsed float answer: ', answerParsed)
+                        console.log('Parsed float answer: ', valParsed)
+                        switch (possibility.operator) {
+                            case "eq": {
+                                if (answerParsed===valParsed) {
+                                    console.log('Input num found to be equal')
+                                    this.$emit('input-received', possibility.outcome);
+                                    return;
+                                }
+                                break;
+                            }
+                            case "lt": {
+                                if (answerParsed<valParsed) {
+                                    console.log('Input num found to be lower')
+                                    this.$emit('input-received', possibility.outcome);
+                                    return;
+                                }
+                                break;
+                            }
+                            case "gt": {
+                                if (answerParsed > valParsed) {
+                                    console.log('Input num found to be greater')
                                     this.$emit('input-received', possibility.outcome);
                                     return;
                                 }
@@ -50,21 +84,10 @@ Vue.component("text-insert", {
                         }
                         break;
                     }
-                    case "number": {
-                        break;
-                    }
-
                 }
 
                 this.$emit('input-received', this.inputData.fallbackOutcome);
                 console.log("Emitting fallback");
-
-
-                // if(correct){
-                //     this.$emit('input-received', this.inputData.rightOutcome);
-                // } else{
-                //     this.$emit('input-received', this.inputData.wrongOutcome);
-                // }
             }
         }
     },
@@ -72,6 +95,6 @@ Vue.component("text-insert", {
         return {
             answer: '',
         }
-    }
+    },
 
 })

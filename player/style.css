@@ -95,7 +95,6 @@ label {
 }
 
 #input-1 {
-    width: 70%;
     color: #000000;
     animation: mymove 5s infinite;
     border-radius: 3px
@@ -210,7 +209,6 @@ body{
       .message-in {
         background: #F1F0F0;
         color: black;
-        margin-left: -50%;
       }
 
 

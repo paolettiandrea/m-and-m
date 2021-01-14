@@ -41,13 +41,15 @@ Vue.component('mission-displayer', {
 
         },
 
-        handleNextActivity(nextMissionId, points) {
-            this.pointedActivity = this.missionData.activities[nextMissionId];
-            if (nextMissionId) {
-                this.pointedActivity =  this.missionData.activities[nextMissionId];
+        handleNextActivity(nextActivityId, points) {
+            this.pointedActivity = this.missionData.activities[nextActivityId];
+            if (nextActivityId) {
+                this.pointedActivity =  this.missionData.activities[nextActivityId];
                 if (points) {
                     this.missionScore = this.missionScore + parseInt(points);
                 }
+                console.log("Emitting started activity event");
+                socket.emit('starting-activity', nextActivityId);
             } else {
                 this.missionEnded = true;
                 this.pointedActivity = null;
@@ -77,6 +79,7 @@ Vue.component('mission-displayer', {
             })
 
             socket.emit('starting-mission', missionId)
+            socket.emit('starting-activity', 'initial');
         } else {
             axios.
             get("/player/data/dummyMission.json").

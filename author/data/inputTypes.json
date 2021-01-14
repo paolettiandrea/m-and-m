@@ -24,7 +24,12 @@
       "data":{
         "possibilityList": [],
         "fallbackOutcome": {},
-        "buttonFontData": {}
+        "buttonData": {
+          "label": "Manda",
+          "labelFontData": {},
+          "buttonBorderData": {},
+          "buttonBackgroundData": {}
+        }
       }
     },
     {
@@ -47,6 +52,21 @@
               }
           }
         ]
+      }
+    },
+    {
+      "type": "canvas-draw",
+      "title": "Canvas",
+      "icon": "brush",
+      "data":{
+        "sendButtonData": {
+          "buttonData": {
+            "label": "Invia",
+            "labelFontData": {},
+            "buttonBorderData": {},
+            "buttonBackgroundData": {}
+          }
+        }
       }
     }
   ]
