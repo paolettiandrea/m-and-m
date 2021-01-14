@@ -1,17 +1,21 @@
 Vue.component("qr-reader", {
-    template: `<div align=center margin-top=20px>
+    template: `<div align=center>
         
-        <h class=title>Premi sul QR code per scansionarne uno e avviare una storia</h>
+        <h class=title>Scansiona un QR code per avviare una storia</h>
         
         <div>
-        <input type=text size=16 placeholder="QR code" class=qrcode-text>
+        <input type=text size=16 placeholder="Premi sul QR code" class=qrcode-text>
 
         <label class=qrcode-text-btn>
             <input type=file accept="image/*" capture=environment onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex=-1>
         </label>
         </div>
 
-        <input type=button value="Inizia la tua storia">
+        <div ontouchstart="">
+            <div class="button">
+                <a href="#">Inizia la tua storia</a>
+            </div>
+            </div>
         
         </div>`,
     
