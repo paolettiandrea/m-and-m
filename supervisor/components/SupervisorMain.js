@@ -1,3 +1,4 @@
+
 Vue.component("supervisor-main", {
   template: `<div class="full-height">
         <b-row class="full-height" no-gutters>
@@ -44,10 +45,26 @@ Vue.component("pending-actions-panel", {
   template: `<div>
         <div v-if="selectedPlayerPendingActions.hint">
             <p>Need hint</p>
+            <b-card>
+                <b-input-group>
+                    <b-form-input v-model="hintText" type="text"></b-form-input>
+                    <b-button @click="sendHint()">Manda indizio</b-button>
+                </b-input-group>
+            </b-card>
         </div>
     </div>`,
+  data() {
+    return {
+      hintText: "",
+    };
+  },
   computed: {
-    ...Vuex.mapGetters(["selectedPlayerPendingActions"]),
+    ...Vuex.mapGetters(["selectedPlayerPendingActions", "socket", "selectedPlayer"]),
+  },
+  methods: {
+    sendHint() {
+        this.socket.emit('hint-for-player', {playerId: this.selectedPlayer.id, hint: this.hintText})
+    }
   },
 });
 

@@ -95,6 +95,13 @@
         var socket = io();
         socket.emit('player-handshake');
 
+
+
+        // TODO place this somewhere
+        socket.on('hint', (hint) => {
+            console.log("Received hint: ", hint);
+        })
+
     </script>
 
 </head>

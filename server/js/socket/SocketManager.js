@@ -34,6 +34,12 @@ function initialize(server) {
                     console.log('Supervisor disconnected');
                     supervisor = null;
                 })
+
+                socket.on('hint-for-player', ({playerId, hint}) => {
+
+                    let targetPlayer = players[playerId];
+                    targetPlayer.socket.emit('hint', hint);
+                })
             }
         })
 
@@ -58,7 +64,7 @@ function initialize(server) {
                         playerId: id,
                         action: {
                             type: 'hint',
-                            
+
 
 
                         }
