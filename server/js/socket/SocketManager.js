@@ -51,6 +51,21 @@ function initialize(server) {
                     supervisor.socket.emit("message-from-player", {message, id})
                 }
             })
+
+            socket.on('need-hint', () => {
+                if (supervisor) {
+                    supervisor.socket.emit("new-pending-action", {
+                        playerId: id,
+                        action: {
+                            type: 'hint',
+                            
+
+
+                        }
+                    })
+                }
+                console.log("Need hint")
+            })
             
             socket.on('disconnect', () => {
                 console.log('Player ' + id + ' disconnected')

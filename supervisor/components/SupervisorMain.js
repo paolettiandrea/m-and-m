@@ -1,5 +1,5 @@
-Vue.component('supervisor-main', {
-    template: `<div class="full-height">
+Vue.component("supervisor-main", {
+  template: `<div class="full-height">
         <b-row class="full-height" no-gutters>
             <b-col cols="4" class="full-height">
                 <players-menu></players-menu>
@@ -10,18 +10,17 @@ Vue.component('supervisor-main', {
 </b-row>
     </div>`,
 
-    computed: {
-        ...Vuex.mapGetters(['selectedPlayer'])
-    }
-})
-
+  computed: {
+    ...Vuex.mapGetters(["selectedPlayer"]),
+  },
+});
 
 // Functionality:
 // - see what the player is seeing
 // - chat with the player [DONE]
 // - see a list of the pending score and hint requests
-Vue.component('player-main-panel', {
-    template: `<b-row style="height: 100%" no-gutters>
+Vue.component("player-main-panel", {
+  template: `<b-row style="height: 100%" no-gutters>
         <b-col cols="6">
             <p> Preview </p>
         </b-col>
@@ -32,25 +31,28 @@ Vue.component('player-main-panel', {
         </b-col>
     </b-row>`,
 
-    props: {
-        player: null
-    },
+  props: {
+    player: null,
+  },
 
-    computed: {
-        ...Vuex.mapGetters(['selectedPlayerChat'])
-    }
-
-})
-
-Vue.component('pending-actions-panel', {
-    template: `<div>
-        <p> Pending actions </p>
-    </div>`
+  computed: {
+    ...Vuex.mapGetters(["selectedPlayerChat"]),
+  },
 });
 
+Vue.component("pending-actions-panel", {
+  template: `<div>
+        <div v-if="selectedPlayerPendingActions.hint">
+            <p>Need hint</p>
+        </div>
+    </div>`,
+  computed: {
+    ...Vuex.mapGetters(["selectedPlayerPendingActions"]),
+  },
+});
 
-Vue.component('chat', {
-    template: `<div class="vertical-flex full-height" style="overflow-y:hidden; max-height: 100vh">
+Vue.component("chat", {
+  template: `<div class="vertical-flex full-height" style="overflow-y:hidden; max-height: 100vh">
 
 
         <!-- Message history -->
@@ -78,27 +80,26 @@ Vue.component('chat', {
         </div>
     </div>`,
 
-    data() {
-        return {
-            message: ""
-        }
+  data() {
+    return {
+      message: "",
+    };
+  },
+
+  props: {
+    chat: null,
+  },
+
+  methods: {
+    ...Vuex.mapActions(["sendSelectedPlayerMessage"]),
+    sendMessage() {
+      console.log("Sending message: ", this.message);
+      this.sendSelectedPlayerMessage(this.message);
+      this.message = "";
     },
+  },
 
-    props: {
-        chat: null
-    },
-
-    methods: {
-        ...Vuex.mapActions(['sendSelectedPlayerMessage']),
-        sendMessage() {
-            console.log("Sending message: ", this.message);
-            this.sendSelectedPlayerMessage(this.message);
-            this.message = "";
-        }
-    },
-
-
-    computed: {
-        ...Vuex.mapGetters(['socket'])
-    }
-})
+  computed: {
+    ...Vuex.mapGetters(["socket"]),
+  },
+});
