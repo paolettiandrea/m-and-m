@@ -44,11 +44,11 @@ Vue.component("player-main-panel", {
 Vue.component("pending-actions-panel", {
   template: `<div>
         <div v-if="selectedPlayerPendingActions.hint">
-            <p>Need hint</p>
             <b-card>
+                <span>Il giocatore ha richiesto un indizio</span>
                 <b-input-group>
                     <b-form-input v-model="hintText" type="text"></b-form-input>
-                    <b-button @click="sendHint()">Manda indizio</b-button>
+                    <b-button @click="sendHint()">Manda</b-button>
                 </b-input-group>
             </b-card>
         </div>
@@ -64,6 +64,7 @@ Vue.component("pending-actions-panel", {
   methods: {
     sendHint() {
         this.socket.emit('hint-for-player', {playerId: this.selectedPlayer.id, hint: this.hintText})
+        // TODO remove hint pending action
     }
   },
 });
