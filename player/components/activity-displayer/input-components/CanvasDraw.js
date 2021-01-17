@@ -1,20 +1,19 @@
 Vue.component("canvas-draw", {
     template: `
 
-    <div  align="center" id="drawing">
-    <h1>Canvas Demo</h1>
-    <canvas ref="canvas" id='drawing-pad' :width="inputData.w" :height="inputData.h">
+    <div  align="center" id="drawing" style="width=100%; height: 100%">
+    <canvas ref="canvas" id='drawing-pad' style="width=100%; height: 100%;">
       This is an interactive drawing pad.
     </canvas>
     <div>
-      <button @click='resetCanvas'>Reset Canvas</button>
-      <button @click='saveImage'>Save Image</button>
-      <button @click='replay'>Replay</button>
+      <!-- <button @click='resetCanvas'>Reset Canvas</button> -->
+      <!-- <button @click='saveImage'>Save Image</button> -->
+      <!-- <button @click='replay'>Replay</button> -->
       <simple-button :inputData="inputData.sendButtonData" :defaults="defaults" @input-received="sendImage()"></simple-button>
     </div>
-    <hr>
-    <img ref="img" src="" id='canvas-image'>
-    <small>Right click to save image.</small>
+    <!-- <hr> -->
+    <!-- <img ref="img" src="" id='canvas-image'> -->
+    <!-- <small>Right click to save image.</small> -->
   </div>
     `,
     props: {

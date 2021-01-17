@@ -35,7 +35,7 @@
     {
       "type": "multiple-checkboxes",
       "title": "Opzioni",
-      "icon": "grid",
+      "icon": "alt",
       "data":{
         "multipleChoice": false,
         "optionList": [
@@ -67,6 +67,15 @@
             "buttonBackgroundData": {}
           }
         }
+      }
+    },
+    {
+      "type": "click-img",
+      "title": "Trova nell'immagine",
+      "icon": "grid1x2",
+      "data":{
+          "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png",
+          "areas": []
       }
     }
   ]

@@ -152,19 +152,19 @@
         }
       },
       "inputComponent": {
-        "inputType": "simple-button",
+        "inputType": "click-img",
         "inputData": {
-          "buttonData": {
-            "label": "Continua",
-            "labelFontData": {},
-            "buttonBorderData": {},
-            "buttonBackgroundData": {}
-          },
-          "outcome": {
-            "outcomeType": "next",
-            "nextActivityId": "69821980-54c0-11eb-8afb-694777034679",
-            "edgeId": "f8488580-55c6-11eb-a7c0-531a62b1acf3"
-          }
+          "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png",
+          "areas": [
+            {
+              "coords": "1,1,300,300",
+              "alt": "area 0023",
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": ""
+              }
+            }
+          ]
         },
         "commonData": {
           "borderData": {},
