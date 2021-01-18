@@ -98,7 +98,7 @@ Vue.component('knob', {
         },
         'primaryColor': {
             type: String,
-            default: '#409eff'
+            default: '#ccff40'
         },
         'secondaryColor': {
             type: String,
@@ -106,7 +106,7 @@ Vue.component('knob', {
         },
         'textColor': {
             type: String,
-            default: '#000000'
+            default: '#c7bf22'
         },
         'strokeWidth': {
             type: Number,

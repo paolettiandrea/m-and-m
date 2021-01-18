@@ -202,3 +202,11 @@ label {
     font-size: 1.3rem;
     text-align: center;
 }
+
+.lastscreenbackground{
+  @media only screen and (max-width: 600px) {
+  body {
+    background-image: url('https://c.wallhere.com/photos/39/ae/dinosaurs_Brachiosaurus_Stegosaurus_Triceratops_Pterodactyl-290781.jpg!d');
+  }
+}
+}
