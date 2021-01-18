@@ -29,6 +29,11 @@ const store = new Vuex.Store({
         },
     },
     mutations: {
+
+        removePendingHint(state, playerId) {
+            let playerPending = state.pendingActions[playerId];
+            playerPending.hint = false;
+        },
         loadMissions(state) {
             axios.get("/missions/heads").then((res, err) => {
                 if (err) throw err;

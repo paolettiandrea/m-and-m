@@ -59,12 +59,12 @@ Vue.component("pending-actions-panel", {
     };
   },
   computed: {
-    ...Vuex.mapGetters(["selectedPlayerPendingActions", "socket", "selectedPlayer"]),
+    ...Vuex.mapGetters(["selectedPlayerPendingActions", "socket", "selectedPlayer", "pendingActions"]),
   },
   methods: {
     sendHint() {
         this.socket.emit('hint-for-player', {playerId: this.selectedPlayer.id, hint: this.hintText})
-        // TODO remove hint pending action
+        this.pendingActions[this.selectedPlayer.id].hint = false;
     }
   },
 });
