@@ -84,6 +84,10 @@ const store = new Vuex.Store({
                         if (!playerPendingActions.hint) {
                             playerPendingActions.hint = true;
                         }
+                        break;
+                    }
+                    case 'scoring': {
+                        playerPendingActions.scoring.push(action.scoringData);
                     }
                 }
 

@@ -52,6 +52,9 @@ Vue.component("pending-actions-panel", {
                 </b-input-group>
             </b-card>
         </div>
+        <b-card v-for="(pendingScoring,i) in selectedPlayerPendingActions.scoring" :key="i">
+          <component :is="'pending-scoring-' + pendingScoring.type" :scoringData="pendingScoring"></component>
+        </b-card>
     </div>`,
   data() {
     return {
@@ -68,6 +71,15 @@ Vue.component("pending-actions-panel", {
     }
   },
 });
+
+Vue.component("pending-scoring-drawn-image", {
+  template: `<div>
+    <p> Pending scoring</p>
+    <img :src="scoringData.dataUrl" style="width:100%"></img>
+  </div>`,
+
+  props: { scoringData: null }
+})
 
 Vue.component("chat", {
   template: `<div class="vertical-flex full-height" style="overflow-y:hidden; max-height: 100vh">

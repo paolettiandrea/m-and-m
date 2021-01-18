@@ -72,6 +72,19 @@ function initialize(server) {
                 }
                 console.log("Need hint")
             })
+
+            socket.on('need-scoring', (scoringData) => {
+                console.log("Player ", id, " needs scoring for ", scoringData);
+                if (supervisor) {
+                    supervisor.socket.emit('new-pending-action', {
+                        playerId: id,
+                        action: {
+                            type: 'scoring',
+                            scoringData: scoringData
+                        }
+                    })
+                }
+            });
             
             socket.on('disconnect', () => {
                 console.log('Player ' + id + ' disconnected')

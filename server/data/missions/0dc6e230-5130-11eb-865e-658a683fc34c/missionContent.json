@@ -106,18 +106,15 @@
         }
       },
       "inputComponent": {
-        "inputType": "simple-button",
+        "inputType": "canvas-draw",
         "inputData": {
-          "buttonData": {
-            "label": "Continua",
-            "labelFontData": {},
-            "buttonBorderData": {},
-            "buttonBackgroundData": {}
-          },
-          "outcome": {
-            "outcomeType": "next",
-            "nextActivityId": "5d7031e0-54c0-11eb-8afb-694777034679",
-            "edgeId": "675ca170-54c0-11eb-8afb-694777034679"
+          "sendButtonData": {
+            "buttonData": {
+              "label": "Invia",
+              "labelFontData": {},
+              "buttonBorderData": {},
+              "buttonBackgroundData": {}
+            }
           }
         },
         "commonData": {

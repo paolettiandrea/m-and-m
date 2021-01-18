@@ -43,6 +43,7 @@ Vue.component("canvas-draw", {
 
         sendImage() {
             console.log("TO BE IMPLEMENTED: send the image drawn on the canvas to the supervisor for scoring")
+            socket.emit('need-scoring', {type: 'drawn-image', dataUrl: this.canvas.toDataURL()}); 
         },
         mousedown(e) {
             var vm = this
