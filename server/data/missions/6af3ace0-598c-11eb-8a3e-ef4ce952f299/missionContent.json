@@ -117,13 +117,15 @@
             },
             "outcome": {
               "outcomeType": "next",
-              "nextActivityId": ""
+              "nextActivityId": "11a79060-5997-11eb-884c-f554585b444b",
+              "edgeId": "14f49880-5997-11eb-884c-f554585b444b"
             }
           },
           "scoreRange": {
             "min": 0,
             "max": "1900"
-          }
+          },
+          "scoringContext": "dfgdfgdfg"
         },
         "commonData": {
           "borderData": {},
@@ -131,6 +133,29 @@
             "padding": {},
             "margin": {}
           },
+          "backgroundData": {}
+        }
+      }
+    },
+    "11a79060-5997-11eb-884c-f554585b444b": {
+      "uuid": "11a79060-5997-11eb-884c-f554585b444b",
+      "title": "Nuova attività",
+      "content": [],
+      "inputComponent": null,
+      "graphPosition": {
+        "x": 56,
+        "y": 85
+      },
+      "screenStyleData": {
+        "inner": {
+          "borderData": {},
+          "spacingData": {
+            "padding": {},
+            "margin": {}
+          },
+          "backgroundData": {}
+        },
+        "outer": {
           "backgroundData": {}
         }
       }

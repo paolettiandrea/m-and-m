@@ -74,7 +74,8 @@
         "scoreRange": {
           "min": 0,
           "max": 100
-        }
+        },
+        "scoringContext": "Contesto e criteri utili alla valutazione"
       }
 
     },

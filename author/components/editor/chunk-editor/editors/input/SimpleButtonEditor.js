@@ -34,14 +34,14 @@ Vue.component('next-activity-outcome-editor', {
 // })
 
 Vue.component('score-range-editor', {
-    template: `<activity-editor-subpanel label="Valutazione punteggio">
+    template: `
         <editor-field label="Range">
             <b-input-group>
                 <b-form-input v-model="scoreRange.min" prepend="Min"></b-form-input>
                 <b-form-input v-model="scoreRange.max"></b-form-input>
             </b-input-group> 
         </editor-field>
-    </activity-editor-subpanel>`,
+    `,
 
     props: {
         scoreRange: null
@@ -67,18 +67,18 @@ Vue.component('simple-button-editor', {
     computed: {
         ...Vuex.mapGetters(['selectedMissionDefaults'])
     }
-
-
-
 })
 
 
 Vue.component('canvas-draw-editor', {
     template: `<div>
         <simple-button-editor :inputData="inputData.sendButtonData"></simple-button-editor>
+        <activity-editor-subpanel label="Valutazione punteggio">
             <score-range-editor :scoreRange="inputData.scoreRange"></score-range-editor>
-        </editor-field>
-
+            <editor-field label="Contesto">
+                <b-form-input v-model="inputData.scoringContext"></b-form-input>
+            </editor-field>
+        </activity-editor-subpanel>
     </div>`,
 
     props: {

@@ -47,7 +47,10 @@ Vue.component("canvas-draw", {
         type: "drawn-image",
         dataUrl: this.canvas.toDataURL(),
         scoreRange: this.inputData.scoreRange,
+        context: this.inputData.scoringContext
       });
+
+      this.$emit('input-received', this.inputData.sendButtonData.outcome);
     },
     mousedown(e) {
       var vm = this;

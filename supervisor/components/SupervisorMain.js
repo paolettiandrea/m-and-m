@@ -52,11 +52,12 @@ Vue.component("pending-actions-panel", {
             </b-card>
         </div>
         <b-card v-for="(pendingScoring,i) in selectedPlayerPendingActions.scoring" :key="i">
+          <p>{{pendingScoring.context}}</p>
           <component :is="'pending-scoring-' + pendingScoring.type" :scoringData="pendingScoring"></component>
           <b-input-group :prepend="String(pendingScoring.scoreRange.min)" :append="String(pendingScoring.scoreRange.max)" class="mt-3">
             <b-form-input v-model="pendingScoring.score" type="range" :min="pendingScoring.scoreRange.min" :max="pendingScoring.scoreRange.max"></b-form-input>
-            <b-button @click="sendScore(i)">Invia</b-button>
           </b-input-group>
+          <b-button @click="sendScore(i)">Invia</b-button>
         </b-card>
 
     </div>`,
@@ -96,7 +97,6 @@ Vue.component("pending-actions-panel", {
 
 Vue.component("pending-scoring-drawn-image", {
   template: `<div style="">
-    <p> Pending scoring</p>
     <img :src="scoringData.dataUrl" style=""></img>
   </div>`,
 
