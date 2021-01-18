@@ -1,4 +1,3 @@
-
 Vue.component("supervisor-main", {
   template: `<div class="full-height">
         <b-row class="full-height" no-gutters>
@@ -54,7 +53,12 @@ Vue.component("pending-actions-panel", {
         </div>
         <b-card v-for="(pendingScoring,i) in selectedPlayerPendingActions.scoring" :key="i">
           <component :is="'pending-scoring-' + pendingScoring.type" :scoringData="pendingScoring"></component>
+          <b-input-group :prepend="String(pendingScoring.scoreRange.min)" :append="String(pendingScoring.scoreRange.max)" class="mt-3">
+            <b-form-input v-model="pendingScoring.score" type="range" :min="pendingScoring.scoreRange.min" :max="pendingScoring.scoreRange.max"></b-form-input>
+            <b-button @click="sendScore(i)">Invia</b-button>
+          </b-input-group>
         </b-card>
+
     </div>`,
   data() {
     return {
@@ -62,24 +66,42 @@ Vue.component("pending-actions-panel", {
     };
   },
   computed: {
-    ...Vuex.mapGetters(["selectedPlayerPendingActions", "socket", "selectedPlayer", "pendingActions"]),
+    ...Vuex.mapGetters([
+      "selectedPlayerPendingActions",
+      "socket",
+      "selectedPlayer",
+      "pendingActions",
+    ]),
   },
   methods: {
+    sendScore(scoringIndex) {
+      let targetScoring = this.selectedPlayerPendingActions.scoring[
+        scoringIndex
+      ];
+      this.socket.emit("player-scored", {
+        playerId: this.selectedPlayer.id,
+        scoreData: targetScoring,
+      });
+      this.selectedPlayerPendingActions.scoring.splice(scoringIndex,1);
+    },
     sendHint() {
-        this.socket.emit('hint-for-player', {playerId: this.selectedPlayer.id, hint: this.hintText})
-        this.pendingActions[this.selectedPlayer.id].hint = false;
-    }
+      this.socket.emit("hint-for-player", {
+        playerId: this.selectedPlayer.id,
+        hint: this.hintText,
+      });
+      this.pendingActions[this.selectedPlayer.id].hint = false;
+    },
   },
 });
 
 Vue.component("pending-scoring-drawn-image", {
-  template: `<div>
+  template: `<div style="">
     <p> Pending scoring</p>
-    <img :src="scoringData.dataUrl" style="width:100%"></img>
+    <img :src="scoringData.dataUrl" style=""></img>
   </div>`,
 
-  props: { scoringData: null }
-})
+  props: { scoringData: null },
+});
 
 Vue.component("chat", {
   template: `<div class="vertical-flex full-height" style="overflow-y:hidden; max-height: 100vh">

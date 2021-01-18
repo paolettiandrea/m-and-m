@@ -40,6 +40,13 @@ function initialize(server) {
                     let targetPlayer = players[playerId];
                     targetPlayer.socket.emit('hint', hint);
                 })
+
+
+                socket.on('player-scored', ({playerId, scoreData}) => {
+                    console.log("Scored ", scoreData);
+                    let targetPlayer = players[playerId];
+                    targetPlayer.socket.emit('scored', scoreData);
+                })
             }
         })
 

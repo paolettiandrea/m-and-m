@@ -65,9 +65,18 @@
             "labelFontData": {},
             "buttonBorderData": {},
             "buttonBackgroundData": {}
+          },
+          "outcome": {
+            "outcomeType": "next",
+            "nextActivityId": ""
           }
+        },
+        "scoreRange": {
+          "min": 0,
+          "max": 100
         }
       }
+
     },
     {
       "type": "click-img",

@@ -101,6 +101,9 @@
         socket.on('hint', (hint) => {
             console.log("Received hint: ", hint);
         })
+        socket.on('scored', (scoringData) => {
+            console.log("Received scoring data: ", scoringData);
+        })
 
     </script>
 

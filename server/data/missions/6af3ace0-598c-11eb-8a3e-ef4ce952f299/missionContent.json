@@ -114,7 +114,15 @@
               "labelFontData": {},
               "buttonBorderData": {},
               "buttonBackgroundData": {}
+            },
+            "outcome": {
+              "outcomeType": "next",
+              "nextActivityId": ""
             }
+          },
+          "scoreRange": {
+            "min": 0,
+            "max": "1900"
           }
         },
         "commonData": {
@@ -123,75 +131,6 @@
             "padding": {},
             "margin": {}
           },
-          "backgroundData": {}
-        }
-      }
-    },
-    "5d7031e0-54c0-11eb-8afb-694777034679": {
-      "uuid": "5d7031e0-54c0-11eb-8afb-694777034679",
-      "title": "Nuova attività 1",
-      "content": [],
-      "graphPosition": {
-        "x": 94,
-        "y": 179
-      },
-      "screenStyleData": {
-        "inner": {
-          "borderData": {},
-          "spacingData": {
-            "padding": {},
-            "margin": {}
-          },
-          "backgroundData": {}
-        },
-        "outer": {
-          "backgroundData": {}
-        }
-      },
-      "inputComponent": {
-        "inputType": "click-img",
-        "inputData": {
-          "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png",
-          "areas": [
-            {
-              "coords": "1,1,300,300",
-              "alt": "area 0023",
-              "outcome": {
-                "outcomeType": "next",
-                "nextActivityId": ""
-              }
-            }
-          ]
-        },
-        "commonData": {
-          "borderData": {},
-          "spacingData": {
-            "padding": {},
-            "margin": {}
-          },
-          "backgroundData": {}
-        }
-      }
-    },
-    "69821980-54c0-11eb-8afb-694777034679": {
-      "uuid": "69821980-54c0-11eb-8afb-694777034679",
-      "title": "Nuova attività 2",
-      "content": [],
-      "inputComponent": null,
-      "graphPosition": {
-        "x": 227,
-        "y": 316
-      },
-      "screenStyleData": {
-        "inner": {
-          "borderData": {},
-          "spacingData": {
-            "padding": {},
-            "margin": {}
-          },
-          "backgroundData": {}
-        },
-        "outer": {
           "backgroundData": {}
         }
       }
