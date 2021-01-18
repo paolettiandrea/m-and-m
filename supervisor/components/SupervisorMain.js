@@ -23,6 +23,9 @@ Vue.component("player-main-panel", {
   template: `<b-row style="height: 100%" no-gutters>
         <b-col cols="6">
             <p> Preview </p>
+            <activity-displayer v-if="selectedPlayerActivity" class="full-flex activity-preview" style="max-height: 500px;" :activity-content="selectedPlayerActivity" :styling="selectedPlayerMissionContent.screenStylingData" :defaults="selectedPlayerMissionContent.defaults" 
+                  >
+          </activity-displayer>
         </b-col>
         <b-col cols="6" style="display: flex; flex-direction:column">
             <p style="flex:0"> Controls </p>
@@ -36,7 +39,11 @@ Vue.component("player-main-panel", {
   },
 
   computed: {
-    ...Vuex.mapGetters(["selectedPlayerChat"]),
+    ...Vuex.mapGetters(["selectedPlayerChat", "selectedPlayerActivity", "selectedPlayerMissionContent", "pendingActions"]),
+    selectedMissionContent() {
+      this.player.playingMissionId
+    },
+
   },
 });
 

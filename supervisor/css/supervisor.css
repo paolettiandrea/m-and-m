@@ -35,6 +35,10 @@
     background-color: aliceblue;
 }
 
+.pending-player-card {
+    border-color: red;
+}
+
 .last-activity-elapsed-text {
     font-size: 10px;
 }
