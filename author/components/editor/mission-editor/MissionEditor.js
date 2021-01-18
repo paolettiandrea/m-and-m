@@ -1,8 +1,8 @@
-import { CanvasManager } from './CanvasManager.js';
-import { v1 as uuidv1} from '/uuid/dist/esm-browser/index.js';
+import { CanvasManager } from "./CanvasManager.js";
+import { v1 as uuidv1 } from "/uuid/dist/esm-browser/index.js";
 
-Vue.component('mission-editor', {
-    template: `
+Vue.component("mission-editor", {
+  template: `
     <div>
         <b-navbar class="mm-navbar-primary">
             <b-navbar-brand href="#">
@@ -36,68 +36,79 @@ Vue.component('mission-editor', {
             </b-navbar-nav> 
         </b-navbar>
         
-        <div v-if="isMissionSettingsPanelOpen" class="full-flex vertical-scroll">
-            <mission-defaults-editor :defaults="missionContent.defaults" :uberDefaults="uberDefaults" :missionContent="missionContent"></mission-defaults-editor>
+
+        <div  class="full-flex vertical-scroll" style="overflow: hidden">
+
+            <div v-if="isMissionSettingsPanelOpen""style="height: 50%; overflow: auto">
+                <mission-defaults-editor :defaults="missionContent.defaults" :uberDefaults="uberDefaults" :missionContent="missionContent"></mission-defaults-editor>
+            </div>
+            <div id="yoyo" style="position: relative; height: 100%">
+                <div v-if="isWaitingForActivityClick" style="z-index: 3">
+                    <p>Seleziona una attività o </p>
+                    <b-button size="sm" @click="deleteActivityClickedCallback" variant="danger">annulla</b-button>
+                </div>
+                <div id="g6Mount" style="position: absolute; top: 0; left: 0"></div>
         </div>
-        <div v-else id="yoyo" style="position: relative; height: 100%">
-            <div v-if="isWaitingForActivityClick" style="z-index: 3">
-                <p>Seleziona una attività o </p>
-                <b-button size="sm" @click="deleteActivityClickedCallback" variant="danger">annulla</b-button>
-             </div>
-            <div id="g6Mount" style="position: absolute; top: 0; left: 0"></div>
         </div>
     </div>`,
 
-    computed: {
-        ...Vuex.mapGetters({
-            missionContent: 'selectedMissionContent',
-            missionHead: 'selectedMissionHead',
-            barTitle: 'missionBarTitle',
-            isMissionSelected: 'isMissionSelected',
-            isMissionUpdated: 'isSelectedMissionUpdated',
-            isMissionSettingsPanelOpen: 'isMissionSettingsPanelOpen',
-            selectedMissionId: 'selectedMissionId',
-            isWaitingForActivityClick: 'isWaitingForActivityClick'
-        }),
+  computed: {
+    ...Vuex.mapGetters({
+      missionContent: "selectedMissionContent",
+      missionHead: "selectedMissionHead",
+      barTitle: "missionBarTitle",
+      isMissionSelected: "isMissionSelected",
+      isMissionUpdated: "isSelectedMissionUpdated",
+      isMissionSettingsPanelOpen: "isMissionSettingsPanelOpen",
+      selectedMissionId: "selectedMissionId",
+      isWaitingForActivityClick: "isWaitingForActivityClick",
+    }),
 
-        uberDefaults() { return uberDefaults; }
-
+    uberDefaults() {
+      return uberDefaults;
     },
+  },
 
-    data() {
-        return {
-            canvas: null,
-            selectedActivity: null
-        }
+  data() {
+    return {
+      canvas: null,
+      selectedActivity: null,
+    };
+  },
+  methods: {
+    ...Vuex.mapActions([
+      "deleteSelectedMission",
+      "updateSelectedMission",
+      "setMissionSettingsPanel",
+      "deleteActivityClickedCallback",
+      "pasteActivity",
+    ]),
+    activitySelectionCallback(selectedActivity) {
+      this.selectedActivity = selectedActivity;
+      this.$store.commit("selectActivity", selectedActivity.uuid); // TODO bind directly to this (maybe)
     },
-    methods: {
-        ...Vuex.mapActions([
-            'deleteSelectedMission', 'updateSelectedMission', 'setMissionSettingsPanel', 'deleteActivityClickedCallback', 'pasteActivity'
-        ]),
-        activitySelectionCallback(selectedActivity) {
-            this.selectedActivity = selectedActivity;
-            this.$store.commit('selectActivity', selectedActivity.uuid);        // TODO bind directly to this (maybe)
-        },
-        playMission() {
-            window.location.href = '/player?missionId=' + this.selectedMissionId
-        }
+    playMission() {
+      window.location.href = "/player?missionId=" + this.selectedMissionId;
     },
+  },
 
-    mounted() {
-        this.$store.dispatch('canvasSetup', {
-            mountId: "g6Mount",
-            callbacks: {
-                selectionCallback: this.activitySelectionCallback
-            }
-        })
+  mounted() {
+    this.$store.dispatch("canvasSetup", {
+      mountId: "g6Mount",
+      callbacks: {
+        selectionCallback: this.activitySelectionCallback,
+      },
+    });
 
-        let yo = document.getElementById("yoyo");
-        this.$store.state.canvas.graph.changeSize(yo.clientWidth, yo.clientHeight);      // FIXME brutally resizing canvas
+    let yo = document.getElementById("yoyo");
+    this.$store.state.canvas.graph.changeSize(yo.clientWidth, yo.clientHeight); // FIXME brutally resizing canvas
 
-        window.onresize = () => {
-            let yo = document.getElementById("yoyo");
-            this.$store.state.canvas.graph.changeSize(yo.clientWidth, yo.clientHeight);      // FIXME brutally resizing canvas
-        }
-    }
-
-})
+    window.onresize = () => {
+      let yo = document.getElementById("yoyo");
+      this.$store.state.canvas.graph.changeSize(
+        yo.clientWidth,
+        yo.clientHeight
+      ); // FIXME brutally resizing canvas
+    };
+  },
+});

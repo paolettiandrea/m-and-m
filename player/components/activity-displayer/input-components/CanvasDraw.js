@@ -145,4 +145,4 @@ Vue.component("canvas-draw", {
       }
     },
   },
-}).$mount("#drawing");
+})
