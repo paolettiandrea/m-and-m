@@ -104,6 +104,32 @@ label {
     background-color: #4CAF50;
 }
 
+@keyframes dash-frame {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+.knob-control__range {
+    fill: none;
+    transition: stroke .1s ease-in;
+}
+.knob-control__value {
+    animation-name: dash-frame;
+    animation-fill-mode: forwards;
+    fill: none;
+}
+.knob-control__text-display {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.lastscreenbackground{
+  @media only screen and (max-width: 600px) {
+  body {
+    background-image: url('https://c.wallhere.com/photos/39/ae/dinosaurs_Brachiosaurus_Stegosaurus_Triceratops_Pterodactyl-290781.jpg!d');
+  }
+}
+}
 .title {
     font-family: 'Stencil Std', fantasy;
     font-size: 40px;

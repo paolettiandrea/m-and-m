@@ -86,7 +86,24 @@
   "activities": {
     "initial": {
       "title": "Attività iniziale",
-      "content": [],
+      "content": [
+        {
+          "contentType": "text-displayer",
+          "contentData": {
+            "text": "Placeholder text",
+            "parseMarkdown": true,
+            "fontData": {}
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        }
+      ],
       "uuid": "initial",
       "graphPosition": {
         "x": 0,
@@ -106,26 +123,38 @@
         }
       },
       "inputComponent": {
-        "inputType": "canvas-draw",
+        "inputType": "multiple-checkboxes",
         "inputData": {
-          "sendButtonData": {
-            "buttonData": {
-              "label": "Invia",
-              "labelFontData": {},
-              "buttonBorderData": {},
-              "buttonBackgroundData": {}
+          "multipleChoice": false,
+          "optionList": [
+            {
+              "buttonData": {
+                "label": "Bottone",
+                "labelFontData": {},
+                "buttonBorderData": {},
+                "buttonBackgroundData": {}
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": "53989910-5a82-11eb-8b7c-a39299aaafc3",
+                "edgeId": "65200e20-5a82-11eb-8b7c-a39299aaafc3",
+                "points": "20"
+              }
             },
-            "outcome": {
-              "outcomeType": "next",
-              "nextActivityId": "11a79060-5997-11eb-884c-f554585b444b",
-              "edgeId": "14f49880-5997-11eb-884c-f554585b444b"
+            {
+              "buttonData": {
+                "label": "Bottone",
+                "labelFontData": {},
+                "buttonBorderData": {},
+                "buttonBackgroundData": {}
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": "11a79060-5997-11eb-884c-f554585b444b",
+                "edgeId": "6c15d2f0-5a82-11eb-8b7c-a39299aaafc3"
+              }
             }
-          },
-          "scoreRange": {
-            "min": 0,
-            "max": "1900"
-          },
-          "scoringContext": "dfgdfgdfg"
+          ]
         },
         "commonData": {
           "borderData": {},
@@ -140,11 +169,51 @@
     "11a79060-5997-11eb-884c-f554585b444b": {
       "uuid": "11a79060-5997-11eb-884c-f554585b444b",
       "title": "Nuova attività",
-      "content": [],
+      "content": [
+        {
+          "contentType": "text-displayer",
+          "contentData": {
+            "text": "Placeholder text",
+            "parseMarkdown": true,
+            "fontData": {}
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        }
+      ],
       "inputComponent": null,
       "graphPosition": {
         "x": 56,
         "y": 85
+      },
+      "screenStyleData": {
+        "inner": {
+          "borderData": {},
+          "spacingData": {
+            "padding": {},
+            "margin": {}
+          },
+          "backgroundData": {}
+        },
+        "outer": {
+          "backgroundData": {}
+        }
+      }
+    },
+    "53989910-5a82-11eb-8b7c-a39299aaafc3": {
+      "uuid": "53989910-5a82-11eb-8b7c-a39299aaafc3",
+      "title": "Nuova attività",
+      "content": [],
+      "inputComponent": null,
+      "graphPosition": {
+        "x": -26,
+        "y": 146
       },
       "screenStyleData": {
         "inner": {

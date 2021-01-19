@@ -1,12 +1,14 @@
 Vue.component('player-main', {
     template: `
-        <div>
-            <mission-displayer></mission-displayer>
-        </div>`,
+        <mission-displayer></mission-displayer>
+          `,
+//per knob
+data() {
+  return {
+    newValue: null
+  }
+},
 
     components: {
     }
 })
-
-
-
