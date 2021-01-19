@@ -59,7 +59,11 @@
       }
     }
   },
-  "usedResources": {}
+  "usedResources": {
+
+  },
+  "risposta":["opzione1", "opzione2", "opzione3"],
+  "rispostaCorretta": "opzione1 opzione2 opzione3"
 }
 
 
