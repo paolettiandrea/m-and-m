@@ -22,6 +22,8 @@ Vue.component('editor-main', {
                         </b-navbar-brand>
                     
                         <b-navbar-nav class="ml-auto">
+                            <b-button @click="duplicateSelectedActivity()">Duplica</b-button>
+                            <b-button @click="copySelectedActivity()">Copia</b-button>
                             <b-nav-item-dropdown right variant="primary">
                                 <template slot="button-content">
                                     <b-icon icon="gear"></b-icon>
@@ -56,7 +58,7 @@ Vue.component('editor-main', {
     },
 
     methods: {
-        ...Vuex.mapActions(['deleteSelectedActivity']),
+        ...Vuex.mapActions(['deleteSelectedActivity', 'duplicateSelectedActivity', 'copySelectedActivity', 'pasteActivity']),
         activitySelectedCallback(selectedActivity) {
             this.selectedActivityData = selectedActivity;
         }

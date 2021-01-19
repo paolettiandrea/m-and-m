@@ -2,7 +2,9 @@ Vue.component('activity-editor', {
     template: ` 
         <div class="column-flex-container">
             <div>
-            
+                <span>Schermata</span>
+                <screen-style-editor :screenStyleData="activity.screenStyleData"></screen-style-editor>
+                <span> Contenuti </span> 
                 <div v-for="(content, index) of activity.content">
                     <activity-editor-component-panel :index="index" :componentData="content" :last="index===activity.content.length-1"></activity-editor-component-panel>
                 

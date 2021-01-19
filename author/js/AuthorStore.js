@@ -6,6 +6,33 @@ import {MissionModule} from "./store/MissionStore.js"
 
 Vue.use(Vuex);
 
+function recursivePruneActivityPointers(obj, targetNext) {
+    // console.log('Recursing in ', obj, " lookinf for id ", targetNext);
+    if (obj.nextActivityId && obj.outcomeType==='next' && obj.nextActivityId===targetNext) {
+        // console.log("FOUND IT!!!!!!!!!!!!!!")
+        obj.nextActivityId = null;
+        delete obj.outcomeType
+        delete obj.edgeId
+    }
+
+
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key) && obj[key]) {
+            if (typeof obj[key] == "object") {
+                recursivePruneActivityPointers(obj[key], targetNext);
+            }
+        }
+    }
+}
+
+function pruneNextActivityPointers(activity, targetNext) {
+    if (activity.inputComponent) {
+        let inputData = activity.inputComponent.inputData;
+        // console.log('Before prune: ', inputData)
+        recursivePruneActivityPointers(inputData, targetNext);
+        // console.log('After prune: ', inputData)
+    }
+}
 
 const store = new Vuex.Store({
     modules: {
@@ -38,6 +65,11 @@ const store = new Vuex.Store({
 
         panelState: {
             missionSettingsOpen: false
+        },
+
+        clipboard: {
+            activity: null,
+            mission: null
         }
     },
 
@@ -72,7 +104,6 @@ const store = new Vuex.Store({
             context.dispatch('deselectActivityChunk');
         },
         createActivity(context, mouseCanvasPos) {
-            console.log(mouseCanvasPos);
             let activities = context.getters.selectedMissionContent.activities;
             let uuid = uuidv1();
             let newActivity = {
@@ -80,8 +111,21 @@ const store = new Vuex.Store({
                 title: "Nuova attività",
                 content: [],
                 inputComponent: null,
-                graphPosition: mouseCanvasPos
+                graphPosition: mouseCanvasPos,
+                screenStyleData: {
+                    "inner": {
+                        "borderData": {},
+                        "spacingData": {
+                            "padding": {},
+                            "margin": {}
+                        },
+                        "backgroundData": {}
+                    }, "outer": {
+                        "backgroundData": {}
+                    }
+                },
             }
+
             Vue.set(activities, uuid, newActivity);
             context.state.canvas.newActivity(newActivity);
             context.dispatch('selectActivity', uuid);
@@ -91,13 +135,45 @@ const store = new Vuex.Store({
             Vue.set(context.getters.selectedActivity, "title", newTitle);
         },
         deleteSelectedActivity(context) {
+            let selectedActivity = context.getters.selectedActivity;
             context.commit('deleteSelectedActivity');
+            console.log('Before prune', context.getters.selectedMissionContent)
+            console.log('Selected activity', selectedActivity)
+            recursivePruneActivityPointers(context.getters.selectedMissionContent, selectedActivity.uuid);
+            console.log('After prune', context.getters.selectedMissionContent)
             context.dispatch('deselectActivity')
         },
         updateActivityGraphPosition(context, payload) {
             console.log("Inside dispath: ", payload.id);
             payload.missionContent = context.getters.selectedMissionContent;
             context.commit('updateGraphPosition', payload);
+        },
+
+        duplicateSelectedActivity(context) {
+            let activities = context.getters.selectedMissionContent.activities;
+            let uuid = uuidv1();
+            let dupActivity = JSON.parse(JSON.stringify(context.getters.selectedActivity));
+            dupActivity.uuid = uuid;
+            dupActivity.graphPosition.x += 30;
+            pruneNextActivityPointers(dupActivity);
+            console.log('Dup activity: ', dupActivity)
+            Vue.set(activities, uuid,dupActivity);
+            context.state.canvas.newActivity(dupActivity);
+        },
+
+        copySelectedActivity(context) {
+            context.commit('copyActivity', context.getters.selectedActivity);
+        },
+
+        pasteActivity(context) {
+            let activities = context.getters.selectedMissionContent.activities;
+            let uuid = uuidv1();
+            let dupActivity = JSON.parse(JSON.stringify(context.getters.copiedActivity));
+            dupActivity.uuid = uuid;
+            dupActivity.graphPosition.x += 30;
+            pruneNextActivityPointers(dupActivity);
+            Vue.set(activities, uuid,dupActivity);
+            context.state.canvas.newActivity(dupActivity);
         },
 
         // Content chunk management ===================================================================================
@@ -145,6 +221,10 @@ const store = new Vuex.Store({
             console.log(state.selectedActivityId)
             console.log(selectedMission.content.activities)
             Vue.delete(selectedMission.content.activities, state.selectedActivityId);
+        },
+
+        copyActivity(state, activity) {
+              state.clipboard.activity = JSON.parse(JSON.stringify(activity));
         },
 
         updateGraphPosition(state, payload) {
@@ -216,6 +296,8 @@ const store = new Vuex.Store({
     },
 
     getters: {
+
+        copiedActivity(state) { return state.clipboard.activity; },
 
         isWaitingForActivityClick(state) {return state.activityClickedCallback !== null },
 

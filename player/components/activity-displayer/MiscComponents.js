@@ -1,10 +1,26 @@
 Vue.component("qr-reader", {
-    template: `<div><input type=text size=16 placeholder="Tracking Code" class=qrcode-text>
+    template: `<div align=center>
+        
+        <h class=title>Scansiona un QR code per avviare una storia</h>
+        
+        <div>
+        <input type=text size=16 placeholder="Premi sul QR code" class=qrcode-text>
+
         <label class=qrcode-text-btn>
-        <input type=file accept="image/*" capture=environment onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex=-1></label>
-        <input type=button value="Go" disabled></div>`,
+            <input type=file accept="image/*" capture=environment onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex=-1>
+        </label>
+        </div>
+
+        <div ontouchstart="">
+            <div class="button">
+                <a href="#">Inizia la tua storia</a>
+            </div>
+            </div>
+        
+        </div>`,
+    
     props: {
-        data: null
+        contentData: null
     }
 })
 
@@ -12,30 +28,80 @@ Vue.component("qr-reader", {
 
 Vue.component("chat", {
     template: `<div>
-        <button class="open-button" v-on:click="openForm">Chat</button>
+    
+    <img class="chat-icon" src="chatimg.png" width="50" height="50" v-on:click="openForm">
+
+
     <div class="chat-popup" id="myForm">
-      <form action="/action_page.php" class="form-container">
-        <h1>Chat</h1>
+        <form @submit.prevent="sendMessage('out')" class="form-container">
 
-        <label for="msg"><b>Message</b></label>
-        <textarea placeholder="Type message.." name="msg" required></textarea>
+            <h5 style="color:black;">Supervisore</h5>
 
-        <button type="submit" class="btn">Send</button>
-        <button type="button" class="btn cancel" v-on:click="closeForm">Close</button>
-      </form>
-    </div>
+            <img width="25" height="25" v-on:click="closeForm" src="chiudi.jpg">
+
+            <section ref="chatArea" class="chat-area">
+                <p v-for="message in messages" class="message" :class="{ 'message-out': message.author === 'you', 'message-in': message.author !== 'you' }">
+                {{ message.body }}
+                </p>
+            </section>
+
+            <input  v-model="youMessage" type="text" placeholder="Type your message" style="width: 240px;">
+        
+
+        </form> 
+    </div>      
 </div>`,
+
+data() {
+    return{
+        bobMessage: '', 
+        youMessage: '', 
+        messages: []
+    }
+},
 
     methods: {
         openForm() {
             document.getElementById("myForm").style.display = "block";
+            //alert("ok");
         },
         closeForm() {
             document.getElementById("myForm").style.display = "none";
-        }
+        },
+        test(){
+            alert("ok");
+        },
+        sendMessage(direction) {
+      
+            //console.log(this)
+            if (!this.youMessage && !this.bobMessage) {
+              return
+            }
+            if (direction === 'out') {
+              this.messages.push({body: this.youMessage, author: 'you'})
+              socket.emit('message-for-supervisor', this.youMessage);
+              this.youMessage = ''
+            } else if (direction === 'in') {
+              this.messages.push({body: this.bobMessage, author: 'bob'})
+              this.bobMessage = ''
+            } else {
+              alert('something went wrong')
+            }
+            Vue.nextTick(() => {
+              let messageDisplay = this.$refs.chatArea
+              messageDisplay.scrollTop = messageDisplay.scrollHeight
+            })
+          },
+          clearAllMessages() {
+            this.messages = []
+          }
+    },
+
+    mounted() {
+        socket.on('message-from-supervisor', (message) => {
+            this.messages.push({body: message, author: 'bob'})
+        })
     }
-
-
 
 })
 

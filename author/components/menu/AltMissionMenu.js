@@ -1,7 +1,16 @@
 export default {
     template: `
         <div >
-
+            <b-row no-gutters>
+                <b-col>
+                    <p> Disponibili al pubblico</p>
+                    <mission-info-card v-for="(mission, id) in activeMissions" v-if="!mission.archived" :mission="mission" :key="id"></mission-info-card>
+                </b-col>
+                <b-col>
+                    <p> Archiviate </p>
+                    <mission-info-card v-for="(mission, id) in activeMissions" v-if="mission.archived" :mission="mission" :key="id"></mission-info-card>
+                </b-col>
+            </b-row>
                 <div ><p style="text-align: center">Disponibili al pubblico</p></div>
                 
                 <div style="text-align: center;">
@@ -36,3 +45,45 @@ export default {
         }
     }
 }
+
+Vue.component('mission-info-card', {
+    template: `<b-card :img-src="'/' + mission.id + '/qrCode.svg'" img-alt="Card image" img-right img-height="200px" img-width="200px">
+        <b-card-body>
+            <b-card-title>{{mission.head.title}}</b-card-title>
+            <b-card-sub-title class="mb-2">{{mission.head.summary}}</b-card-sub-title>
+
+            <div>
+                <b-button-toolbar key-nav>
+                    <b-button-group>
+                        <b-button @click="selectMission(mission.id)">Modifica</b-button>
+                        <b-button @click="">Gioca</b-button>
+                    </b-button-group>
+                    <b-button-group>
+                        <b-button v-if="!mission.archived" @click="archive()">Archivia</b-button>
+                        <b-button v-else @click="publish()">Pubblica</b-button>
+                    </b-button-group>
+                    <b-button-group>
+                        <b-button @click="deleteMission(mission.id)">Elimina</b-button>
+                    </b-button-group>
+                </b-button-toolbar>
+            </div>
+        </b-card-body>
+    </b-card>`,
+
+    props: {
+        mission: null
+    } ,
+     methods: {
+        ...Vuex.mapActions([
+            'selectMission', 'createMission', 'deleteMission'
+        ]),
+
+        publish() {
+            Vue.set(this.mission, "archived", false);
+        },
+        archive() {
+            Vue.set(this.mission, "archived",true);
+            // TODO save on server
+        },
+    }
+})

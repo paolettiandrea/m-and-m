@@ -1,6 +1,5 @@
 Vue.component("multiple-checkboxes", {
     template: `<div>
-      <label>Select your answer:</label>
       <div v-if="!inputData.multiple" v-for="optionData in inputData.optionList">
         <simple-button :inputData="optionData" :defaults="defaults" @input-received="clickReceived"></simple-button>
       </div>

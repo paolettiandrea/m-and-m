@@ -1,4 +1,112 @@
+Vue.component('text-input-possibility-editor', {
+    template: `<div>
+        <editor-field label="Tipo">
+            <b-form-select size="sm" v-model="possibilityData.inputType" :options="[{value: 'string', text: 'Testo'} , { value: 'number', text: 'Numero'}]" @change="inputTypeChanged"></b-form-select>
+</editor-field>
+        <editor-field label="Operatore">
+            <b-form-select size="sm" v-model="possibilityData.operator" :options="possibleOperators"></b-form-select>
+</editor-field>
+        <editor-field label="Valore">
+        
+        <defaulted-input-form :inputType="translatedInputType" :targetContainer="possibilityData" targetFieldName="val" defaultVal=""></defaulted-input-form>
+</editor-field>
+        <next-activity-outcome-editor :outcomeData="possibilityData.outcome"></next-activity-outcome-editor>
+    </div>`,
+
+    props: { possibilityData: null },
+    computed: {
+        translatedInputType() {
+            switch (this.possibilityData.inputType) {
+                case "string": { return "text"}
+                case "number": { return "number"}
+            }
+        },
+        possibleOperators() {
+
+            switch (this.possibilityData.inputType) {
+                case "string": { return [{value: "eq", text: "="}, {value: 'eqw', text: '= (ignora spazi)'}]}
+                case "number": { return [{value: "eq", text: '='}, {value: "lt", text:"<"} , {value: "gt", text: ">"} ]}
+            }
+        }
+    },
+
+    methods: {
+        inputTypeChanged(newType) {
+                if (newType==="number") {
+
+                    this.possibilityData.operator = "eq";
+                    this.possibilityData.val = 0;
+                } else {
+                    this.possibilityData.operator = "eqw";
+                    this.possibilityData.val = ""
+                }
+        }
+    }
+})
+
 Vue.component('text-insert-editor', {
+
+    template: `
+        <div>
+            <activity-editor-subpanel label="Possibilita'">
+                <activity-editor-list :list="inputData.possibilityList" :labelFunction="labelCallback" :addCallback="addOutcomeCallback">
+            
+                    <template v-slot:default="slotProps">
+                        <text-input-possibility-editor :possibilityData="slotProps.elem"></text-input-possibility-editor>
+                    </template>
+                </activity-editor-list>
+                <activity-editor-subpanel label="Esito di fallback">
+                    
+                    <next-activity-outcome-editor :outcomeData="inputData.fallbackOutcome"></next-activity-outcome-editor>
+</activity-editor-subpanel>
+            </activity-editor-subpanel>
+            <button-editor :buttonData="inputData.buttonData" :defaults="selectedMissionDefaults.buttonData"></button-editor>
+</div>`,
+
+    props: {
+        inputData: null
+    },
+
+    data() {
+        return {
+        }
+    },
+    computed: {
+        ...Vuex.mapGetters(['selectedMissionDefaults'])
+    },
+
+    methods: {
+        labelCallback(elem, i) {
+            let res = ""
+            res += this.convertOperator(elem.operator) + " "
+            if (elem.inputType==="string") { res += "\""}
+            res += elem.val;
+            if (elem.inputType==="string") { res += "\""}
+            return res
+        },
+
+        addOutcomeCallback() {
+            this.inputData.possibilityList.push({
+                inputType: "string",
+                operator: "eq",
+                val: "",
+                outcome: {}
+            })
+        },
+
+        convertOperator(operator) {
+            switch (operator) {
+                case "eq": { return "=" }
+                case "lt": { return "<" }
+                case "gt": { return ">" }
+            }
+        }
+    },
+
+})
+
+
+Vue.component('text-insert-editor-old', {
     template: `
         <div>
             <div v-for="(possibleAnswer, index) in inputData.possibleAnswers">

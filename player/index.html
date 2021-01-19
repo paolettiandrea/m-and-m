@@ -22,7 +22,7 @@
 
     <!--    General utils-->
     <script src="/axios/dist/axios.js"></script>
-    <script src="/uuid/dist/index.js"></script>
+    <script src="/uuid/dist/umd/uuid.min.js"></script>
 
     <!--    Player dependencies-->
     <script src="/showdown/dist/showdown.js"></script>
@@ -44,17 +44,44 @@
 
     <script src="components/activity-displayer/MiscComponents.js"></script>
 
+
+    <!-- QR code libraries -->
+    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+
+
+
+<!-- TODO ci servono questi? Sembrano dare tutti errore
+    <script type="text/javascript" src="grid.js"></script>
+    <script type="text/javascript" src="version.js"></script>
+    <script type="text/javascript" src="detector.js"></script>
+    <script type="text/javascript" src="formatinf.js"></script>
+    <script type="text/javascript" src="errorlevel.js"></script>
+    <script type="text/javascript" src="bitmat.js"></script>
+    <script type="text/javascript" src="datablock.js"></script>
+    <script type="text/javascript" src="bmparser.js"></script>
+    <script type="text/javascript" src="datamask.js"></script>
+    <script type="text/javascript" src="rsdecoder.js"></script>
+    <script type="text/javascript" src="gf256poly.js"></script>
+    <script type="text/javascript" src="gf256.js"></script>
+    <script type="text/javascript" src="decoder.js"></script>
+    <script type="text/javascript" src="qrcode.js"></script>
+    <script type="text/javascript" src="findpat.js"></script>
+    <script type="text/javascript" src="alignpat.js"></script>
+    <script type="text/javascript" src="databr.js"></script> -->
+
     <!-- Content/Input Components-->
     <script src="/player/components/activity-displayer/content-components/TextDisplayer.js"></script>
     <script src="/player/components/activity-displayer/content-components/ImgDisplayer.js"></script>
     <script src="/player/components/activity-displayer/content-components/AudioPlayer.js"></script>
     <script src="/player/components/activity-displayer/content-components/CardDisplayer.js"></script>
     <script src="/player/components/activity-displayer/content-components/VideoDisplayer.js"></script>
+    <script src="/player/components/activity-displayer/content-components/ScoreDisplayer.js"></script>
     <script src="/player/components/activity-displayer/input-components/CanvasDraw.js"></script>
     <script src="/player/components/activity-displayer/input-components/ClickImg.js"></script>
     <script src="/player/components/activity-displayer/input-components/MultipleCheckboxes.js"></script>
     <script src="/player/components/activity-displayer/input-components/SimpleButton.js"></script>
     <script src="/player/components/activity-displayer/input-components/TextInsert.js"></script>
+    <script src="/player/components/LastScreen.js"></script>
 
 <!-- Backgrounds-->
     <script src="/player/components/background-screen/LastScreen.js"></script>
@@ -76,19 +103,28 @@
         var socket = io();
         socket.emit('player-handshake');
 
+
+
+        // TODO place this somewhere
+        socket.on('hint', (hint) => {
+            console.log("Received hint: ", hint);
+        })
+        socket.on('scored', (scoringData) => {
+            console.log("Received scoring data: ", scoringData);
+        })
+
     </script>
 
 </head>
 
 
 <body>
-    <div id="test">
-
         <div id="app">
             <player-main></player-main>
+            <!-- <qr-reader></qr-reader> -->
         </div>
 
-    </div>
+
 
     <script>
         const App = new Vue({

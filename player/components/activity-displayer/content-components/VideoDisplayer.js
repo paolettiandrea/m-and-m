@@ -1,7 +1,7 @@
 Vue.component('video-displayer', {
     template: `
-    <div >
-        <iframe :src="embedLink" style="width: 100%">
+    <div  :align="contentData.pos">
+        <iframe style="width: 100%" :src="embedUrl">
         </iframe>
     </div>
     `,
@@ -10,14 +10,8 @@ Vue.component('video-displayer', {
     },
 
     computed: {
-        baseEmbedLink() { return "https://www.youtube.com/embed/" },
-        baseYoutubeLink() { return "https://www.youtube.com/watch?v="},
-        // Checks if the given url is playable (it needs to be a youtube video link
-        isPlayable() {
-            return this.contentData.url.startsWith(this.baseYoutubeLink);
-        },
-        embedLink() {
-            return this.contentData.url.replace(this.baseYoutubeLink, this.baseEmbedLink)
+        embedUrl() {
+            return this.contentData.url.replace("watch?v=", "embed/");
         }
     }
 })

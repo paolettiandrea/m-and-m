@@ -51,7 +51,42 @@
           }
         },
         "backgroundData": {
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#ffffff",
+          "opacity": 0
+        }
+      },
+      "screenStyleData": {
+        "inner": {
+          "borderData": {
+            "borderStyle": "hidden",
+            "borderWidth": "2px",
+            "borderColor": "#000000",
+            "borderRadius": "0px"
+          },
+          "spacingData": {
+            "padding": {
+              "top": "0px",
+              "bottom": "0px",
+              "left": "0px",
+              "right": "0px"
+            },
+            "margin": {
+              "top": "10px",
+              "bottom": "10px",
+              "left": "10px",
+              "right": "10px"
+            }
+          },
+          "backgroundData": {
+            "backgroundColor": "#ffffff",
+            "opacity": 0
+          }
+        },
+        "outer": {
+          "backgroundData": {
+            "backgroundColor": "#ffffff",
+            "opacity": 1
+          }
         }
       }
     },
@@ -63,7 +98,18 @@
         "graphPosition": {
           "x": 0,
           "y": 0
-        }
+        },
+        "screenStyleData": {
+          "inner": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }, "outer": {
+            "backgroundData": {}
+        }}
       }
     },
     "usedResources": { }
