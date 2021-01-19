@@ -41,6 +41,7 @@
     <script src="/common/js/VueUtils.js"></script>
     <script src="../player/components/activity-displayer/CommonDataUtils.js"></script>
 
+
     <title>Title</title>
 </head>
 <body>
@@ -55,7 +56,7 @@
             el: '#app',
             store,
             components: {
-                'author-main': () => import("./components/AuthorMain.js")
+                'author-main': () => import("./components/AuthorMain.js"),
             }
         })
     </script>

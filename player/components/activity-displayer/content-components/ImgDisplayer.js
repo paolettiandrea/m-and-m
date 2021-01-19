@@ -1,5 +1,5 @@
 Vue.component('img-displayer', {
-    template: `<div><img :src="contentData.imgResData.url" width="100%" :height="contentData.h"></div>`,
+    template: `<div><img :src="contentData.imgResData.url" style="width: 100%"></div>`,
     props: {
         contentData: null
     }

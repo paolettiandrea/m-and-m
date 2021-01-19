@@ -1,9 +1,12 @@
-#test {
+#app {
     background-color: black;
     opacity: 0.8;
     color: aliceblue;
     height: 100%;
-    background-size: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("861304.jpg");
 }
 
 #canva {
@@ -22,90 +25,6 @@ html,
 body {
     width: 100%;
     height: 100%;
-}
-
-.open-button {
-    background-color: #555;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    opacity: 0.8;
-    position: fixed;
-    bottom: 23px;
-    right: 28px;
-    width: 280px;
-}
-
-
-/* The popup chat - hidden by default */
-
-.chat-popup {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    right: 15px;
-    border: 3px solid #f1f1f1;
-    z-index: 9;
-}
-
-
-/* Add styles to the form container */
-
-.form-container {
-    max-width: 300px;
-    padding: 10px;
-    background-color: white;
-}
-
-
-/* Full-width textarea */
-
-.form-container textarea {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: #f1f1f1;
-    resize: none;
-    min-height: 200px;
-}
-
-
-/* When the textarea gets focus, do something */
-
-.form-container textarea:focus {
-    background-color: #ddd;
-    outline: none;
-}
-
-
-/* Set a style for the submit/send button */
-
-.form-container .btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 10px;
-    opacity: 0.8;
-}
-
-
-/* Add a red background color to the cancel button */
-
-.form-container .cancel {
-    background-color: red;
-}
-
-
-/* Add some hover effects to buttons */
-
-.form-container .btn:hover,
-.open-button:hover {
-    opacity: 1;
 }
 
 
@@ -143,12 +62,13 @@ body {
 
 body,
 input {
-    font-size: 14pt
+    font-size: 20pt
 }
 
 input,
 label {
-    vertical-align: middle
+    vertical-align: middle;
+    margin-top: 1.7em;
 }
 
 .qrcode-text {
@@ -159,9 +79,10 @@ label {
 .qrcode-text-btn {
     display: inline-block;
     background: url(//dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/07/1499401426qr_icon.svg) 50% 50% no-repeat;
-    height: 1em;
-    width: 1.7em;
-    margin-left: -1.7em;
+    background-color: white;
+    height: 3em;
+    width: 3em;
+    margin-left: 1.7em;
     cursor: pointer
 }
 
@@ -173,11 +94,10 @@ label {
     opacity: 0
 }
 
-#input-1{
-  width:70%;
-  color: #000000;
-  animation: mymove 5s infinite;
-  border-radius: 3px
+#input-1 {
+    color: #000000;
+    animation: mymove 5s infinite;
+    border-radius: 3px
 }
 
 .test-class {
@@ -209,4 +129,169 @@ label {
     background-image: url('https://c.wallhere.com/photos/39/ae/dinosaurs_Brachiosaurus_Stegosaurus_Triceratops_Pterodactyl-290781.jpg!d');
   }
 }
+}
+.title {
+    font-family: 'Stencil Std', fantasy;
+    font-size: 40px;
+    color: white;
+}
+
+
+
+/* Bottone home page */
+
+body{
+    text-align:center;
+    background-color:#ffcc8e;
+  }
+  
+  .button{
+    position:relative;
+    display:inline-block;
+    margin:3em;
+  }
+  
+  .button a{
+    color:white;
+    font-family:Helvetica, sans-serif;
+    font-weight:bold;
+    font-size:36px;
+    text-align: center;
+    text-decoration:none;
+    background-color:#FFA12B;
+    display:block;
+    position:relative;
+    padding:5px 30px;
+    
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    text-shadow: 0px 1px 0px #000;
+    filter: dropshadow(color=#000, offx=0px, offy=1px);
+    
+    -webkit-box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
+    -moz-box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
+    box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+  
+  .button a:active{
+    top:10px;
+    background-color:#F78900;
+    
+    -webkit-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
+    -moz-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3pxpx 0 #915100;
+    box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
+  }
+  
+  .button:after{
+    content:"";
+    height:100%;
+    width:100%;
+    padding:4px;
+    position: absolute;
+    bottom:-15px;
+    left:-4px;
+    z-index:-1;
+    background-color:#2B1800;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+
+
+
+
+
+
+
+
+
+.chat-area {
+    /*   border: 1px solid #ccc; */
+      background: rgba(17, 17, 17, 0.918);
+     
+      top: 200px;
+      right: 10px;
+      width: 242px;
+      height: 330px;
+      overflow: auto;
+      max-width: 250px;
+      box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.3)
+    }
+    .message {
+        width: 45%;
+        border-radius: 10px;
+        
+      /*   margin-bottom: .5em; */
+        font-size: .8em;
+      }
+      .message-out {
+        background: #2266ee;
+        color: white;
+        margin-left: 50%;
+      }
+      .message-in {
+        background: #F1F0F0;
+        color: black;
+      }
+
+
+
+    .chat-popup {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 5px;
+        border: 1px solid #0f0f0f;
+  
+  }
+
+    .chat-icon {
+        position: fixed;
+        bottom: 0;
+        right: 1px;
+    }
+
+  .chat-popup img{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+  
+  
+  /* Add styles to the form container */
+  .form-container {
+    max-width: 350px;    
+    min-height: 150px;
+    background-color: rgb(214, 206, 206);
+  }
+#person2-input {
+  padding: .5em;
+  
+  
+}
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#mission-displayer-main {
+    height: 100vh;
+    width: 100vw;
 }

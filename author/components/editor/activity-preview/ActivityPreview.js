@@ -7,7 +7,7 @@ Vue.component('activity-preview', {
             <div class="full-flex vertical-scroll activity-preview-container">
             
                 <div class="vertical-flex full-flex" style="justify-content: center; height: 100%; padding: 10px">
-                        <activity-displayer class="full-flex activity-preview" style="max-height: 500px;" :activity-content="activityData" :defaults="selectedMissionContent.defaults" 
+                        <activity-displayer class="full-flex activity-preview" style="max-height: 500px;" :activity-content="activityData" :styling="selectedMissionContent.screenStylingData" :defaults="selectedMissionContent.defaults" 
                                 @content:chunk:clicked="contentChunkClicked" @input:clicked="inputClicked">
                                 
                             <template v-slot:last-content-chunk>

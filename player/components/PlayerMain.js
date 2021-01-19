@@ -1,16 +1,7 @@
 Vue.component('player-main', {
     template: `
-        <div>
-
-        <knob v-model="newValue">
-          </knob>
-
-<!--
-        <lastScreen-groups></lastScreen-groups>
-          -->
-
-        </div>
-        `,
+        <mission-displayer></mission-displayer>
+          `,
 //per knob
 data() {
   return {

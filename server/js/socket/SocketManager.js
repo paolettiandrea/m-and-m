@@ -1,27 +1,101 @@
-const {SupervisedRoom} = require('./SupervisedRoom.js')
+const {Player, Supervisor} = require('./SocketUtils.js')
 
 let io = null;
 
 // The active supervised rooms
-let activeRooms = {}
-let unsupervisedPlayers = {}
-
+let players = {}
+let supervisor = null;
 
 function initialize(server) {
 
     io = require('socket.io')(server);
 
     io.on('connection', (socket) => {
+
+        // Supervisor
         socket.on('sup-handshake', (msg) => {
-            supervisorConnectedCallback(socket);
-            socket.on('disconnect', () => {
-                supervisorDisconnectedCallback(socket);
-            })
+            if (supervisor) {
+                console.warn('There is already a supervisor connected!')
+            } else {
+                console.log('Supervisor connected')
+                supervisor = new Supervisor(socket)
+                // Pair already present players and supervisor
+                for (let id in players) {
+                    players[id].setSupervisor(supervisor);
+                }
+
+                socket.on('message-for-player', ({message, player}) => {
+                    console.log("Message: ", message, " for player: ", player);
+                    let targetPlayer = players[player];
+                    targetPlayer.socket.emit('message-from-supervisor', message);
+                })
+
+                socket.on('disconnect', () => {
+                    console.log('Supervisor disconnected');
+                    supervisor = null;
+                })
+
+                socket.on('hint-for-player', ({playerId, hint}) => {
+
+                    let targetPlayer = players[playerId];
+                    targetPlayer.socket.emit('hint', hint);
+                })
+
+
+                socket.on('player-scored', ({playerId, scoreData}) => {
+                    console.log("Scored ", scoreData);
+                    let targetPlayer = players[playerId];
+                    targetPlayer.socket.emit('scored', scoreData);
+                })
+            }
         })
+
+        // Player
         socket.on('player-handshake', (msg) => {
-            playerConnectedCallback(socket);
+
+
+            let id = getUnusedPlayerId();
+            players[id] = new Player(socket, id);
+            if (supervisor) { players[id].setSupervisor(supervisor)}
+            console.log('Player ' + id + ' connected')
+            
+            socket.on('message-for-supervisor', (message) => {
+                if (supervisor) {
+                    supervisor.socket.emit("message-from-player", {message, id})
+                }
+            })
+
+            socket.on('need-hint', () => {
+                if (supervisor) {
+                    supervisor.socket.emit("new-pending-action", {
+                        playerId: id,
+                        action: {
+                            type: 'hint',
+
+
+
+                        }
+                    })
+                }
+                console.log("Need hint")
+            })
+
+            socket.on('need-scoring', (scoringData) => {
+                console.log("Player ", id, " needs scoring for ", scoringData);
+                if (supervisor) {
+                    supervisor.socket.emit('new-pending-action', {
+                        playerId: id,
+                        action: {
+                            type: 'scoring',
+                            scoringData: scoringData
+                        }
+                    })
+                }
+            });
+            
             socket.on('disconnect', () => {
-                playerDisconnectedCallback(socket);
+                console.log('Player ' + id + ' disconnected')
+                delete players[id]
             })
         })
         socket.on('disconnect', () => {
@@ -30,49 +104,15 @@ function initialize(server) {
     })
 }
 
-function supervisorConnectedCallback(supSocket) {
-    supSocket.join('supervisors');
-    activeRooms[supSocket.id] = new SupervisedRoom(supSocket);
-    for (const unsuPlayer in unsupervisedPlayers) {     // To the connected supervisor all the unsupervised players look like they just connected
-        supSocket.emit('player-connected', unsupervisedPlayers[unsuPlayer].model);      // TODO maybe an initialization event would be better on the long term
+
+function getUnusedPlayerId() {
+    let counter = 0;
+    while (players.hasOwnProperty(counter)) {
+        counter++;
     }
-    console.log('New supervisor connected');
+    return counter;
 }
 
-function supervisorDisconnectedCallback(supSocket) {
-    console.log('Supervisor disconnected');
-}
-
-function playerConnectedCallback(playerSocket) {
-    playerSocket.join('players');
-    let newPlayer = {
-        socket: playerSocket,
-        model: {
-            socketId: playerSocket.id
-        }
-    }
-    unsupervisedPlayers[playerSocket.id] = newPlayer;
-    io.in('supervisors').emit('player-connected', newPlayer.model);
-
-    printStatus();
-}
-
-function playerDisconnectedCallback(playerSocket) {
-    console.log('Player disconnected');
-    if (unsupervisedPlayers.hasOwnProperty(playerSocket.id)) {
-        delete unsupervisedPlayers[playerSocket.id];
-    }
-    io.in('supervisors').emit('player-disconnected', {socketId: playerSocket.id});
-}
-
-function printStatus() {
-    let s = '';
-    s+= 'Unsupervised players:\n';
-    for (const player in unsupervisedPlayers) {
-        s+= '\t' + player + '\n';
-    }
-    console.log(s);
-}
 
 
 module.exports = {

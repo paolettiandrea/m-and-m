@@ -1,0 +1,234 @@
+{
+  "defaults": {
+    "textFontData": {},
+    "buttonData": {
+      "label": "Continua",
+      "labelFontData": {
+        "fontFamily": "Roboto",
+        "fontSize": "14px",
+        "fontColor": "#000000",
+        "fontStyle": "normal",
+        "fontWeight": "normal",
+        "textDecoration": "none",
+        "textAlign": "left"
+      },
+      "buttonBorderData": {
+        "borderWidth": "2px",
+        "borderRadius": "5px",
+        "borderColor": "#000000",
+        "borderStyle": "solid"
+      },
+      "buttonBackgroundData": {
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "commonData": {
+      "borderData": {
+        "borderStyle": "hidden",
+        "borderWidth": "2px",
+        "borderColor": "#000000",
+        "borderRadius": "0px"
+      },
+      "spacingData": {
+        "padding": {
+          "top": "0px",
+          "bottom": "10px",
+          "left": "5px",
+          "right": "5px"
+        },
+        "margin": {
+          "top": "0px",
+          "bottom": "0px",
+          "left": "0px",
+          "right": "0px"
+        }
+      },
+      "backgroundData": {
+        "backgroundColor": "#ffffff",
+        "opacity": 0
+      }
+    },
+    "screenStyleData": {
+      "inner": {
+        "borderData": {
+          "borderStyle": "hidden",
+          "borderWidth": "2px",
+          "borderColor": "#000000",
+          "borderRadius": "0px"
+        },
+        "spacingData": {
+          "padding": {
+            "top": "0px",
+            "bottom": "0px",
+            "left": "0px",
+            "right": "0px"
+          },
+          "margin": {
+            "top": "10px",
+            "bottom": "10px",
+            "left": "10px",
+            "right": "10px"
+          }
+        },
+        "backgroundData": {
+          "backgroundColor": "#ffffff",
+          "opacity": 0
+        }
+      },
+      "outer": {
+        "backgroundData": {
+          "backgroundColor": "#ffffff",
+          "opacity": 1
+        }
+      }
+    }
+  },
+  "activities": {
+    "initial": {
+      "title": "Attività iniziale",
+      "content": [
+        {
+          "contentType": "text-displayer",
+          "contentData": {
+            "text": "Placeholder text",
+            "parseMarkdown": true,
+            "fontData": {}
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        }
+      ],
+      "uuid": "initial",
+      "graphPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "screenStyleData": {
+        "inner": {
+          "borderData": {},
+          "spacingData": {
+            "padding": {},
+            "margin": {}
+          },
+          "backgroundData": {}
+        },
+        "outer": {
+          "backgroundData": {}
+        }
+      },
+      "inputComponent": {
+        "inputType": "multiple-checkboxes",
+        "inputData": {
+          "multipleChoice": false,
+          "optionList": [
+            {
+              "buttonData": {
+                "label": "Bottone",
+                "labelFontData": {},
+                "buttonBorderData": {},
+                "buttonBackgroundData": {}
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": "53989910-5a82-11eb-8b7c-a39299aaafc3",
+                "edgeId": "65200e20-5a82-11eb-8b7c-a39299aaafc3",
+                "points": "20"
+              }
+            },
+            {
+              "buttonData": {
+                "label": "Bottone",
+                "labelFontData": {},
+                "buttonBorderData": {},
+                "buttonBackgroundData": {}
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": "11a79060-5997-11eb-884c-f554585b444b",
+                "edgeId": "6c15d2f0-5a82-11eb-8b7c-a39299aaafc3"
+              }
+            }
+          ]
+        },
+        "commonData": {
+          "borderData": {},
+          "spacingData": {
+            "padding": {},
+            "margin": {}
+          },
+          "backgroundData": {}
+        }
+      }
+    },
+    "11a79060-5997-11eb-884c-f554585b444b": {
+      "uuid": "11a79060-5997-11eb-884c-f554585b444b",
+      "title": "Nuova attività",
+      "content": [
+        {
+          "contentType": "text-displayer",
+          "contentData": {
+            "text": "Placeholder text",
+            "parseMarkdown": true,
+            "fontData": {}
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        }
+      ],
+      "inputComponent": null,
+      "graphPosition": {
+        "x": 56,
+        "y": 85
+      },
+      "screenStyleData": {
+        "inner": {
+          "borderData": {},
+          "spacingData": {
+            "padding": {},
+            "margin": {}
+          },
+          "backgroundData": {}
+        },
+        "outer": {
+          "backgroundData": {}
+        }
+      }
+    },
+    "53989910-5a82-11eb-8b7c-a39299aaafc3": {
+      "uuid": "53989910-5a82-11eb-8b7c-a39299aaafc3",
+      "title": "Nuova attività",
+      "content": [],
+      "inputComponent": null,
+      "graphPosition": {
+        "x": -26,
+        "y": 146
+      },
+      "screenStyleData": {
+        "inner": {
+          "borderData": {},
+          "spacingData": {
+            "padding": {},
+            "margin": {}
+          },
+          "backgroundData": {}
+        },
+        "outer": {
+          "backgroundData": {}
+        }
+      }
+    }
+  },
+  "usedResources": {}
+}

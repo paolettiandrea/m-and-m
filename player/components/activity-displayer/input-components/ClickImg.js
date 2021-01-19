@@ -1,12 +1,11 @@
+// TODO funziona con larghezza variabile?
 Vue.component("click-img", {
     template: `
-    <div :align="inputData.pos" >
-        <img :src="inputData.url" alt="Workplace" usemap="#workmap" :width="inputData.w" :height="inputData.h" v-on:click="test">
+    <div style="width: 100%" >
+        <img :src="inputData.url" alt="Workplace" usemap="#workmap" style="width:100%" :height="inputData.h" v-on:click="test">
 
         <map name="workmap">
-        <area shape="rect" :coords="inputData.computer" alt="Computer" v-on:click="imgClick('Computer')">
-        <area shape="rect" :coords="inputData.telefono" alt="Phone" v-on:click="imgClick('iPhone')">
-        <area shape="circle" :coords="inputData.caffe" alt="Cup of coffee" v-on:click="imgClick('Caffè')">
+        <area v-for="areaData in inputData.areas" shape="rect" :coords="areaData.coords" alt="areaData.alt" v-on:click="imgClick(areaData)">
         </map>
     </div>
     `,
@@ -14,11 +13,12 @@ Vue.component("click-img", {
         inputData: null
     },
     methods: {
-        imgClick(x) {
-            alert(x);
+        imgClick(areaData) {
+            alert("Found area: [" + areaData.alt + "]");
+            this.$emit('input-received', areaData.outcome);
         },
         test() {
-            alert("NO");
+            alert("No area here");
         }
     }
 

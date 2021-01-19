@@ -52,6 +52,7 @@ function buildSelectedActivityNodeData(activity) {
 
 function buildActivityEdgeData(activity, edgeArray) {
 
+    console.log('Build activity edge data')
     var nextOutcomes = getNextOutcomesFromActivity(activity);
     for (const outcome of nextOutcomes) {
         var newEdge = {
@@ -84,13 +85,19 @@ function getNextOutcomesFromActivity(activity) {
     for (const outList of outcomeLists) {
         if (outList.length > 0) {
             var lastoutcome = outList[outList.length-1];
-            if (lastoutcome.outcomeType === 'next') {
+            if (lastoutcome.outcomeType === 'next' && lastoutcome.nextActivityId) {
+                console.log('Found outcome ', lastoutcome)
                 res.push(lastoutcome);
             }
         }
     }
 
-    recursiveFindFromKey('outcome', activity.inputComponent, res);
+    let buf = []
+    recursiveFindFromKey('outcome', activity.inputComponent, buf);
+    for (let yo of buf) {
+        console.log("YO:", yo);
+        if (yo.nextActivityId) { res.push(yo)}
+    }
 
     return res;
 }
