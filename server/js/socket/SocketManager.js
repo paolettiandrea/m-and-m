@@ -34,6 +34,19 @@ function initialize(server) {
                     console.log('Supervisor disconnected');
                     supervisor = null;
                 })
+
+                socket.on('hint-for-player', ({playerId, hint}) => {
+
+                    let targetPlayer = players[playerId];
+                    targetPlayer.socket.emit('hint', hint);
+                })
+
+
+                socket.on('player-scored', ({playerId, scoreData}) => {
+                    console.log("Scored ", scoreData);
+                    let targetPlayer = players[playerId];
+                    targetPlayer.socket.emit('scored', scoreData);
+                })
             }
         })
 
@@ -51,6 +64,34 @@ function initialize(server) {
                     supervisor.socket.emit("message-from-player", {message, id})
                 }
             })
+
+            socket.on('need-hint', () => {
+                if (supervisor) {
+                    supervisor.socket.emit("new-pending-action", {
+                        playerId: id,
+                        action: {
+                            type: 'hint',
+
+
+
+                        }
+                    })
+                }
+                console.log("Need hint")
+            })
+
+            socket.on('need-scoring', (scoringData) => {
+                console.log("Player ", id, " needs scoring for ", scoringData);
+                if (supervisor) {
+                    supervisor.socket.emit('new-pending-action', {
+                        playerId: id,
+                        action: {
+                            type: 'scoring',
+                            scoringData: scoringData
+                        }
+                    })
+                }
+            });
             
             socket.on('disconnect', () => {
                 console.log('Player ' + id + ' disconnected')

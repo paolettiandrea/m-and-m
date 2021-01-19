@@ -35,7 +35,7 @@
     {
       "type": "multiple-checkboxes",
       "title": "Opzioni",
-      "icon": "grid",
+      "icon": "alt",
       "data":{
         "multipleChoice": false,
         "optionList": [
@@ -65,8 +65,27 @@
             "labelFontData": {},
             "buttonBorderData": {},
             "buttonBackgroundData": {}
+          },
+          "outcome": {
+            "outcomeType": "next",
+            "nextActivityId": ""
           }
-        }
+        },
+        "scoreRange": {
+          "min": 0,
+          "max": 100
+        },
+        "scoringContext": "Contesto e criteri utili alla valutazione"
+      }
+
+    },
+    {
+      "type": "click-img",
+      "title": "Trova nell'immagine",
+      "icon": "grid1x2",
+      "data":{
+          "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png",
+          "areas": []
       }
     }
   ]

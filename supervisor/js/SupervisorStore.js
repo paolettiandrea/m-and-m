@@ -1,3 +1,4 @@
+
 const store = new Vuex.Store({
     state: {
         socket: null,
@@ -8,7 +9,10 @@ const store = new Vuex.Store({
         missionHeads: {},
         missionContents: {},
 
-        chats: {}
+        chats: {},
+
+        pendingActions: {}
+    
     },
     actions: {
         initializeSupervisorStore(context) {
@@ -21,11 +25,15 @@ const store = new Vuex.Store({
         },
 
         sendSelectedPlayerMessage(context, message) {
-            console.log("dasdasd")
             context.commit('sendPlayerMessage', {message: message, player: context.getters.selectedPlayer.id})
-        }
+        },
     },
     mutations: {
+
+        removePendingHint(state, playerId) {
+            let playerPending = state.pendingActions[playerId];
+            playerPending.hint = false;
+        },
         loadMissions(state) {
             axios.get("/missions/heads").then((res, err) => {
                 if (err) throw err;
@@ -67,6 +75,23 @@ const store = new Vuex.Store({
                 state.chats[id].messages.push({author: id, body: message});
             }) 
 
+            state.socket.on('new-pending-action', ({playerId, action}) => {
+                console.log("New pending action:", playerId, action);
+               
+                let playerPendingActions = state.pendingActions[playerId];
+                switch (action.type) {
+                    case 'hint': {
+                        if (!playerPendingActions.hint) {
+                            playerPendingActions.hint = true;
+                        }
+                        break;
+                    }
+                    case 'scoring': {
+                        playerPendingActions.scoring.push(action.scoringData);
+                    }
+                }
+
+            }) 
         },
 
         sendPlayerMessage(state, {message, player}) {
@@ -82,9 +107,25 @@ const store = new Vuex.Store({
             Vue.set(state.chats, player.id, {
                 messages: []
             })
+
+            Vue.set(state.pendingActions, player.id, {
+                hint: false,
+                scoring: []
+            })
         },
 
         playerStateChanged(state, playerState) {
+
+            let previousState = state.players[playerState.id];
+            if (previousState.playingActivityId!==playerState.playingActivityId) {
+
+                // Remove pending hint if present
+                if (state.pendingActions[playerState.id].hint) {
+                    console.log("Removing pending hint")
+                    state.pendingActions[playerState.id].hint = false;
+                }
+            }
+
             Vue.set(state.players, playerState.id, playerState)
             state.players[playerState.id].lastStateChangeTime = Date.now();
         },
@@ -92,6 +133,7 @@ const store = new Vuex.Store({
         playerDisconnected(state, player) {
                 Vue.delete(state.players, player.id);
                 Vue.delete(state.chats, player.id)
+                Vue.delete(state.pendingActions, player.id)
         }
     },
 
@@ -101,6 +143,8 @@ const store = new Vuex.Store({
             return state.players;
         },
 
+        pendingActions(state) { return state.pendingActions},
+
         socket(state) { return state.socket; },
 
         selectedPlayerChat(state) { return state.chats[state.selectedPlayerId]},
@@ -109,6 +153,9 @@ const store = new Vuex.Store({
         missionHeads(state) { return state.missionHeads; },
         
 
+        selectedPlayerPendingActions(state, getters) {
+            return state.pendingActions[state.selectedPlayerId]
+        },
 
         selectedPlayer(state) {
             return state.players[state.selectedPlayerId];

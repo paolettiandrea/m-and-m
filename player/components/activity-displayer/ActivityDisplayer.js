@@ -48,6 +48,8 @@ Vue.component("activity-displayer", {
             <div v-else>
                 <slot name="input-placeholder"></slot>
             </div>
+
+            <b-button @click="tempAskForHint">Indizio</b-button>
             
             
 </styling-wrapper>
@@ -97,6 +99,10 @@ Vue.component("activity-displayer", {
         },
         inputClicked() {
             this.$bubble('input:clicked', this.activityContent.inputComponent);
+        },
+
+        tempAskForHint() {
+socket.emit('need-hint')
         }
     }
 })

@@ -1,5 +1,5 @@
-Vue.component('supervisor-main', {
-    template: `<div class="full-height">
+Vue.component("supervisor-main", {
+  template: `<div class="full-height">
         <b-row class="full-height" no-gutters>
             <b-col cols="4" class="full-height">
                 <players-menu></players-menu>
@@ -10,20 +10,22 @@ Vue.component('supervisor-main', {
 </b-row>
     </div>`,
 
-    computed: {
-        ...Vuex.mapGetters(['selectedPlayer'])
-    }
-})
-
+  computed: {
+    ...Vuex.mapGetters(["selectedPlayer"]),
+  },
+});
 
 // Functionality:
 // - see what the player is seeing
 // - chat with the player [DONE]
 // - see a list of the pending score and hint requests
-Vue.component('player-main-panel', {
-    template: `<b-row style="height: 100%" no-gutters>
+Vue.component("player-main-panel", {
+  template: `<b-row style="height: 100%" no-gutters>
         <b-col cols="6">
             <p> Preview </p>
+            <activity-displayer v-if="selectedPlayerActivity" class="full-flex activity-preview" style="max-height: 500px;" :activity-content="selectedPlayerActivity" :styling="selectedPlayerMissionContent.screenStylingData" :defaults="selectedPlayerMissionContent.defaults" 
+                  >
+          </activity-displayer>
         </b-col>
         <b-col cols="6" style="display: flex; flex-direction:column">
             <p style="flex:0"> Controls </p>
@@ -32,25 +34,84 @@ Vue.component('player-main-panel', {
         </b-col>
     </b-row>`,
 
-    props: {
-        player: null
+  props: {
+    player: null,
+  },
+
+  computed: {
+    ...Vuex.mapGetters(["selectedPlayerChat", "selectedPlayerActivity", "selectedPlayerMissionContent", "pendingActions"]),
+    selectedMissionContent() {
+      this.player.playingMissionId
     },
 
-    computed: {
-        ...Vuex.mapGetters(['selectedPlayerChat'])
-    }
-
-})
-
-Vue.component('pending-actions-panel', {
-    template: `<div>
-        <p> Pending actions </p>
-    </div>`
+  },
 });
 
+Vue.component("pending-actions-panel", {
+  template: `<div>
+        <div v-if="selectedPlayerPendingActions.hint">
+            <b-card>
+                <span>Il giocatore ha richiesto un indizio</span>
+                <b-input-group>
+                    <b-form-input v-model="hintText" type="text"></b-form-input>
+                    <b-button @click="sendHint()">Manda</b-button>
+                </b-input-group>
+            </b-card>
+        </div>
+        <b-card v-for="(pendingScoring,i) in selectedPlayerPendingActions.scoring" :key="i">
+          <p>{{pendingScoring.context}}</p>
+          <component :is="'pending-scoring-' + pendingScoring.type" :scoringData="pendingScoring"></component>
+          <b-input-group :prepend="String(pendingScoring.scoreRange.min)" :append="String(pendingScoring.scoreRange.max)" class="mt-3">
+            <b-form-input v-model="pendingScoring.score" type="range" :min="pendingScoring.scoreRange.min" :max="pendingScoring.scoreRange.max"></b-form-input>
+          </b-input-group>
+          <b-button @click="sendScore(i)">Invia</b-button>
+        </b-card>
 
-Vue.component('chat', {
-    template: `<div class="vertical-flex full-height" style="overflow-y:hidden; max-height: 100vh">
+    </div>`,
+  data() {
+    return {
+      hintText: "",
+    };
+  },
+  computed: {
+    ...Vuex.mapGetters([
+      "selectedPlayerPendingActions",
+      "socket",
+      "selectedPlayer",
+      "pendingActions",
+    ]),
+  },
+  methods: {
+    sendScore(scoringIndex) {
+      let targetScoring = this.selectedPlayerPendingActions.scoring[
+        scoringIndex
+      ];
+      this.socket.emit("player-scored", {
+        playerId: this.selectedPlayer.id,
+        scoreData: targetScoring,
+      });
+      this.selectedPlayerPendingActions.scoring.splice(scoringIndex,1);
+    },
+    sendHint() {
+      this.socket.emit("hint-for-player", {
+        playerId: this.selectedPlayer.id,
+        hint: this.hintText,
+      });
+      this.pendingActions[this.selectedPlayer.id].hint = false;
+    },
+  },
+});
+
+Vue.component("pending-scoring-drawn-image", {
+  template: `<div style="">
+    <img :src="scoringData.dataUrl" style=""></img>
+  </div>`,
+
+  props: { scoringData: null },
+});
+
+Vue.component("chat", {
+  template: `<div class="vertical-flex full-height" style="overflow-y:hidden; max-height: 100vh">
 
 
         <!-- Message history -->
@@ -78,27 +139,26 @@ Vue.component('chat', {
         </div>
     </div>`,
 
-    data() {
-        return {
-            message: ""
-        }
+  data() {
+    return {
+      message: "",
+    };
+  },
+
+  props: {
+    chat: null,
+  },
+
+  methods: {
+    ...Vuex.mapActions(["sendSelectedPlayerMessage"]),
+    sendMessage() {
+      console.log("Sending message: ", this.message);
+      this.sendSelectedPlayerMessage(this.message);
+      this.message = "";
     },
+  },
 
-    props: {
-        chat: null
-    },
-
-    methods: {
-        ...Vuex.mapActions(['sendSelectedPlayerMessage']),
-        sendMessage() {
-            console.log("Sending message: ", this.message);
-            this.sendSelectedPlayerMessage(this.message);
-            this.message = "";
-        }
-    },
-
-
-    computed: {
-        ...Vuex.mapGetters(['socket'])
-    }
-})
+  computed: {
+    ...Vuex.mapGetters(["socket"]),
+  },
+});

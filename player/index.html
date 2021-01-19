@@ -22,7 +22,7 @@
 
     <!--    General utils-->
     <script src="/axios/dist/axios.js"></script>
-    <script src="/uuid/dist/index.js"></script>
+    <script src="/uuid/dist/umd/uuid.min.js"></script>
 
     <!--    Player dependencies-->
     <script src="/showdown/dist/showdown.js"></script>
@@ -50,6 +50,9 @@
     <!-- QR code libraries -->
     <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
 
+
+
+<!-- TODO ci servono questi? Sembrano dare tutti errore
     <script type="text/javascript" src="grid.js"></script>
     <script type="text/javascript" src="version.js"></script>
     <script type="text/javascript" src="detector.js"></script>
@@ -66,7 +69,7 @@
     <script type="text/javascript" src="qrcode.js"></script>
     <script type="text/javascript" src="findpat.js"></script>
     <script type="text/javascript" src="alignpat.js"></script>
-    <script type="text/javascript" src="databr.js"></script>
+    <script type="text/javascript" src="databr.js"></script> -->
 
     <!-- Content/Input Components-->
     <script src="/player/components/activity-displayer/content-components/TextDisplayer.js"></script>
@@ -81,7 +84,6 @@
     <script src="/player/components/activity-displayer/input-components/SimpleButton.js"></script>
     <script src="/player/components/activity-displayer/input-components/TextInsert.js"></script>
     <script src="/player/components/LastScreen.js"></script>
-    <script src="/vue-feather-icons"></script>
 
 <!--    <script type="text/javascript" src ="pureknob.js"> </script>  &lt;!&ndash; manopola&ndash;&gt;-->
 
@@ -92,6 +94,16 @@
         var socket = io();
         socket.emit('player-handshake');
 
+
+
+        // TODO place this somewhere
+        socket.on('hint', (hint) => {
+            console.log("Received hint: ", hint);
+        })
+        socket.on('scored', (scoringData) => {
+            console.log("Received scoring data: ", scoringData);
+        })
+
     </script>
 
 </head>
@@ -99,7 +111,8 @@
 
 <body>
         <div id="app">
-            <qr-reader></qr-reader>
+            <player-main></player-main>
+            <!-- <qr-reader></qr-reader> -->
         </div>
 
 
