@@ -1,6 +1,3 @@
-/*import Vue from 'vue'
-import KnobControl from 'vue-knob-control'
-Vue.use(KnobControl)*/ //non mi fa mettere gli import furi dal modulo
 const RADIUS = 40;
 const MID_X = 50;
 const MID_Y = 50;
@@ -14,7 +11,9 @@ const mapRange = (x, inMin, inMax, outMin, outMax) => {
 
 Vue.component('knob', {
     template: `
+    <div style="text-align:center;">
     <div class="knob-control" :style="style">
+    <p style="text-align:center; font-family:American Typewriter; text-align:center; font-style:serif;">Stabilisci il valore: </p>
         <svg :width="computedSize" :height="computedSize" viewBox="0 0 100 100"
             @click="onClick"
             @mousedown="onMouseDown"
@@ -47,6 +46,9 @@ Vue.component('knob', {
               {{valueDisplay}}
             </text>
         </svg>
+  <b-button variant="info" style="margin:10%;">Scegli</b-button>
+    </div>
+
     </div>`,
 
     data () {
@@ -98,7 +100,7 @@ Vue.component('knob', {
         },
         'primaryColor': {
             type: String,
-            default: '#ccff40'
+            default: '#32bac7'
         },
         'secondaryColor': {
             type: String,
@@ -106,7 +108,7 @@ Vue.component('knob', {
         },
         'textColor': {
             type: String,
-            default: '#c7bf22'
+            default: '#2f9da8'
         },
         'strokeWidth': {
             type: Number,
