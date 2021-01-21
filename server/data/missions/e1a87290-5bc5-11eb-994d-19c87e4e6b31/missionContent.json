@@ -80,6 +80,9 @@
           "backgroundColor": "#ffffff",
           "opacity": 1
         }
+      },
+      "alignment": {
+        "vertical": "normal"
       }
     }
   },
@@ -93,6 +96,23 @@
             "text": "Placeholder text",
             "parseMarkdown": true,
             "fontData": {}
+          },
+          "commonData": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }
+        },
+        {
+          "contentType": "img-displayer",
+          "contentData": {
+            "imgResData": {
+              "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png"
+            },
+            "alignment": "center"
           },
           "commonData": {
             "borderData": {},
@@ -122,113 +142,7 @@
           "backgroundData": {}
         },
         "alignment": {
-          "vertical": "normal"
-        }
-      },
-      "inputComponent": {
-        "inputType": "multiple-checkboxes",
-        "inputData": {
-          "multipleChoice": false,
-          "optionList": [
-            {
-              "buttonData": {
-                "label": "Bottone",
-                "labelFontData": {},
-                "buttonBorderData": {},
-                "buttonBackgroundData": {}
-              },
-              "outcome": {
-                "outcomeType": "next",
-                "nextActivityId": "53989910-5a82-11eb-8b7c-a39299aaafc3",
-                "edgeId": "65200e20-5a82-11eb-8b7c-a39299aaafc3",
-                "points": "20"
-              }
-            },
-            {
-              "buttonData": {
-                "label": "Bottone",
-                "labelFontData": {},
-                "buttonBorderData": {},
-                "buttonBackgroundData": {}
-              },
-              "outcome": {
-                "outcomeType": "next",
-                "nextActivityId": "11a79060-5997-11eb-884c-f554585b444b",
-                "edgeId": "6c15d2f0-5a82-11eb-8b7c-a39299aaafc3"
-              }
-            }
-          ]
-        },
-        "commonData": {
-          "borderData": {},
-          "spacingData": {
-            "padding": {},
-            "margin": {}
-          },
-          "backgroundData": {}
-        }
-      }
-    },
-    "11a79060-5997-11eb-884c-f554585b444b": {
-      "uuid": "11a79060-5997-11eb-884c-f554585b444b",
-      "title": "Nuova attività",
-      "content": [
-        {
-          "contentType": "text-displayer",
-          "contentData": {
-            "text": "Placeholder text",
-            "parseMarkdown": true,
-            "fontData": {}
-          },
-          "commonData": {
-            "borderData": {},
-            "spacingData": {
-              "padding": {},
-              "margin": {}
-            },
-            "backgroundData": {}
-          }
-        }
-      ],
-      "inputComponent": null,
-      "graphPosition": {
-        "x": 56,
-        "y": 85
-      },
-      "screenStyleData": {
-        "inner": {
-          "borderData": {},
-          "spacingData": {
-            "padding": {},
-            "margin": {}
-          },
-          "backgroundData": {}
-        },
-        "outer": {
-          "backgroundData": {}
-        }
-      }
-    },
-    "53989910-5a82-11eb-8b7c-a39299aaafc3": {
-      "uuid": "53989910-5a82-11eb-8b7c-a39299aaafc3",
-      "title": "Nuova attività",
-      "content": [],
-      "inputComponent": null,
-      "graphPosition": {
-        "x": -26,
-        "y": 146
-      },
-      "screenStyleData": {
-        "inner": {
-          "borderData": {},
-          "spacingData": {
-            "padding": {},
-            "margin": {}
-          },
-          "backgroundData": {}
-        },
-        "outer": {
-          "backgroundData": {}
+          "vertical": "center"
         }
       }
     }

@@ -1,5 +1,5 @@
-Vue.component('common-styling-editor', {
-    template: `
+Vue.component("common-styling-editor", {
+  template: `
         <div>
             <activity-editor-subpanel label="Contenitore"> 
             
@@ -21,22 +21,21 @@ Vue.component('common-styling-editor', {
         </div>
     `,
 
-    props: {
-        commonData: null,
-        level: {
-            type: Number,
-            default: 0
-        },
+  props: {
+    commonData: null,
+    level: {
+      type: Number,
+      default: 0,
     },
+  },
 
-    computed: {
-        ...Vuex.mapGetters(['selectedMissionDefaults']),
-    }
-})
+  computed: {
+    ...Vuex.mapGetters(["selectedMissionDefaults"]),
+  },
+});
 
-
-Vue.component('screen-style-editor', {
-    template: `<div>
+Vue.component("screen-style-editor", {
+  template: `<div>
         <activity-editor-subpanel label="Stile schermata">
             <activity-editor-subpanel label="Esterno">
                 <background-editor :backgroundData="screenStyleData.outer.backgroundData" :defaults="selectedMissionDefaults.screenStyleData.outer.backgroundData"></background-editor>
@@ -56,16 +55,26 @@ Vue.component('screen-style-editor', {
                 </activity-editor-subpanel>
                 
             </activity-editor-subpanel>
-            
+                <activity-editor-subpanel label="Allineamento">
+                    <editor-field label="Verticale">
+                        <defaulted-dropdown class="editor-text" :options="['top', 'center']" :targetContainer="screenStyleData.alignment" targetFieldName="vertical" :defaultVal="selectedMissionDefaults.screenStyleData.alignment.vertical">
+                        <template v-slot:default="slotProps">
+                        <p class="editor-text">{{slotProps.option}}</p>
+                    </template>
+                        </defaulted-dropdown>
+                    </editor-field>
+                </activity-editor-subpanel>
+</activity-editor-subpanel>   
+
 </activity-editor-subpanel>
-</activity-editor-subpanel>
+ 
     </div>`,
 
-    props: {
-        screenStyleData: null,
-    },
+  props: {
+    screenStyleData: null,
+  },
 
-    computed: {
-        ...Vuex.mapGetters(['selectedMissionDefaults']),
-    }
-})
+  computed: {
+    ...Vuex.mapGetters(["selectedMissionDefaults"]),
+  },
+});
