@@ -160,12 +160,13 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 
 ### `multiple-checkboxes`
 
+- Text insert case insensitive
+- guardare bottone text insert
+- autore manopola (massimo, minimo e colore)
+- conferma per eliminare
+- unita' di misura variabili
 
-
-
-
-
-
-
+- Animazioni
+- Custom font
 
 

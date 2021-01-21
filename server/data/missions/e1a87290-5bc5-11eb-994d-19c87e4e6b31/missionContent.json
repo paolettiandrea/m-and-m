@@ -144,6 +144,29 @@
         "alignment": {
           "vertical": "center"
         }
+      },
+      "inputComponent": {
+        "inputType": "simple-button",
+        "inputData": {
+          "buttonData": {
+            "label": "Continua",
+            "labelFontData": {},
+            "buttonBorderData": {},
+            "buttonBackgroundData": {}
+          },
+          "outcome": {
+            "outcomeType": "next",
+            "nextActivityId": ""
+          }
+        },
+        "commonData": {
+          "borderData": {},
+          "spacingData": {
+            "padding": {},
+            "margin": {}
+          },
+          "backgroundData": {}
+        }
       }
     }
   },
