@@ -97,7 +97,12 @@ function initialize(server) {
             socket.on('mission-ended', () => {
                 console.log('Player ' + id  +' has ended a mission');
                 let targetPlayer = players[id];
-                console.log(targetPlayer);
+
+                let missionRecap = {
+                    playTime: (Date.now() - targetPlayer.connectionTime)/1000,
+                }
+
+                targetPlayer.socket.emit('mission-recap', missionRecap)
             })
             
             socket.on('disconnect', () => {

@@ -13,6 +13,13 @@ Vue.component('lastScreen-displayer', {
                            color: #000000;">
                 <p> Punteggio finale: </p>
                 <p> {{score}} </p>
+                <div v-if="missionRecap">
+                  <p>Tempo: {{missionRecap.playTime}}</p>
+                </div>
+
+                <div v-if="missionRecap.ranking">
+                  
+                </div>
               </div>
             </div>
         </transition>
@@ -25,5 +32,19 @@ Vue.component('lastScreen-displayer', {
     props:
     {
       score:0
+    },
+
+    data() { return {
+      missionRecap: null
+    }},
+
+    mounted() {
+      console.log("Mission ended");
+      socket.on('mission-recap', (missionRecap) => {
+        console.log("Mission recap received: ", missionRecap);
+        this.missionRecap = missionRecap;
+      })
+
+      socket.emit('mission-ended');
     }
 })
