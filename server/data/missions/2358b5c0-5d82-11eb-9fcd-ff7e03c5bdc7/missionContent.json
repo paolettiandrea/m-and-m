@@ -89,41 +89,7 @@
   "activities": {
     "initial": {
       "title": "Attività iniziale",
-      "content": [
-        {
-          "contentType": "text-displayer",
-          "contentData": {
-            "text": "Placeholder text",
-            "parseMarkdown": true,
-            "fontData": {}
-          },
-          "commonData": {
-            "borderData": {},
-            "spacingData": {
-              "padding": {},
-              "margin": {}
-            },
-            "backgroundData": {}
-          }
-        },
-        {
-          "contentType": "img-displayer",
-          "contentData": {
-            "imgResData": {
-              "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png"
-            },
-            "alignment": "center"
-          },
-          "commonData": {
-            "borderData": {},
-            "spacingData": {
-              "padding": {},
-              "margin": {}
-            },
-            "backgroundData": {}
-          }
-        }
-      ],
+      "content": [],
       "uuid": "initial",
       "graphPosition": {
         "x": 0,
@@ -142,22 +108,27 @@
           "backgroundData": {}
         },
         "alignment": {
-          "vertical": "center"
+          "vertical": "normal"
         }
       },
       "inputComponent": {
-        "inputType": "simple-button",
+        "inputType": "multiple-checkboxes",
         "inputData": {
-          "buttonData": {
-            "label": "Continua",
-            "labelFontData": {},
-            "buttonBorderData": {},
-            "buttonBackgroundData": {}
-          },
-          "outcome": {
-            "outcomeType": "next",
-            "nextActivityId": ""
-          }
+          "optionContentType": "immagine",
+          "optionList": [
+            {
+              "data": {
+                "imgResData": {
+                  "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png"
+                }
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": "64b41ff0-5d82-11eb-a8ca-f79d90fc05be",
+                "edgeId": "216eb8b0-5d85-11eb-9ac1-33b16c3a060c"
+              }
+            }
+          ]
         },
         "commonData": {
           "borderData": {},
@@ -165,6 +136,29 @@
             "padding": {},
             "margin": {}
           },
+          "backgroundData": {}
+        }
+      }
+    },
+    "64b41ff0-5d82-11eb-a8ca-f79d90fc05be": {
+      "uuid": "64b41ff0-5d82-11eb-a8ca-f79d90fc05be",
+      "title": "Nuova attività",
+      "content": [],
+      "inputComponent": null,
+      "graphPosition": {
+        "x": 288,
+        "y": 128
+      },
+      "screenStyleData": {
+        "inner": {
+          "borderData": {},
+          "spacingData": {
+            "padding": {},
+            "margin": {}
+          },
+          "backgroundData": {}
+        },
+        "outer": {
           "backgroundData": {}
         }
       }

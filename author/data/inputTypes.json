@@ -37,7 +37,7 @@
       "title": "Opzioni",
       "icon": "alt",
       "data":{
-        "multipleChoice": false,
+        "optionContentType": "bottone",
         "optionList": [
           {
               "buttonData": {

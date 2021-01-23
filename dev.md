@@ -165,6 +165,7 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 - autore manopola (massimo, minimo e colore)
 - conferma per eliminare
 - unita' di misura variabili
+- larghezza text insert
 
 - Animazioni
 - Custom font
