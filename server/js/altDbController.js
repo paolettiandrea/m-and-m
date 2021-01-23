@@ -7,7 +7,7 @@ var qr = require("qr-image");
 const missionContentFileName = "missionContent.json";
 const missionQrCodeFileName = "qrCode.svg";
 
-let basePath = "/webapp/data/";
+let basePath = "/webapp/data/test/";
 if (!process.env.DB_MODE || process.env.DB_MODE === "sandbox")
   basePath = path.join(__dirname, "../data/");
 const missionsDir = path.join(basePath, "/missions/");
@@ -62,11 +62,11 @@ async function newMission() {
     let new_id = uuid.v1();
 
     // Get default new mission from file (for easy editing)
-    fs.readFile(newMissionTemplatePath, "utf-8", (err, newMissionTemplate) => {
-      if (err) {
-        resolve(err);
-      }
-      newMissionTemplate = JSON.parse(newMissionTemplate);
+    // fs.readFile(newMissionTemplatePath, "utf-8", (err, newMissionTemplate) => {
+      // if (err) {
+        // resolve(err);
+      // }
+      newMissionTemplate = JSON.parse(JSON.stringify(newMissionTemplateObj));
       // Add new missionHead to the list
       fs.readFile(missionsHeadsPath, "utf-8", (err, missionHeads) => {
         // TODO when implementing archive missions can be created in it
@@ -108,7 +108,7 @@ async function newMission() {
         // fs.mkdir(missionPath + '/resources/', {recursive: true}, (err) => {
         //     if (err) resolve(err);})
       });
-    });
+    // });
   });
 }
 
@@ -175,3 +175,126 @@ module.exports = {
 
   missionsDir,
 };
+
+
+const newMissionTemplateObj = {
+  "missionHead": {
+    "title": "Nuova missione",
+    "summary": "Una breve descrizione della missione"
+  },
+
+  "missionContent": {
+    "defaults": {
+      "textFontData": {
+      },
+      "buttonData": {
+        "label": "Continua",
+        "labelFontData": {
+          "fontFamily": "Roboto",
+          "fontSize": "14px",
+          "fontColor": "#000000",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+          "textDecoration": "none",
+          "textAlign": "left"
+        },
+        "buttonBorderData": {
+          "borderWidth": "2px",
+          "borderRadius": "5px",
+          "borderColor": "#000000",
+          "borderStyle": "solid"
+        },
+        "buttonBackgroundData": {
+          "backgroundColor": "#ffffff"
+        }
+      },
+      "commonData": {
+        "borderData": {
+          "borderStyle": "hidden",
+          "borderWidth": "2px",
+          "borderColor": "#000000",
+          "borderRadius": "0px"
+        },
+        "spacingData": {
+          "padding": {
+            "top": "0px",
+            "bottom": "10px",
+            "left": "5px",
+            "right": "5px"
+          },
+          "margin": {
+            "top": "0px",
+            "bottom": "0px",
+            "left": "0px",
+            "right": "0px"
+          }
+        },
+        "backgroundData": {
+          "backgroundColor": "#ffffff",
+          "opacity": 0
+        }
+      },
+      "screenStyleData": {
+        "inner": {
+          "borderData": {
+            "borderStyle": "hidden",
+            "borderWidth": "2px",
+            "borderColor": "#000000",
+            "borderRadius": "0px"
+          },
+          "spacingData": {
+            "padding": {
+              "top": "0px",
+              "bottom": "0px",
+              "left": "0px",
+              "right": "0px"
+            },
+            "margin": {
+              "top": "10px",
+              "bottom": "10px",
+              "left": "10px",
+              "right": "10px"
+            }
+          },
+          "backgroundData": {
+            "backgroundColor": "#ffffff",
+            "opacity": 0
+          }
+        },
+        "outer": {
+          "backgroundData": {
+            "backgroundColor": "#ffffff",
+            "opacity": 1
+          }
+        },
+        "alignment": {
+          "vertical": "normal"
+        }
+      }
+    },
+    "activities": {
+      "initial": {
+        "title": "Attività iniziale",
+        "content": [],
+        "uuid": "initial",
+        "graphPosition": {
+          "x": 0,
+          "y": 0
+        },
+        "screenStyleData": {
+          "inner": {
+            "borderData": {},
+            "spacingData": {
+              "padding": {},
+              "margin": {}
+            },
+            "backgroundData": {}
+          }, "outer": {
+            "backgroundData": {}
+        },
+      "alignment": { "vertical": "normal"}}
+      }
+    },
+    "usedResources": { }
+  }
+}
