@@ -82,6 +82,34 @@
                 }
             }
         }
+<<<<<<< HEAD
+      },
+      "backgroundData": {
+        "backgroundColor": "#ffffff"
+      }
+    }
+  },
+  "activities": {
+    "initial": {
+      "title": "Attività iniziale",
+      "content": [],
+      "uuid": "initial",
+      "graphPosition": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  "usedResources": {
+
+  },
+  "risposta":["opzione1", "opzione2", "opzione3"],
+  "rispostaCorretta": "opzione1 opzione2 opzione3"
+}
+
+
+  }
+=======
     },
     "activities": {
         "initial": {
@@ -117,4 +145,5 @@
         }
     },
     "usedResources": {}
+>>>>>>> 8a2307e3d8160f87f8ca429fbcad9ffebdbea32c
 }
