@@ -57,7 +57,7 @@ Vue.component("screen-style-editor", {
             </activity-editor-subpanel>
                 <activity-editor-subpanel label="Allineamento">
                     <editor-field label="Verticale">
-                        <defaulted-dropdown class="editor-text" :options="['top', 'center']" :targetContainer="screenStyleData.alignment" targetFieldName="vertical" :defaultVal="selectedMissionDefaults.screenStyleData.alignment.vertical">
+                        <defaulted-dropdown class="editor-text" :options="['normal', 'center']" :targetContainer="screenStyleData.alignment" targetFieldName="vertical" :defaultVal="selectedMissionDefaults.screenStyleData.alignment.vertical">
                         <template v-slot:default="slotProps">
                         <p class="editor-text">{{slotProps.option}}</p>
                     </template>
