@@ -55,6 +55,7 @@ Vue.component('multiple-checkboxes-editor', {
                    "outcomeType": "next",
                    "nextActivityId": ""
                }})
+               break;
                  }
                 
                 case "immagine": {
@@ -69,6 +70,7 @@ Vue.component('multiple-checkboxes-editor', {
                             "nextActivityId": ""
                         }
                     })
+                    break;
                 }
                 case "suono": {
                     this.inputData.optionList.push({
@@ -87,6 +89,7 @@ Vue.component('multiple-checkboxes-editor', {
                             "nextActivityId": ""
                         }
                     })
+                    break;
                 }
             }
           

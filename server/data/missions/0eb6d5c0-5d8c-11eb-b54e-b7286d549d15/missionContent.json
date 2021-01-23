@@ -124,8 +124,19 @@
               },
               "outcome": {
                 "outcomeType": "next",
-                "nextActivityId": "64b41ff0-5d82-11eb-a8ca-f79d90fc05be",
-                "edgeId": "216eb8b0-5d85-11eb-9ac1-33b16c3a060c"
+                "nextActivityId": "109b2620-5d8c-11eb-b60b-c193fbf6cb21",
+                "edgeId": "18e382a0-5d8c-11eb-b60b-c193fbf6cb21"
+              }
+            },
+            {
+              "data": {
+                "imgResData": {
+                  "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png"
+                }
+              },
+              "outcome": {
+                "outcomeType": "next",
+                "nextActivityId": ""
               }
             }
           ]
@@ -140,14 +151,14 @@
         }
       }
     },
-    "64b41ff0-5d82-11eb-a8ca-f79d90fc05be": {
-      "uuid": "64b41ff0-5d82-11eb-a8ca-f79d90fc05be",
+    "109b2620-5d8c-11eb-b60b-c193fbf6cb21": {
+      "uuid": "109b2620-5d8c-11eb-b60b-c193fbf6cb21",
       "title": "Nuova attività",
       "content": [],
       "inputComponent": null,
       "graphPosition": {
-        "x": 288,
-        "y": 128
+        "x": 280,
+        "y": 177
       },
       "screenStyleData": {
         "inner": {
@@ -160,6 +171,9 @@
         },
         "outer": {
           "backgroundData": {}
+        },
+        "alignment": {
+          "vertical": "normal"
         }
       }
     }

@@ -122,11 +122,12 @@ const store = new Vuex.Store({
                         "backgroundData": {}
                     }, "outer": {
                         "backgroundData": {}
-                    }
-                },
+                    },
+
                 alignment: {
                     vertical: "normal"
                 }
+                },
             }
 
             Vue.set(activities, uuid, newActivity);
