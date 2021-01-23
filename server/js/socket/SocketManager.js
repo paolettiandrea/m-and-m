@@ -92,6 +92,13 @@ function initialize(server) {
                     })
                 }
             });
+
+
+            socket.on('mission-ended', () => {
+                console.log('Player ' + id  +' has ended a mission');
+                let targetPlayer = players[id];
+                console.log(targetPlayer);
+            })
             
             socket.on('disconnect', () => {
                 console.log('Player ' + id + ' disconnected')

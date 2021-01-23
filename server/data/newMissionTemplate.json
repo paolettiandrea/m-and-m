@@ -87,6 +87,9 @@
             "backgroundColor": "#ffffff",
             "opacity": 1
           }
+        },
+        "alignment": {
+          "vertical": "normal"
         }
       }
     },
@@ -109,7 +112,8 @@
             "backgroundData": {}
           }, "outer": {
             "backgroundData": {}
-        }}
+        },
+      "alignment": { "vertical": "normal"}}
       }
     },
     "usedResources": { }

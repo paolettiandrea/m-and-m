@@ -4,7 +4,6 @@ const path = require('path')
 const router = express.Router();
 const database = require(path.join(__dirname, '../js/altDbController.js'))
 const resources = require(path.join(__dirname, '../js/resController.js'))
-const proc = require('child_process')
 
 
 router.get('/new', function (req, res, next) {

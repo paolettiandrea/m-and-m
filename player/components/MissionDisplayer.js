@@ -51,8 +51,11 @@ Vue.component('mission-displayer', {
                 console.log("Emitting started activity event");
                 socket.emit('starting-activity', nextActivityId);
             } else {
+                // MISSION ENDED
                 this.missionEnded = true;
                 this.pointedActivity = null;
+
+                socket.emit('mission-ended');
             }
             // var i = 0;
             // for (const activity of this.missionData.activities) {

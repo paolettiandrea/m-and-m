@@ -3,33 +3,24 @@ Vue.component('multiple-checkboxes-editor', {
         <activity-editor-subpanel label="Opzioni" level="0">
 <!--                    <activity-editor-subpanel :label="i" :level="1" v-for="(optionData, i) in inputData.optionList">-->
 <!--                    </activity-editor-subpanel> -->
-            <b-tabs vertical pills>
-                <b-tab>
+            <defaulted-dropdown :options="['immagine', 'bottone', 'suono']" :targetContainer="inputData" targetFieldName="optionContentType" defaultVal="bottone">
+                <template v-slot:default="slotProps">
+                    <p class="editor-text" @click="newType(slotProps.option)">{{slotProps.option}}</p>
+                </template>
+            </defaulted-dropdown>
+
+            <activity-editor-list :list="inputData.optionList" :labelFunc="labelFunc" :addCallback="addOption">
+                <template v-slot:default="slotProps">
+                    <div v-if="correspondingContentType==='simple-button'">
+                        <simple-button-editor :inputData="slotProps.elem" :defaults="selectedMissionDefaults"></simple-button-editor>
+                    </div>
+                    <div v-else>
+                        <component :is="correspondingContentTypeEditor" :contentData="slotProps.elem.data"></component>
+                        <next-activity-outcome-editor :outcomeData="slotProps.elem.outcome"></next-activity-outcome-editor>
+                    </div>
+                </template>
+            </activity-editor-list>
                 
-                    <template #title>
-                        <b-icon icon="grid"></b-icon>
-                    </template>
-                
-                    <activity-editor-list :list="inputData.optionList" :labelFunction="labelFunc" :addCallback="addOption">
-                        <template v-slot:default="slotProps">
-                            <simple-button-editor :inputData="slotProps.elem"></simple-button-editor>
-                        </template>
-                    </activity-editor-list>
-                </b-tab>
-                <b-tab>
-                    <template #title>
-                        <b-icon icon="image"></b-icon>
-                        
-                    </template>
-                        <p> Ancora da implementare </p>
-</b-tab>
-            </b-tabs>
-<!--                    <editor-subpanel-list :level="1" :list="inputData.optionList">-->
-<!--                        <template v-slot:default="slotProps" >-->
-<!--                        </template>-->
-<!--                    </editor-subpanel-list>-->
-<!--                <b-button @click="addOption">+</b-button>-->
-            </div>
         </activity-editor-subpanel>`,
 
     props: {
@@ -37,12 +28,24 @@ Vue.component('multiple-checkboxes-editor', {
     },
 
     computed: {
-        ...Vuex.mapGetters(['selectedMissionDefaults'])
+        ...Vuex.mapGetters(['selectedMissionDefaults']),
+
+        correspondingContentType() {
+            switch (this.inputData.optionContentType) {
+                case "bottone": { return "simple-button"; break; }
+                case "immagine": { return "img-displayer"; break; }
+                case "suono": { return "audio-player"; break; }
+            }
+        },
+
+        correspondingContentTypeEditor() { return this.correspondingContentType + "-editor"; }
     },
 
     methods: {
         addOption() {
-           this.inputData.optionList.push({"buttonData": {
+            switch (this.inputData.optionContentType) {
+                case "bottone": {
+                    this.inputData.optionList.push({"buttonData": {
                    "label": "Bottone",
                    "labelFontData": {},
                    "buttonBorderData": {},
@@ -52,9 +55,52 @@ Vue.component('multiple-checkboxes-editor', {
                    "outcomeType": "next",
                    "nextActivityId": ""
                }})
+                 }
+                
+                case "immagine": {
+                    this.inputData.optionList.push({
+                        "data": {
+                            "imgResData": {
+                                "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png"
+                            }
+                        },
+                        "outcome": {
+                            "outcomeType": "next",
+                            "nextActivityId": ""
+                        }
+                    })
+                }
+                case "suono": {
+                    this.inputData.optionList.push({
+                        "data": {
+                            "audioResourceData": {
+                            "url": "http://soundbible.com/grab.php?id=1815&type=mp3"
+                            },
+                            "buttonData": {
+                            "labelFontData": {},
+                            "buttonBorderData": {},
+                            "buttonBackgroundData": {}
+                            }
+                        },
+                        "outcome": {
+                            "outcomeType": "next",
+                            "nextActivityId": ""
+                        }
+                    })
+                }
+            }
+          
         },
         labelFunc(elem, i) {
             return "Button " + i;
+        },
+        newType(type) {
+            console.log("New type ", type);
+            let corr_type = "";
+            
+
+            this.inputData.optionList.splice(0, this.inputData.optionList.length)
+            
         }
     }
 })

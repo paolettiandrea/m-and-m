@@ -3,7 +3,7 @@ Vue.component("activity-displayer", {
         <div class="activity-displayer-div" >
             <!-- Content chunks  -->
             <styling-wrapper :stylingData="activityContent.screenStyleData.outer" :stylingDefaults="defaults.screenStyleData.outer" style="min-height: 20px; overflow-y: auto; height: 100%; display: flex; flex-direction: column">
-            <styling-wrapper :stylingData="activityContent.screenStyleData.inner" :stylingDefaults="defaults.screenStyleData.inner" style="flex: 1">
+            <styling-wrapper :stylingData="activityContent.screenStyleData.inner" :stylingDefaults="defaults.screenStyleData.inner" style="flex: 1; display: flex; flex-direction: column" :style="{'justify-content': activityContent.screenStyleData.alignment.vertical}">
             
             <div class="activity-displayer-chunk-container">
                 <slot name="inter" index="0"></slot>
@@ -49,6 +49,7 @@ Vue.component("activity-displayer", {
                 <slot name="input-placeholder"></slot>
             </div>
 
+            // TODO CHAT (affianco) OMAR pulsante indizio 
             <b-button @click="tempAskForHint">Indizio</b-button>
             
             
@@ -102,7 +103,7 @@ Vue.component("activity-displayer", {
         },
 
         tempAskForHint() {
-socket.emit('need-hint')
+            socket.emit('need-hint')
         }
     }
 })
