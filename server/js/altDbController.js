@@ -7,7 +7,7 @@ var qr = require("qr-image");
 const missionContentFileName = "missionContent.json";
 const missionQrCodeFileName = "qrCode.svg";
 
-let basePath = "/webapp/data/test/";
+let basePath = "/webapp/data/tempp/";
 if (!process.env.DB_MODE || process.env.DB_MODE === "sandbox")
   basePath = path.join(__dirname, "../data/");
 const missionsDir = path.join(basePath, "/missions/");
@@ -25,11 +25,14 @@ function missionContentFile(id) {
 }
 
 function initializeDb() {
+  console.log('Initializing database');
   if (!fs.existsSync(basePath)) {
+    console.log(basePath + " doesn't exists, creating relevand files and directories.")
     fs.mkdirSync(basePath, { recursive: true });
     fs.mkdirSync(missionsDir, { recursive: true });
 
     if (!fs.existsSync(missionsHeadsPath)) {
+      console.log('Creating mission head file');
       fs.writeFile(missionsHeadsPath, JSON.stringify({}, null, 2), (err) => {
         if (err) throw err;
       });
@@ -59,6 +62,7 @@ async function getMissionContent(uid) {
 // Creates a new mission in the database and returns its missionHead
 async function newMission() {
   return new Promise((resolve) => {
+    console.log("Creating new mission");
     let new_id = uuid.v1();
 
     // Get default new mission from file (for easy editing)
