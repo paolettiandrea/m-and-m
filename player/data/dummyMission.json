@@ -82,7 +82,6 @@
                 }
             }
         }
-<<<<<<< HEAD
       },
       "backgroundData": {
         "backgroundColor": "#ffffff"
@@ -109,41 +108,4 @@
 
 
   }
-=======
-    },
-    "activities": {
-        "initial": {
-            "title": "Attività iniziale",
-            "content": [
-                {
-                    "contentType": "text-displayer",
-                    "contentData": {
-                        "text": "Placeholder text",
-                        "parseMarkdown": true,
-                        "fontData": {}
-                    }
-                }
-            ],
-            "uuid": "initial",
-            "graphPosition": {
-                "x": 0,
-                "y": 0
-            },
-            "screenStyleData": {
-                "inner": {
-                    "borderData": {},
-                    "spacingData": {
-                        "padding": {},
-                        "margin": {}
-                    },
-                    "backgroundData": {}
-                },
-                "outer": {
-                    "backgroundData": {}
-                }
-            }
-        }
-    },
-    "usedResources": {}
->>>>>>> 8a2307e3d8160f87f8ca429fbcad9ffebdbea32c
 }
