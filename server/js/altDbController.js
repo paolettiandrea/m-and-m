@@ -25,7 +25,7 @@ function missionContentFile(id) {
 }
 
 function initializeDb() {
-  console.log('Initializing database');
+  console.log('Initializing database at base path: ' + basePath);
   if (!fs.existsSync(basePath)) {
     console.log(basePath + " doesn't exists, creating relevand files and directories.")
     fs.mkdirSync(basePath, { recursive: true });
@@ -95,11 +95,15 @@ async function newMission() {
       // Make a directory for the new mission
       let missionPath = missionDirectory(new_id);
       fs.mkdir(missionPath, { recursive: true }, (err) => {
+        console.log("Making directory for the mission at: " + missionPath)
         if (err) resolve(err);
         var qr_code = qr.image(new_id, { type: "svg" });
+        let qrPath = path.join(missionPath, missionQrCodeFileName);
+        console.log("Creating qr file at: " + qrPath);
         qr_code.pipe(
-          fs.createWriteStream(path.join(missionPath, missionQrCodeFileName))
+          fs.createWriteStream(qrPath)
         );
+        console.log("Creating the conte file");
         fs.writeFile(
           path.join(missionPath, missionContentFileName),
           JSON.stringify(newMissionTemplate.missionContent, null, 2),
