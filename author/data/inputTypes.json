@@ -91,7 +91,7 @@
    {
       "type": "knob-input",
       "title": "Manopola",
-      "icon": "record",
+      "icon": "record-circle",
       "data":{
         "outcome": {
             "outcomeType": "next",
