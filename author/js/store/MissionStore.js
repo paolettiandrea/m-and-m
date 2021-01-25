@@ -106,6 +106,41 @@ let MissionModule = {
         // Selects the mission with the given id
         selectMission(context, id) {
             context.commit('setSelectedMissionId', id)
+
+            let missionContent = context.getters.selectedMissionContent;
+            console.log(missionContent)
+
+            // Add mission defaults
+            if (!missionContent.defaults.screenStyleData.alignment) {
+                Vue.set(missionContent.defaults.screenStyleData, "alignment", { vertical: "normal"})
+            }
+
+            for (const activityId in missionContent.activities) {
+                let activity = missionContent.activities[activityId];
+
+                console.log("Checking activity: ", activity)
+                if (!activity.screenStyleData.alignment) {
+                    console.log("Adding alignment")
+                    Vue.set(activity.screenStyleData, "alignment", {vertical: "normal"})
+                }
+
+
+                if (activity.inputComponent) {
+
+                switch (activity.inputComponent.inputType) {
+                    case "multiple-checkboxes": {
+                        if (!activity.inputComponent.inputData.optionContentType) {
+                            console.log("Adding optionContentType")
+                            Vue.set(activity.inputComponent.inputData, "optionContentType", "bottone");
+                        }
+                        break;
+                    }
+                }
+                }
+            
+            }
+
+            context.dispatch('updateSelectedMission')
         },
 
         deselectMission(context) {

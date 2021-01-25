@@ -76,11 +76,12 @@ Vue.component("screen-style-editor", {
 
   computed: {
     ...Vuex.mapGetters(["selectedMissionDefaults"]),
+    
   },
 
-  mounted() {
-    if (!this.screenStyleData.alignment) {
-      Vue.set(this.screenStyleData, "alignment", { vertical: 'normal'})
-    }
-  }
+  // created() {
+  //   if (!this.screenStyleData.alignment) {
+  //     Vue.set(this.screenStyleData, "alignment", { vertical: 'normal'})
+  //   }
+  // }
 });
