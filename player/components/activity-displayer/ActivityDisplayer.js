@@ -14,7 +14,8 @@ Vue.component("activity-displayer", {
                                    :id="'content-chunk-'+index" 
                                    class="content-chunk" 
                                    :contentData="contentChunk.contentData"
-                                   :defaults="defaults" ></component>
+                                   :defaults="defaults" 
+                                   :sharedState="sharedMissionState"></component>
                         </styling-wrapper>
                         
                                    
@@ -30,7 +31,8 @@ Vue.component("activity-displayer", {
                 <component v-if="popupContent" :is="popupContent.type" 
                                        class="content-chunk" 
                                        id="popup-content-chunk" 
-                                       :contentData="popupContent.data" ></component>
+                                       :contentData="popupContent.data" 
+                                       :sharedState="sharedMissionState"></component>
             </b-collapse>
             
             <!--Input component: the component type is defined by the string inputType and it receives the 
@@ -42,7 +44,8 @@ Vue.component("activity-displayer", {
                     <component :is="activityContent.inputComponent.inputType" 
                                 :inputData="activityContent.inputComponent.inputData" 
                                 :defaults="defaults"
-                                @input-received="handleInputReceived" ></component>
+                                @input-received="handleInputReceived" 
+                                :sharedState="sharedMissionState"></component>
                 </styling-wrapper>
             </div>
             <div v-else>
@@ -69,7 +72,8 @@ Vue.component("activity-displayer", {
     data() {
         return {
             popupContent: null,
-            popupVisible: false
+            popupVisible: false,
+            sharedMissionState: null
         }
     },
 
@@ -112,6 +116,12 @@ Vue.component("activity-displayer", {
 
         tempAskForHint() {
             socket.emit('need-hint')
+        }
+    },
+
+    mounted() {
+        this.sharedMissionState = {
+            audioPlaying: null
         }
     }
 })

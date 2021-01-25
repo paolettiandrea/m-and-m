@@ -162,7 +162,6 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 
 - guardare bottone text insert
 - autore manopola (massimo, minimo e colore)
-- unita' di misura variabili
 - larghezza text insert
 - stoppaggio suono (ed eventuale evitamento sovrapposizione)
 - riattaccare evento hint
