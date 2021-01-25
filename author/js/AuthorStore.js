@@ -349,7 +349,9 @@ const store = new Vuex.Store({
 
         isSelectedContentChunkFirst(state) { return state.selectedContentIndex===0; },
 
-        isSelectedContentChunkLast(state, getters) {return state.selectedContentIndex===getters.selectedActivity.content.length-1}
+        isSelectedContentChunkLast(state, getters) {return state.selectedContentIndex===getters.selectedActivity.content.length-1},
+
+        commonUnits() { return ["px", "cm", "mm", "Q", "in", "pc", "pt", "em", "ex", "%"]}
     }
 })
 

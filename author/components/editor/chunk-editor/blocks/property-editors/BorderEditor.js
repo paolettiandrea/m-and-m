@@ -17,7 +17,10 @@ Vue.component('border-editor', {
             <editor-field label="Spessore">
                 <defaulted-input-form-unit :targetContainer="borderData" targetFieldName="borderWidth" :defaultVal="usedDefaults.borderWidth"></defaulted-input-form-unit>
             </editor-field>
-            
+             <!-- <editor-field label="Spessore"> -->
+                <!-- <defaulted-input-form-unit :targetContainer="borderData" targetFieldName="borderWidth"  -->
+                    <!-- :possibleUnits='["px", "cm", "mm", "Q", "in", "pc", "pt", "em", "ex", "%"]' :defaultVal="usedDefaults."></defaulted-input-form-unit> -->
+            <!-- </editor-field> -->
             <editor-field label="Raggio">
                 <defaulted-input-form-unit :targetContainer="borderData" targetFieldName="borderRadius" :defaultVal="usedDefaults.borderRadius"></defaulted-input-form-unit>
             </editor-field>

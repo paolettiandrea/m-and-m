@@ -63,7 +63,7 @@ Vue.component('mission-info-card', {
                         <b-button v-else @click="publish()">Pubblica</b-button>
                     </b-button-group>
                     <b-button-group>
-                        <b-button @click="deleteMission(mission.id)">Elimina</b-button>
+                      <confirm-button icon="trash" key="cancelMission" confirmPrompt="Sei sicuro di voler eliminare l'attivita'?" @confirmed="deleteMission(mission.id)" :swapVariant="true"></confirm-button>
                     </b-button-group>
                 </b-button-toolbar>
             </div>

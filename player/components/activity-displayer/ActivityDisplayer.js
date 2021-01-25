@@ -3,7 +3,7 @@ Vue.component("activity-displayer", {
         <div class="activity-displayer-div" >
             <!-- Content chunks  -->
             <styling-wrapper :stylingData="activityContent.screenStyleData.outer" :stylingDefaults="defaults.screenStyleData.outer" style="min-height: 20px; overflow-y: auto; height: 100%; display: flex; flex-direction: column">
-            <styling-wrapper :stylingData="activityContent.screenStyleData.inner" :stylingDefaults="defaults.screenStyleData.inner" style="flex: 1; display: flex; flex-direction: column" :style="{'justify-content': activityContent.screenStyleData.alignment.vertical}">
+            <styling-wrapper :stylingData="activityContent.screenStyleData.inner" :stylingDefaults="defaults.screenStyleData.inner" style="flex: 1; display: flex; flex-direction: column" :style="{'justify-content': verticalAlignment}">
             
             <div class="activity-displayer-chunk-container">
                 <slot name="inter" index="0"></slot>
@@ -76,6 +76,14 @@ Vue.component("activity-displayer", {
     computed: {
         compoundDefaults() {
             return buildDefaultObject(this.defaults, uberDefaults);
+        },
+
+        verticalAlignment() {
+            if (this.activityContent.screenStyleData.alignment) {
+                return this.activityContent.screenStyleData.alignment.vertical
+            } else {
+                return "normal"
+            }
         }
     },
 
