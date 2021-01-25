@@ -160,18 +160,23 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 
 ### `multiple-checkboxes`
 
-- guardare bottone text insert
 - autore manopola (massimo, minimo e colore)
-- unita' di misura variabili
-- larghezza text insert
-- stoppaggio suono (ed eventuale evitamento sovrapposizione)
-- riattaccare evento hint
 - abilitare pulsante Gioca menu missioni e aggiungere pulsanti creazione/duplicazione missione
 - ri-aggiungere pulsante ritorno al menu missioni
 
 Bug autore:
 -  cancellare riferimento next attivita' duplicata
 - avoid deletion of initial activity
+
+
+
+- riattaccare evento hint
+- aggiungi placeholder text editabile per text insert
+
+
+
+
+
 
 - Animazioni
 - Custom font

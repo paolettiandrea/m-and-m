@@ -87,6 +87,20 @@
           "url": "https://www.riccardogeraci.it/wp-content/uploads/2019/10/placeholder-1024x683.png",
           "areas": []
       }
+    },
+   {
+      "type": "knob-input",
+      "title": "Manopola",
+      "icon": "record-circle",
+      "data":{
+        "outcome": {
+            "outcomeType": "next",
+            "nextActivityId": ""
+        },
+        "primaryColor": "#545AFF",
+        "secondaryColor": ""
+      }
+
     }
   ]
 }

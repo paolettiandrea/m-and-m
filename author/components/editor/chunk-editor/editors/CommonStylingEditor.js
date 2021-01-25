@@ -9,11 +9,11 @@ Vue.component("common-styling-editor", {
                 
                 <activity-editor-subpanel label="Spaziatura" :level="level+1">
                     <editor-field  label="Padding">
-                        <defaulted-quad-input-form-unit :target="commonData.spacingData.padding" :defaults="selectedMissionDefaults.commonData.spacingData.padding"></defaulted-quad-input-form-unit>
+                        <defaulted-quad-input-form-unit :target="commonData.spacingData.padding" :defaults="selectedMissionDefaults.commonData.spacingData.padding" :possibleUnits="commonUnits"></defaulted-quad-input-form-unit>
                     </editor-field>
                     
                     <editor-field  label="Margine">
-                        <defaulted-quad-input-form-unit :target="commonData.spacingData.margin" :defaults="selectedMissionDefaults.commonData.spacingData.margin"></defaulted-quad-input-form-unit>
+                        <defaulted-quad-input-form-unit :target="commonData.spacingData.margin" :defaults="selectedMissionDefaults.commonData.spacingData.margin" :possibleUnits="commonUnits"></defaulted-quad-input-form-unit>
                     </editor-field>
                 </activity-editor-subpanel>
             </activity-editor-subpanel>
@@ -30,7 +30,7 @@ Vue.component("common-styling-editor", {
   },
 
   computed: {
-    ...Vuex.mapGetters(["selectedMissionDefaults"]),
+    ...Vuex.mapGetters(["selectedMissionDefaults", "commonUnits"]),
   },
 });
 

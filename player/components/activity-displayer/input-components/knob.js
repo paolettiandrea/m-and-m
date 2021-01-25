@@ -9,11 +9,73 @@ const mapRange = (x, inMin, inMax, outMin, outMax) => {
 };
 
 
+Vue.component('knob-input', {
+    template: `
+    <div>
+        <knob v-model="yo" @input="newValue" :primaryColor="inputData.primaryColor" :secondaryColor="inputData.secondaryColor"></knob>
+    </div>`,
+
+    props: {
+        inputData: null
+    },
+
+    data() {
+        return {
+            yo: 0
+        }
+    },
+
+    methods: {
+        newValue(newVal) {
+            console.log(newVal)
+            if (newVal>90) {
+                this.$emit('input-received', this.inputData.outcome)
+            }
+        }
+    }
+})
+
+Vue.component('knob-input-editor', {
+    template: `
+    <div>
+        <defaulted-dropdown :options="['azione']" :targetContainer="inputData" targetFieldName="mode" defaultVal="Scegli la modalita'">
+            <template v-slot:default="slotProps">
+                <p class="editor-text">{{slotProps.option}}</p>
+            </template>
+        </defaulted-dropdown>
+
+        <div v-if="inputData.mode==='azione'">
+            <activity-editor-subpanel label="Esito">
+                <next-activity-outcome-editor :outcomeData="inputData.outcome"></next-activity-outcome-editor>
+            </activity-editor-subpanel>
+
+            <activity-editor-subpanel label="Colori">
+
+                <editor-field label="Colore primario">
+                    <b-input v-model="inputData.primaryColor" type="color"></b-input>
+                </editor-field>
+
+                <editor-field label="Colore secondario">
+                    <b-input v-model="inputData.secondaryColor" type="color"></b-input>
+                </editor-field>
+            </activity-editor-subpanel>
+        </div>
+    </div>`,
+
+    data() {
+        return {
+        }
+    },
+    props: {
+        inputData: null
+    },
+})
+
+
 Vue.component('knob', {
     template: `
     <div style="text-align:center;">
     <div class="knob-control" :style="style">
-    <p style="text-align:center; font-family:American Typewriter; text-align:center; font-style:serif;">Stabilisci il valore: </p>
         <svg :width="computedSize" :height="computedSize" viewBox="0 0 100 100"
             @click="onClick"
             @mousedown="onMouseDown"
@@ -46,7 +108,7 @@ Vue.component('knob', {
               {{valueDisplay}}
             </text>
         </svg>
-  <b-button variant="info" style="margin:10%;">Scegli</b-button>
+  <!-- <b-button variant="info" style="margin:10%;">Scegli</b-button> -->
     </div>
 
     </div>`,
