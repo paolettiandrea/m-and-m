@@ -39,3 +39,52 @@ Vue.component('activity-picker', {
         }
     }
 })
+
+Vue.component('confirm-button', {
+    template: `<div>
+        <b-button @click="showModal">
+            <b-icon :icon="icon"></b-icon>
+        </b-button>
+        <b-modal :ref="modalId" hide-footer title="Conferma l'operazione">
+            <p class="editor-text"> {{confirmPrompt}}</p>
+            <b-button :variant="confirmVariant" @click="confirmedCallback">Conferma</b-button>
+            <b-button :variant="cancelVariant" @click="cancelCallback">Annulla</b-button>
+        </b-modal>
+    </div>`,
+
+    props: {
+        icon: "",
+        confirmPrompt: "",
+        swapVariant: false
+    },
+
+    computed: {
+        modalId() {
+            return "confirm-button-" + this.key;
+        },
+
+
+        confirmVariant() {
+            if (this.swapVariant) { return "danger"} else { return "primary"};
+        },
+        cancelVariant() {
+            if (!this.swapVariant) { return "danger"} else { return "primary"};
+        }
+
+    },
+
+    methods: {
+        showModal() {
+            this.$refs[this.modalId].show();
+        },
+        confirmedCallback() {
+            console.log("Cancel confirmed")
+            this.$emit('confirmed')
+            this.$refs[this.modalId].hide();
+        },
+        cancelCallback() {
+            this.$refs[this.modalId].hide();
+        }
+    }
+
+})

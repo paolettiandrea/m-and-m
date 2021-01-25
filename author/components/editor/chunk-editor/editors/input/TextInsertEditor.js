@@ -24,7 +24,7 @@ Vue.component('text-input-possibility-editor', {
         possibleOperators() {
 
             switch (this.possibilityData.inputType) {
-                case "string": { return [{value: "eq", text: "="}, {value: 'eqw', text: '= (ignora spazi)'}]}
+                case "string": { return [{value: "eq", text: "="}, {value: 'eqw', text: '= (ignora spazi e maiuscole)'}]}
                 case "number": { return [{value: "eq", text: '='}, {value: "lt", text:"<"} , {value: "gt", text: ">"} ]}
             }
         }

@@ -28,7 +28,9 @@ Vue.component('editor-main', {
                                 <template slot="button-content">
                                     <b-icon icon="gear"></b-icon>
                                 </template>
-                                <b-dropdown-item href="#"><b-button v-on:click="deleteSelectedActivity" variant="outline-danger"><b-icon icon="trash"></b-icon> Cancella </b-button></b-dropdown-item>
+                                <b-dropdown-item href="#">
+                                    <confirm-button icon="trash" key="deleteActivity" confirmPrompt="Sei sicuro di voler eliminare l'attivita'?" @confirmed="deleteSelectedActivity" :swapVariant="true"></confirm-button>
+                                </b-dropdown-item>
                             </b-nav-item-dropdown>
                         </b-navbar-nav> 
                     </b-navbar>

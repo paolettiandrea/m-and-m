@@ -1,4 +1,3 @@
-// TODO funziona con larghezza variabile?
 Vue.component("click-img", {
     template: `
     <div style="width: 100%" >
@@ -14,11 +13,10 @@ Vue.component("click-img", {
     },
     methods: {
         imgClick(areaData) {
-            alert("Found area: [" + areaData.alt + "]");
             this.$emit('input-received', areaData.outcome);
         },
         test() {
-            alert("No area here");
+            console.log("Clicked on a part of the click image that doesn't have any outcome associated with it. Doing nothing.")
         }
     }
 

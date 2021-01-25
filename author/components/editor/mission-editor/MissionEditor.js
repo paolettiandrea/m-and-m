@@ -17,22 +17,13 @@ Vue.component("mission-editor", {
                     <b-icon icon="play"></b-icon> 
                 </b-button>
                 <b-button @click="pasteActivity">Incolla attivita</b-button>
-                        <b-button v-if="!isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(true)" variant="outline-secondary">Defaults </b-button>
-                        <b-button v-if="isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(false)" variant="outline-secondary">Grafico attivita </b-button>
-                <b-nav-item-dropdown right variant="primary">
-                    <template slot="button-content">
-                        <b-icon icon="gear"></b-icon>
-                    </template>
-                    <b-dropdown-item href="#"><b-button v-on:click="deleteSelectedMission" variant="outline-danger"><b-icon icon="trash"></b-icon> Cancella </b-button></b-dropdown-item>
-                    <b-dropdown-item href="#">
-                        <b-button v-b-modal.modal-1><b-icon icon="upc-scan"></b-icon> QR Code</b-button>
-                        
-                          <b-modal id="modal-1" title="QR Code">
-                            <b-img :src="'/' + selectedMissionId + '/qrCode.svg'" fluid></b-img>
-                            <p class="editor-text"> Questo codice può essere inquadrato dal player per lanciare la missione.</p>
-                          </b-modal>
-                    </b-dropdown-item>
-                </b-nav-item-dropdown>
+                      <b-button v-if="!isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(true)" variant="outline-secondary">Defaults </b-button>
+                      <b-button v-if="isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(false)" variant="outline-secondary">Grafico attivita </b-button>
+                      <b-button v-b-modal.modal-1><b-icon icon="upc-scan"></b-icon> QR Code</b-button>
+                      <b-modal id="modal-1" title="QR Code">
+                          <b-img :src="'/' + selectedMissionId + '/qrCode.svg'" fluid></b-img>
+                          <p class="editor-text"> Questo codice può essere inquadrato dal player per lanciare la missione.</p>
+                      </b-modal>
             </b-navbar-nav> 
         </b-navbar>
         

@@ -9,7 +9,7 @@ Vue.component('mission-displayer', {
                     </div>
             </transition>
             <div v-if="missionEnded">
-            <lastScreen-displayer></lastScreen-displayer>
+            <lastScreen-displayer :score="missionScore"></lastScreen-displayer>
         </div>
             <chat></chat>
            
@@ -55,7 +55,6 @@ Vue.component('mission-displayer', {
                 this.missionEnded = true;
                 this.pointedActivity = null;
 
-                socket.emit('mission-ended');
             }
             // var i = 0;
             // for (const activity of this.missionData.activities) {
