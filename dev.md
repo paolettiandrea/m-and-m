@@ -165,12 +165,13 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 
 Bug autore:
 -  cancellare riferimento next attivita' duplicata
-- avoid deletion of initial activity
 
 
 
 - riattaccare evento hint
 - aggiungi placeholder text editabile per text insert
+- download qrCode
+- download and upload mission
 
 
 
