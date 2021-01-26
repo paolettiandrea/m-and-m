@@ -21,8 +21,9 @@ Vue.component("mission-editor", {
                       <b-button v-if="isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(false)" variant="outline-secondary">Grafico attivita </b-button>
                       <b-button v-b-modal.modal-1><b-icon icon="upc-scan"></b-icon> QR Code</b-button>
                       <b-modal id="modal-1" title="QR Code">
-                          <b-img :src="'/' + selectedMissionId + '/qrCode.svg'" fluid></b-img>
+                          <b-img :src="qrCodePath" fluid></b-img>
                           <p class="editor-text"> Questo codice può essere inquadrato dal player per lanciare la missione.</p>
+                          <b-button @click="downloadQrCode">Download</b-button>
                       </b-modal>
             </b-navbar-nav> 
         </b-navbar>
@@ -55,6 +56,9 @@ Vue.component("mission-editor", {
       isWaitingForActivityClick: "isWaitingForActivityClick",
     }),
 
+    qrCodePath() {
+      return '/' + this.selectedMissionId + '/qrCode.svg';
+    },
     uberDefaults() {
       return uberDefaults;
     },
@@ -81,6 +85,24 @@ Vue.component("mission-editor", {
     playMission() {
       window.location.href = "/player?missionId=" + this.selectedMissionId;
     },
+    downloadQrCode() {
+      console.log("downloading Qr Code");
+      axios({
+        url: this.qrCodePath,
+        method: 'GET',
+        responseType: 'blob',
+    
+    }).then((response) => {
+         var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+         var fileLink = document.createElement('a');
+      
+         fileLink.href = fileURL;
+         fileLink.setAttribute('download', this.missionHead.title + '-QrCode.svg');
+         document.body.appendChild(fileLink);
+       
+         fileLink.click();
+    });
+    }
   },
 
   mounted() {
