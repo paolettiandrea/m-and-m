@@ -52,8 +52,8 @@ Vue.component("activity-displayer", {
                 <slot name="input-placeholder"></slot>
             </div>
 
-            // TODO CHAT (affianco) OMAR pulsante indizio 
-            <b-button @click="tempAskForHint">Indizio</b-button>
+            <!--// TODO CHAT (affianco) OMAR pulsante indizio 
+            <b-button @click="tempAskForHint">Indizio</b-button> -->
             
             
 </styling-wrapper>

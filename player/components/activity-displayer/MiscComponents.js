@@ -30,6 +30,7 @@ Vue.component("chat", {
     template: `<div>
     
     <img class="chat-icon" src="chatimg.png" width="50" height="50" v-on:click="openForm">
+    <img class="chat-icon2" src="infoo.png" width="50" height="50" v-on:click="test()">
 
 
     <div class="chat-popup" id="myForm">
@@ -69,7 +70,9 @@ data() {
             document.getElementById("myForm").style.display = "none";
         },
         test(){
-            alert("ok");
+            this.youMessage= 'Il player ha chiesto un suggerimento!';
+            this.messages.push({body: this.youMessage, author: 'you'})
+              socket.emit('message-for-supervisor', this.youMessage);
         },
         sendMessage(direction) {
       
@@ -78,6 +81,7 @@ data() {
               return
             }
             if (direction === 'out') {
+                
               this.messages.push({body: this.youMessage, author: 'you'})
               socket.emit('message-for-supervisor', this.youMessage);
               this.youMessage = ''
