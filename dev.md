@@ -160,7 +160,6 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 
 ### `multiple-checkboxes`
 
-- autore manopola (massimo, minimo e colore)
 - abilitare pulsante Gioca menu missioni e aggiungere pulsanti creazione/duplicazione missione
 - ri-aggiungere pulsante ritorno al menu missioni
 
