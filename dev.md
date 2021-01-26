@@ -170,7 +170,6 @@ Bug autore:
 
 - riattaccare evento hint
 - aggiungi placeholder text editabile per text insert
-- download qrCode
 - download and upload mission
 
 

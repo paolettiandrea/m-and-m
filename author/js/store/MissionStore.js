@@ -76,7 +76,10 @@ let MissionModule = {
             state.pickingActivityMode = false;
         },
 
-
+        updateMissionFromJson(state, {missionId, data}) {
+            console.log("updating mission from json", state.activeMissions[missionId])
+            Vue.set(state.activeMissions[missionId], 'content', JSON.parse(data))
+        }
     },
 
     actions: {
@@ -151,6 +154,12 @@ let MissionModule = {
             axios.get("/missions/new").then((res) => {
                 context.commit('addMission', res.data);
             })
+        },
+
+        updateSelectedMissionFromJson(context, data) {
+            console.log("usdfsdfds");
+            console.log(data);
+            context.commit('updateMissionFromJson', {missionId: context.getters.selectedMissionId, data: data})
         },
 
         updateSelectedMission(context) {
