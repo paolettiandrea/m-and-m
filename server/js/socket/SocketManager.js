@@ -1,4 +1,5 @@
 const {Player, Supervisor} = require('./SocketUtils.js')
+const {getMissionRankings, addMissionScore} = require('../altDbController.js')
 
 let io = null;
 
@@ -98,11 +99,23 @@ function initialize(server) {
                 console.log('Player ' + id  +' has ended a mission');
                 let targetPlayer = players[id];
 
-                let missionRecap = {
-                    playTime: (Date.now() - targetPlayer.connectionTime)/1000,
-                }
 
-                targetPlayer.socket.emit('mission-recap', missionRecap)
+                getMissionRankings(targetPlayer.playingMissionId).then((rankings) => {
+
+                    console.log("Adding ranking to mission recap")
+                    console.log(rankings);
+                    let missionRecap = {
+                        playTime: (Date.now() - targetPlayer.connectionTime)/1000,
+                        rankings: rankings
+                    }
+                    targetPlayer.socket.emit('mission-recap', missionRecap)
+                })
+            })
+
+            socket.on('new-score', (score) => {
+                console.log("Received new score: ", score);
+                let targetPlayer = players[id];
+                addMissionScore(targetPlayer.playingMissionId, score);
             })
             
             socket.on('disconnect', () => {

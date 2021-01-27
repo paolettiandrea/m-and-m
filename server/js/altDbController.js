@@ -3,8 +3,10 @@ const path = require("path");
 const uuid = require("uuid");
 const utils = require(path.join(__dirname, "/Utils.js"));
 var qr = require("qr-image");
+const { resolve } = require("path");
 
 const missionContentFileName = "missionContent.json";
+const missionRankingFileName = "rankings.json";
 const missionQrCodeFileName = "qrCode.svg";
 
 let basePath = "/webapp/data/tempp/";
@@ -104,14 +106,21 @@ async function newMission() {
           fs.createWriteStream(qrPath)
         );
         console.log("Creating the conte file");
-        fs.writeFile(
-          path.join(missionPath, missionContentFileName),
-          JSON.stringify(newMissionTemplate.missionContent, null, 2),
-          (err) => {
-            if (err) resolve(err);
-            else resolve({ yo: "adad" });
+       
+        fs.writeFile(path.join(missionPath, missionRankingFileName), JSON.stringify([]), (err) => {
+          if (err) resolve (err);
+          else {
+            console.log("Created ranking file")
+            fs.writeFile(
+              path.join(missionPath, missionContentFileName),
+              JSON.stringify(newMissionTemplate.missionContent, null, 2),
+              (err) => {
+                if (err) resolve(err);
+                else resolve({ yo: "adad" });
+              }
+            );
           }
-        );
+        })
 
         // fs.mkdir(missionPath + '/resources/', {recursive: true}, (err) => {
         //     if (err) resolve(err);})
@@ -172,6 +181,33 @@ async function updateMission(missionData) {
   });
 }
 
+async function getMissionRankings(missionId) {
+  return new Promise((resolve) => { 
+    fs.readFile(path.join(missionDirectory(missionId), missionRankingFileName), "utf-8",  (err, res) => {
+    if (err) throw err;
+    console.log("Reading rankings: ", JSON.parse(res));
+    resolve(JSON.parse(res))
+    })
+  })
+}
+
+async function addMissionScore(missionId, missionScore) {
+  return new Promise((resolve) => {
+    console.log(missionId)
+    getMissionRankings(missionId).then((rankings) => {
+      rankings.push(missionScore);
+      fs.writeFile(path.join(missionDirectory(missionId), missionRankingFileName), JSON.stringify(rankings, null, 2), (err) => {
+        if (err) throw err;
+        else 
+        {
+          console.log("Added score: ", missionScore)
+          resolve()
+        }
+      })
+    })
+  })
+}
+
 module.exports = {
   newMission,
   deleteMission,
@@ -180,6 +216,8 @@ module.exports = {
   getMissionContent,
   deleteDbDir,
   initializeDb,
+  getMissionRankings,
+  addMissionScore,
 
   missionsDir,
 };

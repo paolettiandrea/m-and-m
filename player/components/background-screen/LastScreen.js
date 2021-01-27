@@ -16,9 +16,31 @@ Vue.component('lastScreen-displayer', {
                 <div v-if="missionRecap">
                   <p>Tempo: {{missionRecap.playTime}}</p>
                 </div>
+                <b-form-group label="Inserisci il tuo nome">
+                  <b-form-input v-model="playerInputName"></b-form-input>
 
-                <div v-if="missionRecap.ranking">
-                  
+                  <b-button @click="sendScore">Manda</b-button>
+                </b-form-group>
+
+                <div v-if="missionRecap && missionRecap.rankings">
+                  <b-table :items="missionRecap.rankings" :fields= "[
+          {
+            key: 'playerName',
+            sortable: false,
+            label: 'Nome'
+          },
+          {
+            key: 'playTime',
+            sortable: true,
+            label: 'Tempo'
+          },
+          {
+            key: 'score',
+            label: 'Punteggio',
+            sortable: true,
+            // Variant applies to the whole column, including the header and footer
+          }
+        ]"></b-table> 
                 </div>
               </div>
             </div>
@@ -35,8 +57,21 @@ Vue.component('lastScreen-displayer', {
     },
 
     data() { return {
-      missionRecap: null
+      missionRecap: null,
+      playerInputName: ""
     }},
+
+    methods: {
+      sendScore(yo) {
+        console.log('Sending score with name ', yo);
+        console.log('Mission recap', this.missionRecap);
+        socket.emit('new-score', {
+          playerName: this.playerInputName,
+          playTime: this.missionRecap.playTime,
+          score: this.score
+        })
+      }
+    },
 
     mounted() {
       console.log("Mission ended");
