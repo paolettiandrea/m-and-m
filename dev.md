@@ -163,6 +163,11 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 - abilitare pulsante Gioca menu missioni e aggiungere pulsanti creazione/duplicazione missione
 - ri-aggiungere pulsante ritorno al menu missioni
 - aggiungi placeholder text editabile per text insert
+- campo altezza per il video
+- menu player (accessibile)
+- fronzolini di differenziazione tra singoli/gruppi/classi
+  - numero singoli/gruppi/classi attivi
+  - classifiche visualizzate diversamente (?)
 
 Bug autore:
 -  cancellare riferimento next attivita' duplicata
@@ -176,10 +181,11 @@ Bug autore:
 
 - Animazioni
 - Custom font
+- Allineamento orizzontale bottoni (o immagini/suoni) multiple choice
 
 
 ## Cose da fare nel player
 - pulsante hint da un qualche feedback quando l'hint e' stato richiesto?
 - pulsante chat evidenziato quando arrivano nuovi messaggi?
-- leggibilita' score
+- schermata finale
 

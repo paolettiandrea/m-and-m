@@ -13,6 +13,7 @@ Vue.component("click-img", {
     },
     methods: {
         imgClick(areaData) {
+            console.log(this.inputData)
             this.$emit('input-received', areaData.outcome);
         },
         test() {

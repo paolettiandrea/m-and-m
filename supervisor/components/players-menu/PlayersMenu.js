@@ -17,7 +17,7 @@ Vue.component("player-menu-card", {
     
             <b-card href="#" @click="playerClicked(player.id)" :class="{'selected-player-card': isPlayerSelected, 'pending-player-card': isPlayerPending}">
                 <template #header>
-                    <h6>{{player.id}}</h6>
+                    <editable-text :targetObject="player" targetFieldName="givenName" :placeholder="player.id"></editable-text>
                 </template>
             
                 <div v-if="playingMissionData && playingActivityData">

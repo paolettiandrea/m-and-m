@@ -6,7 +6,7 @@ Vue.component("mission-editor", {
     <div>
         <b-navbar class="mm-navbar-primary">
             <b-navbar-brand href="#">
-                <b-form-input size="sm" v-model="missionHead.title" style="padding: 0px"></b-form-input>
+                <editable-text :targetObject="missionHead" targetFieldName="title"></editable-text>
             </b-navbar-brand>
             
             <b-navbar-nav class="ml-auto" v-if="isMissionSelected">
