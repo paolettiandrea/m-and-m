@@ -7,7 +7,8 @@ Vue.component('editable-text', {
 
     props: {
         targetObject: null,
-        targetFieldName: ""
+        targetFieldName: "",
+        placeholder: ""
     },
 
     data() {
@@ -24,7 +25,11 @@ Vue.component('editable-text', {
 
     computed: {
         label() {
-            return this.targetObject[this.targetFieldName]
+            let target =  this.targetObject[this.targetFieldName]
+            if (target) {return target}
+            else {
+                return this.placeholder
+            }
         }
     }
 })
