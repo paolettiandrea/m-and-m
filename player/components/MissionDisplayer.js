@@ -82,13 +82,14 @@ Vue.component('mission-displayer', {
 
             socket.emit('starting-mission', missionId)
             socket.emit('starting-activity', 'initial');
-        } else {
-            axios.
-            get("/player/data/dummyMission.json").
-            then(res => {
-                this.missionData = res.data;
-                this.pointedActivity = this.missionData.activities.initial;
-            })
-        }
+        } 
+        // else {
+        //     axios.
+        //     get("/player/data/dummyMission.json").
+        //     then(res => {
+        //         this.missionData = res.data;
+        //         this.pointedActivity = this.missionData.activities.initial;
+        //     })
+        // }
     },
 })
