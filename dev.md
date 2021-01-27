@@ -162,15 +162,12 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 
 - abilitare pulsante Gioca menu missioni e aggiungere pulsanti creazione/duplicazione missione
 - ri-aggiungere pulsante ritorno al menu missioni
+- aggiungi placeholder text editabile per text insert
 
 Bug autore:
 -  cancellare riferimento next attivita' duplicata
 
 
-
-- riattaccare evento hint
-- aggiungi placeholder text editabile per text insert
-- download and upload mission
 
 
 
@@ -180,4 +177,9 @@ Bug autore:
 - Animazioni
 - Custom font
 
+
+## Cose da fare nel player
+- pulsante hint da un qualche feedback quando l'hint e' stato richiesto?
+- pulsante chat evidenziato quando arrivano nuovi messaggi?
+- leggibilita' score
 

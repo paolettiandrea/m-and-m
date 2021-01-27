@@ -70,9 +70,10 @@ data() {
             document.getElementById("myForm").style.display = "none";
         },
         test(){
-            this.youMessage= 'Il player ha chiesto un suggerimento!';
-            this.messages.push({body: this.youMessage, author: 'you'})
-              socket.emit('message-for-supervisor', this.youMessage);
+            socket.emit('need-hint')
+            // this.youMessage= 'Il player ha chiesto un suggerimento!';
+            // this.messages.push({body: this.youMessage, author: 'you'})
+            //   socket.emit('message-for-supervisor', this.youMessage);
         },
         sendMessage(direction) {
       
