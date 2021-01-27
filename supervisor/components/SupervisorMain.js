@@ -28,7 +28,7 @@ Vue.component("player-main-panel", {
           </activity-displayer>
         </b-col>
         <b-col cols="6" style="display: flex; flex-direction:column">
-            <p style="flex:0"> Controls </p>
+            
             <pending-actions-panel id="pending-actions-panel" class="side-panel" style="flex:1"></pending-actions-panel>
             <chat style="flex: 1" :chat="selectedPlayerChat" class="side-panel"></chat>
         </b-col>
