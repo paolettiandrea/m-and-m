@@ -171,6 +171,7 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 
 Bug autore:
 -  cancellare riferimento next attivita' duplicata
+- save archiving to server
 
 
 
