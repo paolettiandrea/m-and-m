@@ -18,7 +18,7 @@ Vue.component('editor-main', {
                 <b-col style="flex: 2" v-if="selectedActivity" class="full-height no-horizontal-padding" key="2">
                     <b-navbar class="mm-navbar-activity">
                         <b-navbar-brand href="#">
-                            <b-form-input size="sm" v-model="selectedActivity.title" style="padding: 0px"></b-form-input>
+                            <editable-text :targetObject="selectedActivity" targetFieldName="title"></editable-text>
                         </b-navbar-brand>
                     
                         <b-navbar-nav class="ml-auto">
