@@ -1,5 +1,5 @@
 export default {
-    template: `
+  template: `
         <div >
             <b-row no-gutters>
                 <b-col>
@@ -22,32 +22,33 @@ export default {
                
     </div>`,
 
-    computed: Vuex.mapGetters(['activeMissions']),
-    methods: {
-        ...Vuex.mapActions([
-            'selectMission', 'createMission'
-        ]),
-        handleMissionSelectionRequest(newSelectionData) {
-            if (this.selected) {this.selected.deselectionCallback()}
-            this.selected = newSelectionData;
-            if (this.selected) {this.selected.selectionCallback();}
-            this.$emit('mission:selection:changed', newSelectionData);
-        },
-        handleMissionDeleted(deletedMissionHead) {
-            for (let j = 0; j < this.availableMissions.length; j++) {
-                if (this.availableMissions[j]._id===deletedMissionHead._id) {
-                    this.availableMissions.splice(j, 1);
-                    this.handleMissionSelectionRequest(null);
-                    break;
-                }
-            }
-
+  computed: Vuex.mapGetters(["activeMissions"]),
+  methods: {
+    ...Vuex.mapActions(["selectMission", "createMission"]),
+    handleMissionSelectionRequest(newSelectionData) {
+      if (this.selected) {
+        this.selected.deselectionCallback();
+      }
+      this.selected = newSelectionData;
+      if (this.selected) {
+        this.selected.selectionCallback();
+      }
+      this.$emit("mission:selection:changed", newSelectionData);
+    },
+    handleMissionDeleted(deletedMissionHead) {
+      for (let j = 0; j < this.availableMissions.length; j++) {
+        if (this.availableMissions[j]._id === deletedMissionHead._id) {
+          this.availableMissions.splice(j, 1);
+          this.handleMissionSelectionRequest(null);
+          break;
         }
-    }
-}
+      }
+    },
+  },
+};
 
-Vue.component('mission-info-card', {
-    template: `<b-card :img-src="'/' + mission.id + '/qrCode.svg'" img-alt="Card image" img-right img-height="200px" img-width="200px">
+Vue.component("mission-info-card", {
+  template: `<b-card :img-src="'/' + mission.id + '/qrCode.svg'" img-alt="Card image" img-right img-height="200px" img-width="200px">
         <b-card-body>
             <b-card-title>{{mission.head.title}}</b-card-title>
             <b-card-sub-title class="mb-2">{{mission.head.summary}}</b-card-sub-title>
@@ -56,7 +57,8 @@ Vue.component('mission-info-card', {
                 <b-button-toolbar key-nav>
                     <b-button-group>
                         <b-button @click="selectMission(mission.id)">Modifica</b-button>
-                        <b-button @click="">Gioca</b-button>
+                        <b-button v-if="!mission.archived" @click="">Gioca</b-button>
+                        <b-button @click="downloadRanking">Download ranking</b-button>
                     </b-button-group>
                     <b-button-group>
                         <b-button v-if="!mission.archived" @click="archive()">Archivia</b-button>
@@ -70,20 +72,36 @@ Vue.component('mission-info-card', {
         </b-card-body>
     </b-card>`,
 
-    props: {
-        mission: null
-    } ,
-     methods: {
-        ...Vuex.mapActions([
-            'selectMission', 'createMission', 'deleteMission'
-        ]),
+  props: {
+    mission: null,
+  },
+  methods: {
+    ...Vuex.mapActions(["selectMission", "createMission", "deleteMission"]),
 
-        publish() {
-            Vue.set(this.mission, "archived", false);
-        },
-        archive() {
-            Vue.set(this.mission, "archived",true);
-            // TODO save on server
-        },
-    }
-})
+    downloadRanking() {
+      axios.get("/missions/rankings/" + this.mission.id).then((res) => {
+        let rankings = res.data;
+        console.log("Got rankings response:", rankings);
+        var fileURL = window.URL.createObjectURL(new Blob([JSON.stringify(rankings, null, 2)]));
+        var fileLink = document.createElement("a");
+
+        fileLink.href = fileURL;
+        fileLink.setAttribute(
+          "download",
+          "Classifica" + this.mission.head.title + ".json"
+        );
+        document.body.appendChild(fileLink);
+
+        fileLink.click();
+      });
+    },
+
+    publish() {
+      Vue.set(this.mission, "archived", false);
+    },
+    archive() {
+      Vue.set(this.mission, "archived", true);
+      // TODO save on server
+    },
+  },
+});
