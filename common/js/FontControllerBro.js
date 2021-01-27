@@ -14,7 +14,7 @@ function loadGoogleFonts(fontFamilyArray) {
 }
 
 // Builds a dictionary of the top n Google fonts with all the information needed for download
-export class FontDB {
+class FontDB {
     constructor(fontNumber) {
         this.fontDictionary = {}
         this.fontOrderArray = []
@@ -40,6 +40,4 @@ export class FontDB {
     }
 
 }
-
-
 

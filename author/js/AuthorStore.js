@@ -78,7 +78,7 @@ const store = new Vuex.Store({
             context.dispatch('initializeMissionModule');
             context.dispatch('initializeActivityModule');
 
-            context.commit('initializeFontDB', 20);
+            context.commit('initializeFontDB', 50);
         },
 
         setMissionSettingsPanel(context, open) {
