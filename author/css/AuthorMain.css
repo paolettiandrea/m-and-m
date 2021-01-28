@@ -237,3 +237,7 @@
     text-align: left !important;
 }
 
+.mission-card-button-toolbar div {
+    padding-right: 0.3em;
+}
+

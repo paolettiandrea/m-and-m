@@ -42,7 +42,7 @@ Vue.component('activity-picker', {
 
 Vue.component('confirm-button', {
     template: `<div>
-        <b-button @click="showModal">
+        <b-button :variant="variant" @click="showModal">
             <b-icon :icon="icon"></b-icon>
         </b-button>
         <b-modal :ref="modalId" hide-footer title="Conferma l'operazione">
@@ -55,7 +55,8 @@ Vue.component('confirm-button', {
     props: {
         icon: "",
         confirmPrompt: "",
-        swapVariant: false
+        swapVariant: false,
+        variant: {default: 'primary'}
     },
 
     computed: {
