@@ -27,9 +27,17 @@ Vue.component("qr-reader", {
 
 Vue.component("chat", {
     template: `<div>
-    
+    <div class="notification">
     <img class="chat-icon" src="chatimg.png" width="50" height="50" v-on:click="openForm">
-    <img class="chat-icon2" src="infoo.png" width="50" height="50" v-on:click="test()">
+    <img class="chat-icon2" src="info.png" width="50" height="50" v-on:click="test()">
+    <div id="not" class="badge">
+    <span>{{msg}}</span>
+    </div>
+    <div id="not2" class="badge2">
+    <span>...</span>
+    </div>
+    </div>
+    
 
 
     <div class="chat-popup" id="myForm">
@@ -54,6 +62,7 @@ Vue.component("chat", {
 
 data() {
     return{
+        msg: 0,
         bobMessage: '', 
         youMessage: '', 
         messages: []
@@ -67,6 +76,9 @@ data() {
         },
         closeForm() {
             document.getElementById("myForm").style.display = "none";
+            document.getElementById("not").style.display= "none";
+            this.msg=0;
+        
         },
         test(){
             socket.emit('need-hint')
@@ -104,6 +116,8 @@ data() {
     mounted() {
         socket.on('message-from-supervisor', (message) => {
             this.messages.push({body: message, author: 'bob'})
+            this.msg++;
+            document.getElementById("not").style.display = "block";
         })
     }
 
