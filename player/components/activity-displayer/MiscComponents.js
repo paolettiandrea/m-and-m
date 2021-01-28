@@ -7,7 +7,7 @@ Vue.component("qr-reader", {
         <input type=text size=16 placeholder="Premi sul QR code" class=qrcode-text>
 
         <label class=qrcode-text-btn>
-            <input type=file accept="image/*" capture=environment onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex=-1>
+            <input aria-label="Scansiona un qr code" type=file accept="image/*" capture=environment onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex=-1>
         </label>
         </div>
 
