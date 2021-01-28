@@ -28,8 +28,8 @@ Vue.component("qr-reader", {
 Vue.component("chat", {
     template: `<div>
     <div class="notification">
-    <img class="chat-icon" src="chatimg.png" width="50" height="50" v-on:click="openForm" role="button" alt="Chat">
-    <img class="chat-icon2" src="info.png" width="50" height="50" v-on:click="test()" role="button" alt="Chiedi un indizio">
+    <img class="chat-icon" src="chatimg.png" width="50" height="50" v-on:click="openForm" role="button" aria-label="Chat">
+    <img class="chat-icon2" src="info.png" width="50" height="50" v-on:click="test()" role="button" aria-label="Chiedi un indizio">
     <div id="not" class="badge">
     <span>{{msg}}</span>
     </div>
@@ -45,9 +45,9 @@ Vue.component("chat", {
 
             <h5 style="color:black;">Chat supervisore</h5>
 
-            <img width="25" height="25" v-on:click="closeForm" src="chiudi.jpg" role="button" alt="Chiudi" tab-index="0">
+            <img width="25" height="25" v-on:click="closeForm" src="chiudi.jpg" role="button" aria-label="Chiudi" tab-index="0">
 
-            <section ref="chatArea" class="chat-area" tab-index="1" alt="Messaggi ricevuti">
+            <section ref="chatArea" class="chat-area" tab-index="1" role="Navigation" aria-label="Messaggi ricevuti">
                 <p v-for="message in messages" class="message" :class="{ 'message-out': message.author === 'you', 'message-in': message.author !== 'you' }">
                 {{ message.body }}
                 </p>
