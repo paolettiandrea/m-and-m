@@ -1,7 +1,7 @@
 Vue.component('video-displayer', {
     template: `
     <div  :align="contentData.pos">
-        <iframe style="width: 100%" :src="embedUrl">
+        <iframe style="width: 100%" :style="{'height': contentData.height}" :src="embedUrl">
         </iframe>
     </div>
     `,

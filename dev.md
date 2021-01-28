@@ -160,10 +160,7 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 
 ### `multiple-checkboxes`
 
-- abilitare pulsante Gioca menu missioni e aggiungere pulsanti creazione/duplicazione missione
-- ri-aggiungere pulsante ritorno al menu missioni
 - aggiungi placeholder text editabile per text insert
-- campo altezza per il video
 - fronzolini di differenziazione tra singoli/gruppi/classi
   - numero singoli/gruppi/classi attivi
   - classifiche visualizzate diversamente (?)
@@ -174,6 +171,7 @@ Bug autore:
 
 
 
+- aggiungere pulsanti creazione/duplicazione missione
 - raffinare menu player (accessibile)
 
 

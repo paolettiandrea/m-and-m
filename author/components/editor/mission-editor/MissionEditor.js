@@ -4,33 +4,33 @@ import { v1 as uuidv1 } from "/uuid/dist/esm-browser/index.js";
 Vue.component("mission-editor", {
   template: `
     <div>
-        <b-navbar class="mm-navbar-primary">
+        <b-navbar>
             <b-navbar-brand href="#">
                 <editable-text :targetObject="missionHead" targetFieldName="title"></editable-text>
             </b-navbar-brand>
             
             <b-navbar-nav class="ml-auto" v-if="isMissionSelected">
-                <b-button  v-on:click="updateSelectedMission" :disabled="isMissionUpdated"  variant="secondary-primary">
+                <tooltip-button  v-on:click="updateSelectedMission" :disabled="isMissionUpdated"  tooltip="Salva in remoto">
                     <b-icon icon="cloud-upload" aria-hidden="true"></b-icon>
-                </b-button>
-                <b-button @click="playMission"> 
+                </tooltip-button>
+                <tooltip-button @click="playMission" tooltip="Gioca missione"> 
                     <b-icon icon="play"></b-icon> 
-                </b-button>
-                <b-button @click="pasteActivity">Incolla attivita</b-button>
-                      <b-button v-if="!isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(true)" variant="outline-secondary"><b-icon icon="gear"></b-icon></b-button>
+                </tooltip-button>
+                <tooltip-button @click="pasteActivity" tooltip="Incolla attivita'">Incolla attivita</tooltip-button>
+                      <tooltip-button v-if="!isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(true)" tooltip="Impostazioni"><b-icon icon="gear"></b-icon></tooltip-button>
                       <b-button v-if="isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(false)" variant="outline-primary"><b-icon icon="gear"></b-icon></b-button>
-                      <b-button v-b-modal.modal-1><b-icon icon="upc-scan"></b-icon></b-button>
+                      <tooltip-button v-b-modal.modal-1 tooltip="Qr Code"><b-icon icon="upc-scan"></b-icon></tooltip-button>
                       <b-modal id="modal-1" title="QR Code">
                           <b-img :src="qrCodePath" fluid></b-img>
                           <p class="editor-text"> Questo codice può essere inquadrato dal player per lanciare la missione.</p>
                           <b-button @click="downloadQrCode">Download</b-button>
                       </b-modal>
+                      <tooltip-button tooltip="Chiudi" variant="danger" @click="deselectMission"><b-icon icon="x"></b-icon></tooltip-button>
             </b-navbar-nav> 
         </b-navbar>
         
 
         <div  class="full-flex vertical-scroll" style="overflow: hidden">
-
             <div v-if="isMissionSettingsPanelOpen""style="height: 50%; overflow: auto">
                 <mission-defaults-editor :defaults="missionContent.defaults" :uberDefaults="uberDefaults" :missionContent="missionContent"></mission-defaults-editor>
                 <activity-editor-subpanel label="Gestione da file">
@@ -96,6 +96,7 @@ Vue.component("mission-editor", {
       "setMissionSettingsPanel",
       "deleteActivityClickedCallback",
       "pasteActivity",
+      "deselectMission"
     ]),
     updateFromFile() {
       console.log("Upload from file: ", this.file)
