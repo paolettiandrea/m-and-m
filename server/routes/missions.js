@@ -25,6 +25,13 @@ router.get('/content/:uid', function (req, res, next) {
     })
 })
 
+router.get('/rankings/:uid', function(req, res) {
+    database.getMissionRankings(req.params.uid).then((rankings) => {
+        console.log("RSHJD", rankings);
+        res.json(rankings);
+    })
+})
+
 router.delete('/delete/:uid', function (req, res, next) {
 
         database.deleteMission(req.params.uid).then( () => {

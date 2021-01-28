@@ -1,7 +1,7 @@
 Vue.component("qr-reader", {
     template: `<div align=center>
         
-        <h class=title>Scansiona un QR code per avviare una storia</h>
+        <h1 class=title>Scansiona un QR code per avviare una storia</h1>
         
         <div>
         <input type=text size=16 placeholder="Premi sul QR code" class=qrcode-text>
@@ -13,7 +13,7 @@ Vue.component("qr-reader", {
 
         <div ontouchstart="">
             <div class="button">
-                <a href="#">Inizia la tua storia</a>
+                <a>Inizia la tua storia</a>
             </div>
             </div>
         
@@ -23,7 +23,6 @@ Vue.component("qr-reader", {
         contentData: null
     }
 })
-
 
 
 Vue.component("chat", {
@@ -82,10 +81,10 @@ data() {
         
         },
         test(){
-            this.youMessage= 'Il player ha chiesto un suggerimento!';
-            document.getElementById("not2").style.display= "block";
-            this.messages.push({body: this.youMessage, author: 'you'})
-              socket.emit('message-for-supervisor', this.youMessage);
+            socket.emit('need-hint')
+            // this.youMessage= 'Il player ha chiesto un suggerimento!';
+            // this.messages.push({body: this.youMessage, author: 'you'})
+            //   socket.emit('message-for-supervisor', this.youMessage);
         },
         sendMessage(direction) {
       

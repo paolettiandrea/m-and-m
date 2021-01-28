@@ -6,7 +6,9 @@ function openQRCamera(node) {
         if(res instanceof Error) {
           alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
         } else {
+          console.log("Code found: ", res);
           node.parentNode.previousElementSibling.value = res;
+          window.location.href = "/player?missionId=" + res;
         }
       };
       qrcode.decode(reader.result);

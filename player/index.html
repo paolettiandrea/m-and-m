@@ -89,6 +89,7 @@
     <script src="/player/components/background-screen/BackgroundFirstStory.js"></script>
     <script src="/player/components/background-screen/BackgroundSecondStory.js"></script>
     <script src="/player/components/background-screen/BackgroundThirdStory.js"></script>
+    <script src="/player/qrcode.js"></script>
 
 <!-- Knob control-->
     <script src="/player/components/activity-displayer/input-components/knob.js"></script>
@@ -98,8 +99,13 @@
 
     <script src="/common/js/VueUtils.js"></script>
     <script src="./components/activity-displayer/CommonDataUtils.js"></script>
+    <script src="/common/js/FontControllerBro.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 
     <script>
+  
+        let fontDB = new FontDB(50)
         var socket = io();
         socket.emit('player-handshake');
 
@@ -127,6 +133,8 @@
 
 
     <script>
+
+;
         const App = new Vue({
             el: '#app'
         })
