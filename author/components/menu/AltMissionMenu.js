@@ -68,13 +68,14 @@ Vue.component("tooltip-button", {
 });
 
 Vue.component("mission-info-card", {
-  template: `<b-card :img-src="'/' + mission.id + '/qrCode.svg'" img-alt="Card image" img-right img-height="200px" img-width="200px" style="margin-left: 0.5em; margin-right: 0.5em; margin-bottom: 1em">
-        <b-card-body>
+  template: `<b-card body-class="mission-card-body" :img-src="'/' + mission.id + '/qrCode.svg'" img-alt="Card image" img-right img-height="200px" img-width="200px" style="margin-left: 0.5em; margin-right: 0.5em; margin-bottom: 1em">
             <b-card-title>{{mission.head.title}}</b-card-title>
             <b-card-sub-title class="mb-2">{{mission.head.summary}}</b-card-sub-title>
 
+            <span class="text-muted small">Giocatore: <b>{{playerType}}</b>, Fascia d'eta': <b>{{targetAge}}</b></span>
+
             <div>
-                <b-button-toolbar class="mission-card-button-toolbar" key-nav>
+                <b-button-toolbar class="mission-card-button-toolbar" key-nav style="float:right">
                     <b-button-group>
                         <tooltip-button @click="selectMission(mission.id)" tooltip="Modifica" :keyy="mission.id"><b-icon icon="brush"></b-icon></tooltip-button>
                         <tooltip-button v-if="!mission.archived" @click="playMission(mission.id)" tooltip="Gioca" :keyy="mission.id"><b-icon icon="play"></b-icon></tooltip-button>
@@ -85,17 +86,28 @@ Vue.component("mission-info-card", {
                         <tooltip-button v-else @click="publish()" tooltip="Pubblica" :keyy="mission.id"><b-icon icon="check-circle"></b-icon></tooltip-button>
                     </b-button-group>
                     <b-button-group>
-                      <confirm-button icon="trash" variant="danger" key="cancelMission" confirmPrompt="Sei sicuro di voler eliminare l'attivita'?" @confirmed="deleteMission(mission.id)" :swapVariant="true"></confirm-button>
+                      <confirm-button icon="trash" variant="danger" key="cancelMission" confirmPrompt="Sei sicuro di voler eliminare la missione?" @confirmed="deleteMission(mission.id)" :swapVariant="true"></confirm-button>
                     </b-button-group>
                 </b-button-toolbar>
             </div>
-        </b-card-body>
     </b-card>`,
 
   props: {
     mission: null,
   },
+
+  computed: {
+    playerType() {
+      if (this.mission.head.targetAge) return this.mission.head.targetAge;
+      else return 'da definire'
+    },
+    targetAge() {
+      if (this.mission.head.targetAge) return this.mission.head.targetAge + ' anni';
+      else return 'da definire'
+    }
+  },
   methods: {
+  
     ...Vuex.mapActions(["selectMission", "createMission", "deleteMission"]),
     playMission(id) {
       window.location.href = "/player?missionId=" + id;

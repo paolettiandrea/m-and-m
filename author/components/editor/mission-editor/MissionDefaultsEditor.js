@@ -1,7 +1,7 @@
 Vue.component('mission-defaults-editor', {
     template: `
-        <div class="main-column">
-            <activity-editor-subpanel label="Default componenti">
+        <div class="">
+            <activity-editor-subpanel label="Componenti di default">
                 
                 <activity-editor-subpanel label="Testo">
                     <font-editor :fontData="defaults.textFontData" :defaults="uberDefaults.textFontData"></font-editor>
@@ -9,7 +9,7 @@ Vue.component('mission-defaults-editor', {
                 <common-styling-editor :commonData="defaults.commonData" :defaults="uberDefaults.commonData"></common-styling-editor>
                 <button-editor :buttonData="defaults.buttonData" :defaults="uberDefaults.buttonData"></button-editor>
             </activity-editor-subpanel>
-            <activity-editor-subpanel label="Schermata">
+            <activity-editor-subpanel label="Schermata di default">
                 <screen-style-editor :screenStyleData="defaults.screenStyleData"></screen-style-editor>
 </activity-editor-subpanel>
         </div>

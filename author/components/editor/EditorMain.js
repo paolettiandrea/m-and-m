@@ -22,9 +22,8 @@ Vue.component('editor-main', {
                         </b-navbar-brand>
                     
                         <b-navbar-nav class="ml-auto">
-                            <b-button @click="duplicateSelectedActivity()">Duplica</b-button>
-                            <b-button @click="copySelectedActivity()">Copia</b-button>
-                            <confirm-button v-if="selectedActivity.uuid!=='initial'" icon="trash" key="deleteActivity" confirmPrompt="Sei sicuro di voler eliminare l'attivita'?" @confirmed="deleteSelectedActivity" :swapVariant="true"></confirm-button>
+                            <tooltip-button class="navbar-distanced" @click="copySelectedActivity()" tooltip="Copia"><b-icon icon="clipboard"></b-icon></tooltip-button>
+                            <confirm-button class="navbar-distanced" variant="danger" v-if="selectedActivity.uuid!=='initial'" icon="trash" key="deleteActivity" confirmPrompt="Sei sicuro di voler eliminare l'attivita'?" @confirmed="deleteSelectedActivity" :swapVariant="true"></confirm-button>
                         </b-navbar-nav> 
                     </b-navbar>
                     <b-row class="full-height" no-gutters style="flex:1">

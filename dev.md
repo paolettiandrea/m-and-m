@@ -170,7 +170,7 @@ Bug autore:
 
 
 
-- aggiungere pulsanti creazione/duplicazione missione
+- aggiungere pulsanti duplicazione missione
 - raffinare menu player (accessibile)
 
 

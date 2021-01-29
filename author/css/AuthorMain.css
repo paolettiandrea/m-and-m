@@ -241,3 +241,11 @@
     padding-right: 0.3em;
 }
 
+.mission-card-body {
+    text-align: left;
+}
+
+.navbar-distanced {
+    margin-right: 0.5em
+}
+
