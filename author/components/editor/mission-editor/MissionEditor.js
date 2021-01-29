@@ -12,9 +12,9 @@ Vue.component("mission-editor", {
             
             <b-navbar-nav class="ml-auto" v-if="isMissionSelected">
               <b-button-group class="navbar-distanced">
-                <tooltip-button  v-on:click="updateSelectedMission" :disabled="isMissionUpdated"  tooltip="Salva in remoto">
+                <b-button variant="primary"  v-on:click="updateSelectedMission" :disabled="isMissionUpdated"  tooltip="Salva in remoto">
                     <b-icon icon="cloud-upload" aria-hidden="true"></b-icon>
-                </tooltip-button>
+                </b-button>
               </b-button-group>
               <b-button-group class="navbar-distanced">
                 <tooltip-button @click="playMission" tooltip="Gioca missione"> 
