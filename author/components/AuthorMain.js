@@ -1,6 +1,6 @@
 
 export default {
-    template: `<div class="full-height">
+    template: `<div class="full-height" style="overflow:auto">
  
         <editor-main class="full-height" v-if="selectedMissionContent"></editor-main>
         <alt-mission-menu v-else  style=""></alt-mission-menu>

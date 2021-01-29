@@ -1,9 +1,9 @@
 Vue.component("players-menu", {
-  template: `<div style="overflow-y: auto" class="full-height">
+  template: `<b-card header="Giocatori attivi" header-class="editor-text" style="overflow-y: auto; height: 100%">
         <div v-for="player in players">
             <player-menu-card :player="player"></player-menu-card>
         </div>
-    </div>`,
+    </b-card>`,
 
   computed: {
     ...Vuex.mapGetters(["players"]),
@@ -15,15 +15,14 @@ Vue.component("players-menu", {
 Vue.component("player-menu-card", {
   template: `
     
-            <b-card href="#" @click="playerClicked(player.id)" :class="{'selected-player-card': isPlayerSelected, 'pending-player-card': isPlayerPending}">
+            <b-card href="#" @click="playerClicked(player.id)" :bg-variant="cardVariant">
                 <template #header>
                     <editable-text :targetObject="player" targetFieldName="givenName" :placeholder="player.id"></editable-text>
                 </template>
             
                 <div v-if="playingMissionData && playingActivityData">
-
-                <span>{{playingMissionData.head.title}}</span> - <span>{{playingActivityData.title}}</span>
-                <last-activity-displayer :keyy="player.id" :time="player.lastStateChangeTime" :connectionTime="player.connectionTime" :maxMinutes="3"></last-activity-displayer>
+                  <span>{{playingMissionData.head.title}}</span> - <span>{{playingActivityData.title}}</span>
+                  <last-activity-displayer :keyy="player.id" :time="player.lastStateChangeTime" :connectionTime="player.connectionTime" :maxMinutes="3"></last-activity-displayer>
                 </div>
             </b-card>
     `,
@@ -31,10 +30,12 @@ Vue.component("player-menu-card", {
   props: {
     player: null,
   },
+  data() { return {
+    givenName: ""
+  }},
   methods: {
     playerClicked(playerId) {
       this.$store.dispatch("selectPlayer", playerId);
-      console.log("Player clicked ", playerId);
     },
   },
 
@@ -44,6 +45,11 @@ Vue.component("player-menu-card", {
       "missionContents",
       "pendingActions",
     ]),
+
+    cardVariant() {
+      if (this.isPlayerPending) { return 'warning'}
+      else { return "light"}
+    },
 
     playerPendingActions() {
       return this.pendingActions[this.player.id];
