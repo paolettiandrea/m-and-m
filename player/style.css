@@ -126,7 +126,8 @@ label {
 .lastscreenbackground{
 @media only screen and (max-width: 600px) {
 body {
-  background-image: url('https://c.wallhere.com/photos/39/ae/dinosaurs_Brachiosaurus_Stegosaurus_Triceratops_Pterodactyl-290781.jpg!d');
+  background-image: url('player/861304.jpg');
+
 }
 }
 }
@@ -162,15 +163,15 @@ body{
   display:block;
   position:relative;
   padding:5px 30px;
-  
+
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   text-shadow: 0px 1px 0px #000;
   filter: dropshadow(color=#000, offx=0px, offy=1px);
-  
+
   -webkit-box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
   -moz-box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
   box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
-  
+
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -179,7 +180,7 @@ body{
 .button a:active{
   top:10px;
   background-color:#F78900;
-  
+
   -webkit-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
   -moz-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3pxpx 0 #915100;
   box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
@@ -211,7 +212,7 @@ body{
 .chat-area {
   /*   border: 1px solid #ccc; */
     background: rgba(17, 17, 17, 0.918);
-   
+
     top: 200px;
     right: 10px;
     width: 242px;
@@ -223,7 +224,7 @@ body{
   .message {
       width: 45%;
       border-radius: 10px;
-      
+
     /*   margin-bottom: .5em; */
       font-size: .8em;
     }
@@ -269,7 +270,7 @@ body{
 
 /* Add styles to the form container */
 .form-container {
-  max-width: 350px;    
+  max-width: 350px;
   min-height: 150px;
   background-color: rgb(214, 206, 206);
 }
@@ -278,26 +279,98 @@ padding: .5em;
 
 
 }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #mission-displayer-main {
   height: 100vh;
   width: 100vw;
+}
+
+
+/*puzzle*/
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  font-size: 1.4em;
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  color: #fafafa;
+  background-color: #e91e63;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.header-item {
+  flex-grow: 0;
+}
+.title {
+  width: 20%;
+  padding: 0 5px;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+.spacer {
+  flex-grow: 1;
+}
+.meow {
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.panel {
+  width: 20%;
+}
+.container {
+  position: absolute;
+  top: calc(50% + 30px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.23);
+  width: 90%;
+  height: calc(90% - 60px);
+  margin: 0px;
+  padding: 0px;
+  z-index: 1;
+  background-color: #DDD;
+  max-width: 600px;
+  max-height: 600px;
+}
+.repo {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+/*puzzle board*/
+#sourceImg,
+#targetImg {
+  width: 300;
+  height: 300;
+}
+.puzzle-canvas {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+}
+.puzzle-message {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.puzzle-board {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+.tile-number {
+  position: absolute;
+  text-shadow: 1px 1px 0 #222;
+  color: #fafafa;
 }

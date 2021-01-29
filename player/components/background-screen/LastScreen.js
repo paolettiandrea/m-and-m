@@ -1,55 +1,49 @@
 Vue.component("lastScreen-displayer", {
   template: `
-<div class="lastscreenbackground" style="height:100%; background-image:url(https://c.wallhere.com/photos/39/ae/dinosaurs_Brachiosaurus_Stegosaurus_Triceratops_Pterodactyl-290781.jpg!d)">
-   <div style="font-family:American Typewriter; text-align:center; font-style:serif; text-color:black;">
+<div class="lastscreenbackground" style="height:100%; background-image:url(player/861304.jpg)">
+   <div style="font-family:Roboto;  text-align:center; font-style:serif; height:100%; padding-top:3em; padding-buttom:6em;">
         <transition name="content-slide" mode="out-in">
-          <div style=" margin: 30px;
-                       background-color: #ffffff;
-                       border: 1px solid black;
-                       opacity: 0.6;">
-              <h1 style="text-align: center; "> </h1>
-              <div style=" margin: 5%;
+          <div style="backgroundColor:#ffffff; opacity:0.8; padding:1em; margin-left: 10em; margin-right: 10em;">
+              <div style=" border: 0.1em solid black;
                            font-weight: bold;
                            color: #000000;">
-                <p> Punteggio finale: </p>
-                <p> {{score}} </p>
+                <p style="fontStyle:italic;"> Punteggio finale: {{score}}</p>
+                <p>  </p>
                 <div v-if="missionRecap">
-                  <p>Tempo: {{missionRecap.playTime}}</p>
+                  <p style="fontStyle:italic;">Tempo impiegato: {{missionRecap.playTime}} secondi</p>
                 </div>
+                <br></br>
                 <b-form-group label="Inserisci il tuo nome">
                   <b-form-input v-model="playerInputName"></b-form-input>
 
-                  <b-button @click="sendScore">Manda</b-button>
+                  <b-button @click="sendScore">Invia</b-button>
                 </b-form-group>
 
                 <div v-if="missionRecap && missionRecap.rankings">
                   <b-table :items="missionRecap.rankings" :fields= "[
-          {
-            key: 'playerName',
-            sortable: false,
-            label: 'Nome'
-          },
-          {
-            key: 'playTime',
-            sortable: true,
-            label: 'Tempo'
-          },
-          {
-            key: 'score',
-            label: 'Punteggio',
-            sortable: true,
-            // Variant applies to the whole column, including the header and footer
-          }
-        ]"></b-table> 
-                </div>
+                  {
+                    key: 'playerName',
+                    sortable: false,
+                    label: 'Nome'
+                  },
+                  {
+                    key: 'playTime',
+                    sortable: true,
+                    label: 'Tempo'
+                  },
+                  {
+                    key: 'score',
+                    label: 'Punteggio',
+                    sortable: true,
+                    // Variant applies to the whole column, including the header and footer
+                  }
+                ]"></b-table>
               </div>
             </div>
+          </div>
         </transition>
-        <div style=" margin: 5%;
-                     font-weight: bold;
-                     color: #000000;"> Durante questo percorso avrai imparato diverse cose, tra cui.... </div>
-        </div>
-        </div>
+      </div>
+    </div>
     `,
   props: {
     score: 0,
