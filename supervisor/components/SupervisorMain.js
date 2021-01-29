@@ -51,7 +51,6 @@ Vue.component("pending-actions-panel", {
   template: `<div>
         <div v-if="selectedPlayerPendingActions.hint">
             <b-card>
-                <span>Il giocatore ha richiesto un indizio</span>
                 <b-input-group>
                     <b-form-input v-model="hintText" type="text"></b-form-input>
                     <b-button @click="sendHint()">Manda</b-button>
