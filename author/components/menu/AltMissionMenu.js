@@ -98,7 +98,7 @@ Vue.component("mission-info-card", {
 
   computed: {
     playerType() {
-      if (this.mission.head.targetAge) return this.mission.head.targetAge;
+      if (this.mission.head.playerType) return this.mission.head.playerType;
       else return 'da definire'
     },
     targetAge() {
