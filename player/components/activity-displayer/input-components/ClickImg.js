@@ -19,6 +19,16 @@ Vue.component("click-img", {
         test() {
             console.log("Clicked on a part of the click image that doesn't have any outcome associated with it. Doing nothing.")
         }
+    },
+
+    mounted: function(e) {
+        $(document).ready(function(e) {
+            $('img[usemap]').rwdImageMaps();
+            
+            $('area').on('click', function() {
+                //alert($(this).attr('alt') + ' clicked');
+            });
+        });
     }
 
 
