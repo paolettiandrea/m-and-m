@@ -16,7 +16,7 @@ Vue.component("players-menu", {
 Vue.component("player-menu-card", {
   template: `
     
-            <b-card href="#" @click="playerClicked(player.id)" :class="{'selected-player-card': isPlayerSelected, 'pending-player-card': isPlayerPending}">
+            <b-card href="#" @click="playerClicked(player.id)" :bg-variant="cardVariant">
                 <template #header>
                     <editable-text :targetObject="player" targetFieldName="givenName" :placeholder="player.id"></editable-text>
                 </template>
@@ -46,6 +46,11 @@ Vue.component("player-menu-card", {
       "missionContents",
       "pendingActions",
     ]),
+
+    cardVariant() {
+      if (this.isPlayerPending) { return 'warning'}
+      else { return "light"}
+    },
 
     playerPendingActions() {
       return this.pendingActions[this.player.id];

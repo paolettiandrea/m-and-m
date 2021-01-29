@@ -9,8 +9,8 @@ Vue.component('mission-displayer', {
                     </div>
             </transition>
             <div v-if="missionEnded">
-            <lastScreen-displayer :score="missionScore"></lastScreen-displayer>
-        </div>
+                <lastScreen-displayer :score="missionScore"></lastScreen-displayer>
+            </div>
             <chat></chat>
            
         </div>

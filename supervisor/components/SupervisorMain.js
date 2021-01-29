@@ -1,14 +1,14 @@
 Vue.component("supervisor-main", {
-  template: `<div class="full-height">
-        <b-navbar>
+  template: `<div class="full-height"  style="display: flex; flex-direction: column">
+        <b-navbar style="flex: 0">
           <b-navbar-brand>Supervisore</b-navbar-brand>  
         </b-navbar>
-        <b-row class="full-height" no-gutters>
-            <b-col cols="4" class="full-height">
+        <b-row class="" no-gutters style="flex:1; overflow: hidden">
+            <b-col cols="4" class="" style="height:100%">
                 <players-menu></players-menu>
             </b-col>
-            <b-col cols="8" class="full-height">
-                <player-main-panel v-if="selectedPlayer" :player="selectedPlayer"></player-main-panel>
+            <b-col cols="8" class="" style="height:100%">
+                <player-main-panel v-if="selectedPlayer" :player="selectedPlayer" style="height: 100%"></player-main-panel>
             </b-col>
 </b-row>
     </div>`,
@@ -20,14 +20,13 @@ Vue.component("supervisor-main", {
 
 Vue.component("player-main-panel", {
   template: `<b-row style="height: 100%" no-gutters>
-        <b-col cols="6">
+        <b-col cols="6" style="height:100%">
             <span> Anteprima </span>
             <activity-displayer v-if="selectedPlayerActivity" class="full-flex activity-preview" style="max-height: 500px;" :activity-content="selectedPlayerActivity" :styling="selectedPlayerMissionContent.screenStylingData" :defaults="selectedPlayerMissionContent.defaults" 
                   >
           </activity-displayer>
         </b-col>
-        <b-col cols="6" style="display: flex; flex-direction:column">
-            
+        <b-col cols="6" style="display: flex; flex-direction:column; overflow: hidden; height:100%">
             <pending-actions-panel id="pending-actions-panel" class="side-panel" style="flex:1"></pending-actions-panel>
             <chat style="flex: 1" :chat="selectedPlayerChat" class="side-panel"></chat>
         </b-col>
@@ -47,7 +46,7 @@ Vue.component("player-main-panel", {
 });
 
 Vue.component("pending-actions-panel", {
-  template: `<div>
+  template: `<div style="overflow:auto">
         <div v-if="selectedPlayerPendingActions.hint">
             <b-card>
                 <span>Il giocatore ha richiesto un indizio</span>
@@ -58,7 +57,8 @@ Vue.component("pending-actions-panel", {
             </b-card>
         </div>
         <b-card v-for="(pendingScoring,i) in selectedPlayerPendingActions.scoring" :key="i">
-          <p>{{pendingScoring.context}}</p>
+          <span>Valutazione</span>
+          <p><i>Contesto e criteri: </i>{{pendingScoring.context}}</p>
           <component :is="'pending-scoring-' + pendingScoring.type" :scoringData="pendingScoring"></component>
           <b-input-group :prepend="String(pendingScoring.scoreRange.min)" :append="String(pendingScoring.scoreRange.max)" class="mt-3">
             <b-form-input v-model="pendingScoring.score" type="range" :min="pendingScoring.scoreRange.min" :max="pendingScoring.scoreRange.max"></b-form-input>
@@ -111,7 +111,6 @@ Vue.component("pending-scoring-drawn-image", {
 
 Vue.component("chat", {
   template: `<div class="vertical-flex full-height" style="overflow-y:hidden; max-height: 100vh">
-
 
         <!-- Message history -->
         <section style="flex: 1; overflow-y: auto">
