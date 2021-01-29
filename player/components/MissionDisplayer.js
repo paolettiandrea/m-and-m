@@ -9,8 +9,8 @@ Vue.component('mission-displayer', {
                     </div>
             </transition>
             <div v-if="missionEnded">
-            <lastScreen-displayer :score="missionScore"></lastScreen-displayer>
-        </div>
+                <lastScreen-displayer :score="missionScore"></lastScreen-displayer>
+            </div>
             <chat></chat>
            
         </div>
@@ -56,15 +56,6 @@ Vue.component('mission-displayer', {
                 this.pointedActivity = null;
 
             }
-            // var i = 0;
-            // for (const activity of this.missionData.activities) {
-            //     if (activity.uid===nextMissionId) {
-            //         this.pointedActivity = activity;
-            //         this.pointedIndex = i;
-            //         return;
-            //     }
-            //     i++;
-            // }
         }
     },
 
@@ -83,13 +74,16 @@ Vue.component('mission-displayer', {
             socket.emit('starting-mission', missionId)
             socket.emit('starting-activity', 'initial');
         } 
-        // else {
-        //     axios.
-        //     get("/player/data/dummyMission.json").
-        //     then(res => {
-        //         this.missionData = res.data;
-        //         this.pointedActivity = this.missionData.activities.initial;
-        //     })
-        // }
+
+
+
+        socket.on('scored', (scoringData) => {
+            console.log("Received scoring data: ", scoringData);
+            if (scoringData.score) {
+                this.missionScore += scoringData.score;
+            } else {
+                console.warn("No score in the received scoringData object")
+            }
+        })
     },
 })

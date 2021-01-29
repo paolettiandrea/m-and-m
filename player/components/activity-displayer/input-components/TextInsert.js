@@ -5,7 +5,7 @@ Vue.component("text-insert", {
           id="input-1"
           v-model="answer"
           required
-          placeholder="Enter your answer"
+          :placeholder="insertPlaceholder"
           :type="this.inputData.textType || 'text'"
         ></b-form-input>
 
@@ -91,4 +91,11 @@ Vue.component("text-insert", {
       answer: "",
     };
   },
+
+  computed: {
+    insertPlaceholder() {
+      if (this.inputData.placeholderText) { return this.inputData.placeholderText}
+      else { return "Inserisci la tua risposta"}
+    }
+  }
 });

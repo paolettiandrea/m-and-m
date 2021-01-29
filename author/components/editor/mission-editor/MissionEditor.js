@@ -4,34 +4,67 @@ import { v1 as uuidv1 } from "/uuid/dist/esm-browser/index.js";
 Vue.component("mission-editor", {
   template: `
     <div>
-        <b-navbar class="mm-navbar-primary">
+        <!-- NAVBAR -->
+        <b-navbar>
             <b-navbar-brand href="#">
                 <editable-text :targetObject="missionHead" targetFieldName="title"></editable-text>
             </b-navbar-brand>
             
             <b-navbar-nav class="ml-auto" v-if="isMissionSelected">
-                <b-button  v-on:click="updateSelectedMission" :disabled="isMissionUpdated"  variant="secondary-primary">
+              <b-button-group class="navbar-distanced">
+                <b-button variant="primary"  v-on:click="updateSelectedMission" :disabled="isMissionUpdated"  tooltip="Salva in remoto">
                     <b-icon icon="cloud-upload" aria-hidden="true"></b-icon>
                 </b-button>
-                <b-button @click="playMission"> 
+              </b-button-group>
+              <b-button-group class="navbar-distanced">
+                <tooltip-button @click="playMission" tooltip="Gioca missione"> 
                     <b-icon icon="play"></b-icon> 
-                </b-button>
-                <b-button @click="pasteActivity">Incolla attivita</b-button>
-                      <b-button v-if="!isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(true)" variant="outline-secondary"><b-icon icon="gear"></b-icon></b-button>
-                      <b-button v-if="isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(false)" variant="outline-primary"><b-icon icon="gear"></b-icon></b-button>
-                      <b-button v-b-modal.modal-1><b-icon icon="upc-scan"></b-icon></b-button>
+                </tooltip-button>
+                <tooltip-button v-b-modal.modal-1 tooltip="Qr Code"><b-icon icon="upc-scan"></b-icon></tooltip-button>
                       <b-modal id="modal-1" title="QR Code">
                           <b-img :src="qrCodePath" fluid></b-img>
                           <p class="editor-text"> Questo codice può essere inquadrato dal player per lanciare la missione.</p>
                           <b-button @click="downloadQrCode">Download</b-button>
                       </b-modal>
+              </b-button-group>
+              <b-button-group class="navbar-distanced">
+                <tooltip-button :disabled="!copiedActivity" @click="pasteActivity" tooltip="Incolla attivita'"><b-icon icon="clipboard-plus"></b-icon></tooltip-button>
+                <tooltip-button v-if="!isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(true)" tooltip="Impostazioni"><b-icon icon="gear"></b-icon></tooltip-button>
+                <b-button v-if="isMissionSettingsPanelOpen" v-on:click="setMissionSettingsPanel(false)" variant="outline-primary"><b-icon icon="gear"></b-icon></b-button>
+                      
+              </b-button-group>
+              
+              
+              
+                      <tooltip-button tooltip="Chiudi" variant="danger" @click="deselectMission"><b-icon icon="x"></b-icon></tooltip-button>
             </b-navbar-nav> 
         </b-navbar>
         
 
         <div  class="full-flex vertical-scroll" style="overflow: hidden">
+            <!-- Mission settings -->
+            <div v-if="isMissionSettingsPanelOpen" style="height: 50%; overflow-y: auto; overflow-x:hidden">
+                <activity-editor-subpanel label="Dettagli">
+                  <editor-field label="Descrizione">
+                    <b-form-textarea no-gutters v-model="missionHead.summary" type="text" rows="3"></b-form-textarea>
+                  </editor-field>
+                  <editor-field label="Tipo di giocatore">
+                    <defaulted-dropdown :options="['singolo', 'gruppo', 'classe']" :targetContainer="missionHead" targetFieldName="playerType" defaultVal="Scegli il tipo di giocatore">
+                      <template v-slot:default="slotProps">
+                          <p class="editor-text">{{slotProps.option}}</p>
+                      </template>
+                    </defaulted-dropdown>
+                  </editor-field>
+                  <editor-field label="Fascia d'eta'">
+                    <defaulted-dropdown :options="['7-10', '11-14', '15-18']" :targetContainer="missionHead" targetFieldName="targetAge" defaultVal="Scegli un fascia d'eta'">
+                      <template v-slot:default="slotProps">
+                          <p class="editor-text">{{slotProps.option}}</p>
+                      </template>
+                    </defaulted-dropdown>
+                  </editor-field>
+                  <editor-field label=""></editor-field>
 
-            <div v-if="isMissionSettingsPanelOpen""style="height: 50%; overflow: auto">
+                </activity-editor-subpanel>
                 <mission-defaults-editor :defaults="missionContent.defaults" :uberDefaults="uberDefaults" :missionContent="missionContent"></mission-defaults-editor>
                 <activity-editor-subpanel label="Gestione da file">
                 <b-row no-gutters>
@@ -50,6 +83,7 @@ Vue.component("mission-editor", {
                   </b-col>
                 </b-row>
                 </activity-editor-subpanel>
+
             </div>
             <div id="yoyo" style="position: relative; height: 100%">
                 <div v-if="isWaitingForActivityClick" style="z-index: 3">
@@ -71,6 +105,7 @@ Vue.component("mission-editor", {
       isMissionSettingsPanelOpen: "isMissionSettingsPanelOpen",
       selectedMissionId: "selectedMissionId",
       isWaitingForActivityClick: "isWaitingForActivityClick",
+      copiedActivity: 'copiedActivity'
     }),
 
     qrCodePath() {
@@ -96,6 +131,7 @@ Vue.component("mission-editor", {
       "setMissionSettingsPanel",
       "deleteActivityClickedCallback",
       "pasteActivity",
+      "deselectMission"
     ]),
     updateFromFile() {
       console.log("Upload from file: ", this.file)

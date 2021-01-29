@@ -1,6 +1,6 @@
 Vue.component('score-displayer', {
     template: ` <div>
-                    <p class=score>Punteggio: {{score}}</p>
+                    <p class=score aria-label="Punteggio">Punteggio: {{score}}</p>
                 </div> `,
 
     props: {

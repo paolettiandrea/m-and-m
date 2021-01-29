@@ -6,7 +6,7 @@
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("861304.jpg");
+
 }
 
 #canva {
@@ -36,7 +36,7 @@ body {
 
 .content-slide-enter-active,
 .content-slide-leave-active {
-  transition: all 0.2 s;
+  transition: all 0.2s;
 }
 
 .content-slide-enter,
@@ -321,7 +321,7 @@ padding: .5em;
   display: none;
   top: -60px;
   right: 35px;
-  padding: 4px 8px;
+  padding: 3px 6px;
   border-radius: 100%;
   background-color: red;
   color: white;
@@ -332,8 +332,53 @@ padding: .5em;
   display: none;
   top: -60px;
   right: 85px;
-  padding: 1px 5px;
+  padding: 0.1px 4px;
   border-radius: 100%;
   background-color: red;
   color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.box {
+  width: 400px;
+  margin: 50px auto 0;
+}
+.puzzle-wrap {
+  width: 400px;
+  height: 400px;
+  margin-bottom: 40px;
+  padding: 0;
+  background: #ccc;
+  list-style: none;
+}
+.puzzle {
+  float: left;
+  width: 100px;
+  height: 100px;
+  font-size: 20px;
+  background: #f90;
+  text-align: center;
+  line-height: 100px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 4px;
+  text-shadow: 1px 1px 1px #B9B4B4;
+  cursor: pointer;
+}
+.puzzle-empty {
+  background: #ccc;
+  box-shadow: inset 2px 2px 18px;
+}
+.btn-reset {
+  box-shadow: inset 2px 2px 18px;
 }

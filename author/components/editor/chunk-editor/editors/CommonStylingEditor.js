@@ -36,10 +36,9 @@ Vue.component("common-styling-editor", {
 
 Vue.component("screen-style-editor", {
   template: `<div>
-        <activity-editor-subpanel label="Stile schermata">
             <activity-editor-subpanel label="Esterno">
                 <background-editor :backgroundData="screenStyleData.outer.backgroundData" :defaults="selectedMissionDefaults.screenStyleData.outer.backgroundData"></background-editor>
-</activity-editor-subpanel>
+              </activity-editor-subpanel>
             <activity-editor-subpanel label="Interno">
                 <background-editor :backgroundData="screenStyleData.inner.backgroundData" :defaults="selectedMissionDefaults.screenStyleData.inner.backgroundData"></background-editor>
                 
@@ -64,7 +63,6 @@ Vue.component("screen-style-editor", {
                         </defaulted-dropdown>
                     </editor-field>
                 </activity-editor-subpanel>
-</activity-editor-subpanel>   
 
 </activity-editor-subpanel>
  
