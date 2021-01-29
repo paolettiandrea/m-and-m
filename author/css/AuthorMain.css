@@ -213,7 +213,7 @@
 }
 
 .type-selector {
-    margin: 10px
+    margin-top: 0.25em
 }
 
 .activity-preview-container {
@@ -247,5 +247,9 @@
 
 .navbar-distanced {
     margin-right: 0.5em
+}
+
+.panel-section {
+    margin-bottom: 1.5em;
 }
 
