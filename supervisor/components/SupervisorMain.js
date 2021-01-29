@@ -59,6 +59,7 @@ Vue.component("pending-actions-panel", {
           <h5 class="mb-0 text-center editor-text">In attesa</h5>
         </template>
         <div v-if="selectedPlayerPendingActions.hint">
+
             <b-card header="Richiesta indizio">
                 <b-input-group>
                     <b-form-input v-model="hintText" type="text"></b-form-input>
