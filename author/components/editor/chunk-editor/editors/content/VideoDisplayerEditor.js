@@ -2,6 +2,9 @@ Vue.component('video-displayer-editor', {
     template: `
         <div >
             <url-input :target="contentData" fieldName="url"></url-input>
+            <editor-field label="Altezza">
+                <defaulted-input-form-unit :targetContainer="contentData" targetFieldName="height" defaultVal="" :possibleUnits="commonUnits"></defaulted-input-form-unit>
+            </editor-field>
         </div>
         
     `,
@@ -10,7 +13,7 @@ Vue.component('video-displayer-editor', {
     },
 
     computed: {
-        ... Vuex.mapGetters(['selectedMissionDefaults'])
+        ... Vuex.mapGetters(['selectedMissionDefaults', 'commonUnits'])
     }
 })
 

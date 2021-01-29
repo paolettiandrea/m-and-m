@@ -4,13 +4,14 @@ Vue.component('next-activity-outcome-editor', {
                 <editor-field label="Prossima attività">
                     <activity-picker :targetContainer="outcomeData"></activity-picker>
                 </editor-field>
-                <editor-field label="Punteggio">
+                <editor-field  v-if="!noScore" label="Punteggio">
                     <defaulted-input-form inputType="number" :targetContainer="outcomeData" targetFieldName="points" defaultVal="0"></defaulted-input-form>
                 </editor-field>
     </div>`,
 
     props: {
-        outcomeData: null
+        outcomeData: null,
+        noScore: {default: false}
     }
 
 })
@@ -54,7 +55,7 @@ Vue.component('simple-button-editor', {
         <div>
             <button-editor :level="level" :buttonData="inputData.buttonData" :defaults="selectedMissionDefaults.buttonData"></button-editor>
             <activity-editor-subpanel v-if="!noOutcome" label="Esito" :level="level">
-                <next-activity-outcome-editor :outcomeData="inputData.outcome"></next-activity-outcome-editor>
+                <next-activity-outcome-editor :noScore="noScore" :outcomeData="inputData.outcome"></next-activity-outcome-editor>
             </activity-editor-subpanel>
         </div>`,
 
@@ -62,6 +63,7 @@ Vue.component('simple-button-editor', {
         inputData: null,
         level: 0,
         noOutcome: false,
+        noScore: {default: false}
     },
 
     computed: {
@@ -72,7 +74,7 @@ Vue.component('simple-button-editor', {
 
 Vue.component('canvas-draw-editor', {
     template: `<div>
-        <simple-button-editor :inputData="inputData.sendButtonData"></simple-button-editor>
+        <simple-button-editor :noScore="true" :inputData="inputData.sendButtonData"></simple-button-editor>
         <activity-editor-subpanel label="Valutazione punteggio">
             <score-range-editor :scoreRange="inputData.scoreRange"></score-range-editor>
             <editor-field label="Contesto">

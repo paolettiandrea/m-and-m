@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Supervisore</title>
 
     <!-- Vue -->
     <script src="/intersection-observer/intersection-observer.js"></script> <!-- Polyfills some required functionality for older browsers-->
@@ -50,6 +51,10 @@
     <script src="/player/components/activity-displayer/input-components/TextInsert.js"></script>
     <script src="/common/components/CommonComponents.js"></script>
 
+
+    <script src="/common/js/FontControllerBro.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    
     <link type="text/css" rel="stylesheet" href="./css/supervisor.css" />
     <title>Title</title>
 
@@ -61,6 +66,7 @@
 
     <script type="module">
 
+        let fontDB = new FontDB(50)
         import store from './js/SupervisorStore.js'
 
 

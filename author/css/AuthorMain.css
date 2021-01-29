@@ -213,7 +213,7 @@
 }
 
 .type-selector {
-    margin: 10px
+    margin-top: 0.25em
 }
 
 .activity-preview-container {
@@ -235,5 +235,21 @@
 
 .editor-field-label {
     text-align: left !important;
+}
+
+.mission-card-button-toolbar div {
+    padding-right: 0.3em;
+}
+
+.mission-card-body {
+    text-align: left;
+}
+
+.navbar-distanced {
+    margin-right: 0.5em
+}
+
+.panel-section {
+    margin-bottom: 1.5em;
 }
 
