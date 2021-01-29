@@ -1,10 +1,9 @@
 Vue.component("players-menu", {
-  template: `<div style="overflow-y: auto" class="full-height">
-        <span>Giocatori attivi</span>
+  template: `<b-card header="Giocatori attivi" header-class="editor-text" style="overflow-y: auto; height: 100%">
         <div v-for="player in players">
             <player-menu-card :player="player"></player-menu-card>
         </div>
-    </div>`,
+    </b-card>`,
 
   computed: {
     ...Vuex.mapGetters(["players"]),
