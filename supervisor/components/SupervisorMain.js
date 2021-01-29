@@ -1,5 +1,8 @@
 Vue.component("supervisor-main", {
   template: `<div class="full-height">
+        <b-navbar>
+          <b-navbar-brand>Supervisore</b-navbar-brand>  
+        </b-navbar>
         <b-row class="full-height" no-gutters>
             <b-col cols="4" class="full-height">
                 <players-menu></players-menu>
@@ -15,14 +18,10 @@ Vue.component("supervisor-main", {
   },
 });
 
-// Functionality:
-// - see what the player is seeing
-// - chat with the player [DONE]
-// - see a list of the pending score and hint requests
 Vue.component("player-main-panel", {
   template: `<b-row style="height: 100%" no-gutters>
         <b-col cols="6">
-            <p> Preview </p>
+            <span> Anteprima </span>
             <activity-displayer v-if="selectedPlayerActivity" class="full-flex activity-preview" style="max-height: 500px;" :activity-content="selectedPlayerActivity" :styling="selectedPlayerMissionContent.screenStylingData" :defaults="selectedPlayerMissionContent.defaults" 
                   >
           </activity-displayer>

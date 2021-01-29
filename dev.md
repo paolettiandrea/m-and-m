@@ -160,7 +160,6 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 
 ### `multiple-checkboxes`
 
-- aggiungi placeholder text editabile per text insert
 - fronzolini di differenziazione tra singoli/gruppi/classi
   - numero singoli/gruppi/classi attivi
   - classifiche visualizzate diversamente (?)

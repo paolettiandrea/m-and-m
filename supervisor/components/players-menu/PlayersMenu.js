@@ -1,5 +1,6 @@
 Vue.component("players-menu", {
   template: `<div style="overflow-y: auto" class="full-height">
+        <span>Giocatori attivi</span>
         <div v-for="player in players">
             <player-menu-card :player="player"></player-menu-card>
         </div>
@@ -21,9 +22,8 @@ Vue.component("player-menu-card", {
                 </template>
             
                 <div v-if="playingMissionData && playingActivityData">
-
-                <span>{{playingMissionData.head.title}}</span> - <span>{{playingActivityData.title}}</span>
-                <last-activity-displayer :keyy="player.id" :time="player.lastStateChangeTime" :connectionTime="player.connectionTime" :maxMinutes="3"></last-activity-displayer>
+                  <span>{{playingMissionData.head.title}}</span> - <span>{{playingActivityData.title}}</span>
+                  <last-activity-displayer :keyy="player.id" :time="player.lastStateChangeTime" :connectionTime="player.connectionTime" :maxMinutes="3"></last-activity-displayer>
                 </div>
             </b-card>
     `,
@@ -31,10 +31,12 @@ Vue.component("player-menu-card", {
   props: {
     player: null,
   },
+  data() { return {
+    givenName: ""
+  }},
   methods: {
     playerClicked(playerId) {
       this.$store.dispatch("selectPlayer", playerId);
-      console.log("Player clicked ", playerId);
     },
   },
 
