@@ -1,7 +1,7 @@
 Vue.component('mission-displayer', {
     template: `
         <div id="mission-displayer-main">
-            <score-displayer align="right" :score="this.missionScore" style="position: absolute; top: 10px; right: 10px"></score-displayer>
+            <score-displayer align="right" :score="this.missionScore" style="position: absolute; top: 0px; right: 20px"></score-displayer>
             <transition name="content-slide" mode="out-in">
                     <div v-if="this.pointedActivity" :key="this.pointedActivity.uuid" style="height: 100%">
                         <activity-displayer :activityContent="this.pointedActivity" :defaults="this.missionData.defaults" style="height: 100%"
