@@ -1,24 +1,17 @@
 export default {
   template: `
-        <div >
-            <b-row no-gutters>
+        <div style="text-align:center; overflow-y: auto">
+            <b-row no-gutters style="margin-left: 1em; margin-right: 1em">
                 <b-col>
-                    <p class="editor-text"> Disponibili al pubblico</p>
+                    <h3 class="editor-text"> Disponibili al pubblico</h3>
                     <mission-info-card v-for="(mission, id) in activeMissions" v-if="!mission.archived" :mission="mission" :key="id"></mission-info-card>
                 </b-col>
                 <b-col>
-                    <p class="editor-text"> Archiviate </p>
+                    <h3 class="editor-text"> Archiviate </h3>
                     <mission-info-card v-for="(mission, id) in activeMissions" v-if="mission.archived" :mission="mission" :key="id"></mission-info-card>
                 </b-col>
             </b-row>
-                
-                <div style="text-align: center;">
-                    <b-badge pill href="#" v-for="(mission, id) in activeMissions" v-on:click="selectMission(id)" :key="id" style=" font-size: 14px">{{mission.head.title}}</b-badge>           
-                </div>
-                
-                <b-badge pill href="#" v-on:click="createMission" style=" font-size: 14px">+</b-badge>           
-
-               
+                <b-button @click="createMission" variant="success" class="editor-font">Crea missione</b-button>
     </div>`,
 
   computed: Vuex.mapGetters(["activeMissions"]),
@@ -43,7 +36,6 @@ export default {
         }
       }
     },
-
   },
 };
 
@@ -59,22 +51,24 @@ Vue.component("tooltip-button", {
   props: {
     keyy: null,
     tooltip: "",
-    variant: { default: 'primary'}
+    variant: { default: "primary" },
   },
 
   methods: {
-    buttonClicked() { this.$emit('click')}
+    buttonClicked() {
+      this.$emit("click");
+    },
   },
 
   computed: {
     keyId() {
       return "tooltip-button-" + this.keyy + this.tooltip;
-    }
-  }
-})
+    },
+  },
+});
 
 Vue.component("mission-info-card", {
-  template: `<b-card :img-src="'/' + mission.id + '/qrCode.svg'" img-alt="Card image" img-right img-height="200px" img-width="200px">
+  template: `<b-card :img-src="'/' + mission.id + '/qrCode.svg'" img-alt="Card image" img-right img-height="200px" img-width="200px" style="margin-left: 0.5em; margin-right: 0.5em; margin-bottom: 1em">
         <b-card-body>
             <b-card-title>{{mission.head.title}}</b-card-title>
             <b-card-sub-title class="mb-2">{{mission.head.summary}}</b-card-sub-title>
@@ -111,7 +105,9 @@ Vue.component("mission-info-card", {
       axios.get("/missions/rankings/" + this.mission.id).then((res) => {
         let rankings = res.data;
         console.log("Got rankings response:", rankings);
-        var fileURL = window.URL.createObjectURL(new Blob([JSON.stringify(rankings, null, 2)]));
+        var fileURL = window.URL.createObjectURL(
+          new Blob([JSON.stringify(rankings, null, 2)])
+        );
         var fileLink = document.createElement("a");
 
         fileLink.href = fileURL;

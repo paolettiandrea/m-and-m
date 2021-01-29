@@ -14,9 +14,9 @@ Vue.component('editor-main', {
             
             <transition name="activity-panel-transition">
             
-                 
-                <b-col style="flex: 2" v-if="selectedActivity" class="full-height no-horizontal-padding" key="2">
-                    <b-navbar class="mm-navbar-activity">
+                <!-- Activity panel  -->
+                <b-col style="flex: 2; display: flex; flex-direction: column; overflow-y:hidden" v-if="selectedActivity" class="full-height no-horizontal-padding" key="2">
+                    <b-navbar class="mm-navbar-activity" style="flex:0">
                         <b-navbar-brand href="#">
                             <editable-text :targetObject="selectedActivity" targetFieldName="title"></editable-text>
                         </b-navbar-brand>
@@ -27,7 +27,7 @@ Vue.component('editor-main', {
                             <confirm-button v-if="selectedActivity.uuid!=='initial'" icon="trash" key="deleteActivity" confirmPrompt="Sei sicuro di voler eliminare l'attivita'?" @confirmed="deleteSelectedActivity" :swapVariant="true"></confirm-button>
                         </b-navbar-nav> 
                     </b-navbar>
-                    <b-row class="full-height" no-gutters>
+                    <b-row class="full-height" no-gutters style="flex:1">
                         <b-col  class="full-height no-horizontal-padding" style="overflow-y: hidden">
                             <activity-preview class="full-height"></activity-preview>
                         </b-col>
