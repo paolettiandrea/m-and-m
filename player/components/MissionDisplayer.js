@@ -12,7 +12,7 @@ Vue.component('mission-displayer', {
                 <lastScreen-displayer :score="missionScore"></lastScreen-displayer>
             </div>
             <chat></chat>
-           
+
         </div>
     `,
 
