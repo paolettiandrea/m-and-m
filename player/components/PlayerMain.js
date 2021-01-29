@@ -36,13 +36,13 @@ Vue.component('player-main', {
 
 data() {
   return {
-    /*wasMissionChosen: false,
+    wasMissionChosen: false,
 
     missionHeads: null
-  }*/
-}
+  }
+
 },
-/*
+
     components: {
     },
 
@@ -60,6 +60,6 @@ data() {
                 this.missionHeads = JSON.parse(res.data)
                 console.log("Received mission heads:", this.missionHeads)
     })
-      */
-//  }
+      
+  }
 })
