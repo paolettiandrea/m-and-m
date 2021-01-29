@@ -119,6 +119,11 @@ data() {
             this.msg++;
             document.getElementById("not").style.display = "block";
         })
+
+        socket.on('hint', (hint) => {
+            console.log("Received hint: ", hint);
+            this.messages.push({body: "Indizio: " + hint, author: 'bob'})
+        })
     }
 
 })
