@@ -2,21 +2,37 @@ Vue.component('activity-editor', {
     template: ` 
         <div class="column-flex-container">
             <div>
-                <span>Schermata</span>
-                <screen-style-editor :screenStyleData="activity.screenStyleData"></screen-style-editor>
-                <span> Contenuti </span> 
-                <div v-for="(content, index) of activity.content">
-                    <activity-editor-component-panel :index="index" :componentData="content" :last="index===activity.content.length-1"></activity-editor-component-panel>
-                
+                <!-- STILE SCHERMATA -->
+                <div class="panel-section">
+                    <div style="text-align:center">
+                        <span class="editor-text">Stile schermata</span> 
+                    </div>
+                    <screen-style-editor :screenStyleData="activity.screenStyleData"></screen-style-editor>
                 </div>
                 
-                <content-type-selector @content:type:selected="addContentChunk" ></content-type-selector>
-                
-                <div v-if="activity.inputComponent">
-                    <activity-editor-component-panel :componentData="activity.inputComponent"></activity-editor-component-panel>
+                <!-- CONTENUTI -->
+                <div class="panel-section">
+                    <div style="text-align:center">
+                        <span class="editor-text">Contenuti</span> 
+                    </div>
+                    <div v-for="(content, index) of activity.content">
+                        <activity-editor-component-panel :index="index" :componentData="content" :last="index===activity.content.length-1"></activity-editor-component-panel>
+                    
+                    </div>
+                    
+                    <content-type-selector @content:type:selected="addContentChunk" ></content-type-selector>
                 </div>
-                <div v-else>
-                    <input-type-selector @input:selected="setInputChunk"></input-type-selector>
+                <!-- INPUT -->
+                    <div class="panel-section">
+                        <div style="text-align:center">
+                            <span class="editor-text">Input</span> 
+                        </div>
+                    <div v-if="activity.inputComponent">
+                        <activity-editor-component-panel :componentData="activity.inputComponent"></activity-editor-component-panel>
+                    </div>
+                    <div v-else>
+                        <input-type-selector @input:selected="setInputChunk"></input-type-selector>
+                    </div>
                 </div>
             </div>
         

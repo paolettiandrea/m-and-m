@@ -4,7 +4,7 @@ function openQRCamera(node) {
       node.value = "";
       qrcode.callback = function(res) {
         if(res instanceof Error) {
-          alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
+          alert("Non riesco a leggere il QR code. Per favore riprova.");
         } else {
           console.log("Code found: ", res);
           node.parentNode.previousElementSibling.value = res;
@@ -17,5 +17,5 @@ function openQRCamera(node) {
   }
   
   function showQRIntro() {
-    return confirm("Use your camera to take a picture of a QR code.");
+    return confirm("Utilizza la fotocamera per leggere il QR code.");
   }

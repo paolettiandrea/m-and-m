@@ -1,16 +1,16 @@
 Vue.component('mission-displayer', {
     template: `
-        <div id="mission-displayer-main" style="height:100%; width:100%;">
-            <score-displayer align="right" :score="this.missionScore" style="position:absolute; top:1em; right:1em"></score-displayer>
+        <div id="mission-displayer-main">
+            <score-displayer align="right" :score="this.missionScore" style="position: absolute; top: 0px; right: 20px"></score-displayer>
             <transition name="content-slide" mode="out-in">
                     <div v-if="this.pointedActivity" :key="this.pointedActivity.uuid" style="height: 100%">
                         <activity-displayer :activityContent="this.pointedActivity" :defaults="this.missionData.defaults" style="height: 100%"
                                                 @next:activity="handleNextActivity"></activity-displayer>
                     </div>
             </transition>
-            <div v-if="missionEnded" style="height:100%;width:100%;">
-            <lastScreen-displayer :score="missionScore"></lastScreen-displayer>
-        </div>
+            <div v-if="missionEnded">
+                <lastScreen-displayer :score="missionScore"></lastScreen-displayer>
+            </div>
             <chat></chat>
 
         </div>
@@ -56,15 +56,6 @@ Vue.component('mission-displayer', {
                 this.pointedActivity = null;
 
             }
-            // var i = 0;
-            // for (const activity of this.missionData.activities) {
-            //     if (activity.uid===nextMissionId) {
-            //         this.pointedActivity = activity;
-            //         this.pointedIndex = i;
-            //         return;
-            //     }
-            //     i++;
-            // }
         }
     },
 
@@ -82,14 +73,17 @@ Vue.component('mission-displayer', {
 
             socket.emit('starting-mission', missionId)
             socket.emit('starting-activity', 'initial');
-        }
-        // else {
-        //     axios.
-        //     get("/player/data/dummyMission.json").
-        //     then(res => {
-        //         this.missionData = res.data;
-        //         this.pointedActivity = this.missionData.activities.initial;
-        //     })
-        // }
+        } 
+
+
+
+        socket.on('scored', (scoringData) => {
+            console.log("Received scoring data: ", scoringData);
+            if (scoringData.score) {
+                this.missionScore += scoringData.score;
+            } else {
+                console.warn("No score in the received scoringData object")
+            }
+        })
     },
 })

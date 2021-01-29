@@ -117,6 +117,8 @@ const store = new Vuex.Store({
         playerStateChanged(state, playerState) {
 
             let previousState = state.players[playerState.id];
+            let givenName = previousState.givenName;
+            if (givenName) { playerState.givenName = givenName; }
             if (previousState.playingActivityId!==playerState.playingActivityId) {
 
                 // Remove pending hint if present

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Player</title>
 
     <!-- Vue -->
     <script src="/intersection-observer/intersection-observer.js"></script> <!-- Polyfills some required functionality for older browsers-->
@@ -47,6 +47,11 @@
 
     <!-- QR code libraries -->
     <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="jquery.rwdImageMaps.min.js"></script>
+    <script src="../../js/ios-orientationchange-fix.min.js"></script>
 
 
 
@@ -108,6 +113,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 
+
+    <script type="text/javascript" src="./dist/build.min.js"></script>
+
     <script>
 
         let fontDB = new FontDB(50)
@@ -117,12 +125,7 @@
 
 
         // TODO place this somewhere
-        socket.on('hint', (hint) => {
-            console.log("Received hint: ", hint);
-        })
-        socket.on('scored', (scoringData) => {
-            console.log("Received scoring data: ", scoringData);
-        })
+   
 
     </script>
 

@@ -48,6 +48,9 @@ Vue.component('text-insert-editor', {
 
     template: `
         <div>
+            <editor-field label="Placeholder">
+                <defaulted-input-form :targetContainer="inputData" targetFieldName="placeholderText" inputType="text" defaultVal="Inserisci la tua risposta"></defaulted-input-form>
+            </editor-field>
             <activity-editor-subpanel label="Possibilita'">
                 <activity-editor-list :list="inputData.possibilityList" :labelFunction="labelCallback" :addCallback="addOutcomeCallback">
             
