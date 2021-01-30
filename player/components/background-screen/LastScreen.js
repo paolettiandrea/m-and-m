@@ -27,14 +27,13 @@ Vue.component("lastScreen-displayer", {
                       v-model="playerInputName"
                       style="margin-top:0;"
                     placeholder="Inserisci il tuo nome"
-                    aria-label="Inserimento nome giocatore"
                   ></b-form-input>
                   <b-button @click="sendScore">Salva il punteggio</b-button>
                   </b-form>
                 </div>
 
-                <div v-if="missionRecap && missionRecap.rankings">
-                  <b-table :items="missionRecap.rankings" aria-label="Classifica" :fields= "[
+                <div v-if="missionRecap && missionRecap.rankings" role="navigation" aria-label="Classifica">
+                  <b-table :items="missionRecap.rankings" :fields= "[
                   {
                     key: 'playerName',
                     sortable: false,
