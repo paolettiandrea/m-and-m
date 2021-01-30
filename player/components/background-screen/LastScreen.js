@@ -8,8 +8,8 @@ Vue.component("lastScreen-displayer", {
                            font-weight: bold;
                            color: #000000;">
 
-                <div class="h2 mb-0">
-                  <b-icon icon="trophy-fill"></b-icon>
+                <div class="h2 mb-0" role="banner">
+                  <b-icon icon="trophy-fill" aria-label="Congratulazioni! Hai concluso la missione!"></b-icon>
                </div>
                 <p style="fontStyle:italic;"> Punteggio finale: {{score}}</p>
                 <p>  </p>
@@ -27,13 +27,14 @@ Vue.component("lastScreen-displayer", {
                       v-model="playerInputName"
                       style="margin-top:0;"
                     placeholder="Inserisci il tuo nome"
+                    aria-label="Inserimento nome giocatore"
                   ></b-form-input>
-                  <b-button @click="sendScore">Save</b-button>
+                  <b-button @click="sendScore">Salva il punteggio</b-button>
                   </b-form>
                 </div>
 
                 <div v-if="missionRecap && missionRecap.rankings">
-                  <b-table :items="missionRecap.rankings" :fields= "[
+                  <b-table :items="missionRecap.rankings" aria-label="Classifica" :fields= "[
                   {
                     key: 'playerName',
                     sortable: false,
