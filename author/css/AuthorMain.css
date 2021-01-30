@@ -257,3 +257,17 @@
     padding: 0.25em
 }
 
+.mission-navbar {
+    background-color:#d7dadf ;
+}
+
+.activity-navbar {
+
+    background-color:hsl(211, 67%, 80%) ;
+}
+
+.mission-canvas-container {
+
+    background-color:hsl(211, 67%, 80%) ;
+}
+

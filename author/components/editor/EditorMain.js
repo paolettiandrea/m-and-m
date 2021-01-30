@@ -16,9 +16,9 @@ Vue.component('editor-main', {
             
                 <!-- Activity panel  -->
                 <b-col style="flex: 2; display: flex; flex-direction: column; overflow-y:hidden" v-if="selectedActivity" class="full-height no-horizontal-padding" key="2">
-                    <b-navbar class="mm-navbar-activity" style="flex:0">
+                    <b-navbar class="activity-navbar" style="flex:0">
                         <b-navbar-brand href="#">
-                            <editable-text :targetObject="selectedActivity" targetFieldName="title"></editable-text>
+                            <editable-text class="editor-font" :targetObject="selectedActivity" targetFieldName="title"></editable-text>
                         </b-navbar-brand>
                     
                         <b-navbar-nav class="ml-auto">

@@ -4,11 +4,11 @@ export default {
             <b-row no-gutters style="margin-left: 1em; margin-right: 1em">
                 <b-col>
                     <h3 class="editor-text"> Disponibili al pubblico</h3>
-                    <mission-info-card v-for="(mission, id) in activeMissions" v-if="!mission.archived" :mission="mission" :key="id"></mission-info-card>
+                    <mission-info-card v-for="(mission, id) in activeMissions" v-if="!mission.head.archived" :mission="mission" :key="id"></mission-info-card>
                 </b-col>
                 <b-col>
                     <h3 class="editor-text"> Archiviate </h3>
-                    <mission-info-card v-for="(mission, id) in activeMissions" v-if="mission.archived" :mission="mission" :key="id"></mission-info-card>
+                    <mission-info-card v-for="(mission, id) in activeMissions" v-if="mission.head.archived" :mission="mission" :key="id"></mission-info-card>
                 </b-col>
             </b-row>
                 <b-button @click="createMission" variant="success" class="editor-font">Crea nuova missione</b-button>
@@ -81,10 +81,6 @@ Vue.component("mission-info-card", {
                         <tooltip-button @click="selectMission(mission.id)" tooltip="Modifica" :keyy="mission.id"><b-icon icon="brush"></b-icon></tooltip-button>
                         <tooltip-button v-if="!mission.archived" @click="playMission(mission.id)" tooltip="Gioca" :keyy="mission.id"><b-icon icon="play"></b-icon></tooltip-button>
                         <tooltip-button v-if="!mission.archived" @click="downloadRanking" tooltip="Scarica classifica" :keyy="mission.id"><b-icon icon="download"></b-icon></tooltip-button>
-                    </b-button-group>
-                    <b-button-group>
-                        <tooltip-button v-if="!mission.archived" @click="archive()" tooltip="Archivia"><b-icon icon="archive"></b-icon></tooltip-button>
-                        <tooltip-button v-else @click="publish()" tooltip="Pubblica" :keyy="mission.id"><b-icon icon="check-circle"></b-icon></tooltip-button>
                     </b-button-group>
                     <b-button-group>
                       <confirm-button icon="trash" variant="danger" key="cancelMission" confirmPrompt="Sei sicuro di voler eliminare la missione?" @confirmed="deleteMission(mission.id)" :swapVariant="true"></confirm-button>
