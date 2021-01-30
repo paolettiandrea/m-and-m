@@ -7,17 +7,30 @@ Vue.component("lastScreen-displayer", {
               <div style=" border: 0.1em solid black;
                            font-weight: bold;
                            color: #000000;">
+
+                <div class="h2 mb-0">
+                  <b-icon icon="trophy-fill"></b-icon>
+               </div>
                 <p style="fontStyle:italic;"> Punteggio finale: {{score}}</p>
                 <p>  </p>
                 <div v-if="missionRecap">
                   <p style="fontStyle:italic;">Tempo impiegato: {{missionRecap.playTime}} secondi</p>
                 </div>
                 <br></br>
-                <b-form-group label="Inserisci il tuo nome">
-                  <b-form-input v-model="playerInputName"></b-form-input>
 
-                  <b-button @click="sendScore">Invia</b-button>
-                </b-form-group>
+
+                <div align="center" style="margin-left:3em; margin-bottom:1em;">
+                  <b-form inline>
+                  <label for="inline-form-input-name"style="margin-right:1em; margin-top:0;">Inserisci il nome: </label>
+                  <b-form-input
+                    id="inline-form-input-name"
+                      v-model="playerInputName"
+                      style="margin-top:0;"
+                    placeholder="Inserisci il tuo nome"
+                  ></b-form-input>
+                  <b-button @click="sendScore">Save</b-button>
+                  </b-form>
+                </div>
 
                 <div v-if="missionRecap && missionRecap.rankings">
                   <b-table :items="missionRecap.rankings" :fields= "[
