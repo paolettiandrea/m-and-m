@@ -238,7 +238,7 @@
 }
 
 .mission-card-button-toolbar div {
-    padding-right: 0.3em;
+    padding-bottom: 0.3em;
 }
 
 .mission-card-body {
@@ -251,5 +251,9 @@
 
 .panel-section {
     margin-bottom: 1.5em;
+}
+
+.mission-card .card-footer {
+    padding: 0.25em
 }
 

@@ -62,7 +62,9 @@ Vue.component("mission-editor", {
                       </template>
                     </defaulted-dropdown>
                   </editor-field>
-                  <editor-field label=""></editor-field>
+                  <editor-field label="Accessibilita'">
+                    <b-form-checkbox v-model="missionHead.accessible"></b-form-checkbox>
+                  </editor-field>
 
                 </activity-editor-subpanel>
                 <mission-defaults-editor :defaults="missionContent.defaults" :uberDefaults="uberDefaults" :missionContent="missionContent"></mission-defaults-editor>
