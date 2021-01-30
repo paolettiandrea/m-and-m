@@ -78,6 +78,7 @@ Vue.component("lastScreen-displayer", {
         playTime: this.missionRecap.playTime,
         score: this.score,
       });
+      window.location.href = "/player"
     },
   },
 
