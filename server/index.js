@@ -28,6 +28,7 @@ app.use(fileUpload({debug: true}));
 app.use(express.static(path.join(__dirname, './public')));
 app.use(express.static(dbController.missionsDir))
 
+app.use('/', express.static(path.join(__dirname, '../home')));
 app.use('/player', express.static(path.join(__dirname, '../player')));
 app.use('/author', express.static(path.join(__dirname, '../author')));
 app.use('/supervisor', express.static(path.join(__dirname, '../supervisor')));
@@ -36,10 +37,7 @@ app.use('/common', express.static(path.join(__dirname, '../common')));
 //
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
-// ROUTING
-app.get('/', function (req, res) {
-  res.send("Hello, I'm the server");
-})
+
 
 
 app.use("/missions", a)
