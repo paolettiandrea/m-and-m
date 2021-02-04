@@ -24,6 +24,12 @@
       "data":{
         "possibilityList": [],
         "fallbackOutcome": {},
+        "insertFieldStyleData": {
+          "label": "",
+          "labelFontData": {},
+          "buttonBorderData": {},
+          "buttonBackgroundData": {}
+        },
         "buttonData": {
           "label": "Manda",
           "labelFontData": {},

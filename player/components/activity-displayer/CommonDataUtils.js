@@ -93,6 +93,7 @@ function buildDefaultObject(defaults, uberDefaults) {
 }
 
 function buildCompositeStyle(data, defs, uberDefs, fields) {
+    console.log("Building composite style for: data: ", data, " defs", defs, "uberDefs", uberDefs)
     let obj = {}
     for (const style in fields) {
         let fieldName = fields[style];
@@ -102,6 +103,7 @@ function buildCompositeStyle(data, defs, uberDefs, fields) {
 }
 
 function buildFontStyle(fontData, fontDefaults, uberDefs) {
+    console.log("Building font style")
     return buildCompositeStyle(fontData, fontDefaults, uberDefs, {
         fontFamily: 'fontFamily',
         fontSize: 'fontSize',

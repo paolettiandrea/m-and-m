@@ -3,7 +3,7 @@ Vue.component('button-editor', {
     template: `
     <div >
         <activity-editor-subpanel
-            label="Bottone"
+            :label="subpanelLabel"
             :level="level"
             >
             
@@ -26,7 +26,8 @@ Vue.component('button-editor', {
         },
         defaults: null,
 
-        iconLabel: { default: false }
+        iconLabel: { default: false },
+        subpanelLabel: {default: "Bottone"}
     },
 
     computed: {
