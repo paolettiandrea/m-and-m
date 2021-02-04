@@ -140,12 +140,17 @@ let MissionModule = {
                         }
                         case "text-insert": {
                             if (!activity.inputComponent.inputData.inputFieldStyleData) {
-                                Vue.set(activity.inputComponent, inputData, "inputFieldStyleData", {
+                                Vue.set(activity.inputComponent.inputData, "inputFieldStyleData", {
                                     "label": "",
                                     "labelFontData": {},
                                     "buttonBorderData": {},
                                     "buttonBackgroundData": {}
                                 })
+                            }
+                        }
+                        case "canvas-draw": {
+                            if (activity.inputComponent.inputData.canvasBackgroundData) {
+                                Vue.set(activity.inputComponent.inputData, "canvasBackgroundData", {})
                             }
                         }
                     }

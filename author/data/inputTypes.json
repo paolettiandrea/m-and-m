@@ -65,6 +65,7 @@
       "title": "Canvas",
       "icon": "brush",
       "data":{
+        "canvasBackgroundData": {},
         "sendButtonData": {
           "buttonData": {
             "label": "Invia",

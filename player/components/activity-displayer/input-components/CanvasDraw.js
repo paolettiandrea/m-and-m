@@ -11,7 +11,7 @@ Vue.component("canvas-draw", {
   template: `
 
     <div class="canvas-draw-container"  align="center" id="drawing" style="width=100%; height: 100%">
-    <canvas ref="canvas" id='drawing-pad' style="width=100%; height: 100%;">
+    <canvas ref="canvas" id='drawing-pad' style="width=100%; height: 100%;" :style="canvasBackgroundStyle">
       This is an interactive drawing pad.
     </canvas>
     <div>
@@ -28,6 +28,12 @@ Vue.component("canvas-draw", {
   props: {
     inputData: null,
     defaults: null,
+  },
+
+  computed: {
+    canvasBackgroundStyle() {
+      return buildBackgroundData(this.inputData.canvasBackgroundData, this.defaults.buttonData.buttonBackgroundData, uberDefaults.buttonData.buttonBackgroundData)
+    }
   },
 
   data() {
