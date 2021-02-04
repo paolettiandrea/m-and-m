@@ -24,6 +24,12 @@
       "data":{
         "possibilityList": [],
         "fallbackOutcome": {},
+        "insertFieldStyleData": {
+          "label": "",
+          "labelFontData": {},
+          "buttonBorderData": {},
+          "buttonBackgroundData": {}
+        },
         "buttonData": {
           "label": "Manda",
           "labelFontData": {},
@@ -59,6 +65,7 @@
       "title": "Canvas",
       "icon": "brush",
       "data":{
+        "canvasBackgroundData": {},
         "sendButtonData": {
           "buttonData": {
             "label": "Invia",

@@ -1,6 +1,6 @@
 Vue.component("multiple-checkboxes", {
-    template: `<div style="display: flex; flex-direction: column; align-items:center">
-      <div v-if="!inputData.multiple" v-for="optionData in inputData.optionList" style="width: 100%; display: flex; flex-direction: column; align-items:center">
+    template: `<div style="display: flex; flex-direction: column; align-items:center" :style="{'flex-direction': inputData.layoutDirection}">
+      <div v-if="!inputData.multiple" v-for="optionData in inputData.optionList" style="width: 100%; display: flex; flex-direction: column; align-items:center; padding: 0.25em" >
         <simple-button v-if="optionData.buttonData" :inputData="optionData" :defaults="defaults" @input-received="clickReceived"></simple-button>
         <img-displayer href="#" v-if="inputData.optionContentType==='immagine'" :contentData="optionData.data" :defaults="defaults" @click.native="clickReceived(optionData.outcome)" style="width: 100%"></img-displayer>
         <!-- TODO how to play audio without choosing the option? On hover? -->

@@ -48,9 +48,12 @@ Vue.component('text-insert-editor', {
 
     template: `
         <div>
-            <editor-field label="Placeholder">
-                <defaulted-input-form :targetContainer="inputData" targetFieldName="placeholderText" inputType="text" defaultVal="Inserisci la tua risposta"></defaulted-input-form>
-            </editor-field>
+
+            <!-- Insert box style editor (as if it were a button since the properties are basically the same) -->
+            <button-editor :buttonData="inputData.insertFieldStyleData" :defaults="selectedMissionDefaults.buttonData" subpanelLabel="Riquadro di inserimento"></button-editor>
+            <button-editor :buttonData="inputData.buttonData" :defaults="selectedMissionDefaults.buttonData"></button-editor>
+
+            <!-- Custom possibility editor layout -->
             <activity-editor-subpanel label="Possibilita'">
                 <activity-editor-list :list="inputData.possibilityList" :labelFunction="labelCallback" :addCallback="addOutcomeCallback">
             
@@ -61,9 +64,8 @@ Vue.component('text-insert-editor', {
                 <activity-editor-subpanel label="Esito di fallback">
                     
                     <next-activity-outcome-editor :outcomeData="inputData.fallbackOutcome"></next-activity-outcome-editor>
-</activity-editor-subpanel>
             </activity-editor-subpanel>
-            <button-editor :buttonData="inputData.buttonData" :defaults="selectedMissionDefaults.buttonData"></button-editor>
+            </activity-editor-subpanel>
 </div>`,
 
     props: {
@@ -75,7 +77,8 @@ Vue.component('text-insert-editor', {
         }
     },
     computed: {
-        ...Vuex.mapGetters(['selectedMissionDefaults'])
+        ...Vuex.mapGetters(['selectedMissionDefaults']),
+
     },
 
     methods: {

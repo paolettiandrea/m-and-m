@@ -11,7 +11,7 @@ Vue.component('next-activity-outcome-editor', {
 
     props: {
         outcomeData: null,
-        noScore: {default: false}
+        noScore: { default: false }
     }
 
 })
@@ -63,7 +63,7 @@ Vue.component('simple-button-editor', {
         inputData: null,
         level: 0,
         noOutcome: false,
-        noScore: {default: false}
+        noScore: { default: false }
     },
 
     computed: {
@@ -74,6 +74,13 @@ Vue.component('simple-button-editor', {
 
 Vue.component('canvas-draw-editor', {
     template: `<div>
+        <activity-editor-subpanel label="Stile canvas">
+            <background-editor :backgroundData="inputData.canvasBackgroundData" :defaults="selectedMissionDefaults.buttonData.buttonBackgroundData"></background-editor>
+            <activity-editor-subpanel label="Tratto">
+                <defaulted-input-form :targetContainer="inputData" targetFieldName="canvasLineColor" 
+                                        defaultVal="" inputType="color" label="Opacita'"></defaulted-input-form>
+            </activity-editor-subpanel>
+        </activity-editor-subpanel>
         <simple-button-editor :noScore="true" :inputData="inputData.sendButtonData"></simple-button-editor>
         <activity-editor-subpanel label="Valutazione punteggio">
             <score-range-editor :scoreRange="inputData.scoreRange"></score-range-editor>
@@ -85,6 +92,11 @@ Vue.component('canvas-draw-editor', {
 
     props: {
         inputData: null
+    },
+
+    computed: {
+        ...Vuex.mapGetters(['selectedMissionDefaults']),
+
     }
 })
 
@@ -110,26 +122,26 @@ Vue.component('click-img-editor', {
     </div>`,
 
     props: {
-    inputData: null
+        inputData: null
     },
 
     methods: {
         labelFunc(elem, i) {
-           return elem.alt;
+            return elem.alt;
         },
         // TODO chiarire se le coordinate funzionano
- addArea() {
-       this.inputData.areas.push({
-           coords: "",
-           alt: "area " + this.inputData.areas.length,
-           outcome: {
-               outcomeType: 'next',
-               nextActivityId: ""
-           }
-       })
-    }
+        addArea() {
+            this.inputData.areas.push({
+                coords: "",
+                alt: "area " + this.inputData.areas.length,
+                outcome: {
+                    outcomeType: 'next',
+                    nextActivityId: ""
+                }
+            })
+        }
     },
 
-   
+
 
 })
