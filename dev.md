@@ -187,7 +187,6 @@ Bug autore:
 
 - Animazioni
 - Custom font
-- Allineamento orizzontale bottoni (o immagini/suoni) multiple choice
 
 
 ## Cose da fare nel player
