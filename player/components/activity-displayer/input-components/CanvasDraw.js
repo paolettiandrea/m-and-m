@@ -157,7 +157,8 @@ Vue.component("canvas-draw", {
         vm.context.lineTo(x, y);
         vm.context.lineWidth = 1;
         vm.context.lineCap = "round";
-        vm.context.strokeStyle = "rgba(255, 0, 0, 1)";
+        if (this.inputData.canvasLineColor) vm.context.strokeStyle = this.inputData.canvasLineColor;
+        else vm.context.strokeStyle = 'rgba(0,0,0,255)'
         vm.context.stroke();
 
         vm.startX = x;
@@ -219,6 +220,7 @@ Vue.component("canvas-draw", {
         vm.context.lineTo(x, y);
         vm.context.lineWidth = 1;
         vm.context.lineCap = "round";
+        
         vm.context.strokeStyle = "rgba(255, 0, 0, 1)";
         vm.context.stroke();
       }

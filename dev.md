@@ -175,9 +175,7 @@ Bug autore:
 
 
 ## Aggiuntine
-- Gestione dimensione della manopola
 - Opzione bottoni orizzontali
-- personalizzazione sfondo canvas (campitura)
 
 
 

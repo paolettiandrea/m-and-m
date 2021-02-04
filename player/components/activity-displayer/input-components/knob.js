@@ -12,7 +12,7 @@ const mapRange = (x, inMin, inMax, outMin, outMax) => {
 Vue.component('knob-input', {
     template: `
     <div>
-        <knob v-model="yo" @input="newValue" :primaryColor="inputData.primaryColor" :secondaryColor="inputData.secondaryColor"></knob>
+        <knob v-model="yo" :svgStyle="sizeData" @input="newValue" :primaryColor="inputData.primaryColor" :secondaryColor="inputData.secondaryColor"></knob>
     </div>`,
 
     props: {
@@ -22,6 +22,22 @@ Vue.component('knob-input', {
     data() {
         return {
             yo: 0
+        }
+    },
+
+    computed: {
+        sizeData() {
+            if (this.inputData.knobSize) {
+                return {
+                    height: this.inputData.knobSize,
+                    width: this.inputData.knobSize
+                }
+            } else {
+                return {
+                    height: '100%',
+                    width: '100%'
+                }
+            }
         }
     },
 
@@ -38,6 +54,7 @@ Vue.component('knob-input', {
 Vue.component('knob-input-editor', {
     template: `
     <div>
+        <defaulted-input-form-unit :targetContainer="inputData" targetFieldName="knobSize" :defaultVal="'100%'" :possibleUnits="commonUnits"></defaulted-input-form-unit>
         <defaulted-dropdown :options="['azione']" :targetContainer="inputData" targetFieldName="mode" defaultVal="Scegli la modalita'">
             <template v-slot:default="slotProps">
                 <p class="editor-text">{{slotProps.option}}</p>
@@ -69,14 +86,18 @@ Vue.component('knob-input-editor', {
     props: {
         inputData: null
     },
+
+    computed: {
+        ...Vuex.mapGetters(['commonUnits'])
+    }
 })
 
 
 Vue.component('knob', {
     template: `
     <div style="text-align:center;">
-    <div class="knob-control" :style="style">
-        <svg :width="computedSize" :height="computedSize" viewBox="0 0 100 100"
+    <div class="knob-control">
+        <svg :width="computedSize" :height="computedSize" :style="svgStyle" viewBox="0 0 100 100"
             @click="onClick"
             @mousedown="onMouseDown"
             @mouseup="onMouseUp"
@@ -132,6 +153,7 @@ Vue.component('knob', {
                 }
             }
         },
+        svgStyle: {},
         'value': {
             type: Number,
             required: true

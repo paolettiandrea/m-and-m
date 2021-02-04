@@ -76,6 +76,10 @@ Vue.component('canvas-draw-editor', {
     template: `<div>
         <activity-editor-subpanel label="Stile canvas">
             <background-editor :backgroundData="inputData.canvasBackgroundData" :defaults="selectedMissionDefaults.buttonData.buttonBackgroundData"></background-editor>
+            <activity-editor-subpanel label="Tratto">
+                <defaulted-input-form :targetContainer="inputData" targetFieldName="canvasLineColor" 
+                                        defaultVal="" inputType="color" label="Opacita'"></defaulted-input-form>
+            </activity-editor-subpanel>
         </activity-editor-subpanel>
         <simple-button-editor :noScore="true" :inputData="inputData.sendButtonData"></simple-button-editor>
         <activity-editor-subpanel label="Valutazione punteggio">
