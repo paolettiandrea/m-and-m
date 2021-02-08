@@ -49,6 +49,18 @@
     <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
 
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="jquery.rwdImageMaps.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+        
+    <!-- <script src="../../js/ios-orientationchange-fix.min.js"></script> -->
+
+
 
 <!-- TODO ci servono questi? Sembrano dare tutti errore
     <script type="text/javascript" src="grid.js"></script>
@@ -94,20 +106,24 @@
 <!-- Knob control-->
     <script src="/player/components/activity-displayer/input-components/knob.js"></script>
 
+<!-- puzzle game-->
+    <script src="/player/components/activity-displayer/input-components/puzzle.js"></script>
+
+
+
 
 <!--    <script type="text/javascript" src ="pureknob.js"> </script>  &lt;!&ndash; manopola&ndash;&gt;-->
 
     <script src="/common/js/VueUtils.js"></script>
     <script src="./components/activity-displayer/CommonDataUtils.js"></script>
     <script src="/common/js/FontControllerBro.js"></script>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 
 
-    <script type="text/javascript" src="./dist/build.min.js"></script>
 
     <script>
-  
+
         let fontDB = new FontDB(50)
         var socket = io();
         socket.emit('player-handshake');

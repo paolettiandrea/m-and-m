@@ -1,7 +1,16 @@
+// Get the position of a touch relative to the canvas
+function getTouchPos(canvasDom, touchEvent) {
+  var rect = canvasDom.getBoundingClientRect();
+  return {
+    x: touchEvent.touches[0].clientX - rect.left,
+    y: touchEvent.touches[0].clientY - rect.top,
+  };
+}
+
 Vue.component("canvas-draw", {
   template: `
 
-    <div  align="center" id="drawing" style="width=100%; height: 100%">
+    <div class="canvas-draw-container"  align="center" id="drawing" style="width=100%; height: 100%">
     <canvas ref="canvas" id='drawing-pad' style="width=100%; height: 100%;">
       This is an interactive drawing pad.
     </canvas>
@@ -35,10 +44,74 @@ Vue.component("canvas-draw", {
   mounted() {
     var vm = this;
     vm.canvas = vm.$refs.canvas;
+    let canvas = vm.$refs.canvas;
     vm.context = vm.canvas.getContext("2d");
-    vm.canvas.addEventListener("mousedown", vm.mousedown);
-    vm.canvas.addEventListener("mousemove", vm.mousemove);
-    document.addEventListener("mouseup", vm.mouseup);
+    vm.canvas.addEventListener("mousedown", vm.mousedown, false);
+    vm.canvas.addEventListener("mousemove", vm.mousemove, false);
+    document.addEventListener("mouseup", vm.mouseup, false);
+
+    canvas.addEventListener(
+      "touchstart",
+      function (e) {
+        mousePos = getTouchPos(canvas, e);
+        var touch = e.touches[0];
+        var mouseEvent = new MouseEvent("mousedown", {
+          clientX: touch.clientX,
+          clientY: touch.clientY,
+        });
+        canvas.dispatchEvent(mouseEvent);
+      },
+      false
+    );
+    canvas.addEventListener(
+      "touchend",
+      function (e) {
+        var mouseEvent = new MouseEvent("mouseup", {});
+        canvas.dispatchEvent(mouseEvent);
+      },
+      false
+    );
+    canvas.addEventListener(
+      "touchmove",
+      function (e) {
+        var touch = e.touches[0];
+        var mouseEvent = new MouseEvent("mousemove", {
+          clientX: touch.clientX,
+          clientY: touch.clientY,
+        });
+        canvas.dispatchEvent(mouseEvent);
+      },
+      false
+    );
+
+    // Prevent scrolling when touching the canvas
+    document.body.addEventListener(
+      "touchstart",
+      function (e) {
+        if (e.target == canvas) {
+          e.preventDefault();
+        }
+      },
+      { passive: false }
+    );
+    document.body.addEventListener(
+      "touchend",
+      function (e) {
+        if (e.target == canvas) {
+          e.preventDefault();
+        }
+      },
+      { passive: false }
+    );
+    document.body.addEventListener(
+      "touchmove",
+      function (e) {
+        if (e.target == canvas) {
+          e.preventDefault();
+        }
+      },
+      { passive: false }
+    );
   },
 
   methods: {
@@ -47,10 +120,10 @@ Vue.component("canvas-draw", {
         type: "drawn-image",
         dataUrl: this.canvas.toDataURL(),
         scoreRange: this.inputData.scoreRange,
-        context: this.inputData.scoringContext
+        context: this.inputData.scoringContext,
       });
 
-      this.$emit('input-received', this.inputData.sendButtonData.outcome);
+      this.$emit("input-received", this.inputData.sendButtonData.outcome);
     },
     mousedown(e) {
       var vm = this;
@@ -145,4 +218,4 @@ Vue.component("canvas-draw", {
       }
     },
   },
-})
+});

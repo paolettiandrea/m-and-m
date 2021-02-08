@@ -1,50 +1,50 @@
 Vue.component("activity-displayer", {
     template: `
-        <div class="activity-displayer-div" >
+        <div class="activity-displayer-div">
             <!-- Content chunks  -->
             <styling-wrapper :stylingData="activityContent.screenStyleData.outer" :stylingDefaults="defaults.screenStyleData.outer" style="min-height: 20px; overflow-y: auto; height: 100%; display: flex; flex-direction: column">
             <styling-wrapper :stylingData="activityContent.screenStyleData.inner" :stylingDefaults="defaults.screenStyleData.inner" style="flex: 1; display: flex; flex-direction: column" :style="{'justify-content': verticalAlignment}">
-            
+
             <div class="activity-displayer-chunk-container">
                 <slot name="inter" index="0"></slot>
                 <div  v-for="(contentChunk, index) of this.activityContent.content" >
                     <div v-on:click="contentChunkClicked({content: contentChunk, index: index})">
                         <styling-wrapper :stylingData="contentChunk.commonData" :stylingDefaults="defaults.commonData">
-                            <component :is="contentChunk.contentType" 
-                                   :id="'content-chunk-'+index" 
-                                   class="content-chunk" 
+                            <component :is="contentChunk.contentType"
+                                   :id="'content-chunk-'+index"
+                                   class="content-chunk"
                                    :contentData="contentChunk.contentData"
-                                   :defaults="defaults" 
+                                   :defaults="defaults"
                                    :sharedState="sharedMissionState"></component>
                         </styling-wrapper>
-                        
-                                   
-                                   
+
+
+
                     </div>
-                </div>   
-                
-                <slot name="last-content-chunk"></slot> 
+                </div>
+
+                <slot name="last-content-chunk"></slot>
             </div>
-            
+
             <!-- Popup for input response. It contains an activity-displayer used for displaying the popupContent -->
             <b-collapse v-model="popupVisible">
-                <component v-if="popupContent" :is="popupContent.type" 
-                                       class="content-chunk" 
-                                       id="popup-content-chunk" 
-                                       :contentData="popupContent.data" 
+                <component v-if="popupContent" :is="popupContent.type"
+                                       class="content-chunk"
+                                       id="popup-content-chunk"
+                                       :contentData="popupContent.data"
                                        :sharedState="sharedMissionState"></component>
             </b-collapse>
-            
-            <!--Input component: the component type is defined by the string inputType and it receives the 
-                                 data object inputData as the prop "data" (every input component needs to have 
+
+            <!--Input component: the component type is defined by the string inputType and it receives the
+                                 data object inputData as the prop "data" (every input component needs to have
                                  a data prop that it can use to retrieve all the data needed to define its behaviour)-->
             <div v-if="activityContent.inputComponent" v-on:click="inputClicked">
                 <styling-wrapper :stylingData="activityContent.inputComponent.commonData" :stylingDefaults="defaults.commonData">
 
-                    <component :is="activityContent.inputComponent.inputType" 
-                                :inputData="activityContent.inputComponent.inputData" 
+                    <component :is="activityContent.inputComponent.inputType"
+                                :inputData="activityContent.inputComponent.inputData"
                                 :defaults="defaults"
-                                @input-received="handleInputReceived" 
+                                @input-received="handleInputReceived"
                                 :sharedState="sharedMissionState"></component>
                 </styling-wrapper>
             </div>
@@ -52,13 +52,13 @@ Vue.component("activity-displayer", {
                 <slot name="input-placeholder"></slot>
             </div>
 
-            
-            
+
+
 </styling-wrapper>
-            
+
 </styling-wrapper>
-            
-         
+
+
         </div>`,
 
     props: {
