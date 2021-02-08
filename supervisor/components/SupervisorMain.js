@@ -127,15 +127,15 @@ Vue.component("chat", {
           <h5 class="mb-0 text-center editor-text">Chat</h5>
         </template>
   <!-- Message history -->
-        <section style="flex: 1; overflow-y: auto">
+        <section ref='supChatArea' style="flex: 1; overflow-y: auto">
             <div v-for="message in chat.messages" 
                 style="display:flex"
                 :class="{'message-out': message.author==='supervisor', 'message-in': message.author!=='supervisor'}">
                  <div v-if="message.author==='supervisor'" style="flex:1"></div>
-                <div 
-                :class="{'message-out-inner': message.author==='supervisor', 'message-in-inner': message.author!=='supervisor', 'message-box': true}">
-
-                    <span>{{message.body}}</span>
+                <div>
+                  <b-card class="message-card" :bg-variant="messageVariant(message.author)" text-variant="white">
+                    {{message.body}}
+                  </b-card>
                 </div>
             </div>
         </section>
@@ -168,9 +168,29 @@ Vue.component("chat", {
       this.sendSelectedPlayerMessage(this.message);
       this.message = "";
     },
+
+    messageVariant(author) {
+      if (author === 'supervisor') { return "primary"}
+      else { return "secondary"}
+    }
   },
+
+  watch: {
+    chat: {
+      handler(val) {
+      // do stuff
+      console.log("adsfjkjasf");
+      Vue.nextTick(() => {
+              let messageDisplay = this.$refs.supChatArea
+              messageDisplay.scrollTop = messageDisplay.scrollHeight
+            })
+      },
+      deep: true 
+     },
+   },
 
   computed: {
     ...Vuex.mapGetters(["socket"]),
+
   },
 });
