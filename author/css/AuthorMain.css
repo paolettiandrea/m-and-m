@@ -216,15 +216,18 @@
     margin-top: 0.25em
 }
 
-.activity-preview-container {
-    background-color: var(--lightest-grey);
-}
 
 .activity-displayer-div {
     margin: auto;
     max-width: 400px;
+    max-height: 600px;
     width: 100%;
+    
     border-radius: 10px;
+    padding: 5px;
+    border-style: solid;
+    border-color: #dadada;
+    border-width: 0.1em;
     background-color: white;
 }
 
@@ -238,7 +241,7 @@
 }
 
 .mission-card-button-toolbar div {
-    padding-right: 0.3em;
+    padding-bottom: 0.3em;
 }
 
 .mission-card-body {
@@ -252,4 +255,29 @@
 .panel-section {
     margin-bottom: 1.5em;
 }
+
+.mission-card .card-footer {
+    padding: 0.25em
+}
+
+.mission-navbar {
+    background-color:#d7dadf ;
+}
+
+.activity-navbar {
+
+    background-color:hsl(211, 67%, 80%) ;
+}
+
+.mission-canvas-container {
+
+    background-color:hsl(211, 67%, 80%) ;
+}
+
+
+.light-gray-background {
+    background-color: rgb(247, 247, 247) !important;
+}
+
+
 

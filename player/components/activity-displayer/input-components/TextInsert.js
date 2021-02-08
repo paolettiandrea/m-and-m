@@ -2,6 +2,7 @@ Vue.component("text-insert", {
   template: ` <div >
         <b-form-input
           style="margin-bottom: 0.2em"
+          :style="insertStyle"
           id="input-1"
           v-model="answer"
           required
@@ -96,6 +97,9 @@ Vue.component("text-insert", {
     insertPlaceholder() {
       if (this.inputData.placeholderText) { return this.inputData.placeholderText}
       else { return "Inserisci la tua risposta"}
+    },
+    insertStyle() {
+        return buildButtonStyle(this.inputData.insertFieldStyleData, this.defaults.buttonData, uberDefaults.buttonData);
     }
   }
 });

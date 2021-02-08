@@ -31,13 +31,22 @@ function buildActivityNodeData(activity) {
         y: activity.graphPosition.y,
 
 
+
         anchorPoints: [
             [0.5, 0],
             [0.5, 1],
         ],
-
+        labelCfg: {
+            style:{
+                fill:'#001',
+            }
+        },
         style: {
-            fill: '#fff'
+            fill: '#d7dadf',
+            lineWidth: 2,
+            radius: 3,
+            width: 125
+           
         }
     }
 }
@@ -45,8 +54,9 @@ function buildActivityNodeData(activity) {
 function buildSelectedActivityNodeData(activity) {
     var obj = buildActivityNodeData(activity);
     obj.style = {
-        fill: '#000'
+        fill: '#5B8FF9'
     }
+    // obj.labelCfg.style.
     return obj;
 }
 

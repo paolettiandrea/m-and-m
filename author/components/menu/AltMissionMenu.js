@@ -4,14 +4,14 @@ export default {
             <b-row no-gutters style="margin-left: 1em; margin-right: 1em">
                 <b-col>
                     <h3 class="editor-text"> Disponibili al pubblico</h3>
-                    <mission-info-card v-for="(mission, id) in activeMissions" v-if="!mission.archived" :mission="mission" :key="id"></mission-info-card>
+                    <mission-info-card v-for="(mission, id) in activeMissions" v-if="!mission.head.archived" :mission="mission" :key="id"></mission-info-card>
                 </b-col>
                 <b-col>
                     <h3 class="editor-text"> Archiviate </h3>
-                    <mission-info-card v-for="(mission, id) in activeMissions" v-if="mission.archived" :mission="mission" :key="id"></mission-info-card>
+                    <mission-info-card v-for="(mission, id) in activeMissions" v-if="mission.head.archived" :mission="mission" :key="id"></mission-info-card>
                 </b-col>
             </b-row>
-                <b-button @click="createMission" variant="success" class="editor-font">Crea missione</b-button>
+                <b-button @click="createMission" variant="success" class="editor-font">Crea nuova missione</b-button>
     </div>`,
 
   computed: Vuex.mapGetters(["activeMissions"]),
@@ -68,28 +68,25 @@ Vue.component("tooltip-button", {
 });
 
 Vue.component("mission-info-card", {
-  template: `<b-card body-class="mission-card-body" :img-src="'/' + mission.id + '/qrCode.svg'" img-alt="Card image" img-right img-height="200px" img-width="200px" style="margin-left: 0.5em; margin-right: 0.5em; margin-bottom: 1em">
+  template: `<b-card class='mission-card' body-class="mission-card-body" :img-src="'/' + mission.id + '/qrCode.svg'" img-alt="Card image" img-right img-height="200px" img-width="200px" style="margin-left: 0.5em; margin-right: 0.5em; margin-bottom: 1em">
             <b-card-title>{{mission.head.title}}</b-card-title>
             <b-card-sub-title class="mb-2">{{mission.head.summary}}</b-card-sub-title>
 
             <span class="text-muted small">Giocatore: <b>{{playerType}}</b>, Fascia d'eta': <b>{{targetAge}}</b></span>
+            <span v-if="mission.head.accessible" class="text-muted small">, <span class="text-success"><b>Accessibile</b></span></span>
 
-            <div>
-                <b-button-toolbar class="mission-card-button-toolbar" key-nav style="float:right">
-                    <b-button-group>
+            <template #footer>
+                <b-button-toolbar class="mission-card-button-toolbar" vertical  style="display: flex; flex-direction: column">
+                    <b-button-group vertical>
                         <tooltip-button @click="selectMission(mission.id)" tooltip="Modifica" :keyy="mission.id"><b-icon icon="brush"></b-icon></tooltip-button>
                         <tooltip-button v-if="!mission.archived" @click="playMission(mission.id)" tooltip="Gioca" :keyy="mission.id"><b-icon icon="play"></b-icon></tooltip-button>
                         <tooltip-button v-if="!mission.archived" @click="downloadRanking" tooltip="Scarica classifica" :keyy="mission.id"><b-icon icon="download"></b-icon></tooltip-button>
                     </b-button-group>
                     <b-button-group>
-                        <tooltip-button v-if="!mission.archived" @click="archive()" tooltip="Archivia"><b-icon icon="archive"></b-icon></tooltip-button>
-                        <tooltip-button v-else @click="publish()" tooltip="Pubblica" :keyy="mission.id"><b-icon icon="check-circle"></b-icon></tooltip-button>
-                    </b-button-group>
-                    <b-button-group>
                       <confirm-button icon="trash" variant="danger" key="cancelMission" confirmPrompt="Sei sicuro di voler eliminare la missione?" @confirmed="deleteMission(mission.id)" :swapVariant="true"></confirm-button>
                     </b-button-group>
                 </b-button-toolbar>
-            </div>
+            </template>
     </b-card>`,
 
   props: {
@@ -98,7 +95,7 @@ Vue.component("mission-info-card", {
 
   computed: {
     playerType() {
-      if (this.mission.head.targetAge) return this.mission.head.targetAge;
+      if (this.mission.head.playerType) return this.mission.head.playerType;
       else return 'da definire'
     },
     targetAge() {

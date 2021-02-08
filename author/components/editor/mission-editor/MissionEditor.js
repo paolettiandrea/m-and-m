@@ -5,9 +5,9 @@ Vue.component("mission-editor", {
   template: `
     <div>
         <!-- NAVBAR -->
-        <b-navbar>
+        <b-navbar class="mission-navbar light-gray-background">
             <b-navbar-brand href="#">
-                <editable-text :targetObject="missionHead" targetFieldName="title"></editable-text>
+                <editable-text class="editor-font" :targetObject="missionHead" targetFieldName="title"></editable-text>
             </b-navbar-brand>
             
             <b-navbar-nav class="ml-auto" v-if="isMissionSelected">
@@ -62,8 +62,12 @@ Vue.component("mission-editor", {
                       </template>
                     </defaulted-dropdown>
                   </editor-field>
-                  <editor-field label=""></editor-field>
-
+                  <editor-field label="Accessibilita'">
+                    <b-form-checkbox v-model="missionHead.accessible"></b-form-checkbox>
+                  </editor-field>
+                  <editor-field label="Archiviata">
+                    <b-form-checkbox v-model="missionHead.archived"></b-form-checkbox>
+                  </editor-field>
                 </activity-editor-subpanel>
                 <mission-defaults-editor :defaults="missionContent.defaults" :uberDefaults="uberDefaults" :missionContent="missionContent"></mission-defaults-editor>
                 <activity-editor-subpanel label="Gestione da file">
@@ -85,7 +89,7 @@ Vue.component("mission-editor", {
                 </activity-editor-subpanel>
 
             </div>
-            <div id="yoyo" style="position: relative; height: 100%">
+            <div id="yoyo" class="mission-canvas-container" style="position: relative; height: 100%">
                 <div v-if="isWaitingForActivityClick" style="z-index: 3">
                     <p>Seleziona una attività o </p>
                     <b-button size="sm" @click="deleteActivityClickedCallback" variant="danger">annulla</b-button>

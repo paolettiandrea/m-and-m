@@ -19,7 +19,8 @@ Vue.component("lastScreen-displayer", {
                 <br></br>
 
 
-                <div align="center" style="margin-left:3em; margin-bottom:1em;">
+
+                <div align="center" style="margin-left:2em; margin-bottom:1em;">
                   <b-form inline>
                   <label for="inline-form-input-name"style="margin-right:1em; margin-top:0;">Inserisci il nome: </label>
                   <b-form-input

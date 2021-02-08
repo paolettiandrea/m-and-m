@@ -1,12 +1,18 @@
 Vue.component("players-menu", {
   template: `<b-card header="Giocatori attivi" header-class="editor-text" style="overflow-y: auto; height: 100%">
+      <descriptive-placeholder :fullIf="atLeastOnePlayer" text="Nessun giocatore" subText="Non appena un giocatore si connettera' apparira' qui">
         <div v-for="player in players">
             <player-menu-card :player="player"></player-menu-card>
         </div>
+      </descriptive-placeholder>
     </b-card>`,
 
   computed: {
     ...Vuex.mapGetters(["players"]),
+
+    atLeastOnePlayer() {
+      return !(this.players && Object.keys(this.players).length === 0)
+    }
   },
 
   methods: {},
@@ -20,10 +26,13 @@ Vue.component("player-menu-card", {
                     <editable-text :targetObject="player" targetFieldName="givenName" :placeholder="player.id"></editable-text>
                 </template>
             
+                <descriptive-placeholder :fullIf="playingMissionData && playingActivityData" text="In attesa di informazioni." textSize="0.75em">
                 <div v-if="playingMissionData && playingActivityData">
                   <span>{{playingMissionData.head.title}}</span> - <span>{{playingActivityData.title}}</span>
                   <last-activity-displayer :keyy="player.id" :time="player.lastStateChangeTime" :connectionTime="player.connectionTime" :maxMinutes="3"></last-activity-displayer>
                 </div>
+                </descriptive-placeholder>
+            
             </b-card>
     `,
 

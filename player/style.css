@@ -552,7 +552,13 @@ border-radius: 0 15px 15px 0 !important;
 background-color: rgba(0,0,0,0.3) !important;
   border:0 !important;
   color: white !important;
+
   cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.panel {
+  width: 20%;
 }
 .search_btn{
   border-radius: 0 15px 15px 0 !important;
@@ -707,3 +713,24 @@ background-color: rgba(0,0,0,0.2);
 margin-bottom: 15px !important;
 }
 }
+.container {
+  position: absolute;
+  top: calc(50% + 30px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.23);
+  width: 90%;
+  height: calc(90% - 60px);
+  margin: 0px;
+  padding: 0px;
+  z-index: 1;
+  background-color: #DDD;
+  max-width: 600px;
+  max-height: 600px;
+}
+.repo {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+

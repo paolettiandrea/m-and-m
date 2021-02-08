@@ -6,6 +6,7 @@ node_modules/
 
 # Local data
 server/data/missions
+server/data/missions/missionHeads.json
 
 # External resources
 materials/

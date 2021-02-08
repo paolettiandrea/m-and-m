@@ -11,7 +11,8 @@ Vue.component("canvas-draw", {
   template: `
 
     <div class="canvas-draw-container"  align="center" id="drawing" style="width=100%; height: 100%">
-    <canvas ref="canvas" id='drawing-pad' style="width=100%; height: 100%;">
+
+    <canvas ref="canvas" id='drawing-pad' style="width=100%; height: 100%;" :style="canvasBackgroundStyle">
       This is an interactive drawing pad.
     </canvas>
     <div>
@@ -28,6 +29,12 @@ Vue.component("canvas-draw", {
   props: {
     inputData: null,
     defaults: null,
+  },
+
+  computed: {
+    canvasBackgroundStyle() {
+      return buildBackgroundData(this.inputData.canvasBackgroundData, this.defaults.buttonData.buttonBackgroundData, uberDefaults.buttonData.buttonBackgroundData)
+    }
   },
 
   data() {
@@ -151,7 +158,8 @@ Vue.component("canvas-draw", {
         vm.context.lineTo(x, y);
         vm.context.lineWidth = 1;
         vm.context.lineCap = "round";
-        vm.context.strokeStyle = "rgba(255, 0, 0, 1)";
+        if (this.inputData.canvasLineColor) vm.context.strokeStyle = this.inputData.canvasLineColor;
+        else vm.context.strokeStyle = 'rgba(0,0,0,255)'
         vm.context.stroke();
 
         vm.startX = x;
@@ -213,6 +221,7 @@ Vue.component("canvas-draw", {
         vm.context.lineTo(x, y);
         vm.context.lineWidth = 1;
         vm.context.lineCap = "round";
+        
         vm.context.strokeStyle = "rgba(255, 0, 0, 1)";
         vm.context.stroke();
       }

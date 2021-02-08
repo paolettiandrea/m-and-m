@@ -1,5 +1,9 @@
 Vue.component('multiple-checkboxes-editor', {
-    template: `
+    template: `<div>
+
+        <editor-field label="Allineamento">
+            <b-form-select v-model="inputData.layoutDirection" :options="directionOptions"></b-form-select>
+        </editor-field>
         <activity-editor-subpanel label="Opzioni" level="0">
 <!--                    <activity-editor-subpanel :label="i" :level="1" v-for="(optionData, i) in inputData.optionList">-->
 <!--                    </activity-editor-subpanel> -->
@@ -20,8 +24,9 @@ Vue.component('multiple-checkboxes-editor', {
                     </div>
                 </template>
             </activity-editor-list>
-                
-        </activity-editor-subpanel>`,
+         </activity-editor-subpanel>       
+    </div>
+        `,
 
     props: {
         inputData: null
@@ -29,6 +34,17 @@ Vue.component('multiple-checkboxes-editor', {
 
     computed: {
         ...Vuex.mapGetters(['selectedMissionDefaults']),
+
+        directionOptions() {return [
+            {
+                text: "Verticale",
+                value: 'column'
+            },
+            {
+                text: "Orizzontale",
+                value: 'initial'
+            }
+        ]},
 
         correspondingContentType() {
             switch (this.inputData.optionContentType) {
