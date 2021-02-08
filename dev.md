@@ -166,21 +166,11 @@ A questi componenti non interessa cosa è contenuto negli `inputOutcome` che han
 
 Bug autore:
 -  cancellare riferimento next attivita' duplicata
-- save archiving to server
 
 
 
 - aggiungere pulsanti duplicazione missione
 - raffinare menu player (accessibile)
-
-
-## Aggiuntine
-- Opzione bottoni orizzontali
-
-
-
-
-
 
 
 
@@ -189,8 +179,4 @@ Bug autore:
 - Custom font
 
 
-## Cose da fare nel player
-- pulsante hint da un qualche feedback quando l'hint e' stato richiesto?
-- pulsante chat evidenziato quando arrivano nuovi messaggi?
-- schermata finale
 

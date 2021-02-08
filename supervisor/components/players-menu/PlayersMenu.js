@@ -26,10 +26,13 @@ Vue.component("player-menu-card", {
                     <editable-text :targetObject="player" targetFieldName="givenName" :placeholder="player.id"></editable-text>
                 </template>
             
+                <descriptive-placeholder :fullIf="playingMissionData && playingActivityData" text="In attesa di informazioni." textSize="0.75em">
                 <div v-if="playingMissionData && playingActivityData">
                   <span>{{playingMissionData.head.title}}</span> - <span>{{playingActivityData.title}}</span>
                   <last-activity-displayer :keyy="player.id" :time="player.lastStateChangeTime" :connectionTime="player.connectionTime" :maxMinutes="3"></last-activity-displayer>
                 </div>
+                </descriptive-placeholder>
+            
             </b-card>
     `,
 
