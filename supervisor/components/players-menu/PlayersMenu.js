@@ -1,12 +1,18 @@
 Vue.component("players-menu", {
   template: `<b-card header="Giocatori attivi" header-class="editor-text" style="overflow-y: auto; height: 100%">
+      <descriptive-placeholder :fullIf="atLeastOnePlayer" text="Nessun giocatore" subText="Non appena un giocatore si connettera' apparira' qui">
         <div v-for="player in players">
             <player-menu-card :player="player"></player-menu-card>
         </div>
+      </descriptive-placeholder>
     </b-card>`,
 
   computed: {
     ...Vuex.mapGetters(["players"]),
+
+    atLeastOnePlayer() {
+      return !(this.players && Object.keys(this.players).length === 0)
+    }
   },
 
   methods: {},

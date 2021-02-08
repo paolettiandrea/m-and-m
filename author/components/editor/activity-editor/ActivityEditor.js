@@ -1,6 +1,6 @@
 Vue.component('activity-editor', {
     template: ` 
-        <div class="column-flex-container">
+        <div class="column-flex-container" style="padding-right: 0.25em">
             <div>
                 <!-- STILE SCHERMATA -->
                 <div class="panel-section">
