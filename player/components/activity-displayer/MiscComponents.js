@@ -41,19 +41,52 @@ Vue.component("chat", {
 
 
     <div class="chat-popup" id="myForm" role="dialog">
-        <form @submit.prevent="sendMessage('out')" class="form-container">
+        <form @submit.prevent="sendMessage('out')" >
 
-            <h5 style="color:black;">Chat supervisore</h5>
+        
 
-            <img width="25" height="25" v-on:click="closeForm" src="chiudi.jpg" role="button" aria-label="Chiudi" tab-index="0">
+        <div class="col-md-8 col-xl-6 chat">
+        <div class="card">
 
-            <section ref="chatArea" class="chat-area" tab-index="1" role="Navigation" aria-label="Messaggi ricevuti">
-                <p v-for="message in messages" class="message" :class="{ 'message-out': message.author === 'you', 'message-in': message.author !== 'you' }">
+
+            <div class="card-header msg_head">
+
+            <img class="chat-icon2" src="close.png" width="25" height="25" v-on:click="closeForm()" role="button" aria-label="Chiedi un indizio">
+
+
+                <div class="d-flex bd-highlight">
+                    <div class="img_cont">
+                        <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+                        <span class="online_icon"></span>
+                    </div>
+                    <div class="user_info">
+                        <span>SUPERVISORE</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-body msg_card_body" >
+
+
+            <section ref="chatArea" tab-index="1" role="Navigation" aria-label="Messaggi ricevuti">
+                <p v-for="message in messages"  :class="{ 'message-out': message.author === 'you', 'message-in': message.author !== 'you' }">
                 {{ message.body }}
                 </p>
             </section>
 
-            <input  v-model="youMessage" type="text" placeholder="Scrivi al supervisore" style="width: 240px;" tab-index="2">
+
+
+            <div class="card-footer">
+                <div class="input-group">
+
+                    <input  v-model="youMessage" type="text" placeholder="Scrivi al supervisore" style="width: 200px;" tab-index="2">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         
 
         </form> 
@@ -113,6 +146,7 @@ data() {
           clearAllMessages() {
             this.messages = []
           }
+         
     },
 
     mounted() {
