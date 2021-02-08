@@ -5,7 +5,7 @@ Vue.component("mission-editor", {
   template: `
     <div>
         <!-- NAVBAR -->
-        <b-navbar class="mission-navbar">
+        <b-navbar class="mission-navbar light-gray-background">
             <b-navbar-brand href="#">
                 <editable-text class="editor-font" :targetObject="missionHead" targetFieldName="title"></editable-text>
             </b-navbar-brand>

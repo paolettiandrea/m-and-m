@@ -8,7 +8,9 @@ Vue.component("supervisor-main", {
                 <players-menu></players-menu>
             </b-col>
             <b-col cols="8" class="" style="height:100%">
-                <player-main-panel v-if="selectedPlayer" :player="selectedPlayer" style="height: 100%"></player-main-panel>
+              <descriptive-placeholder :fullIf="selectedPlayer" text="Seleziona un giocatore" subText="Se un giocatore viene evidenziato necessita della tua supervisione">
+                <player-main-panel :player="selectedPlayer" style="height: 100%"></player-main-panel>
+              </descriptive-placeholder>
             </b-col>
 </b-row>
     </div>`,

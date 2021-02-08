@@ -7,14 +7,13 @@ Vue.component('activity-preview', {
             <div class="full-flex vertical-scroll activity-preview-container">
             
                 <div class="vertical-flex full-flex" style="justify-content: center; height: 100%; padding: 10px">
-                        <activity-displayer class="full-flex activity-preview" style="max-height: 500px;" :activity-content="activityData" :styling="selectedMissionContent.screenStylingData" :defaults="selectedMissionContent.defaults" 
-                                @content:chunk:clicked="contentChunkClicked" @input:clicked="inputClicked">
-                                
-                            <template v-slot:last-content-chunk>
-                            </template>
-                            <template v-slot:input-placeholder>
-                            </template>
-                        </activity-displayer>
+                    <descriptive-placeholder class="full-flex" :fullIf="!isActivityEmpty" text="L' attivita' e' vuota" subText="Aggiungi contenuti e personalizza la schermata tramite il pannello sinistro">
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-content: center; margin">
+                            <activity-displayer class="full-flex activity-preview"  :activity-content="activityData" :styling="selectedMissionContent.screenStylingData" :defaults="selectedMissionContent.defaults" 
+                                    @content:chunk:clicked="contentChunkClicked" @input:clicked="inputClicked">
+                            </activity-displayer>
+                        </div>
+                    </descriptive-placeholder>
                 </div>
    
                 
@@ -33,8 +32,13 @@ Vue.component('activity-preview', {
             selectedActivityChunk: 'selectedActivityChunk',
             isChunkSelected: 'isChunkSelected',
             isInputChunkSelected: 'isInputChunkSelected',
-            selectedActivityChunkIndex : 'selectedActivityChunkIndex'
-        })
+            selectedActivityChunkIndex : 'selectedActivityChunkIndex',
+
+         
+        }),
+        isActivityEmpty() {
+            return this.activityData.content.length === 0 && this.activityData.inputComponent === undefined
+        }
     },
 
     data() {

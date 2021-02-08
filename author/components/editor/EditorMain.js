@@ -12,10 +12,10 @@ Vue.component('editor-main', {
                 </div>
             </b-col>
             
-            <transition name="activity-panel-transition">
             
                 <!-- Activity panel  -->
-                <b-col style="flex: 2; display: flex; flex-direction: column; overflow-y:hidden" v-if="selectedActivity" class="full-height no-horizontal-padding" key="2">
+                <descriptive-placeholder style="flex:2" :fullIf="selectedActivity" text="Nessuna attivita' selezionata" subText="Clicca su una attivita' nel grafo a sinistra. Doppio click sullo stesso per creare una nuova attivita'.">
+                <div style=" display: flex; flex-direction: column; overflow-y:hidden" v-if="selectedActivity" class="full-height no-horizontal-padding" key="2">
                     <b-navbar class="activity-navbar" style="flex:0">
                         <b-navbar-brand href="#">
                             <editable-text class="editor-font" :targetObject="selectedActivity" targetFieldName="title"></editable-text>
@@ -26,7 +26,7 @@ Vue.component('editor-main', {
                             <confirm-button class="navbar-distanced" variant="danger" v-if="selectedActivity.uuid!=='initial'" icon="trash" key="deleteActivity" confirmPrompt="Sei sicuro di voler eliminare l'attivita'?" @confirmed="deleteSelectedActivity" :swapVariant="true"></confirm-button>
                         </b-navbar-nav> 
                     </b-navbar>
-                    <b-row class="full-height" no-gutters style="flex:1">
+                    <b-row class="full-height light-gray-background" no-gutters style="flex:1">
                         <b-col  class="full-height no-horizontal-padding" style="overflow-y: hidden">
                             <activity-preview class="full-height"></activity-preview>
                         </b-col>
@@ -34,8 +34,9 @@ Vue.component('editor-main', {
                             <activity-editor class="full-height"></activity-editor>
                         </b-col>
                     </b-row>
-                </b-col>
-            </transition>
+                </div>
+                </descriptive-placeholder>
+
             
 <!--            <transition name="content-panel-transition">-->
 <!--            <b-col v-if="selectedActivityChunk" key="3" class="no-horizontal-padding full-height">-->

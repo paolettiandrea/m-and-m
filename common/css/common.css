@@ -1,0 +1,12 @@
+.placeholder-enter-active, .placeholder-leave-active {
+    transition: opacity 0.15s ease;
+  }
+
+.placeholder-enter, .placeholder-leave-to {
+    opacity: 0;
+  }
+
+
+.my-text-muted {
+    color: rgb(165, 164, 164) !important;
+}
