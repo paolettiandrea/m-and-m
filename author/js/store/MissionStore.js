@@ -114,6 +114,8 @@ let MissionModule = {
             let missionContent = context.getters.selectedMissionContent;
             console.log(missionContent)
 
+
+            console.log("Ensuring proper missionContent json format");
             // Add mission defaults
             if (!missionContent.defaults.screenStyleData.alignment) {
                 Vue.set(missionContent.defaults.screenStyleData, "alignment", { vertical: "normal" })
@@ -122,7 +124,6 @@ let MissionModule = {
             for (const activityId in missionContent.activities) {
                 let activity = missionContent.activities[activityId];
 
-                console.log("Checking activity: ", activity)
                 if (!activity.screenStyleData.alignment) {
                     console.log("Adding alignment")
                     Vue.set(activity.screenStyleData, "alignment", { vertical: "normal" })
@@ -139,19 +140,22 @@ let MissionModule = {
                             break;
                         }
                         case "text-insert": {
-                            if (!activity.inputComponent.inputData.inputFieldStyleData) {
-                                Vue.set(activity.inputComponent.inputData, "inputFieldStyleData", {
+                            console.log("Found text insert")
+                            if (!activity.inputComponent.inputData.insertFieldStyleData) {
+                                Vue.set(activity.inputComponent.inputData, "insertFieldStyleData", {
                                     "label": "",
                                     "labelFontData": {},
                                     "buttonBorderData": {},
                                     "buttonBackgroundData": {}
                                 })
                             }
+                            break;
                         }
                         case "canvas-draw": {
                             if (activity.inputComponent.inputData.canvasBackgroundData) {
                                 Vue.set(activity.inputComponent.inputData, "canvasBackgroundData", {})
                             }
+                            break;
                         }
                     }
                 }
