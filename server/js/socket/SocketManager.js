@@ -7,6 +7,18 @@ let io = null;
 let players = {}
 let supervisor = null;
 
+let groups = {}
+
+
+function addPlayerToGroup(player, groupId) {
+    if (!groups[groupId]) {
+        groups[groupId] = {
+            players: []
+        }
+    }
+    groups[groupId].players.push(player);
+}
+
 function initialize(server) {
 
     io = require('socket.io')(server);
@@ -47,6 +59,11 @@ function initialize(server) {
                     console.log("Scored ", scoreData);
                     let targetPlayer = players[playerId];
                     targetPlayer.socket.emit('scored', scoreData);
+                })
+
+                socket.on('player-grouped', ({playerId, groupId}) => {
+                    addPlayerToGroup(playerId, groupId);
+                    console.log("Adding player to group")
                 })
             }
         })

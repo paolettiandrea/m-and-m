@@ -61,6 +61,7 @@ Vue.component("lastScreen-displayer", {
     `,
   props: {
     score: 0,
+    missionType: ""
   },
 
   data() {
@@ -91,5 +92,6 @@ Vue.component("lastScreen-displayer", {
     });
 
     socket.emit("mission-ended");
+  
   },
 });

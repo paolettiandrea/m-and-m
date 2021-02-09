@@ -27,9 +27,6 @@ Vue.component("qr-reader", {
 
 Vue.component("chat", {
     template: `<div>
-    <style scoped>
-        @import "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css";
-    </style>>
     <div class="notification">
     <img class="chat-icon" src="chatimg.png" width="50" height="50" v-on:click="openForm" role="button" aria-label="Chat">
     <img class="chat-icon2" src="info.png" width="50" height="50" v-on:click="test()" role="button" aria-label="Chiedi un indizio">
