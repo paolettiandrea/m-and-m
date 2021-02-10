@@ -152,7 +152,8 @@ let MissionModule = {
                             break;
                         }
                         case "canvas-draw": {
-                            if (activity.inputComponent.inputData.canvasBackgroundData) {
+                            console.log("Found a canvas draw!");
+                            if (!activity.inputComponent.inputData.canvasBackgroundData) {
                                 Vue.set(activity.inputComponent.inputData, "canvasBackgroundData", {})
                             }
                             break;
