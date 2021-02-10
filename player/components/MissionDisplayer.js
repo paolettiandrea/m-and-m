@@ -9,12 +9,16 @@ Vue.component('mission-displayer', {
                     </div>
             </transition>
             <div v-if="missionEnded">
-                <lastScreen-displayer :score="missionScore"></lastScreen-displayer>
+                <lastScreen-displayer :score="missionScore" :missionType="missionHead.playerType"></lastScreen-displayer>
             </div>
             <chat></chat>
 
         </div>
     `,
+
+    props: {
+        missionHead: null
+    },
 
     data() {
         return {

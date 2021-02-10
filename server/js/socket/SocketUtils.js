@@ -46,6 +46,8 @@ class Player {
         }
     }
 
+    setGroup(groupId) { this.group = groupId}
+
 
     // Sends all the player state relevant data to the supervisor if present
     sendPlayerState() {

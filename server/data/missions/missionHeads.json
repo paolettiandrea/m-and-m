@@ -1,16 +1,7 @@
 {
-  "5d46e320-6312-11eb-a411-f7834f7f4b0d": {
+  "d318b1e0-6ae8-11eb-9613-7fbe305ef84d": {
     "title": "Nuova missione",
     "summary": "Una breve descrizione della missione",
-    "accessible": true,
-    "archived": true
-  },
-  "a83bd000-6314-11eb-a411-f7834f7f4b0d": {
-    "title": "Nuova missione test",
-    "summary": "Una breve descrizione della missione"
-  },
-  "26be7330-69fd-11eb-b98f-373fb1a65f5a": {
-    "title": "Nuova missione",
-    "summary": "Una breve descrizione della missione"
+    "playerType": "gruppo"
   }
 }

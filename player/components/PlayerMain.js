@@ -1,15 +1,15 @@
 Vue.component('player-main', {
     template: `
 
-        <mission-displayer v-if="wasMissionChosen"></mission-displayer>
+        <mission-displayer v-if="wasMissionChosen" :missionHead="missionHeads[chosenMissionId]"></mission-displayer>
         <div v-else>
           <qr-reader></qr-reader>
 
           <div v-if="missionHeads">
-            <p>O seleziona una delle missioni disponibili:</p>
+            <p class=player-title>Oppure seleziona una delle missioni disponibili:</p>
             <div v-for="(mission,key) in missionHeads">
               <div v-if="!mission.archived">
-                <a :href="'?missionId='+key">{{mission.title}}</a>
+                <a class=stories :href="'?missionId='+key">{{mission.title}}</a>
               </div>
             </div>
           </div>
@@ -37,6 +37,7 @@ Vue.component('player-main', {
 data() {
   return {
     wasMissionChosen: false,
+    chosenMissionId: 0,
 
     missionHeads: null
   }
@@ -52,6 +53,8 @@ data() {
       let missionId = params.get("missionId")
       if (missionId) {
         this.wasMissionChosen = true;
+
+        this.chosenMissionId = missionId;
       }
 
       axios.get("/missions/heads").then((res, err) => {

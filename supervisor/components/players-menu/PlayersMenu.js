@@ -1,3 +1,4 @@
+
 Vue.component("players-menu", {
   template: `<b-card header="Giocatori attivi" header-class="editor-text" style="overflow-y: auto; height: 100%">
       <descriptive-placeholder :fullIf="atLeastOnePlayer" text="Nessun giocatore" subText="Non appena un giocatore si connettera' apparira' qui">
@@ -32,6 +33,14 @@ Vue.component("player-menu-card", {
                   <last-activity-displayer :keyy="player.id" :time="player.lastStateChangeTime" :connectionTime="player.connectionTime" :maxMinutes="3"></last-activity-displayer>
                 </div>
                 </descriptive-placeholder>
+
+                <div>
+                  <p>{{groupId}}</p>
+                </div>
+                <div>
+                  <b-form-input v-model="groupId"></b-form-input>
+                  <b-button @click="groupPlayer">Invia</b-button>
+                </div>
             
             </b-card>
     `,
@@ -40,12 +49,16 @@ Vue.component("player-menu-card", {
     player: null,
   },
   data() { return {
-    givenName: ""
+    givenName: "",
+    groupId: null
   }},
   methods: {
     playerClicked(playerId) {
       this.$store.dispatch("selectPlayer", playerId);
     },
+    groupPlayer() {
+      this.socket.emit('player-grouped', {playerId: this.player.id, groupId: this.groupId});
+    }
   },
 
   computed: {
@@ -53,6 +66,7 @@ Vue.component("player-menu-card", {
       "missionHeads",
       "missionContents",
       "pendingActions",
+      "socket"
     ]),
 
     cardVariant() {
