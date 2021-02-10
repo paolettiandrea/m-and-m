@@ -33,10 +33,11 @@ function removePlayerFromGroup(playerId, groupId) {
     let targetGroup = groups[targetPlayer.group]
     
     if (targetGroup) {
-        const index = array.indexOf(playerId);
-        if (index > -1) {
-          array.splice(index, 1);
-        }
+        // TODO
+        // const index = array.indexOf(playerId);
+        // if (index > -1) {
+        //   array.splice(index, 1);
+        // }
     }
 }
 
