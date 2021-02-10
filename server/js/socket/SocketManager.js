@@ -1,5 +1,5 @@
 const {Player, Supervisor} = require('./SocketUtils.js')
-const {getMissionRankings, addMissionScore} = require('../altDbController.js')
+const {getMissionRankings, addMissionScore, getMissionRankingsLastHour} = require('../altDbController.js')
 
 let io = null;
 
@@ -13,11 +13,23 @@ let groups = {}
 function addPlayerToGroup(player, groupId) {
     if (!groups[groupId]) {
         groups[groupId] = {
-            players: []
+            players: [],
+            score: 0
         }
     }
+
+    let targetPlayer = players[player];
+    targetPlayer.setGroup(groupId);
     groups[groupId].players.push(player);
+    console.log("Adding player to group", groupId, ": ", groups[groupId])
+    console.log("Groups now: ", groups);
 }
+
+
+function removePlayerFromGroup(playerId, groupId) {
+    // TODO
+}
+
 
 function initialize(server) {
 
@@ -62,16 +74,16 @@ function initialize(server) {
                 })
 
                 socket.on('player-grouped', ({playerId, groupId}) => {
+                    console.log("Player grouped event for player", playerId, " and group ", groupId)
+                    let targetPlayer = players[playerId];
                     addPlayerToGroup(playerId, groupId);
-                    console.log("Adding player to group")
+                    // supervisor.socket.emit('player-state-changed', targetPlayer)
                 })
             }
         })
 
         // Player
         socket.on('player-handshake', (msg) => {
-
-
             let id = getUnusedPlayerId();
             players[id] = new Player(socket, id);
             if (supervisor) { players[id].setSupervisor(supervisor)}
@@ -89,9 +101,6 @@ function initialize(server) {
                         playerId: id,
                         action: {
                             type: 'hint',
-
-
-
                         }
                     })
                 }
@@ -112,12 +121,63 @@ function initialize(server) {
             });
 
 
-            socket.on('mission-ended', () => {
-                console.log('Player ' + id  +' has ended a mission');
+            socket.on('class-mission-ended', (score) => {
+
                 let targetPlayer = players[id];
+                getMissionRankingsLastHour(targetPlayer.playingMissionId).then((rankings) => {
+
+                    console.log("Adding ranking to mission recap")
+                    console.log(rankings);
+                    let missionRecap = {
+                        playTime: (Date.now() - targetPlayer.connectionTime)/1000,
+                        rankings: rankings
+                    }
+                    targetPlayer.socket.emit('mission-recap', missionRecap)
+
+                })
+            })
 
 
-                getMissionRankings(targetPlayer.playingMissionId).then((rankings) => {
+            socket.on('mission-ended', (score) => {
+                let targetPlayer = players[id];
+                console.log('Player has ended a mission: ', targetPlayer);
+
+                targetPlayer.missionDone = true;
+
+                if (targetPlayer.group !== undefined) {
+                    console.log(groups, 'key', targetPlayer.group);
+                    let targetGroup = groups[targetPlayer.group];
+                    targetGroup.score += score;
+                    console.log("The player that finished the mission is part of group ", targetGroup);
+
+                    let groupDone = true;
+                    for (i of targetGroup.players) {
+                        let targetPlayer = players[i];
+                        if (!targetPlayer.missionDone) {
+                            groupDone = false;
+                            break;
+                        }
+                    }
+
+                    if (groupDone) {
+                        for (i of targetGroup.players) {
+                            let targetPlayer = players[i];
+                            getMissionRankings(targetPlayer.playingMissionId).then((rankings) => {
+                                let missionRecap = {
+                                    groupScore: targetGroup.score,
+                                    rankings: rankings
+                                }
+                                targetPlayer.socket.emit('mission-recap-group', missionRecap);
+
+                            })
+                        }
+                    } else {
+                        targetPlayer.socket.emit('wait-for-group');
+                    }
+
+                } else {
+                    // Single player
+                    getMissionRankings(targetPlayer.playingMissionId).then((rankings) => {
 
                     console.log("Adding ranking to mission recap")
                     console.log(rankings);
@@ -127,6 +187,10 @@ function initialize(server) {
                     }
                     targetPlayer.socket.emit('mission-recap', missionRecap)
                 })
+                }
+
+
+                
             })
 
             socket.on('new-score', (score) => {

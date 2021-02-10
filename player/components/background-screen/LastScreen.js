@@ -11,7 +11,16 @@ Vue.component("lastScreen-displayer", {
                 <div class="h2 mb-0" role="banner">
                   <b-icon icon="trophy-fill" aria-label="Congratulazioni! Hai concluso la missione!"></b-icon>
                </div>
-                <p style="fontStyle:italic;"> Punteggio finale: {{score}}</p>
+                               
+
+               <!-- Waiting for group -->
+              <div v-if="waitingForGroup">
+                <p>In attesa che gli altri membri del tuo gruppo finiscano...</p>
+              </div>
+
+              <!-- Actual last screen panel -->
+              <div v-else>
+                 <p style="fontStyle:italic;"> Punteggio finale: {{score}}</p>
                 <p>  </p>
                 <div v-if="missionRecap">
                   <p style="fontStyle:italic;">Tempo impiegato: {{missionRecap.playTime}} secondi</p>
@@ -32,6 +41,7 @@ Vue.component("lastScreen-displayer", {
                   <b-button @click="sendScore">Salva il punteggio</b-button>
                   </b-form>
                 </div>
+
 
                 <div v-if="missionRecap && missionRecap.rankings" role="navigation" aria-label="Classifica">
                   <b-table :items="missionRecap.rankings" :fields= "[
@@ -54,6 +64,8 @@ Vue.component("lastScreen-displayer", {
                 ]"></b-table>
               </div>
             </div>
+
+            </div>
           </div>
         </transition>
       </div>
@@ -68,6 +80,7 @@ Vue.component("lastScreen-displayer", {
     return {
       missionRecap: null,
       playerInputName: "",
+      waitingForGroup: false,
     };
   },
 
@@ -86,12 +99,31 @@ Vue.component("lastScreen-displayer", {
 
   mounted() {
     console.log("Mission ended");
+
     socket.on("mission-recap", (missionRecap) => {
       console.log("Mission recap received: ", missionRecap);
       this.missionRecap = missionRecap;
+      this.waitingForGroup = false;
     });
 
-    socket.emit("mission-ended");
+    socket.on("mission-recap-group", (missionRecap) => {
+      console.log("Mission recap received for group: ", missionRecap);
+      this.missionRecap = missionRecap;
+      this.waitingForGroup = false;
+    })
+
+    socket.on("wait-for-group", () => {
+      console.log("Waiting for group socket event");
+      this.waitingForGroup = true;
+    })
+
+    if (this.missionType==='classe') {
+
+    socket.emit("class-mission-ended", this.score);
+    } else {
+
+      socket.emit("mission-ended", this.score);
+    }
   
   },
 });
