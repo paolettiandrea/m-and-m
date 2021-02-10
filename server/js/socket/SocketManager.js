@@ -1,5 +1,5 @@
 const {Player, Supervisor} = require('./SocketUtils.js')
-const {getMissionRankings, addMissionScore} = require('../altDbController.js')
+const {getMissionRankings, addMissionScore, getMissionRankingsLastHour} = require('../altDbController.js')
 
 let io = null;
 
@@ -13,7 +13,8 @@ let groups = {}
 function addPlayerToGroup(player, groupId) {
     if (!groups[groupId]) {
         groups[groupId] = {
-            players: []
+            players: [],
+            score: 0
         }
     }
 
@@ -22,6 +23,11 @@ function addPlayerToGroup(player, groupId) {
     groups[groupId].players.push(player);
     console.log("Adding player to group", groupId, ": ", groups[groupId])
     console.log("Groups now: ", groups);
+}
+
+
+function removePlayerFromGroup(playerId, groupId) {
+    // TODO
 }
 
 
@@ -115,16 +121,60 @@ function initialize(server) {
             });
 
 
-            socket.on('mission-ended', () => {
+            socket.on('class-mission-ended', (score) => {
+
+                let targetPlayer = players[id];
+                getMissionRankingsLastHour(targetPlayer.playingMissionId).then((rankings) => {
+
+                    console.log("Adding ranking to mission recap")
+                    console.log(rankings);
+                    let missionRecap = {
+                        playTime: (Date.now() - targetPlayer.connectionTime)/1000,
+                        rankings: rankings
+                    }
+                    targetPlayer.socket.emit('mission-recap', missionRecap)
+
+                })
+            })
+
+
+            socket.on('mission-ended', (score) => {
                 let targetPlayer = players[id];
                 console.log('Player has ended a mission: ', targetPlayer);
+
+                targetPlayer.missionDone = true;
 
                 if (targetPlayer.group !== undefined) {
                     console.log(groups, 'key', targetPlayer.group);
                     let targetGroup = groups[targetPlayer.group];
+                    targetGroup.score += score;
                     console.log("The player that finished the mission is part of group ", targetGroup);
 
-                    targetPlayer.socket.emit('wait-for-group');
+                    let groupDone = true;
+                    for (i of targetGroup.players) {
+                        let targetPlayer = players[i];
+                        if (!targetPlayer.missionDone) {
+                            groupDone = false;
+                            break;
+                        }
+                    }
+
+                    if (groupDone) {
+                        for (i of targetGroup.players) {
+                            let targetPlayer = players[i];
+                            getMissionRankings(targetPlayer.playingMissionId).then((rankings) => {
+                                let missionRecap = {
+                                    groupScore: targetGroup.score,
+                                    rankings: rankings
+                                }
+                                targetPlayer.socket.emit('mission-recap-group', missionRecap);
+
+                            })
+                        }
+                    } else {
+                        targetPlayer.socket.emit('wait-for-group');
+                    }
+
                 } else {
                     // Single player
                     getMissionRankings(targetPlayer.playingMissionId).then((rankings) => {

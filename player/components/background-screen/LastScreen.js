@@ -40,7 +40,7 @@ Vue.component("lastScreen-displayer", {
                 </div>
 
 
-                <div v-if="missionRecap && missionRecap.rankings" role="navigation" aria-label="Classifica">
+                <div v-if="missionRecap && missionRecap.rankings && missionType==='single'" role="navigation" aria-label="Classifica">
                   <b-table :items="missionRecap.rankings" :fields= "[
                   {
                     key: 'playerName',
@@ -60,7 +60,8 @@ Vue.component("lastScreen-displayer", {
                   }
                 ]"></b-table>
               </div>
-              </div>
+            </div>
+
             </div>
           </div>
         </transition>
@@ -95,17 +96,30 @@ Vue.component("lastScreen-displayer", {
 
   mounted() {
     console.log("Mission ended");
+
     socket.on("mission-recap", (missionRecap) => {
       console.log("Mission recap received: ", missionRecap);
       this.missionRecap = missionRecap;
     });
+
+    socket.on("mission-recap-group", (missionRecap) => {
+      console.log("Mission recap received for group: ", missionRecap);
+      this.missionRecap = missionRecap;
+      this.waitingForGroup = false;
+    })
 
     socket.on("wait-for-group", () => {
       console.log("Waiting for group socket event");
       this.waitingForGroup = true;
     })
 
-    socket.emit("mission-ended");
+    if (this.missionType==='classe') {
+
+    socket.emit("class-mission-ended", this.score);
+    } else {
+
+      socket.emit("mission-ended", this.score);
+    }
   
   },
 });

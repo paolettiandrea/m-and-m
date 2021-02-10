@@ -191,9 +191,31 @@ async function getMissionRankings(missionId) {
   })
 }
 
+
+
+var ONE_HOUR = 60 * 60 * 1000;
+async function getMissionRankingsLastHour(missionId) {
+  return new Promise((resolve) => {
+
+  getMissionRankings(missionId).then((ranking) => {
+    let actualRanking = [];
+    for (rank of ranking) {
+      console.log("Checking rank time")
+      if ((Date.now() - rank.scoreTime) < ONE_HOUR) {
+        console.log("Lower")
+        actualRanking.push(rank);
+      }
+    }
+    resolve(actualRanking);
+    })
+  })
+}
+
+
 async function addMissionScore(missionId, missionScore) {
   return new Promise((resolve) => {
     console.log(missionId)
+    missionScore.scoreTime = Date.now();
     getMissionRankings(missionId).then((rankings) => {
       rankings.push(missionScore);
       fs.writeFile(path.join(missionDirectory(missionId), missionRankingFileName), JSON.stringify(rankings, null, 2), (err) => {
@@ -217,6 +239,7 @@ module.exports = {
   deleteDbDir,
   initializeDb,
   getMissionRankings,
+  getMissionRankingsLastHour,
   addMissionScore,
 
   missionsDir,
