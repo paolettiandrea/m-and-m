@@ -34,13 +34,10 @@ Vue.component("player-menu-card", {
                 </div>
                 </descriptive-placeholder>
 
-                <div v-if="playingMissionData.head.missionType==='gruppo'">
-                  <p>{{groupId}}</p>
-                </div>
-                <div>
-                  <b-form-input v-model="groupId"></b-form-input>
+                <b-input-group prepend="Gruppo" v-if="playingMissionData.head.playerType==='gruppo'">
+                   <b-form-input v-model="groupId" :readonly="playerGrouped"></b-form-input>
                   <b-button @click="groupPlayer">Invia</b-button>
-                </div>
+                </b-input-group>
             
             </b-card>
     `,
@@ -50,7 +47,8 @@ Vue.component("player-menu-card", {
   },
   data() { return {
     givenName: "",
-    groupId: null
+    groupId: null,
+    playerGrouped: false
   }},
   methods: {
     playerClicked(playerId) {
@@ -58,6 +56,7 @@ Vue.component("player-menu-card", {
     },
     groupPlayer() {
       this.socket.emit('player-grouped', {playerId: this.player.id, groupId: this.groupId});
+      this.playerGrouped = true;
     }
   },
 

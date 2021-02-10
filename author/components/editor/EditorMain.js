@@ -26,7 +26,7 @@ Vue.component('editor-main', {
                             <confirm-button class="navbar-distanced" variant="danger" v-if="selectedActivity.uuid!=='initial'" icon="trash" key="deleteActivity" confirmPrompt="Sei sicuro di voler eliminare l'attivita'?" @confirmed="deleteSelectedActivity" :swapVariant="true"></confirm-button>
                         </b-navbar-nav> 
                     </b-navbar>
-                    <b-row class="full-height light-gray-background" no-gutters style="flex:1">
+                    <b-row class="full-height light-gray-background" no-gutters style="flex:1; overflow-y:hidden">
                         <b-col  class="full-height no-horizontal-padding" style="overflow-y: hidden">
                             <activity-preview class="full-height"></activity-preview>
                         </b-col>
