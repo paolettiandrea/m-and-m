@@ -24,6 +24,8 @@ Vue.component("text-insert", {
 
       //var correct = this.answer == this.inputData.correctAnswer ? true : false
 
+      if (this.answer) {
+
       for (var possibility of this.inputData.possibilityList) {
         switch (possibility.inputType) {
           case "string": {
@@ -84,6 +86,7 @@ Vue.component("text-insert", {
 
         this.$emit("input-received", this.inputData.fallbackOutcome);
         console.log("Emitting fallback");
+      }
       }
     },
   },
