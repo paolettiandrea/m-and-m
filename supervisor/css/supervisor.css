@@ -71,3 +71,9 @@
     color: #3d3d3d;
 }
 
+.message-card {
+    margin: 0.1em;
+}
+.message-card .card-body {
+    padding: 0.25em;
+}

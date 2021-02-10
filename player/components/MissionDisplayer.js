@@ -60,7 +60,24 @@ Vue.component('mission-displayer', {
                 this.pointedActivity = null;
 
             }
-        }
+        },
+        prefetchResources(missionData) {
+            for (let activity in missionData.activities) {
+                for (content of missionData.activities[activity].content) {
+                    if (content.contentType === 'img-displayer') {
+                        let url = content.contentData.imgResData.url;
+                        if (url) {
+                            let preload_image = new Image();
+                            preload_image.src = url;
+                            console.log("Found and prefetched URL", url)
+                        }
+
+                    }
+                }
+            }
+        },
+
+
     },
 
     mounted() {
@@ -73,8 +90,15 @@ Vue.component('mission-displayer', {
             then(res => {
                 this.missionData = JSON.parse(res.data);
                 this.pointedActivity = this.missionData.activities.initial;
+
+
+                this.prefetchResources(this.missionData);
             })
 
+
+
+
+            socket.emit('player-handshake');
             socket.emit('starting-mission', missionId)
             socket.emit('starting-activity', 'initial');
         } 
@@ -91,3 +115,5 @@ Vue.component('mission-displayer', {
         })
     },
 })
+
+
