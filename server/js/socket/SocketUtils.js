@@ -3,7 +3,6 @@ class Player {
         this.socket = playerSocket;
         this.id = playerId;
         this.supervisor = null;
-        this.group = 0;
 
         // Id of the mission it is playing, null if in the man screen
         this.playingMissionId = null;
@@ -46,6 +45,8 @@ class Player {
 
         }
     }
+
+    setGroup(groupId) { this.group = groupId}
 
 
     // Sends all the player state relevant data to the supervisor if present

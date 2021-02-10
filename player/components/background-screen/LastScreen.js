@@ -11,7 +11,13 @@ Vue.component("lastScreen-displayer", {
                 <div class="h2 mb-0" role="banner">
                   <b-icon icon="trophy-fill" aria-label="Congratulazioni! Hai concluso la missione!"></b-icon>
                </div>
-                <p style="fontStyle:italic;"> Punteggio finale: {{score}}</p>
+                               
+
+              <div v-if="waitingForGroup">
+                <p>Waiting for group</p>
+              </div>
+              <div v-else>
+                 <p style="fontStyle:italic;"> Punteggio finale: {{score}}</p>
                 <p>  </p>
                 <div v-if="missionRecap">
                   <p style="fontStyle:italic;">Tempo impiegato: {{missionRecap.playTime}} secondi</p>
@@ -33,6 +39,7 @@ Vue.component("lastScreen-displayer", {
                   </b-form>
                 </div>
 
+
                 <div v-if="missionRecap && missionRecap.rankings" role="navigation" aria-label="Classifica">
                   <b-table :items="missionRecap.rankings" :fields= "[
                   {
@@ -53,6 +60,7 @@ Vue.component("lastScreen-displayer", {
                   }
                 ]"></b-table>
               </div>
+              </div>
             </div>
           </div>
         </transition>
@@ -68,6 +76,7 @@ Vue.component("lastScreen-displayer", {
     return {
       missionRecap: null,
       playerInputName: "",
+      waitingForGroup: false,
     };
   },
 
@@ -90,6 +99,11 @@ Vue.component("lastScreen-displayer", {
       console.log("Mission recap received: ", missionRecap);
       this.missionRecap = missionRecap;
     });
+
+    socket.on("wait-for-group", () => {
+      console.log("Waiting for group socket event");
+      this.waitingForGroup = true;
+    })
 
     socket.emit("mission-ended");
   
