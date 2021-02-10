@@ -28,6 +28,16 @@ function addPlayerToGroup(player, groupId) {
 
 function removePlayerFromGroup(playerId, groupId) {
     // TODO
+    
+    let targetPlayer = players[playerId];
+    let targetGroup = groups[targetPlayer.group]
+    
+    if (targetGroup) {
+        const index = array.indexOf(playerId);
+        if (index > -1) {
+          array.splice(index, 1);
+        }
+    }
 }
 
 
@@ -201,11 +211,17 @@ function initialize(server) {
             
             socket.on('disconnect', () => {
                 console.log('Player ' + id + ' disconnected')
+
+                let targetPlayer = players[id];
+                if (targetPlayer.group) {
+                    removePlayerFromGroup(id, targetPlayer.group);
+                }
                 delete players[id]
             })
         })
         socket.on('disconnect', () => {
             console.log("Generic socket disconnection event")
+
         })
     })
 }
