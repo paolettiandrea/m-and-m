@@ -11,7 +11,6 @@ let MissionModule = {
     }),
 
     getters: {
-
         isMissionSelected(state) {
             return !!(state.selectedMissionId);
         },
