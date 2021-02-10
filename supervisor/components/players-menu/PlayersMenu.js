@@ -34,7 +34,7 @@ Vue.component("player-menu-card", {
                 </div>
                 </descriptive-placeholder>
 
-                <div>
+                <div v-if="playingMissionData.head.missionType==='gruppo'">
                   <p>{{groupId}}</p>
                 </div>
                 <div>
