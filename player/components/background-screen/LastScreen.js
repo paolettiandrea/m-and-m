@@ -13,9 +13,12 @@ Vue.component("lastScreen-displayer", {
                </div>
                                
 
+               <!-- Waiting for group -->
               <div v-if="waitingForGroup">
-                <p>Waiting for group</p>
+                <p>In attesa che gli altri membri del tuo gruppo finiscano...</p>
               </div>
+
+              <!-- Actual last screen panel -->
               <div v-else>
                  <p style="fontStyle:italic;"> Punteggio finale: {{score}}</p>
                 <p>  </p>
@@ -40,7 +43,7 @@ Vue.component("lastScreen-displayer", {
                 </div>
 
 
-                <div v-if="missionRecap && missionRecap.rankings && missionType==='single'" role="navigation" aria-label="Classifica">
+                <div v-if="missionRecap && missionRecap.rankings" role="navigation" aria-label="Classifica">
                   <b-table :items="missionRecap.rankings" :fields= "[
                   {
                     key: 'playerName',
@@ -100,6 +103,7 @@ Vue.component("lastScreen-displayer", {
     socket.on("mission-recap", (missionRecap) => {
       console.log("Mission recap received: ", missionRecap);
       this.missionRecap = missionRecap;
+      this.waitingForGroup = false;
     });
 
     socket.on("mission-recap-group", (missionRecap) => {
