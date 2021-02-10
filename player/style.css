@@ -72,18 +72,13 @@ label {
   margin-top: 1.7em;
 }
 
-.qrcode-text {
-  padding-right: 1.7em;
-  margin-right: 0
-}
-
 .qrcode-text-btn {
   display: inline-block;
   background: url(//dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/07/1499401426qr_icon.svg) 50% 50% no-repeat;
   background-color: white;
-  height: 3em;
-  width: 3em;
-  margin-left: 1.7em;
+  height: 6em;
+  width: 6em;
+  margin-top: 2.5em;
   cursor: pointer
 }
 
@@ -132,8 +127,12 @@ body {
 }
 }
 }
+
+
+
+
 .player-title {
-  padding-top: 1em;
+  padding-top: 2em;
   font-size: 2.3em;
   color: white;
   font-family: 'Oswald';
@@ -142,68 +141,9 @@ body {
   text-align: center;
 }
 
-
-
-/* Bottone home page */
-
-body{
-  text-align:center;
-  background-color:#ffcc8e;
-}
-
-.button{
-  position:relative;
-  display:inline-block;
-  margin:3em;
-}
-
-.button a{
-  color:white;
-  font-family:Helvetica, sans-serif;
-  font-weight:bold;
-  font-size:36px;
-  text-align: center;
-  text-decoration:none;
-  background-color:#FFA12B;
-  display:block;
-  position:relative;
-  padding:5px 30px;
-
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  text-shadow: 0px 1px 0px #000;
-  filter: dropshadow(color=#000, offx=0px, offy=1px);
-
-  -webkit-box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
-  -moz-box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
-  box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-}
-
-.button a:active{
-  top:10px;
-  background-color:#F78900;
-
-  -webkit-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
-  -moz-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3pxpx 0 #915100;
-  box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
-}
-
-.button:after{
-  content:"";
-  height:100%;
-  width:100%;
-  padding:4px;
-  position: absolute;
-  bottom:-15px;
-  left:-4px;
-  z-index:-1;
-  background-color:#2B1800;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+.stories {
+  font-size: 2em;
+  font-family: 'Oswald';
 }
 
 
@@ -496,7 +436,6 @@ padding: .5em;
   background: #7F7FD5;
      background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
       background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
-}
 }
 .contacts_body{
   padding:  0.75rem 0 !important;

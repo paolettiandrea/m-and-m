@@ -6,10 +6,10 @@ Vue.component('player-main', {
           <qr-reader></qr-reader>
 
           <div v-if="missionHeads">
-            <p>O seleziona una delle missioni disponibili:</p>
+            <p class=player-title>Oppure seleziona una delle missioni disponibili:</p>
             <div v-for="(mission,key) in missionHeads">
               <div v-if="!mission.archived">
-                <a :href="'?missionId='+key">{{mission.title}}</a>
+                <a class=stories :href="'?missionId='+key">{{mission.title}}</a>
               </div>
             </div>
           </div>
