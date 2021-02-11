@@ -160,6 +160,7 @@ function initialize(server) {
                     console.log(groups, 'key', targetPlayer.group);
                     let targetGroup = groups[targetPlayer.group];
                     targetGroup.score += score;
+                    console.log("Added score ", score, " to group ", targetPlayer.group);
                     console.log("The player that finished the mission is part of group ", targetGroup);
 
                     let groupDone = true;
@@ -172,6 +173,7 @@ function initialize(server) {
                     }
 
                     if (groupDone) {
+                        console.log("Group ", targetPlayer.group, " is done, sending mission recap group events");
                         for (i of targetGroup.players) {
                             let targetPlayer = players[i];
                             getMissionRankings(targetPlayer.playingMissionId).then((rankings) => {

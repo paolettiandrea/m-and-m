@@ -108,6 +108,7 @@ Vue.component("lastScreen-displayer", {
 
     socket.on("mission-recap-group", (missionRecap) => {
       console.log("Mission recap received for group: ", missionRecap);
+      this.score = missionRecap.groupScore;
       this.missionRecap = missionRecap;
       this.waitingForGroup = false;
     })
