@@ -11,7 +11,6 @@ Vue.component("lastScreen-displayer", {
                 <div class="h2 mb-0" role="banner">
                   <b-icon icon="trophy-fill" aria-label="Congratulazioni! Hai concluso la missione!"></b-icon>
                </div>
-                               
 
                <!-- Waiting for group -->
               <div v-if="waitingForGroup">
@@ -41,10 +40,8 @@ Vue.component("lastScreen-displayer", {
                   <b-button @click="sendScore">Salva il punteggio</b-button>
                   </b-form>
                 </div>
-
-
                 <div v-if="missionRecap && missionRecap.rankings" role="navigation" aria-label="Classifica">
-                  <b-table :items="missionRecap.rankings" :fields= "[
+                  <b-table :items="missionRecap.rankings" :fields="[
                   {
                     key: 'playerName',
                     sortable: false,
@@ -111,7 +108,7 @@ Vue.component("lastScreen-displayer", {
       this.score = missionRecap.groupScore;
       this.missionRecap = missionRecap;
       this.waitingForGroup = false;
-    })
+    });
 
     socket.on("wait-for-group", () => {
       console.log("Waiting for group socket event");

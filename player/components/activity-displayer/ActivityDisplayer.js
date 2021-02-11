@@ -12,14 +12,11 @@ Vue.component("activity-displayer", {
                         <styling-wrapper :stylingData="contentChunk.commonData" :stylingDefaults="defaults.commonData">
                             <component :is="contentChunk.contentType"
                                    :id="'content-chunk-'+index"
-                                   class="content-chunk"
+                                   :class="myClass"
                                    :contentData="contentChunk.contentData"
                                    :defaults="defaults"
                                    :sharedState="sharedMissionState"></component>
                         </styling-wrapper>
-
-
-
                     </div>
                 </div>
 

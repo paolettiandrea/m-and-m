@@ -1,5 +1,5 @@
 Vue.component("text-insert", {
-  template: ` <div >
+  template: ` <div>
         <b-form-input
           style="margin-bottom: 0.2em"
           :style="insertStyle"
@@ -90,6 +90,7 @@ Vue.component("text-insert", {
       }
     },
   },
+
   data() {
     return {
       answer: "",

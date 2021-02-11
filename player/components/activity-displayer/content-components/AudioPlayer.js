@@ -1,8 +1,6 @@
-
-
 Vue.component('audio-player', {
     template: `
-    <div  :align="contentData.pos">
+    <div :align="contentData.pos">
         <b-button v-if="sharedState.audioPlaying" :style="buttonStyle" @click="stopSound"><b-icon icon="pause-fill"></b-icon></b-button>
         <b-button v-else :style="buttonStyle" @click="playSound"><b-icon icon="play-fill"></b-icon></b-button>
     </div>
@@ -13,15 +11,11 @@ Vue.component('audio-player', {
         sharedState: null
     },
 
-
     computed: {
         buttonStyle() {
             return buildButtonStyle(this.contentData.buttonData, this.defaults.buttonData, uberDefaults.buttonData);
         },
-
-        buttonIcon() {
-
-        }
+        buttonIcon() {}
     },
     methods: {
         playSound () {

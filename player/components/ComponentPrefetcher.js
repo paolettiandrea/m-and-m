@@ -1,3 +1,4 @@
+//DEPRECATED
 // Prefetches all relevant components
 function loadScript(script) {
 

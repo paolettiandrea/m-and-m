@@ -36,11 +36,4 @@ methods: {
         }
       }
   },
-
-data() {
-  return {
-  }
-}
-
-    
 })

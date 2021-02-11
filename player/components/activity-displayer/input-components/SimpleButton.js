@@ -27,9 +27,6 @@ Vue.component('simple-button', {
         defaults: null,
     },
 
-    computed: {
-
-    },
     methods: {
         buttonClicked() {
             this.$emit('input-received', this.inputData.outcome)

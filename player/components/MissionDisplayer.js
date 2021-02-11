@@ -12,7 +12,6 @@ Vue.component('mission-displayer', {
                 <lastScreen-displayer :score="missionScore" :missionType="missionHead.playerType"></lastScreen-displayer>
             </div>
             <chat></chat>
-
         </div>
     `,
 
@@ -36,13 +35,14 @@ Vue.component('mission-displayer', {
             }*/
         }
     },
+
+
     methods: {
         nextActivity() {
             // Funzione temporanea che cambia la pointedActivity a quella successiva nella lista contenuta in missionData
             this.pointedIndex++;
             if (this.pointedIndex >= this.missionData.activities.length) { this.pointedIndex = 0; }
             this.pointedActivity = this.missionData.activities[this.pointedIndex];
-
         },
 
         handleNextActivity(nextActivityId, points) {
@@ -76,8 +76,6 @@ Vue.component('mission-displayer', {
                 }
             }
         },
-
-
     },
 
     mounted() {
