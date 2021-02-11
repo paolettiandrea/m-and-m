@@ -6,7 +6,7 @@ const uberDefaults = {
     // Styling for a text paragraph
     textFontData: {
         fontFamily: "Roboto",
-        fontSize: "14px",
+        fontSize: "1em",
         fontColor: "#000000",
         fontStyle: 'normal',
         fontWeight: 'normal',
@@ -18,7 +18,7 @@ const uberDefaults = {
         label: 'Continua',
         labelFontData: {
             fontFamily: "Roboto",
-            fontSize: "14px",
+            fontSize: "1em",
             fontColor: "#000000",
             fontStyle: 'normal',
             fontWeight: 'normal',

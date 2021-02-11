@@ -22,7 +22,7 @@ Vue.component("lastScreen-displayer", {
               <div v-else>
                  <p style="fontStyle:italic;"> Punteggio finale: {{score}}</p>
                 <p>  </p>
-                <div v-if="missionRecap">
+                <div v-if="missionRecap && missionRecap.playTime">
                   <p style="fontStyle:italic;">Tempo impiegato: {{missionRecap.playTime}} secondi</p>
                 </div>
                 <br></br>

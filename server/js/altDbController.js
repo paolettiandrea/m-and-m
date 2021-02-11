@@ -281,7 +281,7 @@ const newMissionTemplateObj = {
         "label": "Continua",
         "labelFontData": {
           "fontFamily": "Roboto",
-          "fontSize": "14px",
+          "fontSize": "1em",
           "fontColor": "#000000",
           "fontStyle": "normal",
           "fontWeight": "normal",
