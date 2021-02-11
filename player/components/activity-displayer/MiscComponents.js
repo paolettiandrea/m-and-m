@@ -23,8 +23,8 @@ Vue.component("chat", {
     <div id="not" class="badge">
     <span>{{msg}}</span>
     </div>
-    <div id="not2" class="badge2">
-    <span>!</span>
+    <div id="not2" class="badge2 badge">
+    <span>1</span>
     </div>
     </div>
     
