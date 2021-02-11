@@ -36,7 +36,7 @@ function removePlayerFromGroup(playerId, groupId) {
         const index = targetGroup.players.indexOf(playerId);
         if (index > -1) {
           targetGroup.players.splice(index, 1);
-        // }
+        }
     }
 }
 
