@@ -36,12 +36,12 @@ Vue.component("chat", {
         
 
         <div>
-        <div class="card">
+        <div class="card" style="display: flex; flex-direction:column">
 
 
-            <div class="card-header msg_head">
+            <div class="card-header msg_head" style="flex:0">
 
-            <img class="chat-icon2" src="close.png" width="25" height="25" v-on:click="closeForm()" role="button" aria-label="Chiedi un indizio">
+                <img class="chat-icon2" src="close.png" width="25" height="25" v-on:click="closeForm()" role="button" aria-label="Chiedi un indizio">
 
 
                 <div >
@@ -56,10 +56,10 @@ Vue.component("chat", {
             </div>
 
 
-            <div class="card-body msg_card_body" >
+            <div class="card-body msg_card_body" style="overflow-y: auto; flex:1" >
 
 
-            <section ref="chatArea" style="flex: 1; overflow: y">
+            <section ref="chatArea" style="flex: 1;">
                 <p v-for="message in messages"  :class="{ 'message-out': message.author === 'you', 'message-in': message.author !== 'you' }">
                 {{ message.body }}
                 </p>
@@ -67,14 +67,15 @@ Vue.component("chat", {
 
 
 
-            <div class="card-footer">
+            
+        </div>
+<div style="flex:0">
                 <div>
 
                     <input  class="form-control type_msg" v-model="youMessage" type="text" placeholder="Scrivi al supervisore" style="width: 200px;" tab-index="2">
 
                 </div>
             </div>
-        </div>
     </div>
 </div>
         
@@ -155,6 +156,9 @@ data() {
 
         socket.on('hint', (hint) => {
             console.log("Received hint: ", hint);
+            this.msg++;
+            document.getElementById("not").style.display = "block";
+            document.getElementById("not2").style.display = "none";
             this.messages.push({body: "Indizio: " + hint, author: 'bob'})
         })
     }

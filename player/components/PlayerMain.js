@@ -51,17 +51,20 @@ data() {
       let uri = window.location.search.substring(1);
       let params = new URLSearchParams(uri);
       let missionId = params.get("missionId")
-      if (missionId) {
-        this.wasMissionChosen = true;
-
-        this.chosenMissionId = missionId;
-      }
+ 
 
       axios.get("/missions/heads").then((res, err) => {
                 if (err) throw err;
 
                 this.missionHeads = JSON.parse(res.data)
                 console.log("Received mission heads:", this.missionHeads)
+
+
+                if (missionId) {
+                    this.wasMissionChosen = true;
+
+                    this.chosenMissionId = missionId;
+                  }
     })
       
   }
