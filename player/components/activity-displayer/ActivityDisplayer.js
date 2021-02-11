@@ -12,7 +12,6 @@ Vue.component("activity-displayer", {
                         <styling-wrapper :stylingData="contentChunk.commonData" :stylingDefaults="defaults.commonData">
                             <component :is="contentChunk.contentType"
                                    :id="'content-chunk-'+index"
-                                   :class="myClass"
                                    :contentData="contentChunk.contentData"
                                    :defaults="defaults"
                                    :sharedState="sharedMissionState"></component>

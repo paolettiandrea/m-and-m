@@ -11,6 +11,7 @@ Vue.component("click-img", {
     props: {
         inputData: null
     },
+
     methods: {
         imgClick(areaData) {
             console.log(this.inputData)
