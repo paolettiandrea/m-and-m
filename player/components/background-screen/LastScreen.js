@@ -117,6 +117,11 @@ Vue.component("lastScreen-displayer", {
       this.waitingForGroup = true;
     })
 
+    socket.on('close-mission', () => {
+      console.log("Received close mission socket event");
+      window.location.href = "/player"
+    })
+
     if (this.missionType==='classe') {
 
     socket.emit("class-mission-ended", this.score);

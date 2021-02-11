@@ -193,6 +193,8 @@ async function getMissionRankings(missionId) {
 
 
 
+
+
 var ONE_HOUR = 60 * 60 * 1000;
 async function getMissionRankingsLastHour(missionId) {
   return new Promise((resolve) => {
@@ -230,6 +232,24 @@ async function addMissionScore(missionId, missionScore) {
   })
 }
 
+
+
+async function clearMissionRankings(missionId) {
+  return new Promise((resolve) => {
+    console.log(missionId)
+      fs.writeFile(path.join(missionDirectory(missionId), missionRankingFileName), JSON.stringify([], null, 2), (err) => {
+        if (err) throw err;
+        else 
+        {
+          console.log("Cleared rankings");
+          resolve()
+        }
+      })
+  })
+}
+
+
+
 module.exports = {
   newMission,
   deleteMission,
@@ -241,6 +261,7 @@ module.exports = {
   getMissionRankings,
   getMissionRankingsLastHour,
   addMissionScore,
+  clearMissionRankings,
 
   missionsDir,
 };

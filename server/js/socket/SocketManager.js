@@ -1,5 +1,5 @@
 const {Player, Supervisor} = require('./SocketUtils.js')
-const {getMissionRankings, addMissionScore, getMissionRankingsLastHour} = require('../altDbController.js')
+const {getMissionRankings, addMissionScore, getMissionRankingsLastHour} = require('../altDbController.js');
 
 let io = null;
 
@@ -27,7 +27,6 @@ function addPlayerToGroup(player, groupId) {
 
 
 function removePlayerFromGroup(playerId, groupId) {
-    // TODO
     
     let targetPlayer = players[playerId];
     let targetGroup = groups[targetPlayer.group]
@@ -36,6 +35,9 @@ function removePlayerFromGroup(playerId, groupId) {
         const index = targetGroup.players.indexOf(playerId);
         if (index > -1) {
           targetGroup.players.splice(index, 1);
+          if (targetGroup.players.length===0) {
+              delete groups[targetPlayer.group];
+          }
         }
     }
 }
@@ -207,6 +209,14 @@ function initialize(server) {
                 console.log("Received new score: ", score);
                 let targetPlayer = players[id];
                 addMissionScore(targetPlayer.playingMissionId, score);
+                if (targetPlayer.group) {
+                    let targetGroup = groups[targetPlayer.group];
+                        for (i of targetGroup.players) {
+                            let p = players[i];
+                            console.log("Closing the mission for player ", i);
+                            p.socket.emit('close-mission')
+                        }
+                }
             })
             
             socket.on('disconnect', () => {
