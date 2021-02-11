@@ -35,7 +35,7 @@ Vue.component("chat", {
 
         
 
-        <div class="col-md-8 col-xl-6 chat">
+        <div>
         <div class="card">
 
 
@@ -44,7 +44,7 @@ Vue.component("chat", {
             <img class="chat-icon2" src="close.png" width="25" height="25" v-on:click="closeForm()" role="button" aria-label="Chiedi un indizio">
 
 
-                <div class="d-flex bd-highlight">
+                <div >
                     <div class="img_cont">
                         <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
                         <span class="online_icon"></span>
@@ -59,7 +59,7 @@ Vue.component("chat", {
             <div class="card-body msg_card_body" >
 
 
-            <section ref="chatArea" tab-index="1" role="Navigation" aria-label="Messaggi ricevuti">
+            <section ref="chatArea" style="flex: 1; overflow: y">
                 <p v-for="message in messages"  :class="{ 'message-out': message.author === 'you', 'message-in': message.author !== 'you' }">
                 {{ message.body }}
                 </p>
@@ -68,9 +68,9 @@ Vue.component("chat", {
 
 
             <div class="card-footer">
-                <div class="input-group">
+                <div>
 
-                    <input  v-model="youMessage" type="text" placeholder="Scrivi al supervisore" style="width: 200px;" tab-index="2">
+                    <input  class="form-control type_msg" v-model="youMessage" type="text" placeholder="Scrivi al supervisore" style="width: 200px;" tab-index="2">
 
                 </div>
             </div>
@@ -128,14 +128,21 @@ data() {
             } else {
               alert('something went wrong')
             }
-            Vue.nextTick(() => {
-              let messageDisplay = this.$refs.chatArea
-              messageDisplay.scrollTop = messageDisplay.scrollHeight
-            })
+            
           },
           clearAllMessages() {
             this.messages = []
+          },
+          nextTick() {
+            let messageDisplay = this.$refs.chatArea
+            messageDisplay.scrollTop = messageDisplay.scrollHeight
+          },
+          scroll(){
+            var container = this.$el.querySelector("card-body msg_card_body");
+            container.scrollTop = container.scrollHeight;
+
           }
+          
          
     },
 
@@ -150,8 +157,6 @@ data() {
             console.log("Received hint: ", hint);
             this.messages.push({body: "Indizio: " + hint, author: 'bob'})
         })
-
-    
     }
 
 })
