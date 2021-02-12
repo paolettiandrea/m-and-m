@@ -42,7 +42,7 @@ Vue.component("chat", {
             <div class="card-body msg_card_body" style="overflow-y: auto; flex:1" >
 
 
-            <section ref="chatArea" style="flex: 1;">
+            <section ref="chatArea" style="flex: 1;" role="navigation" aria-label="Messaggi">
                 <p v-for="message in messages"  :class="{ 'message-out': message.author === 'you', 'message-in': message.author !== 'you' }">
                 {{ message.body }}
                 </p>
@@ -54,9 +54,7 @@ Vue.component("chat", {
         </div>
 <div style="flex:0">
                 <div>
-
-                    <input  class="form-control type_msg" v-model="youMessage" type="text" placeholder="Scrivi al supervisore" style="width: 200px;" tab-index="2">
-
+                    <input  class="form-control type_msg" v-model="youMessage" type="text" placeholder="Scrivi al supervisore" style="width: 200px;" tab-index="2" role="textbox" aria-label="Invia un messaggio">
                 </div>
             </div>
     </div>

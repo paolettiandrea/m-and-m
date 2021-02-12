@@ -81,7 +81,7 @@ Vue.component("mission-info-card", {
                         <tooltip-button @click="selectMission(mission.id)" tooltip="Modifica" :keyy="mission.id"><b-icon icon="brush"></b-icon></tooltip-button>
                         <tooltip-button v-if="!mission.archived" @click="playMission(mission.id)" tooltip="Gioca" :keyy="mission.id"><b-icon icon="play"></b-icon></tooltip-button>
                         <tooltip-button v-if="!mission.archived" @click="downloadRanking" tooltip="Scarica classifica" :keyy="mission.id"><b-icon icon="download"></b-icon></tooltip-button>
-                        <tooltip-button v-if="!mission.archived" @click="clearRanking" tooltip="Cancella classifica" :keyy="mission.id"><b-icon icon="download"></b-icon></tooltip-button>
+                        <tooltip-button v-if="!mission.archived" @click="clearRanking" tooltip="Cancella classifica" :keyy="mission.id"><b-icon icon="arrow-counterclockwise"></b-icon></tooltip-button>
                     </b-button-group>
                     <b-button-group>
                       <confirm-button icon="trash" variant="danger" key="cancelMission" confirmPrompt="Sei sicuro di voler eliminare la missione?" @confirmed="deleteMission(mission.id)" :swapVariant="true"></confirm-button>

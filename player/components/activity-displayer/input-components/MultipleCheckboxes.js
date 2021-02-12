@@ -30,7 +30,7 @@ methods: {
 
       layoutDirection() {
         if (this.inputData.layoutDirection) {
-          return layoutDirection;
+          return this.inputData.layoutDirection;
         } else {
           return 'column'
         }
