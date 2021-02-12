@@ -1,16 +1,7 @@
 {
-  "d318b1e0-6ae8-11eb-9613-7fbe305ef84d": {
-    "title": "Nuova missione singolo",
-    "summary": "Una breve descrizione della missione",
-    "playerType": "singolo"
-  },
-  "d2506250-6bb8-11eb-9e54-11bc8435610b": {
-    "title": "Nuova missionesdfds",
+  "585c1020-627b-11eb-82fd-c9cdad6dd0e5": {
+    "title": "Nuova missione",
     "summary": "Una breve descrizione della missione",
     "playerType": "gruppo"
-  },
-  "b0d81c80-6c62-11eb-b201-93c1b4124ccd": {
-    "title": "Nuova missione",
-    "summary": "Una breve descrizione della missione"
   }
 }
