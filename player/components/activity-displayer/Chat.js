@@ -54,7 +54,7 @@ Vue.component("chat", {
         </div>
 <div style="flex:0">
                 <div>
-                    <input  class="form-control type_msg" v-model="youMessage" type="text" placeholder="Scrivi al supervisore" style="width: 200px;" tab-index="2" role="textbox" aria-label="Invia un messaggio">
+                    <input  class="form-control type_msg" v-model="youMessage" type="text" placeholder="Scrivi al supervisore" style="width: 100%;" tab-index="2" role="textbox" aria-label="Invia un messaggio">
                 </div>
             </div>
     </div>
