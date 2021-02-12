@@ -14,6 +14,7 @@
       "title": "Campo testuale",
       "icon": "card-text",
       "description": "Mostra un paragrafo testuale formattabile tramite markdown.",
+      "accessible": true,
       "data":{
         "text": "Placeholder text",
         "parseMarkdown": true,
@@ -40,6 +41,7 @@
       "title": "Suono",
       "icon": "play",
       "description": "Riproduce un suono o una canzone",
+      "accessible": true,
       "data": {
         "audioResourceData": {
           "url": "http://soundbible.com/grab.php?id=1815&type=mp3"

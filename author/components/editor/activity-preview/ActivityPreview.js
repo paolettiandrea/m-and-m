@@ -7,7 +7,7 @@ Vue.component('activity-preview', {
             <div class="full-flex vertical-scroll activity-preview-container">
             
                 <div class="vertical-flex full-flex" style="justify-content: center; height: 100%; padding: 10px">
-                    <descriptive-placeholder class="full-flex" :fullIf="!isActivityEmpty" text="L' attivita' e' vuota" subText="Aggiungi contenuti e personalizza la schermata tramite il pannello sinistro">
+                    <descriptive-placeholder class="full-flex" :fullIf="!isActivityEmpty" text="L' attivita' e' vuota" subText="Aggiungi contenuti e personalizza la schermata tramite il pannello destro">
                         <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-content: center; margin">
                             <activity-displayer class="full-flex activity-preview"  :activity-content="activityData" :styling="selectedMissionContent.screenStylingData" :defaults="selectedMissionContent.defaults" 
                                     @content:chunk:clicked="contentChunkClicked" @input:clicked="inputClicked">

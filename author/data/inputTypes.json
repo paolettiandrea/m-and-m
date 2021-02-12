@@ -4,6 +4,7 @@
       "type": "simple-button",
       "title": "Bottone",
       "icon": "app",
+      "accessible": true,
       "data":{
         "buttonData": {
           "label": "Continua",
@@ -19,8 +20,9 @@
     },
     {
       "type": "text-insert",
-      "title": "Campo testuale",
+      "title": "Inserimento testuale",
       "icon": "cursor-text",
+      "accessible": true,
       "data":{
         "possibilityList": [],
         "fallbackOutcome": {},
@@ -42,6 +44,7 @@
       "type": "multiple-checkboxes",
       "title": "Opzioni",
       "icon": "alt",
+      "accessible": true,
       "data":{
         "optionContentType": "bottone",
         "optionList": [
@@ -107,7 +110,6 @@
         "primaryColor": "#545AFF",
         "secondaryColor": ""
       }
-
     }
   ]
 }

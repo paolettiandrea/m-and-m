@@ -9,6 +9,7 @@ Vue.component('content-type-selector', {
                         variant="outline-primary" 
                         size="sm" 
                         v-for="contentType in contentChunkTypes" 
+                        v-if="shouldShow(contentType)"
                         :key="contentType.type" 
                         v-on:click="emitNewContentEvent(contentType)"
                         v-b-tooltip.hover :title="contentType.title">
@@ -19,7 +20,7 @@ Vue.component('content-type-selector', {
     `,
 
     computed: Vuex.mapState({
-        ... Vuex.mapGetters(['chunkCommonDataAtCreation']),
+        ... Vuex.mapGetters(['chunkCommonDataAtCreation', 'selectedMissionHead']),
         contentChunkTypes: state => state.contentTypes
     }),
 
@@ -30,6 +31,13 @@ Vue.component('content-type-selector', {
                 contentData: JSON.parse(JSON.stringify(contentType.data)),
                 commonData: JSON.parse(JSON.stringify(this.chunkCommonDataAtCreation))
             })
+        },
+        shouldShow(contentType) {
+            if (this.selectedMissionHead.accessible) {
+                return contentType.accessible===true;
+            } else {
+                return true;
+            }
         }
     }
 })

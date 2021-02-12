@@ -7,6 +7,7 @@ Vue.component('input-type-selector', {
                         variant="outline-primary" 
                         size="sm" 
                         v-for="inputType in inputTypes" 
+                        v-if="shouldShow(inputType)"
                         :key="inputType.type" 
                         v-on:click="emitInputSelectedEvent(inputType)"
                         v-b-tooltip.hover :title="inputType.title">
@@ -17,7 +18,7 @@ Vue.component('input-type-selector', {
     `,
 
     computed: Vuex.mapState( {
-        ... Vuex.mapGetters(['chunkCommonDataAtCreation']),
+        ... Vuex.mapGetters(['chunkCommonDataAtCreation', 'selectedMissionHead']),
         inputTypes: state => state.inputTypes
     }),
 
@@ -28,6 +29,13 @@ Vue.component('input-type-selector', {
                     inputData: JSON.parse(JSON.stringify(inputType.data)),
                     commonData: JSON.parse(JSON.stringify(this.chunkCommonDataAtCreation))
             })
+        },
+        shouldShow(inputType) {
+            if (this.selectedMissionHead.accessible) {
+                return inputType.accessible===true;
+            } else {
+                return true;
+            }
         }
     }
 })
