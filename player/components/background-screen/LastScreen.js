@@ -3,7 +3,7 @@ Vue.component("lastScreen-displayer", {
 <div class="lastscreenbackground" style="height:100%; background-image:url(player/861304.jpg)">
    <div style="font-family:Roboto;  text-align:center; font-style:serif; height:100%; padding-top:3em; padding-buttom:6em;">
         <transition name="content-slide" mode="out-in">
-          <div style="backgroundColor:#ffffff; opacity:0.8; padding:1em; margin-left: 10em; margin-right: 10em;">
+          <div style="backgroundColor:#ffffff; opacity:0.8; padding:1em; margin-left: 2em; margin-right: 2em;">
               <div style=" border: 0.1em solid black;
                            font-weight: bold;
                            color: #000000;">
