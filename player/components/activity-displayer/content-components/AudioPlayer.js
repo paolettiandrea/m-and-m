@@ -15,19 +15,19 @@ Vue.component('audio-player', {
         buttonStyle() {
             return buildButtonStyle(this.contentData.buttonData, this.defaults.buttonData, uberDefaults.buttonData);
         },
-        buttonIcon() {}
     },
     methods: {
         playSound () {
             if(this.contentData.audioResourceData.url) {
                 if (!this.sharedState.audioPlaying) {
                     var audio = new Audio(this.contentData.audioResourceData.url);
+                    this.sharedState.audioPlaying = audio;
                     Vue.set(this.sharedState, 'audioPlaying', audio);
                     audio.play();
                     audio.addEventListener('ended', () => {
                         console.log("Audio ended");
                         Vue.set(this.sharedState, 'audioPlaying',null);
-                })
+                    })
                 } else {
                     console.log("need to wait to play another audio")
                 }
@@ -38,7 +38,7 @@ Vue.component('audio-player', {
         stopSound() {
             if (this.sharedState.audioPlaying) {
                 this.sharedState.audioPlaying.pause();
-                Vue.set(this.sharedState, 'audioPlaying',null);
+                Vue.set(this.sharedState, 'audioPlaying', null);
             }
         }
     }

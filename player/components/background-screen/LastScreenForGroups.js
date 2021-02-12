@@ -1,3 +1,5 @@
+// DEPRECATED 
+
 Vue.component('lastScreen-groups', {
     template: `
     <b-list-group   class="d-flex  align-items-center"

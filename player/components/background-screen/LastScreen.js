@@ -121,10 +121,8 @@ Vue.component("lastScreen-displayer", {
     })
 
     if (this.missionType==='classe') {
-
-    socket.emit("class-mission-ended", this.score);
+      socket.emit("class-mission-ended", this.score);
     } else {
-
       socket.emit("mission-ended", this.score);
     }
   

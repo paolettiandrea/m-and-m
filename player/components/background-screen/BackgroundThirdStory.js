@@ -1,3 +1,5 @@
+// DEPRECATED
+
 Vue.component('backgroundThird-screen', {
     template: `
 <div style="background-image:url(https://www.unb.ca/cel/_assets/images/enrichment/music/workshops-header.jpg)">

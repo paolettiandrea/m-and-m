@@ -1,3 +1,5 @@
+// DEPRECATED
+
 Vue.component('backgroundSecondo-screen', {
     template: `
 <div style="background-image:url(https://www.storicang.it/medio/2019/12/16/i-santuari-di-poseidone-a-destra-costruito-attorno-al-460-ac-e-di-era-a-sinistra-denominato-anche-basilica-e-risalente-al-530-ac-circa_49f5346a_800x412.jpg)">

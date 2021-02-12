@@ -1,3 +1,5 @@
+// DEPRECATED 
+
 var myObj ='{"opzioni" : [ "opzione1", "opzione2", "opzione3", "opzione4"],"risposta" : "opzione2 opzione1 opzione3 opzione4"}';
 var jsonFile = JSON.parse(myObj);
 //var counter = 0;

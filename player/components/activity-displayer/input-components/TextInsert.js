@@ -10,7 +10,7 @@ Vue.component("text-insert", {
           :type="this.inputData.textType || 'text'"
         ></b-form-input>
 
-     <simple-button style="margin:auto; display:block; white-space: nowrap" :inputData="inputData" :defaults="defaults" @input-received="textState"></simple-button>
+     <simple-button style="margin:auto; display:block; white-space: nowrap" :inputData="inputData" :defaults="defaults" @input-received="verifyAnswer"></simple-button>
     </div>`,
 
   props: {
@@ -18,11 +18,8 @@ Vue.component("text-insert", {
     defaults: null,
   },
   methods: {
-    textState() {
+    verifyAnswer() {
       console.log("Clicked");
-      //window.alert( this.answer );
-
-      //var correct = this.answer == this.inputData.correctAnswer ? true : false
 
       if (this.answer) {
 

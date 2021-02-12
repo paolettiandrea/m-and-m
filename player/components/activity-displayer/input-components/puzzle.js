@@ -1,3 +1,4 @@
+// DEPRECATED
 const SOURCEPATHS = {
   Dog: {
     src: './img.jpg'

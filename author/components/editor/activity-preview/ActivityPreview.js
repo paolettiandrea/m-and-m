@@ -1,9 +1,6 @@
 Vue.component('activity-preview', {
     template: `
         <div class="column-flex-container" v-if="activityData">
-            
-           
-            
             <div class="full-flex vertical-scroll activity-preview-container">
             
                 <div class="vertical-flex full-flex" style="justify-content: center; height: 100%; padding: 10px">
@@ -15,13 +12,7 @@ Vue.component('activity-preview', {
                         </div>
                     </descriptive-placeholder>
                 </div>
-   
-                
-            
-            
-                
             </div>
-   
     </div>
     `,
 

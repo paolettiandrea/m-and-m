@@ -1,3 +1,5 @@
+// DEPRECATED
+
 Vue.component('backgroundDinosauri-screen', {
     template: `
 <div style="background-image:url(https://ilbolive.unipd.it/sites/default/files/2020-11/dinosaurs-5568806_1280.jpg)">
