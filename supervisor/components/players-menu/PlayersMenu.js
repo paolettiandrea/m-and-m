@@ -22,7 +22,7 @@ Vue.component("players-menu", {
 Vue.component("player-menu-card", {
   template: `
     
-            <b-card href="#" @click="playerClicked(player.id)" :bg-variant="cardVariant">
+            <b-card href="#" @click="playerClicked(player.id)" :bg-variant="cardVariant" :class="{'selected-player-card': selectedPlayer && (selectedPlayer.id === player.id)}">
                 <template #header>
                     <editable-text :targetObject="player" targetFieldName="givenName" :placeholder="player.id"></editable-text>
                 </template>
@@ -65,7 +65,8 @@ Vue.component("player-menu-card", {
       "missionHeads",
       "missionContents",
       "pendingActions",
-      "socket"
+      "socket",
+      "selectedPlayer"
     ]),
 
     cardVariant() {

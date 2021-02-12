@@ -32,7 +32,7 @@
 
 
 .selected-player-card {
-    background-color: aliceblue;
+    border-color: #3d3d3d;
 }
 
 .pending-player-card {
