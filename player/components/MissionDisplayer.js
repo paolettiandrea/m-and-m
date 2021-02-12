@@ -46,6 +46,7 @@ Vue.component('mission-displayer', {
         },
 
         handleNextActivity(nextActivityId, points) {
+            console.log("Next activity event received, going from activity ", this.pointedActivity.uuid, " to activity ", nextActivityId);
             this.pointedActivity = this.missionData.activities[nextActivityId];
             if (nextActivityId) {
                 this.pointedActivity =  this.missionData.activities[nextActivityId];
@@ -92,8 +93,6 @@ Vue.component('mission-displayer', {
 
                 this.prefetchResources(this.missionData);
             })
-
-
 
 
             socket.emit('player-handshake');

@@ -102,7 +102,6 @@ Vue.component('canvas-draw-editor', {
 
 Vue.component('click-img-editor', {
     template: `<div>
-        <p>hgdhdj</p>
         <url-input :target="inputData" fieldName="url"></url-input>
         <activity-editor-list :list="inputData.areas" :labelFunction="labelFunc" :addCallback="addArea">
             <template v-slot:default="slotProps">
